@@ -31,22 +31,34 @@
   .layout { display: flex; min-height: 100vh; }
   .sidebar { width: 320px; flex-shrink: 0; height: 100vh; position: sticky; top: 0; border-right: 1px solid var(--border); background: var(--panel); overflow-y: auto; }
   .main { flex: 1; min-width: 0; }
-  .topbar { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); background: rgba(11,15,23,0.85); border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; }
-  .brand { display: flex; align-items: center; gap: 12px; padding: 20px; border-bottom: 1px solid var(--border); }
-  .brand-logo { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 18px; }
-  .nav-section { padding: 16px 12px 4px; }
-  .nav-label { padding: 6px 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-  .nav-sub { padding: 0 12px 8px; font-size: 10px; color: rgba(138,152,179,0.7); font-style: italic; }
-  .nav-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-radius: 6px; cursor: pointer; font-size: 14px; color: var(--muted); transition: all 0.15s; background: transparent; border: none; width: 100%; text-align: left; font-family: inherit; }
+  .topbar { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); background: rgba(11,15,23,0.85); border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 12px; padding: 24px 20px; border-bottom: 1px solid var(--border); }
+  .brand-logo { width: 56px; height: auto; flex-shrink: 0; display: flex; align-items: center; }
+  .brand-logo img { width: 100%; height: auto; display: block; }
+  .nav-section { padding: 20px 14px 8px; }
+  .nav-section + .nav-section { padding-top: 12px; }
+  .nav-label { padding: 8px 12px 2px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .nav-sub { padding: 0 12px 10px; font-size: 10px; color: rgba(138,152,179,0.7); font-style: italic; }
+  .nav-item { display: flex; justify-content: space-between; align-items: center; padding: 11px 12px; margin: 2px 0; border-radius: 8px; cursor: pointer; font-size: 14px; color: var(--muted); transition: all 0.15s; background: transparent; border: none; width: 100%; text-align: left; font-family: inherit; }
   .nav-item:hover { background: rgba(110,168,255,0.08); color: white; }
   .nav-item.active { background: linear-gradient(90deg, rgba(110,168,255,0.15), rgba(155,135,255,0.08)); border-left: 3px solid var(--accent); color: white; padding-left: 9px; }
+  .footer-card { margin: 20px 14px; padding: 14px; border-radius: 10px; background: var(--panel-2); border: 1px solid var(--border); font-size: 12px; color: var(--muted); }
   .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
   .badge-basic { background: rgba(52,211,153,0.15); color: var(--success); }
   .badge-pro { background: rgba(110,168,255,0.15); color: var(--accent); }
   .badge-ent { background: rgba(244,196,107,0.15); color: var(--gold); }
-  .footer-card { margin: 12px; padding: 12px; border-radius: 8px; background: var(--panel-2); border: 1px solid var(--border); font-size: 12px; color: var(--muted); }
   .footer-card-title { color: white; font-weight: 600; margin-bottom: 4px; }
-  .hero { padding: 64px 32px; max-width: 1100px; }
+  .hero { padding: 72px 56px 96px; max-width: 1200px; }
+  .hero.rtl { direction: rtl; font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif; }
+  .hero.rtl .hero-eyebrow, .hero.rtl .info-title, .hero.rtl .pkg-card-label { letter-spacing: 0; }
+  .ota-block { margin: 36px 0 48px; padding: 28px; border-radius: 16px; background: linear-gradient(135deg, rgba(110,168,255,0.08), rgba(155,135,255,0.04)); border: 1px solid var(--border); }
+  .ota-block h3 { color: white; font-size: 20px; font-weight: 700; margin: 0 0 12px; }
+  .ota-block p { color: #c8d3e8; line-height: 1.8; margin: 8px 0; font-size: 15px; }
+  .ota-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 20px; }
+  .ota-feat { padding: 14px 16px; background: rgba(15,22,34,0.6); border-radius: 10px; border: 1px solid var(--border); }
+  .ota-feat-icon { font-size: 20px; margin-bottom: 6px; }
+  .ota-feat-title { color: white; font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .ota-feat-desc { color: var(--muted); font-size: 12px; line-height: 1.5; }
   .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
   .hero-title { font-size: 56px; font-weight: 800; letter-spacing: -0.02em; color: white; margin: 0 0 16px; line-height: 1.05; }
   .hero-sub { font-size: 18px; color: var(--muted); max-width: 720px; margin-bottom: 36px; line-height: 1.6; }
@@ -74,7 +86,7 @@
   .topbar-title { font-size: 22px; font-weight: 700; color: white; display: flex; align-items: center; gap: 12px; margin-top: 2px; }
   .btn { padding: 6px 12px; border-radius: 6px; background: var(--panel-2); border: 1px solid var(--border); color: var(--text); font-size: 13px; cursor: pointer; transition: all 0.15s; font-family: inherit; }
   .btn:hover { background: #1a2438; border-color: var(--accent); }
-  .doc-wrap { padding: 40px 32px 80px; }
+  .doc-wrap { padding: 48px 56px 96px; max-width: 1200px; }
   .doc-prose { max-width: 80ch; line-height: 1.75; font-size: 16px; }
   .doc-prose.rtl { max-width: 90ch; }
   .doc-prose h1 { font-size: 2.25rem; font-weight: 800; margin: 2rem 0 1rem; letter-spacing: -0.02em; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
@@ -127,9 +139,9 @@
     { id: 'maintenance',label: 'Maintenance Contracts',sub: 'عقود الصيانة',           icon: '🛡️', rtl: true },
   ];
   const TIERS = [
-    { id: 'basic',        label: 'Basic',        short: 'B',   badge: 'badge-basic', price: '595,000 EGP',   timeline: '8–10 weeks',  maint: '10,000 EGP/mo' },
-    { id: 'professional', label: 'Professional', short: 'PRO', badge: 'badge-pro',   price: '845,000 EGP',   timeline: '12–14 weeks', maint: '18,000 EGP/mo' },
-    { id: 'enterprise',   label: 'Enterprise',   short: 'ENT', badge: 'badge-ent',   price: '1,390,000 EGP', timeline: '20–24 weeks', maint: '30,000 EGP/mo' },
+    { id: 'basic',        label: 'Basic',        short: 'B',   badge: 'badge-basic', price: '600,000 EGP (~$12,000)',   timeline: '3 months', maint: '10,000 EGP/mo (~$200)' },
+    { id: 'professional', label: 'Professional', short: 'PRO', badge: 'badge-pro',   price: '850,000 EGP (~$17,000)',   timeline: '4 months', maint: '20,000 EGP/mo (~$400)' },
+    { id: 'enterprise',   label: 'Enterprise',   short: 'ENT', badge: 'badge-ent',   price: '1,400,000 EGP (~$28,000)', timeline: '6 months', maint: '30,000 EGP/mo (~$600)' },
   ];
   const KEY = (c, t) => c + '-' + t;
 
@@ -164,8 +176,10 @@
 
   function buildSidebar() {
     const aside = el('aside', { class: 'sidebar no-print' });
+    const logo = el('div', { class: 'brand-logo' });
+    logo.appendChild(el('img', { src: 'assets/jawla-logo-white.svg', alt: 'Jawla Tours' }));
     aside.appendChild(el('div', { class: 'brand' }, [
-      el('div', { class: 'brand-logo' }, 'J'),
+      logo,
       el('div', null, [
         el('div', { style: 'font-weight:700;color:#fff;letter-spacing:-0.01em' }, 'Jawla Tours'),
         el('div', { style: 'font-size:12px;color:var(--muted)' }, 'OTA Project · Doc Hub'),
@@ -245,26 +259,62 @@
   }
 
   function buildHero() {
-    const hero = el('div', { class: 'hero' });
-    hero.appendChild(el('div', { class: 'hero-eyebrow' }, 'Project Documentation Hub'));
-    hero.appendChild(el('h1', { class: 'hero-title' }, 'Jawla Tours · OTA Platform'));
-    hero.appendChild(el('p', { class: 'hero-sub' }, 'Complete proposal & engineering documentation set across three packages. Browse client-facing Arabic proposals, internal product requirements, software specs, and maintenance contracts.'));
+    const hero = el('div', { class: 'hero rtl' });
+    hero.appendChild(el('div', { class: 'hero-eyebrow' }, 'مركز توثيق المشروع'));
+    hero.appendChild(el('h1', { class: 'hero-title' }, 'جولة تورز · منصة حجوزات سفر متكاملة'));
+    hero.appendChild(el('p', { class: 'hero-sub' }, 'حزمة كاملة من الوثائق التجارية والهندسية لمشروع منصة الحجز الإلكتروني، مقسّمة على ثلاثة باقات. تتضمن العروض المقدّمة للعميل بالعربية، ومستندات متطلبات المنتج (PRD)، ومواصفات النظام (SRS)، وعقود الصيانة.'));
 
+    const ota = el('div', { class: 'ota-block' });
+    ota.appendChild(el('h3', null, 'ما هي منصة OTA؟'));
+    ota.appendChild(el('p', null, [
+      el('strong', null, 'OTA '),
+      document.createTextNode('اختصار لـ '),
+      el('strong', null, 'Online Travel Agency'),
+      document.createTextNode(' أي '),
+      el('strong', null, '«وكالة سفر إلكترونية كاملة»'),
+      document.createTextNode('. هي منصّة رقمية تتيح للعميل البحث والحجز والدفع لخدمات السفر — رحلات الطيران، الفنادق، الباقات السياحية — مباشرةً عبر موقع الشركة، دون الحاجة إلى تحويل العميل إلى مواقع خارجية أو الاتصال بموظف لإتمام العملية.'),
+    ]));
+    ota.appendChild(el('p', null, 'الهدف من هذا المشروع تحويل موقع جولة تورز الحالي إلى منصة OTA متكاملة، يصبح فيها الموقع قناة بيع مستقلة تعمل على مدار الساعة وتولّد الحجوزات تلقائياً.'));
+
+    const feats = el('div', { class: 'ota-features' });
+    const F = [
+      ['✈️', 'بحث الرحلات', 'عرض رحلات الطيران من جميع شركات الطيران عبر Amadeus مع الأسعار اللحظية'],
+      ['🏨', 'حجز الفنادق', 'بحث في آلاف الفنادق حول العالم مع التوفر الفوري والأسعار'],
+      ['💳', 'دفع داخلي', 'إتمام الدفع داخل الموقع عبر Stripe و Paymob و Adyen بأمان كامل'],
+      ['📧', 'تأكيدات تلقائية', 'إرسال تذاكر السفر وقسائم الحجز بالبريد فور إتمام الدفع'],
+      ['👤', 'حساب العميل', 'لوحة تحكم شخصية لإدارة الحجوزات والاطلاع على سجل السفر'],
+      ['🌐', 'عربي وإنجليزي', 'دعم كامل للغتين مع تجربة استخدام متجاوبة على جميع الأجهزة'],
+    ];
+    for (const [i, t, d] of F) {
+      feats.appendChild(el('div', { class: 'ota-feat' }, [
+        el('div', { class: 'ota-feat-icon' }, i),
+        el('div', { class: 'ota-feat-title' }, t),
+        el('div', { class: 'ota-feat-desc' }, d),
+      ]));
+    }
+    ota.appendChild(feats);
+    hero.appendChild(ota);
+
+    hero.appendChild(el('div', { class: 'hero-eyebrow', style: 'margin-bottom:16px' }, 'الباقات المقترحة'));
     const grid = el('div', { class: 'pkg-grid' });
+    const TIER_AR = { basic: 'الأساسية', professional: 'الاحترافية', enterprise: 'المؤسسية' };
+    const META_AR = { basic: '3 شهور · صيانة 10,000 ج.م/شهر (~$200)', professional: '4 شهور · صيانة 20,000 ج.م/شهر (~$400)', enterprise: '6 شهور · صيانة 30,000 ج.م/شهر (~$600)' };
+    const PRICE_AR = { basic: '600,000 ج.م (~$12,000)', professional: '850,000 ج.م (~$17,000)', enterprise: '1,400,000 ج.م (~$28,000)' };
+    const CAT_AR = { proposals: 'العرض', prds: 'PRD', srs: 'SRS', maintenance: 'الصيانة' };
     for (const tier of TIERS) {
       const card = el('div', { class: 'pkg-card' });
       card.appendChild(el('div', { class: 'pkg-card-row' }, [
-        el('div', { class: 'pkg-card-label' }, 'Package'),
-        el('span', { class: 'badge ' + tier.badge }, tier.label),
+        el('div', { class: 'pkg-card-label' }, 'الباقة'),
+        el('span', { class: 'badge ' + tier.badge }, TIER_AR[tier.id]),
       ]));
-      card.appendChild(el('div', { class: 'pkg-price' }, tier.price));
-      card.appendChild(el('div', { class: 'pkg-meta' }, tier.timeline + ' · ' + tier.maint));
+      card.appendChild(el('div', { class: 'pkg-price' }, PRICE_AR[tier.id]));
+      card.appendChild(el('div', { class: 'pkg-meta' }, META_AR[tier.id]));
       const tags = el('div', { class: 'pkg-tags' });
       for (const c of CATEGORIES) {
         tags.appendChild(el('button', {
           class: 'pkg-tag',
           onclick: () => { active = KEY(c.id, tier.id); window.location.hash = active; render(); },
-        }, c.icon + ' ' + c.label.split(' ')[0]));
+        }, c.icon + ' ' + CAT_AR[c.id]));
       }
       card.appendChild(tags);
       grid.appendChild(card);
@@ -273,9 +323,9 @@
 
     const info = el('div', { class: 'info-grid' });
     const pay = el('div', { class: 'info-card' });
-    pay.appendChild(el('div', { class: 'info-title' }, 'Payment Schedule'));
+    pay.appendChild(el('div', { class: 'info-title' }, 'جدول الدفع'));
     const payGrid = el('div', { class: 'pay-grid' });
-    for (const [pct, lbl] of [['30%','Signing'],['25%','Phase 1'],['25%','Phase 2'],['20%','Delivery']]) {
+    for (const [pct, lbl] of [['30%','عند التوقيع'],['25%','المرحلة 1'],['25%','المرحلة 2'],['20%','التسليم']]) {
       payGrid.appendChild(el('div', { class: 'pay-num' }, [
         el('div', { class: 'pay-pct' }, pct),
         el('div', { class: 'pay-lbl' }, lbl),
@@ -285,7 +335,7 @@
     info.appendChild(pay);
 
     const stack = el('div', { class: 'info-card' });
-    stack.appendChild(el('div', { class: 'info-title' }, 'Stack'));
+    stack.appendChild(el('div', { class: 'info-title' }, 'البنية التقنية'));
     const stackTags = el('div', { class: 'stack-tags' });
     for (const s of ['Next.js','NestJS','PostgreSQL','Redis','BullMQ','Amadeus','Stripe','Paymob','Adyen','WhatsApp']) {
       stackTags.appendChild(el('span', { class: 'stack-tag' }, s));
