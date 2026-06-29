@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Jawla Tours · OTA Project Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  :root {
+    --bg: #0b0f17;
+    --panel: #0f1622;
+    --panel-2: #131b2b;
+    --border: #1e2a40;
+    --text: #e6edf7;
+    --muted: #8a98b3;
+    --accent: #6ea8ff;
+    --accent-2: #9b87ff;
+    --success: #34d399;
+    --gold: #f4c46b;
+  }
+  html, body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; }
+  .rtl { direction: rtl; font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif; }
+  .scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scrollbar::-webkit-scrollbar-thumb { background: #2a3852; border-radius: 4px; }
+  .scrollbar::-webkit-scrollbar-track { background: transparent; }
+  .doc-prose { max-width: 80ch; line-height: 1.75; font-size: 16px; }
+  .doc-prose.rtl { max-width: 90ch; }
+  .doc-prose h1 { font-size: 2.25rem; font-weight: 800; margin: 2rem 0 1rem; letter-spacing: -0.02em; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; }
+  .doc-prose h2 { font-size: 1.6rem; font-weight: 700; margin: 2.5rem 0 0.75rem; color: #fff; letter-spacing: -0.01em; }
+  .doc-prose h3 { font-size: 1.25rem; font-weight: 600; margin: 1.75rem 0 0.5rem; color: #dde6f4; }
+  .doc-prose h4 { font-size: 1.05rem; font-weight: 600; margin: 1.25rem 0 0.4rem; color: #c8d3e8; }
+  .doc-prose p { margin: 0.8rem 0; color: #c8d3e8; }
+  .doc-prose strong { color: #fff; font-weight: 600; }
+  .doc-prose em { color: #aebcd6; }
+  .doc-prose ul, .doc-prose ol { margin: 0.8rem 0; padding-inline-start: 1.5rem; color: #c8d3e8; }
+  .doc-prose li { margin: 0.3rem 0; }
+  .doc-prose ul li::marker { color: var(--accent); }
+  .doc-prose ol li::marker { color: var(--accent-2); font-weight: 600; }
+  .doc-prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .doc-prose hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .doc-prose blockquote { border-inline-start: 3px solid var(--accent); padding: 0.5rem 1rem; margin: 1rem 0; background: rgba(110, 168, 255, 0.06); color: #c8d3e8; border-radius: 0 8px 8px 0; }
+  .doc-prose code { background: #1a2233; color: var(--gold); padding: 0.1rem 0.4rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; }
+  .doc-prose pre { background: #0a1020; border: 1px solid var(--border); border-radius: 10px; padding: 1rem; overflow-x: auto; margin: 1rem 0; }
+  .doc-prose pre code { background: transparent; padding: 0; color: #cfd8eb; }
+  .doc-prose table { border-collapse: collapse; margin: 1.25rem 0; width: 100%; font-size: 0.92rem; background: var(--panel-2); border-radius: 10px; overflow: hidden; }
+  .doc-prose th { background: #1a2438; color: #fff; font-weight: 600; text-align: start; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .doc-prose td { padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); color: #c8d3e8; vertical-align: top; }
+  .doc-prose tr:last-child td { border-bottom: 0; }
+  .doc-prose tr:hover td { background: rgba(110, 168, 255, 0.04); }
+  .sidebar-item { transition: all 0.15s ease; }
+  .sidebar-item:hover { background: rgba(110, 168, 255, 0.08); }
+  .sidebar-item.active { background: linear-gradient(90deg, rgba(110, 168, 255, 0.15), rgba(155, 135, 255, 0.08)); border-inline-start: 3px solid var(--accent); }
+  .badge { display: inline-flex; align-items: center; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .badge-basic { background: rgba(52, 211, 153, 0.15); color: var(--success); }
+  .badge-pro { background: rgba(110, 168, 255, 0.15); color: var(--accent); }
+  .badge-ent { background: rgba(244, 196, 107, 0.15); color: var(--gold); }
+  .glow { box-shadow: 0 0 40px rgba(110, 168, 255, 0.08); }
+  @media print {
+    body, html { background: #fff !important; color: #000 !important; }
+    .no-print { display: none !important; }
+    .doc-prose { max-width: none; color: #000; font-size: 12pt; }
+    .doc-prose h1, .doc-prose h2, .doc-prose h3, .doc-prose h4, .doc-prose p, .doc-prose li, .doc-prose td, .doc-prose strong { color: #000 !important; }
+    .doc-prose th { background: #f0f0f0 !important; color: #000 !important; }
+    .doc-prose table { background: #fff !important; }
+    .doc-prose pre { background: #f5f5f5 !important; border-color: #ddd !important; }
+    .doc-prose code { background: #f0f0f0 !important; color: #c0392b !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script id="docs-data" type="application/json">__DOCS_DATA__</script>
+<script type="text/babel" data-presets="react">
+const { useState, useMemo, useEffect } = React;
+
+const DOCS = JSON.parse(document.getElementById('docs-data').textContent);
+
+const CATEGORIES = [
+  { id: 'proposals', label: 'Client Proposals', sub: 'عروض العملاء · Arabic', icon: '📜', rtl: true },
+  { id: 'prds', label: 'Product Requirements', sub: 'Internal PRDs', icon: '🎯', rtl: false },
+  { id: 'srs', label: 'Software Specs', sub: 'Internal SRS', icon: '⚙️', rtl: false },
+  { id: 'maintenance', label: 'Maintenance Contracts', sub: 'عقود الصيانة', icon: '🛡️', rtl: true },
+];
+
+const TIERS = [
+  { id: 'basic', label: 'Basic', badge: 'badge-basic', price: '595,000 EGP', timeline: '8–10 weeks', maint: '10,000 EGP/mo' },
+  { id: 'professional', label: 'Professional', badge: 'badge-pro', price: '845,000 EGP', timeline: '12–14 weeks', maint: '18,000 EGP/mo' },
+  { id: 'enterprise', label: 'Enterprise', badge: 'badge-ent', price: '1,390,000 EGP', timeline: '20–24 weeks', maint: '30,000 EGP/mo' },
+];
+
+const KEY = (cat, tier) => `${cat}-${tier}`;
+
+marked.setOptions({ gfm: true, breaks: false, headerIds: true });
+
+function renderMD(md) {
+  if (!md) return { __html: '<p class="text-slate-400 italic">Document not yet generated.</p>' };
+  const html = marked.parse(md);
+  return { __html: DOMPurify.sanitize(html, { ADD_ATTR: ['target'] }) };
+}
+
+function Sidebar({ active, onPick }) {
+  return (
+    <aside className="w-80 shrink-0 h-screen sticky top-0 border-r border-[var(--border)] bg-[var(--panel)] overflow-y-auto scrollbar no-print">
+      <div className="p-5 border-b border-[var(--border)]">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)] flex items-center justify-center text-xl font-bold text-white">J</div>
+          <div>
+            <div className="font-bold text-white tracking-tight">Jawla Tours</div>
+            <div className="text-xs text-[var(--muted)]">OTA Project · Doc Hub</div>
+          </div>
+        </div>
+      </div>
+      <div className="p-3">
+        {CATEGORIES.map(cat => (
+          <div key={cat.id} className="mb-4">
+            <div className="px-3 py-2 text-[11px] uppercase tracking-wider text-[var(--muted)] font-semibold flex items-center gap-2">
+              <span>{cat.icon}</span>
+              <span>{cat.label}</span>
+            </div>
+            <div className="text-[10px] px-3 pb-2 text-[var(--muted)]/70 italic">{cat.sub}</div>
+            {TIERS.map(tier => {
+              const k = KEY(cat.id, tier.id);
+              const isActive = active === k;
+              return (
+                <button
+                  key={tier.id}
+                  onClick={() => onPick(k)}
+                  className={`sidebar-item w-full text-start px-3 py-2.5 flex items-center justify-between rounded-md text-sm ${isActive ? 'active text-white' : 'text-[var(--muted)] hover:text-white'}`}
+                >
+                  <span className="font-medium">{tier.label}</span>
+                  <span className={`badge ${tier.badge}`}>{tier.id === 'basic' ? 'B' : tier.id === 'professional' ? 'PRO' : 'ENT'}</span>
+                </button>
+              );
+            })}
+          </div>
+        ))}
+        <div className="mt-6 px-3 py-3 rounded-lg bg-[var(--panel-2)] border border-[var(--border)] text-xs text-[var(--muted)]">
+          <div className="font-semibold text-white mb-1">12 documents</div>
+          <div>3 proposals · 3 PRDs · 3 SRS · 3 contracts</div>
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+function Topbar({ tier, cat, onPrint }) {
+  if (!cat || !tier) return null;
+  return (
+    <div className="sticky top-0 z-10 backdrop-blur bg-[var(--bg)]/85 border-b border-[var(--border)] no-print">
+      <div className="px-8 py-4 flex items-center justify-between">
+        <div>
+          <div className="text-[11px] uppercase tracking-wider text-[var(--muted)] font-semibold">{cat.label}</div>
+          <div className="text-xl font-bold text-white flex items-center gap-3">
+            {tier.label} Package
+            <span className={`badge ${tier.badge}`}>{tier.price}</span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="text-xs text-[var(--muted)] hidden md:flex gap-4 mr-3">
+            <span>⏱ {tier.timeline}</span>
+            <span>🛠 {tier.maint}</span>
+          </div>
+          <button onClick={onPrint} className="px-3 py-1.5 rounded-md bg-[var(--panel-2)] border border-[var(--border)] text-sm hover:bg-[#1a2438] hover:border-[var(--accent)] transition">🖨 Print / PDF</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Hero({ onPick }) {
+  return (
+    <div className="px-8 py-16 max-w-6xl">
+      <div className="text-[11px] uppercase tracking-[0.2em] text-[var(--accent)] font-bold mb-3">Project Documentation Hub</div>
+      <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-white mb-4">Jawla Tours · OTA Platform</h1>
+      <p className="text-lg text-[var(--muted)] max-w-2xl mb-8">Complete proposal &amp; engineering documentation set across three packages. Browse client-facing Arabic proposals, internal product requirements, software specs, and maintenance contracts.</p>
+
+      <div className="grid md:grid-cols-3 gap-4 mb-12">
+        {TIERS.map(t => (
+          <div key={t.id} className="rounded-2xl border border-[var(--border)] bg-[var(--panel)] p-6 glow">
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-xs uppercase tracking-wider text-[var(--muted)] font-semibold">Package</div>
+              <span className={`badge ${t.badge}`}>{t.label}</span>
+            </div>
+            <div className="text-2xl font-bold text-white mb-1">{t.price}</div>
+            <div className="text-sm text-[var(--muted)] mb-4">{t.timeline} · {t.maint}</div>
+            <div className="flex flex-wrap gap-2">
+              {CATEGORIES.map(c => (
+                <button key={c.id} onClick={() => onPick(KEY(c.id, t.id))} className="text-xs px-2.5 py-1 rounded-md bg-[var(--panel-2)] border border-[var(--border)] hover:border-[var(--accent)] hover:text-white text-[var(--muted)] transition">
+                  {c.icon} {c.label.split(' ')[0]}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+          <div className="text-xs uppercase tracking-wider text-[var(--accent)] font-semibold mb-2">Payment Schedule</div>
+          <div className="text-sm text-[var(--muted)] grid grid-cols-4 gap-2 mt-3">
+            <div className="text-center"><div className="text-2xl font-bold text-white">30%</div><div className="text-[10px] uppercase mt-1">Signing</div></div>
+            <div className="text-center"><div className="text-2xl font-bold text-white">25%</div><div className="text-[10px] uppercase mt-1">Phase 1</div></div>
+            <div className="text-center"><div className="text-2xl font-bold text-white">25%</div><div className="text-[10px] uppercase mt-1">Phase 2</div></div>
+            <div className="text-center"><div className="text-2xl font-bold text-white">20%</div><div className="text-[10px] uppercase mt-1">Delivery</div></div>
+          </div>
+        </div>
+        <div className="rounded-xl border border-[var(--border)] bg-[var(--panel)] p-5">
+          <div className="text-xs uppercase tracking-wider text-[var(--accent)] font-semibold mb-2">Stack</div>
+          <div className="flex flex-wrap gap-2 mt-3">
+            {['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'BullMQ', 'Amadeus', 'Stripe', 'Paymob', 'Adyen', 'WhatsApp'].map(s => (
+              <span key={s} className="text-xs px-2.5 py-1 rounded-md bg-[var(--panel-2)] border border-[var(--border)] text-[var(--muted)]">{s}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash && DOCS[hash] !== undefined) setActive(hash);
+  }, []);
+
+  useEffect(() => {
+    if (active) window.location.hash = active;
+  }, [active]);
+
+  const parts = active ? active.split('-') : [];
+  const catId = parts[0];
+  const tierId = parts.slice(1).join('-');
+  const cat = CATEGORIES.find(c => c.id === catId);
+  const tier = TIERS.find(t => t.id === tierId);
+  const md = active ? DOCS[active] : null;
+  const rtl = cat ? cat.rtl : false;
+
+  return (
+    <div className="flex">
+      <Sidebar active={active} onPick={setActive} />
+      <main className="flex-1 min-h-screen">
+        <Topbar tier={tier} cat={cat} onPrint={() => window.print()} />
+        {!active ? (
+          <Hero onPick={setActive} />
+        ) : (
+          <div className="px-8 py-10">
+            <article className={`doc-prose ${rtl ? 'rtl' : ''}`} dangerouslySetInnerHTML={renderMD(md)} />
+            <div className="mt-12 pt-6 border-t border-[var(--border)] text-xs text-[var(--muted)] no-print flex justify-between">
+              <span>Jawla Tours · OTA Documentation · {new Date().getFullYear()}</span>
+              <button onClick={() => setActive(null)} className="hover:text-white">← Back to overview</button>
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
