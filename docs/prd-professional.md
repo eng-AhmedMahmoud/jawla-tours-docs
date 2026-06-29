@@ -1,773 +1,830 @@
-# Jawla Tours OTA - Professional Package PRD
+## 🎯 ملخص لمجلس الإدارة
 
-## Document Control
+نحن نبني منصة حجوزات سفر متكاملة لشركة Jawla Tours تخدم المسافرين في مصر ودول الخليج، تتيح لهم حجز الطيران والفنادق والجولات السياحية بسهولة من خلال موقع إلكتروني وتطبيق موحد. هذه الباقة الاحترافية تتجاوز الباقة الأساسية بإضافة مزايا تجارية مهمة مثل: التعامل مع أكثر من مزود فنادق في نفس الوقت للحصول على أفضل الأسعار، نظام ولاء ومحفظة لتشجيع العملاء على العودة، وتنبيهات واتساب لتقليل تكلفة خدمة العملاء. اخترنا هذه الباقة تحديدًا لأنها تفتح لنا سوق دول الخليج والمغتربين عبر دعم العملات المتعددة، وتقلل الاعتماد على فريق خدمة العملاء عبر تمكين العميل من إلغاء حجوزاته واسترداد أمواله بنفسه.
 
-| Field | Value |
+### ماذا يحصل عليه العميل في هذه الباقة؟
+
+- حجز تذاكر الطيران من عدة شركات طيران في مكان واحد مع المقارنة بين الأسعار
+- حجز الفنادق من أكثر من مزود في نفس الوقت لضمان أفضل سعر وأوسع تشكيلة من الخيارات
+- حجز الجولات السياحية والباقات المتكاملة (طيران + فندق + جولة)
+- برنامج ولاء يمنح العميل نقاطًا على كل حجز يستطيع استبدالها لاحقًا في حجوزات جديدة
+- محفظة إلكترونية شخصية يستطيع العميل شحنها واستخدامها في الدفع أو استرداد قيمة الإلغاءات فيها
+- إشعارات فورية عبر واتساب لتأكيد الحجز والتذكير بالرحلة وتحديثات أي تغييرات
+- إلغاء الحجوزات وطلب استرداد الأموال ذاتيًا دون الحاجة للتواصل مع خدمة العملاء
+- إمكانية الدفع والعرض بعدة عملات (الجنيه المصري، الريال السعودي، الدرهم الإماراتي، الدولار، اليورو)
+- تطبيق موبايل سلس على الأندرويد والآيفون بنفس مزايا الموقع الإلكتروني
+
+### الأرقام الرئيسية
+
+| البيان | القيمة |
 |-------|-------|
-| Document Title | Jawla Tours OTA - Professional Package Product Requirements Document |
-| Version | 1.0.0 |
-| Date | 2026-06-29 |
-| Status | Approved for Development |
-| Document Owner | Ahmed Mahmoud (Technical Product Lead) |
-| Business Sponsor | Jawla Tours Executive Team |
-| Engineering Lead | TBD - Backend Lead (NestJS) + Frontend Lead (Next.js) |
-| Data/BI Lead | TBD - Senior Analytics Engineer |
-| Design Lead | TBD - Senior Product Designer (incl. dashboard/admin specialist) |
-| Amadeus Integration Consultant | External Specialist (~60-80 hours allocated) |
-| Classification | Internal - Confidential |
-| Distribution | Engineering, Product, QA, Finance, Operations, Customer Success |
-| Next Review Date | 2026-09-29 |
-| Supersedes | None (extends Basic package PRD v1.0.0) |
+| السعر الإجمالي | 850,000 جنيه مصري |
+| العملة المعادلة بالدولار | حوالي 17,000 دولار أمريكي |
+| مدة التنفيذ | 4 أشهر |
+| تاريخ التسليم المتوقع | أكتوبر 2026 |
+| الصيانة الشهرية | 20,000 جنيه مصري شهريًا |
+| ساعات الاستشارة الخارجية لـ Amadeus | 60 إلى 80 ساعة |
+| عدد الموظفين المطلوبين | 5 إلى 7 أفراد (تطوير + تصميم + بيانات + جودة) |
+| عدد طرق الدفع المدعومة | 4 طرق رئيسية (بطاقات بنكية، محافظ إلكترونية، تحويل بنكي، الدفع عند الاستلام) |
+| العملات المدعومة | 5 عملات (الجنيه المصري، الريال السعودي، الدرهم الإماراتي، الدولار، اليورو) |
+| نسبة المخاطر التقنية | متوسطة (محسوبة ومعالجة بخطط واضحة) |
 
-### Revision History
+### القيمة التجارية المتوقعة
 
-| Version | Date | Author | Change Summary |
+- برنامج الولاء والمحفظة يشجع العملاء على تكرار الحجز بدلًا من اللجوء للمنافسين، مما يرفع متوسط الإيراد من كل عميل
+- إشعارات واتساب تقلل عدد المكالمات الواردة لخدمة العملاء وتخفض تكلفة التشغيل الشهرية
+- خاصية الإلغاء والاسترداد الذاتي تقلل الحمل على فريق العمليات وتسرّع رضا العميل
+- دعم عملات الخليج (السعودي والإماراتي) يفتح لنا سوق المسافرين الخليجيين والمصريين العاملين بالخارج
+- التعامل مع أكثر من مزود فنادق يرفع هامش الربح لأننا نختار العرض الأفضل سعرًا في كل لحظة
+- توحيد تجربة الموبايل والويب يرفع معدلات إتمام الحجز وينعكس مباشرة على المبيعات
+
+### المخاطر الرئيسية وكيف نعالجها
+
+| المخاطرة | المعالجة |
+|---------|---------|
+| تعطل أحد مزودي الفنادق وتأثر تجربة العميل | ربط أكثر من مزود في نفس الوقت بحيث يستمر العمل تلقائيًا حتى لو توقف أحدهم |
+| تأخر التكامل مع نظام Amadeus العالمي للطيران | حجز ساعات استشارة كافية من خبير خارجي متخصص منذ بداية المشروع |
+| صعوبة فهم العملاء لنظام النقاط والمحفظة الجديد | تصميم تجربة بسيطة ومرئية مع رسائل توضيحية داخل التطبيق وفيديوهات تعريفية |
+| تذبذب أسعار صرف العملات وتأثيره على هامش الربح | تحديث الأسعار تلقائيًا كل ساعة وإضافة هامش حماية محسوب على كل عملية تحويل |
+| تأخر تسليم المشروع عن الموعد المحدد (4 أشهر) | تقسيم المشروع لمراحل تسليم شهرية مع مراجعة تقدم أسبوعية وخطة طوارئ لكل مرحلة |
+| تجاوز تكلفة الصيانة الشهرية المتوقعة بعد الإطلاق | عقد صيانة بسقف ثابت 20,000 جنيه شهريًا لمدة عام كامل مع تجديد سنوي قابل للتفاوض |
+
+### القرار المطلوب من المجلس
+
+اعتماد ميزانية 850,000 جنيه مصري لتنفيذ الباقة الاحترافية خلال 4 أشهر مع التزام شهري بـ 20,000 جنيه للصيانة بعد الإطلاق.
+
+---
+
+# Jawla Tours OTA - وثيقة متطلبات المنتج للباقة الاحترافية (Professional)
+
+## بيانات الوثيقة
+
+| البيان | القيمة |
+|-------|-------|
+| اسم الوثيقة | Jawla Tours OTA - وثيقة متطلبات منتج الباقة الاحترافية |
+| الإصدار | 1.0.0 |
+| التاريخ | 2026-06-29 |
+| الحالة | معتمدة للتطوير |
+| مالك الوثيقة | أحمد محمود (المسؤول الفني عن المنتج) |
+| الراعي من جهة العمل | الإدارة التنفيذية لشركة Jawla Tours |
+| قائد فريق الهندسة | لم يُحدد بعد - قائد Backend (NestJS) + قائد Frontend (Next.js) |
+| قائد فريق البيانات / BI | لم يُحدد بعد - مهندس تحليلات أول (Senior Analytics Engineer) |
+| قائد التصميم | لم يُحدد بعد - مصمم منتج أول (متخصص في الـ dashboard والـ admin) |
+| مستشار تكامل Amadeus | متخصص خارجي (مخصص له تقريبًا 60-80 ساعة) |
+| التصنيف | داخلي - سري |
+| التوزيع | الهندسة، المنتج، QA، المالية، العمليات، خدمة العملاء |
+| تاريخ المراجعة القادمة | 2026-09-29 |
+| تحل محل | لا شيء (تُعتبر امتدادًا لوثيقة PRD الخاصة بالباقة Basic v1.0.0) |
+
+### سجل المراجعات
+
+| الإصدار | التاريخ | الكاتب | ملخص التعديل |
 |---------|------|--------|----------------|
-| 0.1.0 | 2026-05-20 | A. Mahmoud | Initial outline; Professional scope brainstorm |
-| 0.4.0 | 2026-06-04 | A. Mahmoud | Multi-supplier orchestration design added |
-| 0.7.0 | 2026-06-15 | A. Mahmoud | Loyalty / wallet model defined; WhatsApp scope added |
-| 0.9.0 | 2026-06-22 | A. Mahmoud | Reports module finalized; multi-currency model approved |
-| 1.0.0 | 2026-06-29 | A. Mahmoud | Final approved baseline |
+| 0.1.0 | 2026-05-20 | أ. محمود | المخطط الأولي؛ عصف ذهني لنطاق الباقة الاحترافية |
+| 0.4.0 | 2026-06-04 | أ. محمود | إضافة تصميم تنسيق الموردين المتعددين (multi-supplier orchestration) |
+| 0.7.0 | 2026-06-15 | أ. محمود | تعريف نموذج الولاء / المحفظة؛ إضافة نطاق WhatsApp |
+| 0.9.0 | 2026-06-22 | أ. محمود | اعتماد وحدة التقارير النهائية؛ اعتماد نموذج العملات المتعددة |
+| 1.0.0 | 2026-06-29 | أ. محمود | الإصدار النهائي المعتمد |
 
-### Relationship to Basic Package
+### العلاقة بالباقة Basic
 
-The Professional package is a strict superset of the Basic package. It includes everything in the Basic package PRD, plus the additional capabilities described in this document. Where a feature appears in both PRDs, the Professional definition supersedes the Basic definition.
+الباقة الاحترافية (Professional) هي امتداد كامل للباقة Basic. يعني كل اللي موجود في PRD باقة Basic موجود هنا، بالإضافة للقدرات الجديدة الموصوفة في الوثيقة دي. ولو في خاصية موجودة في الاتنين، التعريف بتاع الباقة الاحترافية بيلغي تعريف الباقة Basic.
 
-### Related Documents
+### الوثائق المرتبطة
 
-- Jawla Tours Master Statement of Work (SOW-2026-001)
-- Jawla Tours Basic Package PRD v1.0.0
-- Amadeus Self-Service & Enterprise API Agreement
-- Hotelbeds Master Distribution Agreement
-- Expedia EAN Partner Agreement (Pending)
-- TBO Distribution Agreement (Pending)
-- WhatsApp Business API - 360dialog / Meta Cloud API Onboarding Form
-- Brand Guidelines v2.1
-
----
-
-## Vision
-
-The Professional package transforms Jawla from a working OTA into a competitive OTA. With the Basic package, Jawla can transact - with Professional, Jawla can compete. The product evolves along five strategic dimensions:
-
-1. **Inventory Depth (Multi-Supplier Hotels)**: Connect at least three hotel suppliers (e.g., Hotelbeds, Expedia EAN, TBO) and orchestrate them through a single search experience that deduplicates properties, ranks by price/availability/margin, and falls back gracefully when one supplier is degraded.
-2. **Customer Retention (Loyalty & Wallet)**: Introduce a points-based loyalty program with a stored-value wallet so that customers have a financial reason to return to Jawla rather than a competitor.
-3. **Communication Reach (WhatsApp)**: WhatsApp is the dominant messaging channel in Egypt and the broader MENA region. Transactional WhatsApp notifications via the Meta Business API materially improve trust and reduce support load.
-4. **Operational Self-Service**: Customer-initiated cancellations and refunds (within supplier rules) reduce support cost per booking by an estimated 40-60%.
-5. **Decision-Quality Analytics**: A reporting layer with daily/weekly/monthly dashboards for product, finance, and operations - turning the platform from a black box into an instrumented business.
-
-The Professional package also addresses three operational realities that the Basic package deliberately deferred: multi-currency display and settlement, more sophisticated admin tooling (segmentation, bulk actions, marketing exports), and the foundational scaffolding for the Enterprise package (event bus, supplier abstraction layer, reporting warehouse).
-
-The Professional package is the right scope for Jawla if (a) the Basic package has demonstrated product-market fit, (b) booking volumes justify investing in retention infrastructure, and (c) the operations team is straining under manual workload. It is not the right scope if the business is still validating whether Egyptian customers will book online at all - that question must be answered with Basic first.
+- وثيقة العمل الرئيسية لـ Jawla Tours (SOW-2026-001)
+- وثيقة PRD الخاصة بالباقة Basic v1.0.0
+- اتفاقية Amadeus Self-Service و Enterprise API
+- اتفاقية التوزيع الرئيسية مع Hotelbeds
+- اتفاقية شراكة Expedia EAN (قيد الاعتماد)
+- اتفاقية التوزيع مع TBO (قيد الاعتماد)
+- استمارة تفعيل WhatsApp Business API - 360dialog / Meta Cloud API
+- دليل العلامة التجارية الإصدار 2.1
 
 ---
 
-## Goals & Success Metrics
+## الرؤية
 
-### Strategic Goals
+الباقة الاحترافية بتحوّل Jawla من OTA شغّال إلى OTA منافس فعلاً. مع الباقة Basic، Jawla بتقدر تعمل حجوزات - مع الباقة الاحترافية، Jawla بتقدر تنافس. المنتج بيتطور على خمس محاور استراتيجية:
 
-1. **Increase booking volume 3x vs Basic baseline within 6 months of Professional launch** through inventory expansion and retention.
-2. **Reduce per-booking customer support cost by 50%** through self-service refunds and WhatsApp deflection.
-3. **Establish a repeat-purchase economy**: target >30% of bookings from returning customers (vs <8% expected for Basic-only).
-4. **Diversify supplier dependency**: no single hotel supplier accounts for >55% of hotel GBV.
-5. **Operate on data, not intuition**: every product, finance, and ops decision >EGP 50K monthly impact must reference a Jawla dashboard.
+1. **عمق المخزون (فنادق من موردين متعددين)**: ربط 3 موردين فنادق على الأقل (زي Hotelbeds و Expedia EAN و TBO) وتنسيقهم من خلال تجربة بحث واحدة بتشيل التكرار، وترتّب النتائج حسب السعر والتوفر والهامش، وبتشتغل بسلاسة لو واحد من الموردين واقع.
+2. **الاحتفاظ بالعميل (ولاء ومحفظة)**: تقديم برنامج ولاء مبني على النقاط ومحفظة بقيمة مخزنة، علشان يبقى عند العميل سبب مادي إنه يرجع لـ Jawla بدل المنافسين.
+3. **وصول التواصل (WhatsApp)**: WhatsApp هو قناة المراسلة الأولى في مصر والمنطقة. إشعارات WhatsApp المعاملاتية عن طريق Meta Business API بتحسن الثقة وبتقلل الضغط على الدعم.
+4. **خدمة ذاتية تشغيلية**: الإلغاءات والاسترجاعات اللي بيعملها العميل بنفسه (في حدود قواعد المورد) بتقلل تكلفة الدعم لكل حجز بنسبة تقديرية 40-60%.
+5. **تحليلات بجودة قرار**: طبقة تقارير فيها لوحات يومية وأسبوعية وشهرية للمنتج والمالية والعمليات - بتحوّل المنصة من صندوق أسود لحاجة مقاسة.
 
-### Success Metrics (90 days post Professional launch)
+الباقة الاحترافية كمان بتحل تلات نقط تشغيلية كانت الباقة Basic مأجلاها عن قصد: عرض وتسوية العملات المتعددة، أدوات admin أكثر تطورًا (تقسيم العملاء، إجراءات جماعية، تصدير للماركتنج)، والأساسات الجاهزة لباقة Enterprise (event bus، طبقة تجريد للموردين، مستودع بيانات للتقارير).
 
-| Metric | Target | Baseline (Basic) | Improvement |
+الباقة الاحترافية هي النطاق المناسب لـ Jawla لو (أ) الباقة Basic أثبتت ملاءمة المنتج للسوق، (ب) حجم الحجوزات يبرر الاستثمار في بنية الاحتفاظ بالعميل، (ج) فريق العمليات بقى مرهق من الشغل اليدوي. ومش النطاق المناسب لو الشركة لسه بتتحقق هل المصريين هيحجزوا أونلاين أصلاً - السؤال ده لازم يتجاوب عليه بـ Basic الأول.
+
+---
+
+## الأهداف ومقاييس النجاح
+
+### الأهداف الاستراتيجية
+
+1. **زيادة حجم الحجوزات 3 أضعاف مقارنة بـ Basic خلال 6 شهور من إطلاق الباقة الاحترافية** عن طريق توسيع المخزون والاحتفاظ بالعملاء.
+2. **تخفيض تكلفة دعم العميل لكل حجز بنسبة 50%** عن طريق الاسترجاع الذاتي وتحويل التواصل لـ WhatsApp.
+3. **بناء اقتصاد شراء متكرر**: المستهدف >30% من الحجوزات من عملاء عائدين (مقابل <8% المتوقع لـ Basic فقط).
+4. **تنويع الاعتماد على الموردين**: ما فيش مورد فنادق واحد يمثل >55% من إجمالي قيمة حجوزات الفنادق (GBV).
+5. **اتخاذ القرارات بالبيانات مش بالحدس**: أي قرار في المنتج أو المالية أو العمليات تأثيره الشهري >50 ألف جنيه لازم يتأسس على لوحة بيانات في Jawla.
+
+### مقاييس النجاح (بعد 90 يوم من إطلاق الباقة الاحترافية)
+
+| المقياس | المستهدف | الأساس (Basic) | التحسن |
 |--------|--------|------------------|-------------|
-| Total Gross Bookings Value (90 days) | EGP 18M | EGP 4.5M | 4x |
-| Confirmed Bookings | 1,400+ | 350 | 4x |
-| Repeat Customer Rate | > 30% | ~8% | 3.75x |
-| Loyalty Program Enrollment Rate | > 65% of new accounts | n/a | New |
-| Wallet Active Balance (Total) | > EGP 1.2M | n/a | New |
-| WhatsApp Opt-In Rate at Booking | > 70% | n/a | New |
-| Self-Service Cancellation Rate | > 60% of cancellations | 0% | New |
-| Support Tickets per 100 Bookings | < 4 | ~8 | 50% reduction |
-| Hotel Supplier Diversity Index (HHI) | < 4500 | n/a | New |
-| Multi-Currency Bookings Share | > 18% | <5% (USD only) | 3.6x |
+| إجمالي قيمة الحجوزات الإجمالية (90 يوم) | 18 مليون جنيه | 4.5 مليون جنيه | 4x |
+| الحجوزات المؤكدة | 1,400+ | 350 | 4x |
+| نسبة العملاء العائدين | > 30% | ~8% | 3.75x |
+| نسبة الاشتراك في برنامج الولاء | > 65% من الحسابات الجديدة | لا ينطبق | جديد |
+| الرصيد النشط في المحفظة (الإجمالي) | > 1.2 مليون جنيه | لا ينطبق | جديد |
+| نسبة الموافقة على WhatsApp وقت الحجز | > 70% | لا ينطبق | جديد |
+| نسبة الإلغاء الذاتي | > 60% من الإلغاءات | 0% | جديد |
+| تذاكر الدعم لكل 100 حجز | < 4 | ~8 | تخفيض 50% |
+| مؤشر تنوع موردي الفنادق (HHI) | < 4500 | لا ينطبق | جديد |
+| نسبة الحجوزات بعملات متعددة | > 18% | <5% (USD فقط) | 3.6x |
 
 ---
 
-## Personas
+## الشخصيات (Personas)
 
-The Basic package personas remain valid. The Professional package introduces three new personas and elevates two existing ones to first-class status.
+شخصيات الباقة Basic لسه صالحة. الباقة الاحترافية بتضيف 3 شخصيات جديدة وبترفع 2 من الموجودين لمرتبة أساسية.
 
-| Persona | Name | Age | Location | Goals | Pain Points |
+| الشخصية | الاسم | السن | المكان | الأهداف | نقاط الألم |
 |---------|------|-----|----------|-------|-------------|
-| Returning Loyalist | Yasmine Tarek | 34 | Cairo, Egypt | Earn points on every booking; redeem wallet credit on her next trip; receive birthday/anniversary perks | No reason to consolidate spend; can't see her benefits clearly; competing OTAs reward more |
-| WhatsApp-First Traveler | Omar Fathy | 27 | Mansoura, Egypt | Receive all booking updates on WhatsApp - never opens email; wants to chat with support on WhatsApp during travel disruptions | Emails go unread; calling support during travel is expensive on roaming |
-| Multi-Currency Tourist | Sophie Laurent | 38 | Paris, France | Book Cairo + Luxor + Aswan trip; pay in EUR; see prices in EUR throughout; receive EUR receipts for expense claims | Most local OTAs only show EGP; conversion happens twice (bank + platform); receipt currency mismatches | 
-| Finance Controller (elevated) | Tarek Fahmy | 41 | Cairo HQ | Daily/weekly/monthly financial dashboards; multi-currency settlement reconciliation; automated refund posting; supplier payable accruals | Manual reconciliation is half his week; multi-currency manual conversion error-prone; no per-supplier margin view |
-| Operations Manager (elevated) | Yara Mostafa | 26 | Cairo HQ | Triage 10x volume with the same team; bulk actions on segmented bookings; customer health score; supplier-fail SLA dashboard | Per-booking touch model doesn't scale; no way to see "all Hotelbeds failures last 24h"; no segmentation tools |
-| Marketing Lead (new) | Hagar El-Din | 31 | Cairo HQ | Segment customers by destination, AOV, recency; export to email marketing tool; run loyalty promotions | No customer segmentation; can't measure campaign-to-booking conversion; loyalty system needs marketing levers |
+| العميل المخلص العائد | ياسمين طارق | 34 | القاهرة، مصر | كسب نقاط على كل حجز؛ استبدال رصيد المحفظة في الرحلة الجاية؛ مزايا في عيد الميلاد والمناسبات | ما فيش سبب يخليها تركز إنفاقها مكان واحد؛ مش شايفة مزاياها بوضوح؛ المنافسين بيكافئوا أكثر |
+| المسافر اللي بيستخدم WhatsApp الأول | عمر فتحي | 27 | المنصورة، مصر | استلام كل تحديثات الحجز على WhatsApp - عمره ما بيفتح إيميل؛ عايز يكلم الدعم على WhatsApp وقت مشاكل السفر | الإيميلات بتفضل من غير قراءة؛ الاتصال بالدعم وهو مسافر مكلف على الـ roaming |
+| السائح بعملات متعددة | صوفي لوران | 38 | باريس، فرنسا | حجز رحلة القاهرة + الأقصر + أسوان؛ الدفع باليورو؛ شوفان الأسعار باليورو في كل مكان؛ استلام فواتير باليورو للمطالبات المالية | معظم الـ OTAs المحلية بتعرض EGP بس؛ التحويل بيحصل مرتين (البنك والمنصة)؛ عملة الفاتورة مش مطابقة |
+| المسؤول المالي (مرفّع) | طارق فهمي | 41 | المقر القاهرة | لوحات يومية وأسبوعية وشهرية؛ تسوية تسويات العملات المتعددة؛ ترحيل تلقائي للاسترجاعات؛ استحقاقات الموردين | التسوية اليدوية بتاخد نص أسبوعه؛ التحويل اليدوي للعملات بيحصل فيه أخطاء؛ ما فيش رؤية لهامش كل مورد |
+| مدير العمليات (مرفّع) | يارا مصطفى | 26 | المقر القاهرة | فرز 10 أضعاف الحجم بنفس الفريق؛ إجراءات جماعية على الحجوزات المقسمة؛ مؤشر صحة العميل؛ لوحة SLA لفشل الموردين | نموذج اللمس لكل حجز مش بيكبر؛ ما فيش طريقة تشوف "كل فشل Hotelbeds في آخر 24 ساعة"؛ ما فيش أدوات تقسيم |
+| مسؤول التسويق (جديد) | هاجر الدين | 31 | المقر القاهرة | تقسيم العملاء حسب الوجهة، متوسط قيمة الطلب، الحداثة؛ تصدير لأداة التسويق بالإيميل؛ تشغيل عروض ولاء | ما فيش تقسيم عملاء؛ مش قادرة تقيس تحويل الحملة لحجز؛ نظام الولاء محتاج رافعات تسويقية |
 
-### Persona Coverage Matrix (Professional Features)
+### مصفوفة تغطية الشخصيات (لميزات الباقة الاحترافية)
 
-| Feature | Yasmine | Omar | Sophie | Tarek | Yara | Hagar |
+| الميزة | ياسمين | عمر | صوفي | طارق | يارا | هاجر |
 |---------|---------|------|--------|-------|------|-------|
-| Loyalty Earning | Primary | Recipient | Recipient | Reconciles | Observes | Manages campaigns |
-| Wallet Top-Up & Redeem | Primary | Secondary | Secondary | Reconciles | - | - |
-| WhatsApp Confirmations | Recipient | Primary | Recipient (English) | - | Observes | - |
-| Self-Service Cancellation | Primary | Primary | Primary | Reconciles | Approves edge cases | - |
-| Multi-Currency Display | Secondary | Secondary | Primary | Settles | - | Segments by currency |
-| Multi-Currency Payment | Secondary | - | Primary | Reconciles | - | - |
-| Multi-Supplier Hotels | Beneficiary | Beneficiary | Primary | Margin analysis | Supplier failures triage | Compares supplier performance |
-| Advanced Reports | - | - | - | Primary | Primary | Primary |
-| Customer Segmentation | Target | Target | Target | - | Identifies VIPs | Primary |
+| كسب نقاط الولاء | أساسي | مستفيد | مستفيد | يسوي | يلاحظ | يدير الحملات |
+| شحن واستبدال المحفظة | أساسي | ثانوي | ثانوي | يسوي | - | - |
+| تأكيدات WhatsApp | مستفيد | أساسي | مستفيد (إنجليزي) | - | يلاحظ | - |
+| الإلغاء الذاتي | أساسي | أساسي | أساسي | يسوي | يعتمد الحالات الاستثنائية | - |
+| عرض العملات المتعددة | ثانوي | ثانوي | أساسي | يسوي | - | يقسم حسب العملة |
+| الدفع بعملات متعددة | ثانوي | - | أساسي | يسوي | - | - |
+| فنادق من موردين متعددين | مستفيد | مستفيد | أساسي | تحليل الهامش | فرز فشل الموردين | مقارنة أداء الموردين |
+| التقارير المتقدمة | - | - | - | أساسي | أساسي | أساسي |
+| تقسيم العملاء | مستهدف | مستهدف | مستهدف | - | يحدد VIP | أساسي |
 
 ---
 
-## User Stories
+## قصص المستخدم (User Stories)
 
-Stories continue from the Basic package numbering (US-001..US-011 are inherited). Professional adds US-012 through US-038.
+القصص بتكمل ترقيم باقة Basic (US-001..US-011 موروثة). الباقة الاحترافية بتضيف من US-012 إلى US-038.
 
-### Multi-Supplier Hotel Orchestration
+### تنسيق فنادق من موردين متعددين
 
-**US-012: Unified Hotel Search Across Suppliers**
+**US-012: بحث فنادق موحد عبر الموردين**
 
-As a traveler, I want to see hotel results aggregated from all of Jawla's suppliers in a single ranked list so that I get the best price and selection without knowing or caring which supplier provides each rate.
+كمسافر، أنا عايز أشوف نتائج الفنادق مجمعة من كل موردين Jawla في قائمة واحدة مرتبة علشان أحصل على أفضل سعر واختيار من غير ما أعرف أو أهتم مين المورد بتاع كل سعر.
 
-- AC-012.1: Given I search a destination, When the search executes, Then the orchestrator must query at least 3 hotel suppliers in parallel with a 4-second total timeout.
-- AC-012.2: Given two suppliers return the same property, When results render, Then the property must appear once with the lowest-priced offer surfaced and the alternative offer accessible via "More rates" expansion.
-- AC-012.3: Given a supplier times out or errors, When the results render, Then results from the surviving suppliers must still be shown and the failure must be logged but never surfaced to the user.
-- AC-012.4: Property deduplication must be based on a property identity service (GIATA codes, geo-radius matching, name fuzzy-match >85% similarity).
-- AC-012.5: Ranking algorithm must consider: price, supplier reliability score (rolling 7-day success rate), margin to Jawla, and user preferences (refundable preferred).
+- AC-012.1: لما أبحث في وجهة، لازم الـ orchestrator يستعلم من 3 موردين فنادق على الأقل بالتوازي مع timeout إجمالي 4 ثواني.
+- AC-012.2: لو موردين رجعوا نفس الفندق، الفندق لازم يظهر مرة واحدة بأقل سعر بارز ويكون العرض البديل متاح عن طريق توسيع "More rates".
+- AC-012.3: لو مورد عمل timeout أو حصل عنده error، النتائج من الموردين الباقيين لازم تتعرض والفشل يتسجل من غير ما يظهر للمستخدم.
+- AC-012.4: تكرار الفنادق لازم يتبني على خدمة هوية فنادق (GIATA codes، مطابقة جغرافية، مطابقة اسم تشابه >85%).
+- AC-012.5: خوارزمية الترتيب لازم تأخذ في الاعتبار: السعر، درجة موثوقية المورد (نسبة نجاح متجددة لـ 7 أيام)، الهامش لـ Jawla، تفضيلات المستخدم (يفضل القابل للاسترجاع).
 
-**US-013: Supplier Health Dashboard**
+**US-013: لوحة صحة الموردين**
 
-As Yara (ops manager), I want a real-time dashboard showing the health of each hotel supplier so that I can proactively communicate with customers and supplier account managers when degradation occurs.
+كـ يارا (مدير عمليات)، أنا عايزة لوحة لحظية تعرض صحة كل مورد فنادق علشان أقدر أتواصل مبكرًا مع العملاء ومديري حسابات الموردين لما يحصل تدهور.
 
-- AC-013.1: Dashboard must show per-supplier: search success rate (last 1h, 24h, 7d), booking success rate, average response time, current circuit-breaker state.
-- AC-013.2: When a supplier's 1-hour success rate drops below 90%, an alert must fire to ops via Slack and PagerDuty.
-- AC-013.3: Dashboard must allow ops to manually disable a supplier (circuit breaker open) and re-enable it after recovery.
+- AC-013.1: اللوحة لازم تعرض لكل مورد: نسبة نجاح البحث (آخر ساعة، 24 ساعة، 7 أيام)، نسبة نجاح الحجز، متوسط زمن الاستجابة، حالة circuit-breaker الحالية.
+- AC-013.2: لما تنخفض نسبة نجاح المورد في ساعة واحدة تحت 90%، لازم ينطلق تنبيه للعمليات عبر Slack و PagerDuty.
+- AC-013.3: اللوحة لازم تسمح للعمليات بتعطيل المورد يدوياً (فتح circuit breaker) وإعادة تفعيله بعد التعافي.
 
-**US-014: Supplier Margin Reporting**
+**US-014: تقارير هامش الموردين**
 
-As Tarek (finance), I want a per-supplier margin report so that I can renegotiate commercial terms and rebalance traffic.
+كـ طارق (المالية)، أنا عايز تقرير هامش لكل مورد علشان أقدر أعيد التفاوض على الشروط التجارية وأعيد توزيع الترافيك.
 
-- AC-014.1: Report must show: GBV, COGS (supplier net), gross margin, gross margin %, by supplier and by month.
-- AC-014.2: Drill-down must show top 50 properties contributing to each supplier's margin.
+- AC-014.1: التقرير لازم يعرض: GBV، COGS (صافي المورد)، إجمالي الهامش، نسبة الهامش %، حسب المورد وحسب الشهر.
+- AC-014.2: التعمق لازم يعرض أعلى 50 فندق بيساهموا في هامش كل مورد.
 
-### Loyalty & Wallet
+### الولاء والمحفظة
 
-**US-015: Loyalty Program Enrollment**
+**US-015: التسجيل في برنامج الولاء**
 
-As a new account, I want to be auto-enrolled in Jawla's loyalty program so that I can start earning points immediately without an extra step.
+كحساب جديد، أنا عايز أتسجل تلقائيًا في برنامج ولاء Jawla علشان أبدأ أكسب نقاط على طول من غير خطوة إضافية.
 
-- AC-015.1: Account creation must create a corresponding loyalty profile with tier "Member" by default.
-- AC-015.2: Customer must see their current point balance on every page (header widget).
-- AC-015.3: Customer can opt out of the loyalty program from account settings (rare path - log this event for analysis).
+- AC-015.1: إنشاء الحساب لازم ينشئ ملف ولاء مقابل بمستوى "Member" افتراضيًا.
+- AC-015.2: العميل لازم يشوف رصيده الحالي من النقاط في كل صفحة (widget في الـ header).
+- AC-015.3: العميل يقدر يخرج من برنامج الولاء من إعدادات الحساب (مسار نادر - الحدث ده يتسجل للتحليل).
 
-**US-016: Points Earning on Booking**
+**US-016: كسب النقاط على الحجز**
 
-As a loyalty member, I want to earn points on every confirmed booking so that I am rewarded for choosing Jawla.
+كعضو في الولاء، أنا عايز أكسب نقاط على كل حجز مؤكد علشان أتكافأ على اختياري لـ Jawla.
 
-- AC-016.1: Earning rule: 1 point per EGP 10 of net booking amount (excluding taxes and fees) for Member tier; 1.5x for Silver; 2x for Gold; 3x for Platinum.
-- AC-016.2: Points must be credited on booking confirmation but locked until 24 hours after travel/stay completion (refund-protection window).
-- AC-016.3: Booking cancellation must reverse points; if points were already redeemed, balance can go negative and must be repaid before next redemption.
-- AC-016.4: Tier upgrades must be calculated nightly based on rolling 12-month spend.
+- AC-016.1: قاعدة الكسب: 1 نقطة لكل 10 جنيه من صافي مبلغ الحجز (مش شامل الضرائب والرسوم) لمستوى Member؛ 1.5x لـ Silver؛ 2x لـ Gold؛ 3x لـ Platinum.
+- AC-016.2: النقاط لازم تتقيد عند تأكيد الحجز بس تتقفل لحد 24 ساعة بعد انتهاء السفر/الإقامة (نافذة حماية من الاسترجاع).
+- AC-016.3: إلغاء الحجز لازم يعكس النقاط؛ لو النقاط اتستبدلت بالفعل، الرصيد ممكن يبقى سالب ولازم يتسدد قبل أي استبدال جديد.
+- AC-016.4: ترقيات المستوى لازم تتحسب ليلاً بناءً على الإنفاق المتجدد لـ 12 شهر.
 
-**US-017: Wallet Top-Up**
+**US-017: شحن المحفظة**
 
-As a customer, I want to add funds to my Jawla Wallet so that I can pre-pay for future trips, share family budgets, or hold refunded amounts.
+كعميل، أنا عايز أضيف فلوس للمحفظة بتاعتي في Jawla علشان أقدر أدفع مسبقاً للرحلات الجاية، أو أشارك ميزانية العيلة، أو أحتفظ بمبالغ مسترجعة.
 
-- AC-017.1: Top-up via Paymob or Stripe in EGP, USD, or EUR.
-- AC-017.2: Wallet balances must be tracked per currency (no automatic conversion).
-- AC-017.3: Minimum top-up: EGP 200 / USD 20 / EUR 20. Maximum per transaction: EGP 50,000 (regulatory cap).
-- AC-017.4: Top-ups are NOT refundable in cash (only redeemable against bookings); this must be displayed pre-confirmation.
+- AC-017.1: الشحن عن طريق Paymob أو Stripe بـ EGP أو USD أو EUR.
+- AC-017.2: أرصدة المحفظة لازم تتعقب لكل عملة على حدة (من غير تحويل تلقائي).
+- AC-017.3: الحد الأدنى للشحن: 200 جنيه / 20 USD / 20 EUR. الحد الأقصى لكل عملية: 50,000 جنيه (سقف تنظيمي).
+- AC-017.4: الشحنات مش قابلة للاسترجاع نقدًا (تتستبدل بس مقابل حجوزات)؛ ده لازم يتعرض قبل التأكيد.
 
-**US-018: Wallet Redemption at Checkout**
+**US-018: استبدال المحفظة عند الدفع**
 
-As a customer with wallet balance, I want to apply wallet credit at checkout so that I reduce my out-of-pocket payment.
+كعميل عنده رصيد محفظة، أنا عايز أطبق رصيد المحفظة عند الـ checkout علشان أقلل المبلغ اللي بدفعه من جيبي.
 
-- AC-018.1: Checkout must show wallet balance and a slider/toggle to apply.
-- AC-018.2: Wallet currency must match booking currency, or the platform must show the conversion clearly.
-- AC-018.3: If wallet fully covers the booking, no gateway payment is required.
-- AC-018.4: Wallet redemption + loyalty points + gateway payment can combine in one transaction.
+- AC-018.1: شاشة الدفع لازم تعرض رصيد المحفظة و slider/toggle للتطبيق.
+- AC-018.2: عملة المحفظة لازم تطابق عملة الحجز، أو المنصة لازم تعرض التحويل بوضوح.
+- AC-018.3: لو المحفظة بتغطي الحجز بالكامل، ما فيش حاجة لدفع عن طريق gateway.
+- AC-018.4: استبدال المحفظة + نقاط الولاء + الدفع عن طريق gateway ممكن يندمجوا في معاملة واحدة.
 
-**US-019: Tier Benefits Display**
+**US-019: عرض مزايا المستوى**
 
-As a loyalty member, I want to see clearly what benefits I have at my current tier and what I unlock at the next tier so that I am motivated to keep booking with Jawla.
+كعضو في الولاء، أنا عايز أشوف بوضوح المزايا اللي عندي في مستواي الحالي وإيه اللي هفتحه في المستوى التالي علشان أحفز نفسي إني أكمل الحجز مع Jawla.
 
-- AC-019.1: Account page must show: current tier, points balance, points-to-next-tier, list of current benefits, list of next-tier benefits.
-- AC-019.2: Tier benefits include: earn multiplier, priority support, free cancellation window (24h post-booking), birthday bonus, wallet top-up bonuses.
+- AC-019.1: صفحة الحساب لازم تعرض: المستوى الحالي، رصيد النقاط، النقاط للمستوى التالي، قائمة المزايا الحالية، قائمة مزايا المستوى التالي.
+- AC-019.2: مزايا المستويات تشمل: مضاعف الكسب، دعم بأولوية، نافذة إلغاء مجانية (24 ساعة بعد الحجز)، بونص عيد الميلاد، بونص شحن المحفظة.
 
-### WhatsApp Notifications
+### إشعارات WhatsApp
 
-**US-020: WhatsApp Opt-In at Checkout**
+**US-020: الموافقة على WhatsApp عند الدفع**
 
-As a traveler, I want to opt in to WhatsApp notifications during checkout so that I receive trip updates on my preferred channel.
+كمسافر، أنا عايز أوافق على إشعارات WhatsApp وقت الدفع علشان أستلم تحديثات الرحلة على القناة المفضلة عندي.
 
-- AC-020.1: Checkout form must include a WhatsApp opt-in checkbox, default unchecked (GDPR-style consent).
-- AC-020.2: Phone number entered must be verified via WhatsApp message (one-time confirmation message with confirmation link, expires 10 min).
-- AC-020.3: Opt-out must be available via every WhatsApp message ("Reply STOP" or web link) and from account settings.
+- AC-020.1: فورم الدفع لازم يشمل checkbox للموافقة على WhatsApp، افتراضيًا مش متشيك (موافقة بنمط GDPR).
+- AC-020.2: رقم التليفون اللي يتدخل لازم يتحقق منه عن طريق رسالة WhatsApp (رسالة تأكيد لمرة واحدة بلينك تأكيد، تنتهي بعد 10 دقايق).
+- AC-020.3: إلغاء الاشتراك لازم يكون متاح في كل رسالة WhatsApp ("Reply STOP" أو لينك ويب) ومن إعدادات الحساب.
 
-**US-021: WhatsApp Booking Confirmations**
+**US-021: تأكيدات الحجز عبر WhatsApp**
 
-As an opted-in customer, I want to receive my booking confirmation on WhatsApp so that I have it where I message daily.
+كعميل وافق، أنا عايز أستلم تأكيد الحجز على WhatsApp علشان يكون عندي في المكان اللي بستخدمه يوميًا.
 
-- AC-021.1: A WhatsApp template-approved message must send within 2 minutes of booking confirmation.
-- AC-021.2: Message must include: greeting, booking type, key details (route+date or hotel+dates), booking reference, total, and a link to the full itinerary on the web.
-- AC-021.3: For flights, attach the e-ticket PDF; for hotels, attach the voucher PDF.
+- AC-021.1: رسالة WhatsApp template معتمدة لازم تتبعت خلال دقيقتين من تأكيد الحجز.
+- AC-021.2: الرسالة لازم تشمل: تحية، نوع الحجز، التفاصيل الأساسية (المسار+التاريخ أو الفندق+التواريخ)، رقم الحجز، الإجمالي، ولينك للـ itinerary الكامل على الويب.
+- AC-021.3: للطيران، يتم إرفاق e-ticket PDF؛ للفنادق، يتم إرفاق الـ voucher PDF.
 
-**US-022: WhatsApp Travel Reminders**
+**US-022: تذكيرات السفر عبر WhatsApp**
 
-As a traveler, I want to receive a reminder 24 hours before my flight or check-in so that I am prepared.
+كمسافر، أنا عايز أستلم تذكير قبل الطيران أو الـ check-in بـ 24 ساعة علشان أكون جاهز.
 
-- AC-022.1: 24-hour reminder must include: check-in URL (for flights with online check-in available), hotel address and check-in time (for hotels).
-- AC-022.2: Reminders are sent in the user's preferred language (set at booking time).
-- AC-022.3: If a flight has been rescheduled by the airline (Amadeus schedule change notification received), the reminder must reflect new times.
+- AC-022.1: تذكير الـ 24 ساعة لازم يشمل: URL للـ check-in (للطيران اللي عنده online check-in)، عنوان الفندق ومعاد الـ check-in (للفنادق).
+- AC-022.2: التذكيرات تتبعت بلغة المستخدم المفضلة (المضبوطة وقت الحجز).
+- AC-022.3: لو في طيران اتأجل من شركة الطيران (إشعار schedule change من Amadeus)، التذكير لازم يعكس المواعيد الجديدة.
 
-**US-023: WhatsApp Inbound Replies**
+**US-023: الردود الواردة على WhatsApp**
 
-As a traveler, I want to reply to Jawla on WhatsApp and reach a support agent so that I can resolve issues quickly.
+كمسافر، أنا عايز أرد على Jawla على WhatsApp وأوصل لـ agent دعم علشان أحل المشاكل بسرعة.
 
-- AC-023.1: Inbound WhatsApp messages must route to a shared inbox (HelpScout, Front, or built-in admin inbox).
-- AC-023.2: Auto-reply outside business hours acknowledges receipt and gives expected response time.
-- AC-023.3: First-response time SLA on WhatsApp: 30 min during business hours, 4h after.
+- AC-023.1: رسائل WhatsApp الواردة لازم تتوجه لـ inbox مشترك (HelpScout أو Front أو inbox مدمج في الـ admin).
+- AC-023.2: رد تلقائي خارج ساعات العمل بيؤكد الاستلام ويدي وقت الرد المتوقع.
+- AC-023.3: SLA وقت أول رد على WhatsApp: 30 دقيقة في ساعات العمل، 4 ساعات بعدها.
 
-### Customer Self-Service
+### الخدمة الذاتية للعملاء
 
-**US-024: Self-Service Cancellation**
+**US-024: الإلغاء الذاتي**
 
-As a customer, I want to cancel my booking from My Bookings without contacting support so that I can manage my trip independently.
+كعميل، أنا عايز ألغي حجزي من My Bookings من غير ما أكلم الدعم علشان أقدر أدير رحلتي بنفسي.
 
-- AC-024.1: Cancel button is visible only if cancellation is permitted by supplier rules.
-- AC-024.2: System must show: refund amount, cancellation fee, supplier conditions, expected processing time - all before confirming.
-- AC-024.3: Confirmation requires entering booking reference and a 2FA OTP (email or SMS).
-- AC-024.4: System must call the supplier's cancellation API, capture the response, update booking status, initiate gateway refund.
-- AC-024.5: If the supplier API fails, the cancellation is queued for ops review with a customer-facing message "Cancellation request received - confirming with supplier within 24h".
+- AC-024.1: زرار الإلغاء بيظهر بس لو الإلغاء مسموح حسب قواعد المورد.
+- AC-024.2: النظام لازم يعرض: مبلغ الاسترجاع، رسوم الإلغاء، شروط المورد، الوقت المتوقع للمعالجة - كل ده قبل التأكيد.
+- AC-024.3: التأكيد يتطلب إدخال رقم الحجز و OTP للـ 2FA (إيميل أو SMS).
+- AC-024.4: النظام لازم يتصل بـ API الإلغاء بتاع المورد، يحفظ الرد، يحدث حالة الحجز، يبدأ استرجاع gateway.
+- AC-024.5: لو API المورد فشل، الإلغاء يتدخل في قائمة انتظار لمراجعة العمليات مع رسالة للعميل "تم استلام طلب الإلغاء - هنأكد مع المورد خلال 24 ساعة".
 
-**US-025: Self-Service Refund Status Tracking**
+**US-025: تتبع حالة الاسترجاع الذاتي**
 
-As a customer who has cancelled, I want to track my refund status so that I know when to expect funds.
+كعميل ألغى، أنا عايز أتابع حالة الاسترجاع علشان أعرف امتى الفلوس هتوصلني.
 
-- AC-025.1: Booking detail page must show refund status: Requested, Processing, Gateway Confirmed, Bank Crediting (3-7 business days note), Complete.
-- AC-025.2: Status changes must push WhatsApp + email notifications.
-- AC-025.3: A refund-related FAQ must be 1-click accessible from the status page.
+- AC-025.1: صفحة تفاصيل الحجز لازم تعرض حالة الاسترجاع: مطلوب، قيد المعالجة، تأكيد الـ Gateway، البنك بيرصد (ملاحظة 3-7 أيام عمل)، اكتمل.
+- AC-025.2: تغييرات الحالة لازم تبعت إشعارات WhatsApp + إيميل.
+- AC-025.3: FAQ متعلق بالاسترجاع لازم يكون متاح بضغطة واحدة من صفحة الحالة.
 
-**US-026: Self-Service Booking Modification (Where Permitted)**
+**US-026: تعديل الحجز الذاتي (حيث يسمح)**
 
-As a customer, I want to modify the date or passenger of my booking when supplier permits so that I can avoid cancellation fees.
+كعميل، أنا عايز أعدل التاريخ أو الراكب في حجزي لما المورد يسمح علشان أتجنب رسوم الإلغاء.
 
-- AC-026.1: Modification capability is supplier-dependent; UI must show only what is permitted.
-- AC-026.2: For flights, date changes must call Amadeus Booking Management with the new date; fare difference is charged or refunded as appropriate.
-- AC-026.3: For hotels, only date or guest-name modifications are supported (no room-type change).
+- AC-026.1: قدرة التعديل تعتمد على المورد؛ الواجهة لازم تعرض بس اللي مسموح.
+- AC-026.2: للطيران، تغيير التاريخ لازم يتصل بـ Amadeus Booking Management بالتاريخ الجديد؛ فرق السعر يتحاسب أو يترجع حسب الحاجة.
+- AC-026.3: للفنادق، بس تعديل التاريخ أو اسم الضيف مدعوم (مش تغيير نوع الغرفة).
 
-### Advanced Admin
+### Admin المتقدم
 
-**US-027: Bulk Booking Actions**
+**US-027: إجراءات جماعية على الحجوزات**
 
-As Yara (ops), I want to select multiple bookings and apply bulk actions (resend confirmation, add note, export) so that I can manage volume efficiently.
+كـ يارا (عمليات)، أنا عايزة أختار حجوزات متعددة وأطبق إجراءات جماعية (إعادة إرسال تأكيد، إضافة ملاحظة، تصدير) علشان أقدر أدير الحجم بكفاءة.
 
-- AC-027.1: Booking list must support multi-select with checkboxes and "Select all matching filter".
-- AC-027.2: Bulk actions: Resend confirmation, Export CSV, Add internal note, Tag, Reassign to agent.
-- AC-027.3: Bulk refund is intentionally NOT supported (require per-booking review).
+- AC-027.1: قائمة الحجوزات لازم تدعم الاختيار المتعدد بـ checkboxes و"Select all matching filter".
+- AC-027.2: الإجراءات الجماعية: إعادة إرسال التأكيد، تصدير CSV، إضافة ملاحظة داخلية، تاج، إعادة تعيين لـ agent.
+- AC-027.3: الاسترجاع الجماعي مش مدعوم بقصد (يتطلب مراجعة لكل حجز على حدة).
 
-**US-028: Customer 360 View**
+**US-028: عرض العميل 360**
 
-As Yara, I want to see a single 360 view of a customer (bookings, support tickets, wallet, loyalty, WhatsApp history) so that I can serve them with full context.
+كـ يارا، أنا عايزة أشوف عرض 360 واحد للعميل (الحجوزات، تذاكر الدعم، المحفظة، الولاء، سجل WhatsApp) علشان أقدر أخدمه بكل السياق.
 
-- AC-028.1: Customer detail page must show: profile, all bookings, wallet transactions, loyalty history, support tickets, WhatsApp conversation history (last 30 days), notes.
-- AC-028.2: Quick actions: send WhatsApp, email, adjust wallet (with audit log), adjust loyalty (with audit log).
+- AC-028.1: صفحة تفاصيل العميل لازم تعرض: الملف الشخصي، كل الحجوزات، معاملات المحفظة، سجل الولاء، تذاكر الدعم، سجل محادثة WhatsApp (آخر 30 يوم)، الملاحظات.
+- AC-028.2: إجراءات سريعة: إرسال WhatsApp، إيميل، تعديل المحفظة (مع audit log)، تعديل الولاء (مع audit log).
 
-**US-029: Customer Segmentation**
+**US-029: تقسيم العملاء**
 
-As Hagar (marketing), I want to build customer segments by criteria (destination, AOV, recency, language, currency, loyalty tier) so that I can run targeted campaigns.
+كـ هاجر (تسويق)، أنا عايزة أبني مقاطع عملاء حسب معايير (الوجهة، متوسط قيمة الطلب، الحداثة، اللغة، العملة، مستوى الولاء) علشان أشغل حملات مستهدفة.
 
-- AC-029.1: Segment builder UI with AND/OR rule chaining.
-- AC-029.2: Segment preview shows count and sample customers.
-- AC-029.3: Segments can be saved, scheduled (auto-refresh daily), and exported as CSV or pushed to Mailchimp/MoEngage via integration.
+- AC-029.1: واجهة بناء مقاطع مع تسلسل قواعد AND/OR.
+- AC-029.2: معاينة المقطع تعرض العدد وعينة عملاء.
+- AC-029.3: المقاطع تتحفظ، تتجدول (تحديث تلقائي يومي)، وتتصدر كـ CSV أو تتدفع لـ Mailchimp/MoEngage عن طريق integration.
 
-### Reports & BI
+### التقارير و BI
 
-**US-030: Daily Operations Report**
+**US-030: تقرير العمليات اليومي**
 
-As Yara, I want a daily morning email summarizing yesterday's bookings, failures, and refunds so that I know where to focus my day.
+كـ يارا، أنا عايزة إيميل صباحي يومي يلخص حجوزات أمس والفشل والاسترجاعات علشان أعرف أركز فين في يومي.
 
-- AC-030.1: Email sent at 8:00 AM Cairo time to ops distribution list.
-- AC-030.2: Content: bookings count + GBV by type, payment success/failure counts, refund count + amount, supplier health summary, top 5 customer issues.
-- AC-030.3: Links to full dashboards for drill-down.
+- AC-030.1: الإيميل يتبعت الساعة 8:00 صباحًا بتوقيت القاهرة لقائمة توزيع العمليات.
+- AC-030.2: المحتوى: عدد الحجوزات + GBV حسب النوع، عدد نجاح/فشل الدفع، عدد ومبلغ الاسترجاع، ملخص صحة الموردين، أعلى 5 مشاكل عملاء.
+- AC-030.3: لينكات للوحات الكاملة للتعمق.
 
-**US-031: Revenue Dashboard**
+**US-031: لوحة الإيرادات**
 
-As Tarek, I want a real-time revenue dashboard with GBV, net revenue, refunds, and supplier payables so that I can manage cash and reconcile gateways.
+كـ طارق، أنا عايز لوحة إيرادات لحظية فيها GBV، صافي الإيراد، الاسترجاعات، ومستحقات الموردين علشان أدير الكاش وأسوي gateways.
 
-- AC-031.1: Dashboard supports filters: date range, currency, product type (flight/hotel), supplier, payment gateway.
-- AC-031.2: Charts: GBV trend, refund trend, net revenue, gateway settlement gap.
-- AC-031.3: Drill-down to transaction-level.
+- AC-031.1: اللوحة بتدعم فلاتر: نطاق التاريخ، العملة، نوع المنتج (طيران/فنادق)، المورد، gateway الدفع.
+- AC-031.2: الرسوم البيانية: ترند GBV، ترند الاسترجاع، صافي الإيراد، فجوة تسوية gateway.
+- AC-031.3: التعمق لمستوى المعاملة.
 
-**US-032: Marketing Attribution Report**
+**US-032: تقرير إسناد التسويق**
 
-As Hagar, I want a report showing bookings by acquisition source (UTM, referrer) so that I can measure ROAS.
+كـ هاجر، أنا عايزة تقرير يعرض الحجوزات حسب مصدر الاكتساب (UTM، referrer) علشان أقيس ROAS.
 
-- AC-032.1: Report shows: source, sessions, bookings, GBV, ROAS (if ad spend imported).
-- AC-032.2: Ad spend imported via CSV or Google Ads API in Professional+.
+- AC-032.1: التقرير يعرض: المصدر، الجلسات، الحجوزات، GBV، ROAS (لو إنفاق الإعلانات اتم استيراده).
+- AC-032.2: إنفاق الإعلانات يتستورد عن طريق CSV أو Google Ads API في الباقة الاحترافية وأعلى.
 
-### Multi-Currency
+### العملات المتعددة
 
-**US-033: Multi-Currency Display**
+**US-033: عرض العملات المتعددة**
 
-As an international traveler, I want to see prices in my preferred currency so that I understand what I'm paying.
+كمسافر دولي، أنا عايز أشوف الأسعار بالعملة المفضلة عندي علشان أفهم بدفع كام.
 
-- AC-033.1: Supported display currencies: EGP, USD, EUR, SAR, AED.
-- AC-033.2: Currency selection persists in session and account preferences.
-- AC-033.3: Conversion rate clearly disclosed at checkout ("Charged in EGP at 1 EUR = X EGP").
+- AC-033.1: العملات المدعومة للعرض: EGP، USD، EUR، SAR، AED.
+- AC-033.2: اختيار العملة بيستمر في الـ session وتفضيلات الحساب.
+- AC-033.3: سعر التحويل يتعرض بوضوح وقت الدفع ("يتم التحصيل بـ EGP بسعر 1 EUR = X EGP").
 
-**US-034: Multi-Currency Payment**
+**US-034: الدفع بعملات متعددة**
 
-As an international traveler, I want to pay in EUR or USD so that I avoid double conversion by my bank.
+كمسافر دولي، أنا عايز أدفع باليورو أو الدولار علشان أتجنب التحويل المزدوج من البنك بتاعي.
 
-- AC-034.1: Stripe charges in selected currency.
-- AC-034.2: Paymob always charges in EGP regardless of display currency (Paymob limitation).
-- AC-034.3: Settlement currency to Jawla's bank is per gateway contract; reconciliation report must handle this.
+- AC-034.1: Stripe بيحصل بالعملة المختارة.
+- AC-034.2: Paymob دايمًا بيحصل بـ EGP بغض النظر عن عملة العرض (قيد Paymob).
+- AC-034.3: عملة التسوية لبنك Jawla حسب عقد كل gateway؛ تقرير التسوية لازم يتعامل مع ده.
 
-**US-035: Multi-Currency Wallet**
+**US-035: محفظة بعملات متعددة**
 
-As above (US-017) - wallet supports EGP, USD, EUR balances per user.
+زي اللي فوق (US-017) - المحفظة بتدعم أرصدة EGP و USD و EUR لكل مستخدم.
 
-### Foundational (Required for Enterprise Readiness)
+### الأساسات (لازمة لجاهزية Enterprise)
 
 **US-036: Event Bus**
 
-As the engineering team, we need a publish/subscribe event bus so that downstream systems (loyalty, WhatsApp, analytics) consume booking events without point-to-point coupling.
+كفريق الهندسة، إحنا محتاجين publish/subscribe event bus علشان الأنظمة التالية (الولاء، WhatsApp، التحليلات) تستهلك أحداث الحجز من غير اقتران نقطة-لنقطة.
 
-- AC-036.1: Event bus implemented via Redis Streams or RabbitMQ.
-- AC-036.2: Event taxonomy: booking.created, booking.confirmed, booking.cancelled, booking.refunded, payment.succeeded, payment.failed, supplier.degraded, customer.signed-up.
-- AC-036.3: Each event has a schema version and is consumed idempotently.
+- AC-036.1: Event bus يتنفذ عن طريق Redis Streams أو RabbitMQ.
+- AC-036.2: تصنيف الأحداث: booking.created، booking.confirmed، booking.cancelled، booking.refunded، payment.succeeded، payment.failed، supplier.degraded، customer.signed-up.
+- AC-036.3: كل حدث له schema version ويُستهلك بشكل idempotent.
 
-**US-037: Supplier Abstraction Layer**
+**US-037: طبقة تجريد الموردين**
 
-As the engineering team, we need a unified supplier interface so that new hotel suppliers can be added in <5 engineering days.
+كفريق الهندسة، إحنا محتاجين واجهة موردين موحدة علشان موردين فنادق جداد يتضافوا في أقل من 5 أيام هندسية.
 
-- AC-037.1: Each supplier integration implements a common `IHotelSupplier` interface (search, price-check, book, cancel, voucher).
-- AC-037.2: Supplier-specific quirks are handled in adapter classes.
-- AC-037.3: New supplier addition is documented in an onboarding runbook.
+- AC-037.1: كل تكامل مورد بينفذ واجهة مشتركة `IHotelSupplier` (search، price-check، book، cancel، voucher).
+- AC-037.2: خصوصيات كل مورد تتعالج في فئات adapter.
+- AC-037.3: إضافة مورد جديد موثقة في runbook onboarding.
 
-**US-038: Reporting Data Warehouse**
+**US-038: مستودع بيانات التقارير**
 
-As the data team, we need a separate analytical store so that reports don't run against the OLTP database.
+كفريق البيانات، إحنا محتاجين تخزين تحليلي منفصل علشان التقارير ما تشتغلش على قاعدة OLTP.
 
-- AC-038.1: ETL job runs every 30 minutes copying booking, payment, customer events to a PostgreSQL warehouse or ClickHouse.
-- AC-038.2: Warehouse schema is dimensional (bookings fact, customer/date/supplier dimensions).
-- AC-038.3: Reports query the warehouse only.
+- AC-038.1: مهمة ETL تشتغل كل 30 دقيقة بتنسخ أحداث الحجز والدفع والعميل لمستودع PostgreSQL أو ClickHouse.
+- AC-038.2: schema المستودع بنمط dimensional (bookings fact، أبعاد العميل/التاريخ/المورد).
+- AC-038.3: التقارير تستعلم من المستودع فقط.
 
 ---
 
-## Business Requirements
+## متطلبات العمل (Business Requirements)
 
-The Basic package's BR-001..BR-025 remain in force. Professional adds:
+BR-001..BR-025 الخاصة بباقة Basic لسه سارية. الباقة الاحترافية بتضيف:
 
-| ID | Requirement | Priority | Source |
+| ID | المتطلب | الأولوية | المصدر |
 |----|-------------|----------|--------|
-| BR-026 | The platform must integrate with at least 3 hotel suppliers, with the architecture supporting addition of a 4th in <5 engineering days. | Must | Procurement |
-| BR-027 | The platform must implement a loyalty program with tiers (Member, Silver, Gold, Platinum) and configurable earning/redemption rules editable by Finance without code deploy. | Must | Marketing |
-| BR-028 | The platform must implement a stored-value wallet with per-currency balances, top-up via gateways, and audit-logged manual adjustments by admins. | Must | Finance |
-| BR-029 | The wallet must be regulatorily compliant: no cash refunds from wallet, max balance EGP 50,000 per customer (Egyptian e-money guidance). | Must | Legal |
-| BR-030 | The platform must integrate with WhatsApp Business API (via Meta Cloud API or BSP like 360dialog) for outbound transactional messages and inbound conversation routing. | Must | Marketing + Ops |
-| BR-031 | All WhatsApp message templates must be pre-approved in both Arabic and English. | Must | Marketing |
-| BR-032 | Customers must be able to cancel a booking and request a refund without contacting support, within supplier-permitted rules. | Must | Operations |
-| BR-033 | Self-service cancellations must enforce 2FA (OTP) before processing. | Must | Security |
-| BR-034 | The admin panel must support customer 360 views, bulk actions on bookings, and customer segmentation. | Must | Operations + Marketing |
-| BR-035 | The platform must produce daily/weekly/monthly reports for operations, finance, and marketing accessible via dashboard and exportable as CSV/PDF. | Must | Operations + Finance |
-| BR-036 | Display currency support: EGP, USD, EUR, SAR, AED (minimum 5 currencies). | Must | Product |
-| BR-037 | Payment currency support: EGP via Paymob; EGP, USD, EUR, SAR, AED via Stripe. | Must | Finance |
-| BR-038 | All inter-service communication must flow through a documented event bus to enable future Enterprise capabilities. | Must | Architecture |
-| BR-039 | Reports must run against a dedicated analytical store, not the production OLTP database, to ensure no impact on booking latency. | Must | Engineering |
-| BR-040 | The platform must capture and retain marketing attribution (UTM, referrer, click ID) at session and booking level for at least 24 months. | Must | Marketing |
-| BR-041 | Wallet balances must be journaled in a double-entry ledger to support financial audit. | Must | Finance |
-| BR-042 | Loyalty points liability must be tracked as a balance-sheet item with monthly accrual reports. | Must | Finance |
-| BR-043 | The platform must comply with PCI DSS SAQ-A continued scope despite wallet (since wallet does NOT store PAN). | Must | Compliance |
-| BR-044 | Customer-facing emails and WhatsApp messages must include unsubscribe/opt-out links compliant with relevant marketing law. | Must | Legal |
-| BR-045 | The platform must support a minimum of 500 concurrent users with p95 latency < 2.5s on key paths in Professional. | Must | Engineering |
-| BR-046 | All admin financial actions (wallet adjustment, loyalty adjustment, refunds >EGP 10K) must require dual approval. | Must | Compliance |
-| BR-047 | The platform must support feature flags so that loyalty, WhatsApp, and self-service can be rolled out progressively. | Should | Product |
-| BR-048 | Translations must be managed via an i18n platform (Phrase, Lokalise, Crowdin) rather than hardcoded files, to enable non-engineering content updates. | Should | Product |
-| BR-049 | The data warehouse must retain transactional data for 7 years per Egyptian financial record retention rules. | Must | Compliance |
-| BR-050 | WhatsApp opt-out preferences must be honored within 5 minutes across all systems (no opt-out leakage). | Must | Legal |
+| BR-026 | المنصة لازم تتكامل مع 3 موردين فنادق على الأقل، والمعمارية تدعم إضافة الرابع في أقل من 5 أيام هندسية. | Must | المشتريات |
+| BR-027 | المنصة لازم تنفذ برنامج ولاء بمستويات (Member، Silver، Gold، Platinum) وقواعد كسب/استبدال قابلة للتعديل من المالية من غير code deploy. | Must | التسويق |
+| BR-028 | المنصة لازم تنفذ محفظة بقيمة مخزنة بأرصدة لكل عملة، شحن عن طريق gateways، وتعديلات يدوية من الـ admin مسجلة في audit log. | Must | المالية |
+| BR-029 | المحفظة لازم تكون متوافقة مع التنظيم: لا استرجاع نقدي من المحفظة، الحد الأقصى للرصيد 50,000 جنيه لكل عميل (إرشادات النقود الإلكترونية المصرية). | Must | القانوني |
+| BR-030 | المنصة لازم تتكامل مع WhatsApp Business API (عن طريق Meta Cloud API أو BSP زي 360dialog) للرسائل الصادرة المعاملاتية وتوجيه المحادثات الواردة. | Must | التسويق + العمليات |
+| BR-031 | كل templates رسائل WhatsApp لازم تكون معتمدة مسبقًا بالعربي والإنجليزي. | Must | التسويق |
+| BR-032 | العملاء لازم يقدروا يلغوا حجز ويطلبوا استرجاع من غير ما يتواصلوا مع الدعم، في حدود القواعد اللي يسمح بها المورد. | Must | العمليات |
+| BR-033 | الإلغاءات الذاتية لازم تفرض 2FA (OTP) قبل المعالجة. | Must | الأمن |
+| BR-034 | لوحة الـ admin لازم تدعم عروض العميل 360، الإجراءات الجماعية على الحجوزات، وتقسيم العملاء. | Must | العمليات + التسويق |
+| BR-035 | المنصة لازم تنتج تقارير يومية/أسبوعية/شهرية للعمليات والمالية والتسويق متاحة عن طريق لوحة ومصدّرة كـ CSV/PDF. | Must | العمليات + المالية |
+| BR-036 | دعم العملات للعرض: EGP، USD، EUR، SAR، AED (5 عملات كحد أدنى). | Must | المنتج |
+| BR-037 | دعم العملات للدفع: EGP عن طريق Paymob؛ EGP، USD، EUR، SAR، AED عن طريق Stripe. | Must | المالية |
+| BR-038 | كل التواصل بين الخدمات لازم يمر بـ event bus موثق لتمكين قدرات Enterprise المستقبلية. | Must | المعمارية |
+| BR-039 | التقارير لازم تشتغل على تخزين تحليلي مخصص، مش قاعدة OLTP الإنتاج، علشان نضمن إنه ما فيش تأثير على زمن الحجز. | Must | الهندسة |
+| BR-040 | المنصة لازم تحفظ إسناد التسويق (UTM، referrer، click ID) على مستوى الجلسة والحجز لمدة 24 شهر على الأقل. | Must | التسويق |
+| BR-041 | أرصدة المحفظة لازم تتسجل في دفتر مزدوج القيد (double-entry ledger) لدعم التدقيق المالي. | Must | المالية |
+| BR-042 | التزام نقاط الولاء لازم يتتبع كبند في الميزانية مع تقارير استحقاق شهرية. | Must | المالية |
+| BR-043 | المنصة لازم تكون متوافقة مع PCI DSS SAQ-A نطاق مستمر رغم وجود المحفظة (لأن المحفظة مش بتخزن PAN). | Must | الامتثال |
+| BR-044 | الإيميلات ورسائل WhatsApp اللي بتوصل للعميل لازم تشمل لينكات إلغاء الاشتراك متوافقة مع قانون التسويق. | Must | القانوني |
+| BR-045 | المنصة لازم تدعم 500 مستخدم متزامن كحد أدنى مع زمن استجابة p95 < 2.5 ثانية على المسارات الأساسية في الباقة الاحترافية. | Must | الهندسة |
+| BR-046 | كل الإجراءات المالية للـ admin (تعديل المحفظة، تعديل الولاء، الاسترجاعات >10 آلاف جنيه) لازم تتطلب اعتماد مزدوج. | Must | الامتثال |
+| BR-047 | المنصة لازم تدعم feature flags علشان الولاء و WhatsApp والخدمة الذاتية يطلعوا تدريجيًا. | Should | المنتج |
+| BR-048 | الترجمات لازم تتدار من خلال منصة i18n (Phrase، Lokalise، Crowdin) بدل الملفات الـ hardcoded، علشان فريق المحتوى غير الهندسي يقدر يحدث. | Should | المنتج |
+| BR-049 | مستودع البيانات لازم يحتفظ بالبيانات المعاملاتية لمدة 7 سنوات حسب قواعد الاحتفاظ بالسجلات المالية المصرية. | Must | الامتثال |
+| BR-050 | تفضيلات إلغاء WhatsApp لازم تحترم خلال 5 دقايق في كل الأنظمة (لا تسرب لإلغاء الاشتراك). | Must | القانوني |
 
 ---
 
-## Functional Acceptance Criteria
+## معايير القبول الوظيفية (Functional Acceptance Criteria)
 
-### FAC-7: Multi-Supplier Hotel Search
+### FAC-7: بحث فنادق بموردين متعددين
 
-A hotel search is functionally correct when:
-1. All configured suppliers are queried in parallel.
-2. Suppliers exceeding 4s timeout are abandoned for this request only.
-3. Returned offers are normalized to a common offer schema.
-4. Duplicates are merged using property identity rules.
-5. Ranking is applied per the configured algorithm.
-6. The user sees a consolidated, ranked list with no indication of which supplier provided which offer (except in admin debug mode).
+بحث الفنادق صحيح وظيفيًا لما:
+1. كل الموردين المضبوطين يتم الاستعلام منهم بالتوازي.
+2. الموردين اللي يتجاوزوا timeout 4 ثواني يتم تركهم لهذا الطلب فقط.
+3. العروض المرجعة تتطبع لـ schema عروض موحد.
+4. التكرارات تندمج باستخدام قواعد هوية الفنادق.
+5. الترتيب يتطبق حسب الخوارزمية المضبوطة.
+6. المستخدم يشوف قائمة موحدة ومرتبة من غير أي إشارة لمين مورد بيقدم أي عرض (إلا في admin debug mode).
 
-### FAC-8: Hotel Booking with Supplier Failover
+### FAC-8: حجز فندق مع failover للموردين
 
-A hotel booking is functionally correct when:
-1. The selected offer's price is re-validated with the originating supplier.
-2. If re-validation fails, the user is prompted with the new price (if available) before payment.
-3. Payment is captured.
-4. Supplier booking API is called.
-5. If supplier booking fails post-payment, refund is auto-initiated and ops is alerted.
-6. Voucher is generated and delivered via email + WhatsApp (if opted in).
+حجز الفندق صحيح وظيفيًا لما:
+1. سعر العرض المختار يتم التحقق منه من المورد المصدر.
+2. لو إعادة التحقق فشلت، المستخدم يتطلب منه السعر الجديد (لو متاح) قبل الدفع.
+3. الدفع يتم تحصيله.
+4. API الحجز بتاع المورد يتم استدعاؤه.
+5. لو حجز المورد فشل بعد الدفع، الاسترجاع يتم تلقائيًا والعمليات تتنبه.
+6. الـ Voucher يتولد ويتسلم عن طريق الإيميل + WhatsApp (لو اتوافق).
 
-### FAC-9: Loyalty Earning
+### FAC-9: كسب الولاء
 
-A loyalty earning event is functionally correct when:
-1. The earning rule is applied based on the customer's tier at booking time.
-2. Points are calculated against the net booking amount (excluding taxes, fees, supplier markups).
-3. Points are credited to the loyalty ledger with the booking reference.
-4. Points are locked until 24h after travel/stay completion.
-5. Customer is notified of earned points via UI badge and WhatsApp (if opted in).
+حدث كسب الولاء صحيح وظيفيًا لما:
+1. قاعدة الكسب تتطبق بناءً على مستوى العميل وقت الحجز.
+2. النقاط تتحسب على صافي مبلغ الحجز (مش شامل الضرائب والرسوم وعلاوات الموردين).
+3. النقاط تتقيد في دفتر الولاء بمرجع الحجز.
+4. النقاط تتقفل لحد 24 ساعة بعد انتهاء السفر/الإقامة.
+5. العميل يتم إشعاره بالنقاط المكسوبة عن طريق badge في الواجهة و WhatsApp (لو اتوافق).
 
-### FAC-10: Wallet Top-Up
+### FAC-10: شحن المحفظة
 
-A top-up is functionally correct when:
-1. User selects amount and currency.
-2. Payment via Paymob (EGP only) or Stripe (any supported currency) is captured.
-3. Wallet ledger is credited for that currency.
-4. Top-up bonus (if active per tier) is credited as a separate ledger entry tagged "bonus".
-5. Receipt email/WhatsApp is sent.
+الشحن صحيح وظيفيًا لما:
+1. المستخدم يختار المبلغ والعملة.
+2. الدفع عن طريق Paymob (EGP فقط) أو Stripe (أي عملة مدعومة) يتم تحصيله.
+3. دفتر المحفظة يتم تقييده للعملة دي.
+4. بونص الشحن (لو نشط حسب المستوى) يتقيد كقيد منفصل بتاج "bonus".
+5. إيصال عن طريق إيميل/WhatsApp يتم إرساله.
 
-### FAC-11: WhatsApp Notification Delivery
+### FAC-11: تسليم إشعار WhatsApp
 
-A WhatsApp notification is functionally correct when:
-1. The user has opted in.
-2. The template is approved for the user's language.
-3. The message ID returned by the WhatsApp API is logged.
-4. Delivery and read receipts (webhooks) are processed.
-5. Failed deliveries (24h template expiry, user blocked, etc.) fall back to email automatically.
+إشعار WhatsApp صحيح وظيفيًا لما:
+1. المستخدم وافق.
+2. الـ template معتمد للغة المستخدم.
+3. الـ message ID اللي WhatsApp API بيرجعه يتسجل.
+4. إيصالات التسليم والقراءة (webhooks) تتم معالجتها.
+5. التسليمات الفاشلة (انتهاء صلاحية template 24 ساعة، المستخدم حظر، إلخ) تتحول للإيميل تلقائيًا.
 
-### FAC-12: Self-Service Cancellation
+### FAC-12: الإلغاء الذاتي
 
-A self-service cancellation is functionally correct when:
-1. Customer is authenticated.
-2. The booking is in cancellable status per supplier rules.
-3. The customer is shown the financial impact pre-confirmation.
-4. OTP is verified.
-5. Supplier cancellation API is called and response logged.
-6. Booking status is updated.
-7. Gateway refund is initiated for the entitled amount.
-8. Loyalty points are reversed.
-9. Wallet balance (if used) is restored.
-10. Customer receives confirmation across all opted channels.
+الإلغاء الذاتي صحيح وظيفيًا لما:
+1. العميل مصادق عليه.
+2. الحجز في حالة قابلة للإلغاء حسب قواعد المورد.
+3. العميل يشوف التأثير المالي قبل التأكيد.
+4. الـ OTP يتم التحقق منه.
+5. API الإلغاء بتاع المورد يتم استدعاؤه والرد يتسجل.
+6. حالة الحجز تتحدث.
+7. استرجاع gateway يتم بدؤه للمبلغ المستحق.
+8. نقاط الولاء تتعكس.
+9. رصيد المحفظة (لو اتستخدم) يتسترد.
+10. العميل يستلم التأكيد عبر كل القنوات اللي وافق عليها.
 
-### FAC-13: Multi-Currency Settlement Reconciliation
+### FAC-13: تسوية العملات المتعددة
 
-A reconciliation cycle is functionally correct when:
-1. Gateway settlement files are auto-ingested daily.
-2. Each settlement line is matched to a booking by reference.
-3. FX gains/losses are calculated per the day's central bank reference rate.
-4. Discrepancies (unmatched, over/under) are flagged.
-5. A daily reconciliation report is generated and emailed to Tarek.
+دورة التسوية صحيحة وظيفيًا لما:
+1. ملفات تسوية الـ gateway يتم استيرادها تلقائيًا يوميًا.
+2. كل بند تسوية يتم مطابقته مع حجز عن طريق المرجع.
+3. أرباح/خسائر العملة تتحسب حسب سعر البنك المركزي المرجعي لليوم.
+4. التناقضات (غير متطابقة، زيادة/نقص) يتم وضع علامة عليها.
+5. تقرير تسوية يومي يتولد ويتبعت بالإيميل لـ طارق.
 
-### FAC-14: Report Freshness
+### FAC-14: نضارة التقارير
 
-All reports must refresh:
-1. Operations dashboards: every 5 minutes.
-2. Revenue dashboards: every 30 minutes.
-3. Marketing reports: hourly.
-4. Daily ops report email: by 8:00 AM Cairo time.
+كل التقارير لازم تتحدث:
+1. لوحات العمليات: كل 5 دقايق.
+2. لوحات الإيرادات: كل 30 دقيقة.
+3. تقارير التسويق: كل ساعة.
+4. إيميل تقرير العمليات اليومي: قبل الساعة 8:00 صباحًا بتوقيت القاهرة.
 
 ---
 
 ## KPIs
 
-| KPI | Target | Measurement | Owner | Cadence |
+| KPI | المستهدف | القياس | المالك | الإيقاع |
 |-----|--------|-------------|-------|---------|
-| Hotel Search Result Latency (p95) | < 5.5s with 3 suppliers | APM | Engineering | Weekly |
-| Hotel Search Success Rate | > 97% (at least 1 supplier returns results) | Logs | Engineering | Daily |
-| Supplier Concentration (HHI) | < 4500 | Monthly aggregation | Finance | Monthly |
-| Property Deduplication Accuracy | > 92% | Sampled audit | Engineering | Monthly |
-| Loyalty Enrollment Rate | > 65% of new accounts | DB query | Marketing | Weekly |
-| Loyalty Points Liability | Tracked, reported monthly | Ledger | Finance | Monthly |
-| Wallet Active Users | > 25% of active customers | DB query | Marketing | Monthly |
-| Wallet Average Balance | > EGP 600 | DB query | Marketing | Monthly |
-| Wallet-Funded Booking Share | > 12% of bookings | DB query | Product | Monthly |
-| WhatsApp Opt-In Rate | > 70% | Checkout analytics | Product | Weekly |
-| WhatsApp Delivery Rate | > 98% | WhatsApp API webhooks | Engineering | Weekly |
-| WhatsApp Read Rate | > 80% | WhatsApp webhooks | Marketing | Weekly |
-| Self-Service Cancellation Share | > 60% of cancellations | DB query | Product | Monthly |
-| Average Refund Processing Time | < 90 seconds (system) | Logs | Engineering | Weekly |
-| Refund Customer Satisfaction (CSAT) | > 4.3/5 | Post-refund survey | Operations | Monthly |
-| Support Tickets per 100 Bookings | < 4 | Helpdesk | Operations | Weekly |
-| Repeat Customer Rate | > 30% | DB query | Marketing | Monthly |
-| Customer LTV (12-month) | > EGP 18,000 | Cohort analysis | Marketing | Quarterly |
-| Tier Upgrade Rate (Member -> Silver) | > 15% | Loyalty DB | Marketing | Monthly |
-| Multi-Currency Bookings Share | > 18% | DB query | Product | Monthly |
-| Currency Conversion Margin | > 1.5% | Reconciliation report | Finance | Monthly |
-| Report Dashboard Adoption | > 5 active users/week in each team | Dashboard analytics | Product | Monthly |
-| Event Bus Throughput | > 200 events/sec sustainable | Load test | Engineering | Quarterly |
-| Event Processing Lag (p95) | < 5 seconds | Bus metrics | Engineering | Weekly |
-| Data Warehouse ETL Lag | < 35 minutes | ETL logs | Engineering | Daily |
-| Site Uptime | > 99.7% | Monitoring | Engineering | Monthly |
-| MTTR | < 30 minutes | Incident logs | Engineering | Per incident |
+| زمن نتائج بحث الفنادق (p95) | < 5.5 ثانية مع 3 موردين | APM | الهندسة | أسبوعي |
+| نسبة نجاح بحث الفنادق | > 97% (مورد واحد على الأقل بيرجع نتائج) | Logs | الهندسة | يومي |
+| تركز الموردين (HHI) | < 4500 | تجميع شهري | المالية | شهري |
+| دقة إزالة تكرار الفنادق | > 92% | تدقيق عينة | الهندسة | شهري |
+| نسبة الاشتراك في الولاء | > 65% من الحسابات الجديدة | DB query | التسويق | أسبوعي |
+| التزام نقاط الولاء | متتبع، يتقرر شهريًا | Ledger | المالية | شهري |
+| المستخدمين النشطين في المحفظة | > 25% من العملاء النشطين | DB query | التسويق | شهري |
+| متوسط رصيد المحفظة | > 600 جنيه | DB query | التسويق | شهري |
+| نسبة الحجوزات الممولة بالمحفظة | > 12% من الحجوزات | DB query | المنتج | شهري |
+| نسبة الموافقة على WhatsApp | > 70% | تحليلات الـ checkout | المنتج | أسبوعي |
+| نسبة تسليم WhatsApp | > 98% | WhatsApp API webhooks | الهندسة | أسبوعي |
+| نسبة قراءة WhatsApp | > 80% | WhatsApp webhooks | التسويق | أسبوعي |
+| نسبة الإلغاء الذاتي | > 60% من الإلغاءات | DB query | المنتج | شهري |
+| متوسط وقت معالجة الاسترجاع | < 90 ثانية (نظام) | Logs | الهندسة | أسبوعي |
+| رضا العميل عن الاسترجاع (CSAT) | > 4.3/5 | استبيان بعد الاسترجاع | العمليات | شهري |
+| تذاكر الدعم لكل 100 حجز | < 4 | Helpdesk | العمليات | أسبوعي |
+| نسبة العملاء العائدين | > 30% | DB query | التسويق | شهري |
+| LTV العميل (12 شهر) | > 18,000 جنيه | تحليل cohort | التسويق | ربع سنوي |
+| نسبة الترقية للمستوى (Member -> Silver) | > 15% | Loyalty DB | التسويق | شهري |
+| نسبة الحجوزات بعملات متعددة | > 18% | DB query | المنتج | شهري |
+| هامش تحويل العملات | > 1.5% | تقرير التسوية | المالية | شهري |
+| اعتماد لوحات التقارير | > 5 مستخدمين نشطين/أسبوع في كل فريق | تحليلات اللوحة | المنتج | شهري |
+| سعة Event Bus | > 200 حدث/ثانية بشكل مستدام | Load test | الهندسة | ربع سنوي |
+| تأخر معالجة الأحداث (p95) | < 5 ثواني | Bus metrics | الهندسة | أسبوعي |
+| تأخر ETL لمستودع البيانات | < 35 دقيقة | ETL logs | الهندسة | يومي |
+| وقت تشغيل الموقع | > 99.7% | Monitoring | الهندسة | شهري |
+| MTTR | < 30 دقيقة | سجلات الحوادث | الهندسة | لكل حادثة |
 
 ---
 
-## Milestones
+## المعالم (Milestones)
 
-| Phase | Deliverables | Duration | Payment Trigger | Payment % | Amount (EGP) |
+| المرحلة | التسليمات | المدة | محفز الدفع | نسبة الدفع | المبلغ (جنيه) |
 |-------|--------------|----------|-----------------|-----------|---------------|
-| M0 - Contract Signing | Signed SOW, kickoff, environment provisioning, Amadeus consultant continuation, supplier contracts initiated | Day 0 | Contract executed | 20% | 169,000 |
-| M1 - Discovery & Architecture | Multi-supplier orchestration design, loyalty/wallet ledger schema, WhatsApp template catalog (drafts), report inventory, multi-currency flow diagrams, event bus design, data warehouse schema, updated Figma for 25+ new screens | Weeks 1-2 | M1 acceptance | 12% | 101,400 |
-| M2 - Foundations | Event bus live, supplier abstraction layer with 1 existing + 2 new suppliers, multi-currency display, data warehouse with first ETL | Weeks 2-5 | Integration demos | 15% | 126,750 |
-| M3 - Loyalty & Wallet | Loyalty engine, wallet ledger, earning rules, redemption flow, top-up flow, tier benefits UI, admin loyalty/wallet tools | Weeks 5-8 | Loyalty end-to-end demo + finance reconciliation | 15% | 126,750 |
-| M4 - WhatsApp & Self-Service | WhatsApp integration with all templates approved, opt-in flow, transactional messages, inbound routing, self-service cancellation, self-service refund tracking, self-service modification (where supported) | Weeks 8-11 | Live cancellation demo against staging supplier | 15% | 126,750 |
-| M5 - Advanced Admin & Reports | Customer 360, bulk actions, customer segmentation, daily ops report, revenue dashboard, marketing attribution report, supplier health dashboard, supplier margin report | Weeks 11-13 | Stakeholder dashboard tour with sample data | 10% | 84,500 |
-| M6 - UAT, Hardening, Launch | UAT (400+ test cases), security review, load test (500 concurrent), accessibility audit, production deploy, 2-week hypercare | Weeks 13-14 | First 200 live Professional-feature bookings | 13% | 109,850 |
-| **TOTAL** | | **12-14 weeks** | | **100%** | **845,000** |
+| M0 - توقيع العقد | SOW موقع، انطلاق، توفير البيئات، استكمال مستشار Amadeus، بدء عقود الموردين | يوم 0 | تنفيذ العقد | 20% | 169,000 |
+| M1 - الاستكشاف والمعمارية | تصميم تنسيق الموردين المتعددين، schema دفتر الولاء/المحفظة، كتالوج templates WhatsApp (مسودات)، جرد التقارير، رسوم تدفق العملات المتعددة، تصميم event bus، schema مستودع البيانات، Figma محدث لـ 25+ شاشة جديدة | الأسابيع 1-2 | قبول M1 | 12% | 101,400 |
+| M2 - الأساسات | Event bus شغال، طبقة تجريد الموردين مع 1 مورد موجود + 2 جدد، عرض العملات المتعددة، مستودع البيانات مع أول ETL | الأسابيع 2-5 | عروض التكامل | 15% | 126,750 |
+| M3 - الولاء والمحفظة | محرك الولاء، دفتر المحفظة، قواعد الكسب، تدفق الاستبدال، تدفق الشحن، واجهة مزايا المستوى، أدوات admin للولاء/المحفظة | الأسابيع 5-8 | عرض الولاء من البداية للنهاية + تسوية المالية | 15% | 126,750 |
+| M4 - WhatsApp والخدمة الذاتية | تكامل WhatsApp مع كل templates معتمدة، تدفق الموافقة، الرسائل المعاملاتية، توجيه الوارد، الإلغاء الذاتي، تتبع الاسترجاع الذاتي، التعديل الذاتي (حيث مدعوم) | الأسابيع 8-11 | عرض إلغاء حي على مورد staging | 15% | 126,750 |
+| M5 - Admin متقدم وتقارير | عميل 360، إجراءات جماعية، تقسيم العملاء، تقرير عمليات يومي، لوحة إيرادات، تقرير إسناد تسويق، لوحة صحة الموردين، تقرير هامش الموردين | الأسابيع 11-13 | جولة لوحات لأصحاب المصلحة ببيانات عينة | 10% | 84,500 |
+| M6 - UAT، تجهيز، إطلاق | UAT (400+ حالة اختبار)، مراجعة أمنية، load test (500 متزامن)، تدقيق إمكانية الوصول، نشر للإنتاج، 2 أسبوع رعاية فائقة | الأسابيع 13-14 | أول 200 حجز حي بميزات الباقة الاحترافية | 13% | 109,850 |
+| **الإجمالي** | | **12-14 أسبوع** | | **100%** | **845,000** |
 
-### Detailed Milestone Acceptance Criteria
+### معايير قبول المعالم بالتفصيل
 
-**M1 Acceptance**
-- Architecture diagrams approved for: event bus, supplier abstraction, multi-currency flow, loyalty/wallet ledger.
-- All hotel supplier contracts have written commitment (LOI or signed).
-- WhatsApp Business API account approved by Meta.
-- Data warehouse choice finalized (PostgreSQL OR ClickHouse) with rationale.
-- All 25+ new screen designs have AR + EN variants.
+**قبول M1**
+- رسومات المعمارية معتمدة لـ: event bus، تجريد الموردين، تدفق العملات المتعددة، دفتر الولاء/المحفظة.
+- كل عقود موردي الفنادق فيها التزام مكتوب (LOI أو موقع).
+- حساب WhatsApp Business API معتمد من Meta.
+- اختيار مستودع البيانات منتهي (PostgreSQL أو ClickHouse) مع المبرر.
+- كل تصاميم الشاشات الجديدة (25+) فيها نسختين عربي + إنجليزي.
 
-**M2 Acceptance**
-- 3 hotel suppliers return live results in staging.
-- Deduplication logic demonstrated against known duplicate sets.
-- Currency switcher renders all 5 currencies; FX feed running.
-- First ETL job runs nightly and report dashboard shows yesterday's mock booking data.
-- Event bus emits and consumes booking.created event end-to-end.
+**قبول M2**
+- 3 موردي فنادق بيرجعوا نتائج حية في staging.
+- منطق إزالة التكرار معروض على مجموعات تكرار معروفة.
+- مبدل العملات بيعرض كل الـ 5 عملات؛ FX feed بيشتغل.
+- أول مهمة ETL تشتغل ليلاً ولوحة التقرير تعرض بيانات حجز mock لأمس.
+- Event bus بيصدر ويستهلك حدث booking.created من البداية للنهاية.
 
-**M3 Acceptance**
-- Customer can earn points on a test booking.
-- Customer can top up wallet via Paymob + Stripe.
-- Customer can redeem wallet + apply at checkout.
-- Tier upgrade nightly job processes mock data correctly.
-- Finance can audit ledger: every wallet/loyalty transaction has a counter-entry.
+**قبول M3**
+- العميل يقدر يكسب نقاط على حجز اختبار.
+- العميل يقدر يشحن المحفظة عن طريق Paymob + Stripe.
+- العميل يقدر يستبدل المحفظة + يطبق عند الـ checkout.
+- مهمة ترقية المستوى الليلية بتعالج بيانات mock بشكل صحيح.
+- المالية تقدر تدقق الدفتر: كل معاملة محفظة/ولاء عندها قيد مقابل.
 
-**M4 Acceptance**
-- WhatsApp template messages send successfully in production-equivalent.
-- Opt-in/out tested end-to-end including suppression list.
-- Self-service cancellation tested against each supplier's staging API.
-- OTP enforcement verified.
-- Failed-supplier cancellation queues to ops correctly.
+**قبول M4**
+- رسائل WhatsApp template بتتبعت بنجاح في بيئة مماثلة للإنتاج.
+- الموافقة/الإلغاء مختبرة من البداية للنهاية بما فيها قائمة الإيقاف.
+- الإلغاء الذاتي مختبر على API staging لكل مورد.
+- فرض الـ OTP متحقق منه.
+- إلغاء فشل المورد بيدخل قائمة انتظار للعمليات بشكل صحيح.
 
-**M5 Acceptance**
-- All listed dashboards render with live data from warehouse.
-- Bulk actions tested on 100+ bookings.
-- Customer segmentation builder produces correct counts on sample data.
-- Daily ops report email delivers and renders correctly.
+**قبول M5**
+- كل اللوحات المذكورة بترندر ببيانات حية من المستودع.
+- الإجراءات الجماعية مختبرة على 100+ حجز.
+- باني تقسيم العملاء بينتج أعداد صحيحة على بيانات عينة.
+- إيميل تقرير العمليات اليومي بيتسلم وبيرندر بشكل صحيح.
 
-**M6 Acceptance**
-- UAT script (400+ cases) >95% pass rate.
-- Security review: no Critical or High findings.
-- Load test sustains 500 concurrent with p95 < 2.5s on key endpoints.
-- A11y audit: WCAG 2.1 AA on key flows.
-- 200 real bookings using new features within hypercare window.
+**قبول M6**
+- سكريبت UAT (400+ حالة) >95% نسبة نجاح.
+- مراجعة أمنية: ما فيش نتائج Critical أو High.
+- Load test بيتحمل 500 متزامن مع p95 < 2.5 ثانية على الـ endpoints الأساسية.
+- تدقيق A11y: WCAG 2.1 AA على المسارات الأساسية.
+- 200 حجز حقيقي باستخدام الميزات الجديدة خلال نافذة الرعاية الفائقة.
 
 ---
 
-## Feature Prioritization (MoSCoW)
+## ترتيب الميزات (MoSCoW)
 
-### Must Have
+### يجب أن يكون (Must Have)
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Multi-supplier hotel orchestration (3 suppliers) | Inventory depth is the #1 customer complaint about single-supplier OTAs |
-| Property deduplication | Without this, users see "the same hotel twice at different prices" - trust destroyer |
-| Supplier circuit breaker | Single supplier outage cannot bring down the OTA |
-| Loyalty program (4 tiers) | Retention driver, marketing campaigns need a lever |
-| Loyalty ledger (auditable) | Finance + compliance requirement |
-| Wallet (multi-currency) | Strategic differentiator + refund infrastructure |
-| Wallet top-up via gateways | Otherwise wallet is unfundable |
-| WhatsApp transactional notifications | MENA market preference |
-| WhatsApp opt-in/opt-out compliance | Legal requirement |
-| Self-service cancellation | Support cost reduction; modern OTA expectation |
-| Self-service refund status | Tier-1 cause of support tickets without it |
-| Multi-currency display (5 currencies) | Tourist market |
-| Multi-currency payment via Stripe | Tourist market + currency hedging |
-| Multi-currency wallet | Required for international refunds |
-| Customer 360 admin view | Support efficiency at scale |
-| Bulk admin actions | Required to scale ops |
-| Customer segmentation | Marketing campaigns |
-| Daily ops report email | Operational rhythm |
-| Revenue dashboard | Finance discipline |
-| Supplier health dashboard | Operational reliability |
-| Supplier margin report | Commercial negotiation lever |
-| Marketing attribution capture + report | ROAS measurement |
-| Event bus | Architectural prerequisite for Enterprise |
-| Data warehouse | Performance + analytics prerequisite |
-| Feature flags | Safe progressive rollout |
-| Dual approval for high-value admin actions | Fraud and error containment |
+| تنسيق فنادق من موردين متعددين (3 موردين) | عمق المخزون هو الشكوى رقم 1 من العملاء على الـ OTAs ذات المورد الواحد |
+| إزالة تكرار الفنادق | من غيرها المستخدمين بيشوفوا "نفس الفندق مرتين بأسعار مختلفة" - مدمر للثقة |
+| Circuit breaker للموردين | فشل مورد واحد ما يقدرش يوقع الـ OTA |
+| برنامج ولاء (4 مستويات) | محرك احتفاظ، الحملات التسويقية محتاجة رافعة |
+| دفتر ولاء (قابل للتدقيق) | متطلب المالية + الامتثال |
+| محفظة (عملات متعددة) | مميز استراتيجي + بنية تحتية للاسترجاع |
+| شحن المحفظة عن طريق gateways | غير كده المحفظة مش قابلة للتمويل |
+| إشعارات WhatsApp المعاملاتية | تفضيل سوق MENA |
+| امتثال موافقة/إلغاء WhatsApp | متطلب قانوني |
+| الإلغاء الذاتي | تخفيض تكلفة الدعم؛ توقع OTA حديث |
+| حالة الاسترجاع الذاتي | السبب رقم 1 لتذاكر الدعم بدونها |
+| عرض عملات متعددة (5 عملات) | سوق السياحة |
+| دفع بعملات متعددة عن طريق Stripe | سوق السياحة + تحوط العملة |
+| محفظة بعملات متعددة | لازمة للاسترجاعات الدولية |
+| عرض admin عميل 360 | كفاءة الدعم عند الحجم |
+| إجراءات admin جماعية | لازمة لتوسيع العمليات |
+| تقسيم العملاء | الحملات التسويقية |
+| إيميل تقرير العمليات اليومي | إيقاع تشغيلي |
+| لوحة الإيرادات | انضباط مالي |
+| لوحة صحة الموردين | موثوقية تشغيلية |
+| تقرير هامش الموردين | رافعة تفاوض تجاري |
+| التقاط + تقرير إسناد التسويق | قياس ROAS |
+| Event bus | متطلب معماري لـ Enterprise |
+| مستودع البيانات | متطلب أداء + تحليلات |
+| Feature flags | إطلاق تدريجي آمن |
+| اعتماد مزدوج لإجراءات admin عالية القيمة | احتواء الاحتيال والأخطاء |
 
-### Should Have
+### يفضّل أن يكون (Should Have)
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Self-service booking modification (date change) | Customer convenience, supplier-dependent |
-| Loyalty birthday bonus | Retention engagement, low effort |
-| Wallet top-up bonus per tier | Top-up volume driver |
-| Per-supplier traffic shaping (override) | Manual margin optimization |
-| Translation management platform integration | Non-engineering content updates |
-| WhatsApp inbound conversation routing | Better support UX |
-| In-app notification center | Web complement to WhatsApp/email |
-| Saved search alerts (email when price drops) | Retention loop |
-| Referral program (basic, "share & earn") | Acquisition |
-| Mailchimp / MoEngage export integration | Marketing efficiency |
+| تعديل الحجز الذاتي (تغيير التاريخ) | راحة العميل، حسب المورد |
+| بونص عيد الميلاد في الولاء | تفاعل احتفاظ، جهد قليل |
+| بونص شحن المحفظة لكل مستوى | محرك حجم الشحن |
+| تشكيل ترافيك لكل مورد (override) | تحسين هامش يدوي |
+| تكامل منصة إدارة الترجمات | تحديثات محتوى غير هندسية |
+| توجيه محادثات WhatsApp الواردة | تجربة دعم أفضل |
+| مركز إشعارات داخل التطبيق | مكمل للويب لـ WhatsApp/إيميل |
+| تنبيهات البحث المحفوظ (إيميل لما السعر ينزل) | حلقة احتفاظ |
+| برنامج إحالة (أساسي، "شارك واكسب") | اكتساب |
+| تكامل تصدير Mailchimp / MoEngage | كفاءة تسويقية |
 
-### Could Have
+### يمكن أن يكون (Could Have)
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Gift cards (top-up someone else's wallet) | Differentiator but low-volume |
-| Loyalty marketplace (redeem points for non-travel rewards) | Out of scope unless partnerships exist |
-| Browser push notifications | Channel saturation already high |
-| Live chat widget with WhatsApp handoff | Polish |
-| Hotel map view with cluster pins | UX polish |
-| Personalized homepage (last-search rebuy) | Personalization stack would need to mature |
-| Trip wallet sharing (family budget) | Complex permission model |
+| بطاقات هدايا (شحن محفظة شخص آخر) | مميز لكن حجمه منخفض |
+| سوق ولاء (استبدال نقاط بمكافآت غير سفر) | خارج النطاق إلا لو في شراكات |
+| إشعارات push للمتصفح | تشبع القناة مرتفع بالفعل |
+| Widget شات حي مع تحويل لـ WhatsApp | تلميع |
+| عرض خريطة فنادق مع cluster pins | تلميع UX |
+| صفحة رئيسية مخصصة (إعادة شراء آخر بحث) | منصة التخصيص محتاجة تنضج |
+| مشاركة محفظة رحلة (ميزانية العيلة) | نموذج صلاحيات معقد |
 
-### Won't Have (in Professional - reserved for Enterprise)
+### لن يكون (في الباقة الاحترافية - محجوز لـ Enterprise)
 
-| Feature | Package |
+| الميزة | الباقة |
 |---------|---------|
-| Tour packages, bundled deals | Enterprise |
-| B2B agent portal | Enterprise |
-| Mobile apps | Enterprise |
+| باقات سياحية، عروض مجمعة | Enterprise |
+| بورتال وكلاء B2B | Enterprise |
+| تطبيقات موبايل | Enterprise |
 | White-label | Enterprise |
-| Dynamic pricing engine | Enterprise |
-| Group/corporate bookings | Enterprise |
-| Multi-branch operations | Enterprise |
-| Fraud detection (ML) | Enterprise |
-| Custom dashboards (drag-drop) | Future |
-| Native iOS/Android | Enterprise |
+| محرك تسعير ديناميكي | Enterprise |
+| حجوزات جماعية/شركات | Enterprise |
+| عمليات متعددة الفروع | Enterprise |
+| كشف الاحتيال (ML) | Enterprise |
+| لوحات مخصصة (drag-drop) | المستقبل |
+| تطبيق iOS/Android أصلي | Enterprise |
 
 ---
 
-## Out of Scope
+## خارج النطاق (Out of Scope)
 
-The Professional package does NOT deliver:
+الباقة الاحترافية مش بتقدم:
 
-1. **Tour Packages / Bundled Deals**: Static or dynamic packaging of flight+hotel+activity bundles - reserved for Enterprise.
-2. **B2B Agent Portal**: Markup management, agent accounts, commission accounting - Enterprise.
-3. **Mobile Applications (Native)**: Responsive web only; no iOS/Android - Enterprise.
-4. **White-Label / Multi-Tenant**: Single Jawla brand - Enterprise.
-5. **Dynamic Pricing Engine**: Rules-based markup per route/season/customer segment - Enterprise.
-6. **Fraud Detection (ML)**: Beyond Stripe Radar default rules and gateway 3DS - Enterprise.
-7. **Group Bookings (>9 passengers, corporate offline rates)**: Requires offline workflow integration.
-8. **Multi-Branch Operations**: Single legal entity, single bank account assumed.
-9. **In-platform Live Chat with Agent Routing**: WhatsApp inbound only; full omnichannel inbox is a separate engagement.
-10. **Drag-Drop Custom Dashboard Builder**: Reports are pre-defined; ad-hoc analysis happens in Metabase/Excel.
-11. **Migration of Wallet Balances from Legacy Systems**: Greenfield wallet only.
-12. **Crypto Payments, BNPL beyond what Paymob/Stripe natively offer**.
-13. **Travel Insurance Integration**: Could be added as a Should-Have via aggregator (insure-by API), but not committed in scope.
-14. **Comprehensive SEO Content Engine**: Programmatic destination pages - separate marketing engagement.
-15. **A/B Testing Infrastructure**: Feature flags exist but full experimentation platform (GrowthBook, Optimizely) is not included.
-16. **Native Push Notifications (Web Push or Mobile Push)**.
-17. **Voice / IVR Integration**.
-18. **Hardware POS Integration**.
-19. **External CRM Integration Beyond CSV Export**: HubSpot/Salesforce two-way sync is separate.
-20. **Custom Loyalty Marketplace** (redeem points for non-travel items).
+1. **الباقات السياحية / العروض المجمعة**: تجميع ثابت أو ديناميكي لـ طيران+فنادق+أنشطة - محجوز لـ Enterprise.
+2. **بورتال وكلاء B2B**: إدارة العلاوات، حسابات الوكلاء، محاسبة العمولات - Enterprise.
+3. **تطبيقات الموبايل (Native)**: ويب متجاوب فقط؛ ما فيش iOS/Android - Enterprise.
+4. **White-Label / Multi-Tenant**: علامة Jawla واحدة - Enterprise.
+5. **محرك التسعير الديناميكي**: علاوات بناءً على قواعد لكل مسار/موسم/قطاع عملاء - Enterprise.
+6. **كشف الاحتيال (ML)**: غير قواعد Stripe Radar الافتراضية و gateway 3DS - Enterprise.
+7. **الحجوزات الجماعية (>9 ركاب، أسعار شركات أوفلاين)**: تتطلب تكامل تدفق أوفلاين.
+8. **عمليات متعددة الفروع**: كيان قانوني واحد، حساب بنكي واحد مفترض.
+9. **شات حي داخل المنصة مع توجيه agent**: WhatsApp وارد فقط؛ inbox omnichannel كامل هو engagement منفصل.
+10. **باني لوحات مخصصة drag-drop**: التقارير محددة مسبقًا؛ التحليل المرن يحصل في Metabase/Excel.
+11. **ترحيل أرصدة المحفظة من أنظمة قديمة**: محفظة جديدة فقط.
+12. **مدفوعات Crypto، BNPL غير اللي Paymob/Stripe بيقدموه بشكل أصلي**.
+13. **تكامل تأمين السفر**: ممكن يتضاف كـ Should-Have عن طريق aggregator (insure-by API)، لكن مش ملتزم به في النطاق.
+14. **محرك محتوى SEO شامل**: صفحات وجهات برمجية - engagement تسويق منفصل.
+15. **بنية تحتية لـ A/B Testing**: Feature flags موجودة لكن منصة تجارب كاملة (GrowthBook، Optimizely) مش مدرجة.
+16. **إشعارات Push Native (Web Push أو Mobile Push)**.
+17. **تكامل Voice / IVR**.
+18. **تكامل POS أجهزة**.
+19. **تكامل CRM خارجي غير تصدير CSV**: HubSpot/Salesforce two-way sync منفصل.
+20. **سوق ولاء مخصص** (استبدال نقاط بأصناف غير سفر).
 
 ---
 
-## Risks & Mitigation
+## المخاطر والتخفيف
 
-The Basic package's R-001..R-020 remain applicable (especially supplier, payment, Amadeus, deliverability risks). Professional-specific risks:
+R-001..R-020 الخاصة بباقة Basic لسه سارية (خاصة مخاطر الموردين والدفع و Amadeus والتسليم). مخاطر خاصة بالباقة الاحترافية:
 
-| ID | Risk | Likelihood | Impact | Mitigation | Owner |
+| ID | الخطر | الاحتمالية | التأثير | التخفيف | المالك |
 |----|------|------------|--------|------------|-------|
-| R-021 | Hotel supplier deduplication is poor, customers see duplicates and lose trust | High | High | Use established property identity service (GIATA); A/B test ranking variants; manual QA against top-50 destinations | Engineering |
-| R-022 | Supplier contracts (esp. 2nd and 3rd) delayed, blocking M2 | High | High | Initiate all 3 supplier conversations pre-contract; weekly procurement standup; have a "1 supplier minimum" launch fallback | Procurement |
-| R-023 | Loyalty liability grows unhedged, becomes a financial risk | Medium | High | Monthly liability accrual reporting; conservative initial earning rules with adjustment authority; expiration policy (24 months) | Finance |
-| R-024 | Wallet abuse (chargeback after top-up + redemption) | Medium | High | Velocity rules; max top-up limits; KYC at first booking; non-refundable wallet policy disclosed prominently | Finance + Engineering |
-| R-025 | WhatsApp template approval rejection delays M4 | Medium | High | Submit templates in M1; have multiple variants per template; engage Meta BSP early | Marketing |
-| R-026 | WhatsApp opt-in rate is low (<40%) making the integration uneconomical | Medium | Medium | A/B test opt-in UX; default-on opt-in (legal review required); incentive (loyalty bonus for opt-in) | Product |
-| R-027 | Self-service cancellation triggers refund spikes that strain cash | Medium | Medium | Set a refund processing SLA (3-7 business days disclosed); cash flow model accounts for refund liability | Finance |
-| R-028 | Self-service refund mishandles edge case (partial refunds, fees), customer overpaid | Medium | High | Refund calculator unit-tested against all supplier rule variants; agent-review queue for any refund >EGP 5K | Engineering + Ops |
-| R-029 | Multi-currency reconciliation gaps confuse Finance | High | High | Daily auto-reconciliation; clear FX gain/loss reporting; finance acceptance testing in M3 | Finance + Engineering |
-| R-030 | Event bus introduces consistency bugs (eventual consistency confuses customers) | Medium | Medium | Document eventual-consistency boundaries; UI shows "updating" states; events processed within 5s p95 | Engineering |
-| R-031 | Data warehouse ETL falls behind (>1h lag), reports stale | Medium | Medium | Monitor ETL lag with alerts; incremental ETL design; CDC if warehouse stress builds | Engineering |
-| R-032 | Customer segmentation queries hit the OLTP DB by mistake, causing slowdowns | Low | High | Segmentation strictly queries warehouse; read replica fallback if warehouse is down | Engineering |
-| R-033 | Loyalty earning rules become misaligned with finance (over-rewarding) | Medium | High | All rule changes require dual approval (Marketing + Finance); rule change audit log | Finance + Marketing |
-| R-034 | Hotel suppliers' terms differ (cancellation, refund, modification), confusing customers | High | Medium | Normalize policy display in plain language; supplier-specific edge cases hidden behind common UX | Product |
-| R-035 | WhatsApp message volume exceeds budget (per-message cost) | Medium | Medium | Track per-message cost; throttle non-essential messages; tier essential vs nice-to-have | Finance |
-| R-036 | Customer 360 view exposes PII to wrong roles | Medium | Critical | RBAC enforcement; minimum-necessary fields per role; PII access audited | Security |
-| R-037 | Bulk actions executed in error affect thousands of customers | Medium | Critical | Confirmation step with row count; rate limit; dry-run mode | Engineering + Ops |
-| R-038 | Multi-supplier ranking algorithm accidentally favors higher-margin supplier over best customer experience | Medium | High | Documented ranking weights; product approval of weight changes; quarterly review | Product |
-| R-039 | Tier upgrade rules feel unfair to customers (e.g., calculated wrong period) | Low | Medium | Public tier policy page; rolling 12-month calculation transparency; appeal process | Product + Ops |
-| R-040 | Translation platform integration adds complexity for engineers without freeing content team | Low | Low | Pilot with marketing on small surface first; train content team in M5 | Product |
+| R-021 | إزالة تكرار فنادق الموردين ضعيفة، العملاء بيشوفوا تكرار وبيفقدوا الثقة | عالي | عالي | استخدم خدمة هوية فنادق راسخة (GIATA)؛ A/B test متغيرات الترتيب؛ QA يدوي على أعلى 50 وجهة | الهندسة |
+| R-022 | عقود الموردين (خاصة 2 و 3) متأخرة، بتعطل M2 | عالي | عالي | بدء المحادثات مع كل الـ 3 موردين قبل العقد؛ standup أسبوعي للمشتريات؛ خطة بديلة "مورد واحد على الأقل" للإطلاق | المشتريات |
+| R-023 | التزام الولاء بيكبر من غير تحوط، بيبقى خطر مالي | متوسط | عالي | تقارير استحقاق التزام شهرية؛ قواعد كسب أولية محافظة مع صلاحية التعديل؛ سياسة انتهاء صلاحية (24 شهر) | المالية |
+| R-024 | استغلال المحفظة (chargeback بعد الشحن + الاستبدال) | متوسط | عالي | قواعد السرعة؛ حدود قصوى للشحن؛ KYC عند أول حجز؛ سياسة محفظة غير قابلة للاسترجاع معروضة بوضوح | المالية + الهندسة |
+| R-025 | رفض اعتماد templates WhatsApp بيأخر M4 | متوسط | عالي | إرسال templates في M1؛ متغيرات متعددة لكل template؛ التواصل مع Meta BSP مبكرًا | التسويق |
+| R-026 | نسبة موافقة WhatsApp منخفضة (<40%) بتخلي التكامل غير اقتصادي | متوسط | متوسط | A/B test تجربة الموافقة؛ موافقة افتراضية (مراجعة قانونية مطلوبة)؛ حافز (بونص ولاء للموافقة) | المنتج |
+| R-027 | الإلغاء الذاتي بيسبب طفرات استرجاع بتشد الكاش | متوسط | متوسط | تحديد SLA لمعالجة الاسترجاع (3-7 أيام عمل معلنة)؛ نموذج تدفق نقدي بيحسب التزام الاسترجاع | المالية |
+| R-028 | الاسترجاع الذاتي بيتعامل غلط مع حالة استثنائية (استرجاعات جزئية، رسوم)، العميل دفع زيادة | متوسط | عالي | حاسبة الاسترجاع مختبرة وحدويًا على كل متغيرات قواعد الموردين؛ قائمة مراجعة agent لأي استرجاع >5 آلاف جنيه | الهندسة + العمليات |
+| R-029 | فجوات تسوية العملات بتخبط المالية | عالي | عالي | تسوية تلقائية يومية؛ تقارير ربح/خسارة FX واضحة؛ اختبار قبول مالي في M3 | المالية + الهندسة |
+| R-030 | Event bus بيدخل bugs اتساق (eventual consistency بيخبط العملاء) | متوسط | متوسط | توثيق حدود eventual-consistency؛ الواجهة تعرض حالات "updating"؛ الأحداث تتعالج في 5 ثواني p95 | الهندسة |
+| R-031 | ETL مستودع البيانات بيتأخر (>ساعة)، التقارير قديمة | متوسط | متوسط | مراقبة تأخر ETL بتنبيهات؛ تصميم ETL incremental؛ CDC لو ضغط المستودع بيبني | الهندسة |
+| R-032 | استعلامات تقسيم العملاء بتضرب OLTP DB بالغلط، بتسبب بطء | منخفض | عالي | التقسيم بيستعلم بصرامة من المستودع؛ read replica fallback لو المستودع واقع | الهندسة |
+| R-033 | قواعد كسب الولاء بتبقى غير متوافقة مع المالية (مكافآت زيادة) | متوسط | عالي | كل تغييرات القواعد تتطلب اعتماد مزدوج (تسويق + مالية)؛ audit log لتغيير القواعد | المالية + التسويق |
+| R-034 | شروط موردي الفنادق مختلفة (إلغاء، استرجاع، تعديل)، بتخبط العملاء | عالي | متوسط | تطبيع عرض السياسة بلغة بسيطة؛ حالات استثنائية لكل مورد مخفية وراء UX موحدة | المنتج |
+| R-035 | حجم رسائل WhatsApp بيتجاوز الميزانية (تكلفة لكل رسالة) | متوسط | متوسط | تتبع التكلفة لكل رسالة؛ throttle الرسائل غير الأساسية؛ تصنيف أساسي vs لطيف | المالية |
+| R-036 | عرض عميل 360 بيعرض PII لأدوار غلط | متوسط | حرج | فرض RBAC؛ الحقول الأدنى الضرورية لكل دور؛ تدقيق الوصول للـ PII | الأمن |
+| R-037 | إجراءات جماعية تنفذت بالغلط بتأثر آلاف العملاء | متوسط | حرج | خطوة تأكيد بعدد الصفوف؛ rate limit؛ dry-run mode | الهندسة + العمليات |
+| R-038 | خوارزمية ترتيب الموردين بتفضل بالخطأ مورد بهامش أعلى على تجربة العميل الأفضل | متوسط | عالي | أوزان الترتيب موثقة؛ اعتماد المنتج لتغييرات الأوزان؛ مراجعة ربع سنوية | المنتج |
+| R-039 | قواعد ترقية المستوى بتحس غير عادلة للعملاء (مثلاً فترة محسوبة غلط) | منخفض | متوسط | صفحة سياسة مستويات عامة؛ شفافية حساب 12 شهر المتجدد؛ عملية طعن | المنتج + العمليات |
+| R-040 | تكامل منصة الترجمة بيضيف تعقيد للمهندسين من غير ما يحرر فريق المحتوى | منخفض | منخفض | تجربة على سطح صغير مع التسويق الأول؛ تدريب فريق المحتوى في M5 | المنتج |
 
 ---
 
-## Open Questions
+## أسئلة مفتوحة
 
-| ID | Question | Owner | Required By |
+| ID | السؤال | المالك | مطلوب بحلول |
 |----|----------|-------|-------------|
-| OQ-021 | Final selection of the 3 hotel suppliers - which combination of Hotelbeds, EAN, TBO, Booking.com Affiliate, Agoda B2B? Trade-offs in coverage, commercial terms, technical effort. | Product + Finance | End of Week 1 |
-| OQ-022 | Loyalty earning rates per tier - is 1 pt per EGP 10 too generous? Liability modeling needed. | Finance | M1 |
-| OQ-023 | Point redemption value - 100 pts = EGP 10? Or floating? Affects perceived value vs liability. | Finance + Marketing | M1 |
-| OQ-024 | Tier thresholds - what 12-month spend qualifies Silver/Gold/Platinum? | Marketing + Finance | M1 |
-| OQ-025 | Point expiration - 24 months from earning, or 24 months from last activity (rolling)? Major liability impact. | Finance | M1 |
-| OQ-026 | Wallet max balance enforcement - is EGP 50K appropriate? Check Central Bank of Egypt e-money guidance. | Legal | M1 |
-| OQ-027 | KYC requirement for wallet - mandatory at first top-up, or only above EGP threshold? | Legal | M2 |
-| OQ-028 | WhatsApp BSP choice - Meta Cloud API directly, or via 360dialog / Twilio / Wati? | Engineering + Marketing | M1 |
-| OQ-029 | WhatsApp business profile - registered to which legal entity, which Facebook Business Manager? | Marketing | M1 |
-| OQ-030 | WhatsApp inbound - route to existing helpdesk (which?) or build a lightweight inbox? | Operations | M2 |
-| OQ-031 | Self-service modification scope - which fields are modifiable for each booking type? | Product + Suppliers | M3 |
-| OQ-032 | 2FA channel for cancellations - SMS OTP (cost), email OTP (slower), or both? | Security | M3 |
-| OQ-033 | Customer-initiated chargebacks - if customer disputes after self-service refund, how do we defend? Document the consent flow. | Legal + Finance | M4 |
-| OQ-034 | Currency conversion source - XE.com (paid), Central Bank of Egypt (free, daily), or commercial bank rate? | Finance | M1 |
-| OQ-035 | FX spread on conversion - 1.5%? 2.5%? Visible to customer? | Finance | M1 |
-| OQ-036 | Settlement currency from Stripe - keep in USD/EUR, or auto-convert to EGP at Stripe? | Finance | M2 |
-| OQ-037 | Reporting access control - all reports for all staff, or RBAC per dashboard? | Product + Security | M5 |
-| OQ-038 | Marketing attribution - implement first-party tracking (server-side) given iOS/cookie restrictions? | Marketing + Engineering | M4 |
-| OQ-039 | Customer segmentation export destinations - Mailchimp, Klaviyo, MoEngage, CSV only? | Marketing | M5 |
-| OQ-040 | Data warehouse choice - PostgreSQL replica (simple, slower at scale) vs ClickHouse (fast, more ops overhead)? | Engineering | M1 |
-| OQ-041 | Event bus choice - Redis Streams (simple, lower throughput) vs RabbitMQ (mature, heavier) vs Kafka (overkill?) | Engineering | M1 |
-| OQ-042 | Feature flag tool - LaunchDarkly (paid), Unleash (OSS, self-host), GrowthBook (OSS+SaaS)? | Engineering | M2 |
-| OQ-043 | i18n platform - Phrase (premium), Lokalise, Crowdin, or stick with hardcoded JSON? | Product | M1 |
-| OQ-044 | Birthday bonus mechanic - automatic credit on birthday, or coupon? Tax implications? | Finance + Marketing | M3 |
-| OQ-045 | What is the migration plan from Basic to Professional - is there a customer-impacting downtime window, or rolling deploys? | Engineering | M6 |
-| OQ-046 | Refund SLA disclosure - "3-7 business days" is standard; do we want to commit to a faster SLA to differentiate? Operational feasibility check needed. | Operations + Finance | M4 |
-| OQ-047 | Loyalty + supplier conflict - some hotel suppliers offer their own loyalty (e.g., Hotelbeds prefer rate codes); how do we present? | Product | M3 |
-| OQ-048 | Are there Egyptian e-money / wallet specific licenses required if balance exceeds X? | Legal | M1 |
-| OQ-049 | What is the Professional package's accessibility commitment - WCAG 2.1 AA on all pages or just core flows? | Product + Design | M2 |
-| OQ-050 | Post-launch optimization - is there a continuous-improvement retainer planned, or is this delivery-only? | Contract | M6 |
+| OQ-021 | الاختيار النهائي للـ 3 موردين فنادق - أي تركيبة من Hotelbeds و EAN و TBO و Booking.com Affiliate و Agoda B2B؟ المقايضات في التغطية والشروط التجارية والجهد الفني. | المنتج + المالية | نهاية الأسبوع 1 |
+| OQ-022 | معدلات كسب الولاء لكل مستوى - هل 1 نقطة لكل 10 جنيه كرم زيادة؟ نمذجة الالتزام مطلوبة. | المالية | M1 |
+| OQ-023 | قيمة استبدال النقطة - 100 نقطة = 10 جنيه؟ أو عائمة؟ بتأثر على القيمة المدركة vs الالتزام. | المالية + التسويق | M1 |
+| OQ-024 | عتبات المستوى - أي إنفاق 12 شهر يأهل لـ Silver/Gold/Platinum؟ | التسويق + المالية | M1 |
+| OQ-025 | انتهاء صلاحية النقاط - 24 شهر من الكسب، أو 24 شهر من آخر نشاط (متجدد)؟ تأثير التزام كبير. | المالية | M1 |
+| OQ-026 | فرض الحد الأقصى لرصيد المحفظة - هل 50 ألف جنيه مناسب؟ مراجعة إرشادات النقود الإلكترونية للبنك المركزي المصري. | القانوني | M1 |
+| OQ-027 | متطلب KYC للمحفظة - إلزامي عند أول شحن، أو فقط فوق عتبة جنيه؟ | القانوني | M2 |
+| OQ-028 | اختيار BSP لـ WhatsApp - Meta Cloud API مباشرة، أو عن طريق 360dialog / Twilio / Wati؟ | الهندسة + التسويق | M1 |
+| OQ-029 | ملف WhatsApp التجاري - مسجل لأي كيان قانوني، أي Facebook Business Manager؟ | التسويق | M1 |
+| OQ-030 | WhatsApp وارد - توجيه لـ helpdesk موجود (أي؟) أو بناء inbox خفيف؟ | العمليات | M2 |
+| OQ-031 | نطاق التعديل الذاتي - أي حقول قابلة للتعديل لكل نوع حجز؟ | المنتج + الموردين | M3 |
+| OQ-032 | قناة 2FA للإلغاءات - SMS OTP (تكلفة)، إيميل OTP (أبطأ)، أو الاتنين؟ | الأمن | M3 |
+| OQ-033 | chargebacks بمبادرة العميل - لو العميل اعترض بعد الاسترجاع الذاتي، نتدافع إزاي؟ توثيق تدفق الموافقة. | القانوني + المالية | M4 |
+| OQ-034 | مصدر تحويل العملة - XE.com (مدفوع)، البنك المركزي المصري (مجاني، يومي)، أو سعر بنك تجاري؟ | المالية | M1 |
+| OQ-035 | FX spread على التحويل - 1.5%؟ 2.5%؟ مرئي للعميل؟ | المالية | M1 |
+| OQ-036 | عملة التسوية من Stripe - الإبقاء على USD/EUR، أو التحويل التلقائي لـ EGP في Stripe؟ | المالية | M2 |
+| OQ-037 | التحكم في الوصول للتقارير - كل التقارير لكل الموظفين، أو RBAC لكل لوحة؟ | المنتج + الأمن | M5 |
+| OQ-038 | إسناد التسويق - تنفيذ تتبع first-party (server-side) بسبب قيود iOS/cookie؟ | التسويق + الهندسة | M4 |
+| OQ-039 | وجهات تصدير تقسيم العملاء - Mailchimp، Klaviyo، MoEngage، CSV فقط؟ | التسويق | M5 |
+| OQ-040 | اختيار مستودع البيانات - replica PostgreSQL (بسيط، أبطأ عند الحجم) vs ClickHouse (سريع، أكثر عبء تشغيلي)؟ | الهندسة | M1 |
+| OQ-041 | اختيار event bus - Redis Streams (بسيط، throughput أقل) vs RabbitMQ (ناضج، أثقل) vs Kafka (مبالغ؟) | الهندسة | M1 |
+| OQ-042 | أداة feature flag - LaunchDarkly (مدفوع)، Unleash (OSS، self-host)، GrowthBook (OSS+SaaS)؟ | الهندسة | M2 |
+| OQ-043 | منصة i18n - Phrase (premium)، Lokalise، Crowdin، أو الاستمرار في JSON hardcoded؟ | المنتج | M1 |
+| OQ-044 | آلية بونص عيد الميلاد - رصيد تلقائي في عيد الميلاد، أو كوبون؟ تأثيرات ضريبية؟ | المالية + التسويق | M3 |
+| OQ-045 | إيه خطة الترحيل من Basic للاحترافية - هل في نافذة downtime تأثر على العميل، أو نشر متدرج؟ | الهندسة | M6 |
+| OQ-046 | الإفصاح عن SLA الاسترجاع - "3-7 أيام عمل" قياسي؛ هل عايزين نلتزم بـ SLA أسرع للتمايز؟ مراجعة جدوى تشغيلية مطلوبة. | العمليات + المالية | M4 |
+| OQ-047 | تعارض الولاء + المورد - بعض موردي الفنادق بيقدموا ولاء خاص بيهم (مثلاً Hotelbeds بيفضل rate codes)؛ نعرضه إزاي؟ | المنتج | M3 |
+| OQ-048 | هل في تراخيص نقود إلكترونية / محفظة مصرية محددة مطلوبة لو الرصيد تجاوز X؟ | القانوني | M1 |
+| OQ-049 | إيه التزام إمكانية الوصول للباقة الاحترافية - WCAG 2.1 AA على كل الصفحات أو بس المسارات الأساسية؟ | المنتج + التصميم | M2 |
+| OQ-050 | تحسين بعد الإطلاق - هل في retainer تحسين مستمر مخطط، أو ده تسليم فقط؟ | العقد | M6 |
 
 ---
 
-## Appendix A: Architecture Additions (Reference)
+## الملحق A: إضافات المعمارية (مرجع)
 
-| Layer | Addition vs Basic |
+| الطبقة | الإضافة مقابل Basic |
 |-------|-------------------|
-| Event Bus | Redis Streams (default) or RabbitMQ |
-| Data Warehouse | PostgreSQL Analytical Replica (default) or ClickHouse |
-| Hotel Suppliers | Adapter pattern under `apps/backend/src/integrations/hotels/<supplier>` |
-| WhatsApp | Meta Cloud API (default) via webhook gateway |
-| Loyalty Service | Standalone NestJS module with own DB schema (loyalty.*) and event handlers |
-| Wallet Service | Double-entry ledger module (wallet.ledger, wallet.account) with strong consistency boundary |
-| Reporting | Metabase deployed as containerized service against warehouse |
-| Feature Flags | Unleash self-hosted (default) |
-| i18n | Phrase (default) with sync CLI in CI |
-| Translation Workflow | Marketing edits in Phrase -> CI sync -> deploy |
+| Event Bus | Redis Streams (افتراضي) أو RabbitMQ |
+| Data Warehouse | PostgreSQL Analytical Replica (افتراضي) أو ClickHouse |
+| موردي الفنادق | نمط Adapter تحت `apps/backend/src/integrations/hotels/<supplier>` |
+| WhatsApp | Meta Cloud API (افتراضي) عن طريق webhook gateway |
+| Loyalty Service | وحدة NestJS مستقلة بـ DB schema خاص (loyalty.*) و event handlers |
+| Wallet Service | وحدة دفتر مزدوج القيد (wallet.ledger، wallet.account) بحدود اتساق قوية |
+| Reporting | Metabase منشور كخدمة container ضد المستودع |
+| Feature Flags | Unleash self-hosted (افتراضي) |
+| i18n | Phrase (افتراضي) مع sync CLI في CI |
+| Translation Workflow | تعديلات التسويق في Phrase -> CI sync -> deploy |
 
-## Appendix B: Glossary Additions
+## الملحق B: إضافات المسرد
 
-| Term | Definition |
+| المصطلح | التعريف |
 |------|------------|
-| HHI | Herfindahl-Hirschman Index (supplier concentration) |
-| BSP | Business Solution Provider (for WhatsApp) |
-| CDC | Change Data Capture (for ETL) |
+| HHI | Herfindahl-Hirschman Index (تركز الموردين) |
+| BSP | Business Solution Provider (لـ WhatsApp) |
+| CDC | Change Data Capture (لـ ETL) |
 | RBAC | Role-Based Access Control |
 | LTV | Lifetime Value |
 | ETL | Extract Transform Load |
 | OLTP | Online Transaction Processing |
 | FX | Foreign Exchange |
 
-## Appendix C: Sign-off
+## الملحق C: التوقيع
 
-| Role | Name | Signature | Date |
+| الدور | الاسم | التوقيع | التاريخ |
 |------|------|-----------|------|
-| Business Sponsor | _________________ | _________________ | _________ |
-| Product Lead | Ahmed Mahmoud | _________________ | 2026-06-29 |
-| Engineering Lead | _________________ | _________________ | _________ |
-| Finance Approver | _________________ | _________________ | _________ |
-| Legal Reviewer | _________________ | _________________ | _________ |
-| Marketing Lead | _________________ | _________________ | _________ |
+| الراعي من جهة العمل | _________________ | _________________ | _________ |
+| مسؤول المنتج | أحمد محمود | _________________ | 2026-06-29 |
+| قائد الهندسة | _________________ | _________________ | _________ |
+| معتمد المالية | _________________ | _________________ | _________ |
+| مراجع قانوني | _________________ | _________________ | _________ |
+| مسؤول التسويق | _________________ | _________________ | _________ |

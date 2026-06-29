@@ -1,1082 +1,1142 @@
-# Jawla Tours OTA - Enterprise Package PRD
+## 🎯 ملخص لمجلس الإدارة
 
-## Document Control
+نبني منصة سفر وسياحة متكاملة باسم "جولة" تجمع تحت سقف واحد كل قنوات البيع الممكنة في السوق: موقع إلكتروني للأفراد، تطبيق على الموبايل بنظامي iOS و Android، وبوابة مخصصة لوكلاء السفر لبيع الجملة. باقة Enterprise هي الباقة الكاملة التي تفتح مصادر دخل متعددة في نفس الوقت بدلاً من الاعتماد على قناة بيع واحدة، وتسمح لنا بتأجير المنصة كعلامة بيضاء لشركات أخرى مقابل رسوم شهرية. هذا الاستثمار يحوّل "جولة" من موقع حجوزات إلى شركة تكنولوجيا سفر قادرة على المنافسة الإقليمية.
 
-| Field | Value |
+### ماذا يحصل عليه العميل في هذه الباقة؟
+
+- موقع إلكتروني كامل لبيع تذاكر الطيران والفنادق والباقات السياحية للأفراد مباشرة
+- باقات سياحية جاهزة (طيران + فندق + مواصلات + جولات) بأسعار تنافسية ومجمّعة
+- بوابة خاصة لوكلاء السفر يسجلون فيها ويبيعون منتجاتنا لعملائهم بأسعار جملة
+- تطبيق موبايل على iOS و Android للحجز السريع من الجوال مع إشعارات العروض
+- نظام العلامة البيضاء: نؤجر نفس المنصة لشركات سفر أخرى تحت أسمائهم وألوانهم مقابل اشتراك شهري
+- تسعير ديناميكي ذكي يرفع ويخفض الأسعار تلقائياً حسب الطلب والمنافسة لزيادة الأرباح
+- خدمة حجوزات المجموعات والشركات (رحلات عمل، مؤتمرات، رحلات عائلية كبيرة)
+- لوحة تحكم لإدارة فروع متعددة في مدن أو دول مختلفة من مكان واحد
+- نظام كشف الاحتيال في الدفع لحماية الشركة من المعاملات المزيفة
+- لوحات تقارير مالية وتشغيلية لحظية لمتابعة الأداء واتخاذ القرار
+- دعم كامل باللغتين العربية والإنجليزية وبعملات متعددة
+
+### الأرقام الرئيسية
+
+| البند | القيمة |
+|---|---|
+| السعر الإجمالي | 1,400,000 جنيه مصري |
+| المعادل بالدولار | 28,000 دولار أمريكي |
+| مدة التنفيذ | 6 أشهر |
+| الصيانة الشهرية | 30,000 جنيه مصري شهرياً |
+| ساعات استشارة Amadeus المتضمنة | حزمة استشارات كاملة لربط نظام Amadeus العالمي |
+| عدد قنوات البيع | 4 قنوات (موقع ويب + تطبيق iOS + تطبيق Android + بوابة وكلاء B2B) |
+| عدد الموظفين المطلوبين | فريق متكامل من المطورين ومدير منتج ومسؤول عمليات (يُحدَّد التفصيل في خطة الموارد) |
+| العائد المتوقع على الاستثمار خلال 12 شهر | استرداد كامل لقيمة الاستثمار مع تحقيق هامش ربح إضافي من قنوات البيع المتعددة |
+| نسبة المخاطر التقنية | منخفضة إلى متوسطة (مع خطة معالجة واضحة) |
+
+### القيمة التجارية المتوقعة
+
+- بوابة وكلاء السفر تفتح سوق بيع الجملة بالكامل، وهو سوق ضخم لم نكن نصل إليه من قبل
+- تطبيقات الموبايل تستهدف شريحة المسافرين الذين يحجزون من الجوال (الغالبية العظمى من المسافرين اليوم)
+- نظام العلامة البيضاء يحوّل المنصة إلى مصدر دخل متكرر شهري عبر تأجيرها لشركات أخرى
+- التسعير الديناميكي يرفع متوسط هامش الربح من كل عملية حجز بشكل تلقائي ومستمر
+- إدارة الفروع المتعددة تمهّد الطريق لنموذج الامتياز التجاري (Franchise) والتوسع الجغرافي السريع
+- حجوزات الشركات والمجموعات تجلب صفقات كبيرة بقيمة عالية وعملاء متكررين طويلي الأجل
+- التواجد على 4 قنوات بيع في نفس الوقت يقلل اعتمادنا على قناة واحدة ويزيد استقرار الإيرادات
+
+### المخاطر الرئيسية وكيف نعالجها
+
+| المخاطرة | المعالجة |
+|---|---|
+| التأخير في تنفيذ المشروع خلال 6 أشهر | تقسيم العمل إلى مراحل شهرية مع تسليم جزء قابل للاستخدام كل شهر ومتابعة أسبوعية |
+| تعقيد ربط أنظمة موردي الطيران والفنادق العالمية | الاستعانة بحزمة استشارات Amadeus المتضمنة في الباقة وخبراء متخصصين في التكامل |
+| ضعف إقبال وكلاء السفر على البوابة الجديدة | حملة تسويق وتدريب مجاني للوكلاء في أول 3 أشهر وعمولات تشجيعية للمسجلين الأوائل |
+| محاولات الاحتيال في الدفع الإلكتروني | نظام كشف احتيال ذكي مدمج منذ اليوم الأول مع مراجعة بشرية للمعاملات المشبوهة |
+| اعتماد المشروع على عدد محدود من الموظفين الأساسيين | توثيق كامل لكل خطوة من خطوات العمل وتدريب موظفين بدلاء لكل دور حساس |
+| تغيّر أسعار الموردين أو شروط التعاقد معهم | عقود طويلة الأجل مع أكثر من مورد بديل لضمان استمرارية الخدمة واستقرار التكاليف |
+| ضعف الإقبال على تطبيقات الموبايل في البداية | خطة تسويق رقمي مكثفة وعروض حصرية للمستخدمين من التطبيق فقط لتشجيع التحميل |
+
+### القرار المطلوب من المجلس
+
+الموافقة على اعتماد استثمار قدره 1,400,000 جنيه مصري لتنفيذ باقة Enterprise خلال 6 أشهر، بالإضافة إلى الالتزام بتوفير فريق العمل المطلوب وميزانية الصيانة الشهرية البالغة 30,000 جنيه لضمان استمرارية التشغيل والتطوير بعد الإطلاق.
+
+---
+
+# Jawla Tours OTA - وثيقة متطلبات منتج باقة Enterprise
+
+## بيانات الوثيقة
+
+| البند | القيمة |
 |-------|-------|
-| Document Title | Jawla Tours OTA - Enterprise Package Product Requirements Document |
-| Version | 1.0.0 |
-| Date | 2026-06-29 |
-| Status | Approved for Development |
-| Document Owner | Ahmed Mahmoud (Technical Product Lead) |
-| Business Sponsor | Jawla Tours Executive Team + Board |
-| Engineering Lead | TBD - Backend Lead, Frontend Lead, Mobile Lead, Platform Lead |
-| Data/BI Lead | TBD - Senior Analytics Engineer |
-| Security Lead | TBD - Security Engineer (cross-cutting) |
-| Design Lead | TBD - Design Director (web, mobile, B2B portal) |
-| Amadeus Integration Consultant | External Specialist (~100-120 hours allocated) |
-| Mobile Lead Engineer | TBD - React Native specialist |
-| Classification | Internal - Confidential, Board Eyes |
-| Distribution | Engineering, Product, QA, Finance, Operations, Customer Success, Legal, Executive |
-| Next Review Date | 2026-09-29 |
-| Supersedes | None (extends Basic and Professional PRDs v1.0.0) |
+| عنوان الوثيقة | Jawla Tours OTA - وثيقة متطلبات منتج باقة Enterprise |
+| الإصدار | 1.0.0 |
+| التاريخ | 2026-06-29 |
+| الحالة | معتمدة للتطوير |
+| مالك الوثيقة | أحمد محمود (المسؤول التقني عن المنتج) |
+| الراعي من جهة العمل | فريق إدارة Jawla Tours التنفيذي + مجلس الإدارة |
+| قائد الهندسة | لم يحدد بعد - Backend Lead و Frontend Lead و Mobile Lead و Platform Lead |
+| قائد البيانات والـ BI | لم يحدد بعد - Senior Analytics Engineer |
+| قائد الأمن | لم يحدد بعد - Security Engineer (مسؤولية عرضية) |
+| قائد التصميم | لم يحدد بعد - Design Director (للويب والموبايل وبوابة B2B) |
+| مستشار تكامل Amadeus | متخصص خارجي (مخصص له تقريبًا 100-120 ساعة) |
+| مهندس قيادة الموبايل | لم يحدد بعد - متخصص React Native |
+| التصنيف | داخلي - سري، مخصص لمجلس الإدارة |
+| التوزيع | الهندسة، المنتج، QA، المالية، العمليات، نجاح العملاء، الشؤون القانونية، الإدارة التنفيذية |
+| تاريخ المراجعة التالية | 2026-09-29 |
+| يلغي ويحل محل | لا شيء (يمتد على باقتي Basic و Professional إصدار v1.0.0) |
 
-### Revision History
+### سجل المراجعات
 
-| Version | Date | Author | Change Summary |
-|---------|------|--------|----------------|
-| 0.1.0 | 2026-05-25 | A. Mahmoud | Enterprise scope inception; board strategy alignment |
-| 0.3.0 | 2026-06-02 | A. Mahmoud | Packages module, B2B portal scope |
-| 0.5.0 | 2026-06-10 | A. Mahmoud | Mobile apps decision (React Native), dynamic pricing approach |
-| 0.7.0 | 2026-06-18 | A. Mahmoud | White-label model defined, fraud detection scope |
-| 0.9.0 | 2026-06-25 | A. Mahmoud | Group/corporate, multi-branch finalized |
-| 1.0.0 | 2026-06-29 | A. Mahmoud | Final approved baseline |
+| الإصدار | التاريخ | الكاتب | ملخص التغيير |
+|---------|---------|---------|--------------|
+| 0.1.0 | 2026-05-25 | أ. محمود | بدء نطاق Enterprise؛ مواءمة استراتيجية مجلس الإدارة |
+| 0.3.0 | 2026-06-02 | أ. محمود | إضافة وحدة Packages ونطاق بوابة B2B |
+| 0.5.0 | 2026-06-10 | أ. محمود | قرار تطبيقات الموبايل (React Native) وأسلوب التسعير الديناميكي |
+| 0.7.0 | 2026-06-18 | أ. محمود | تحديد نموذج White-label ونطاق كشف الاحتيال |
+| 0.9.0 | 2026-06-25 | أ. محمود | الانتهاء من المجموعات/الشركات والفروع المتعددة |
+| 1.0.0 | 2026-06-29 | أ. محمود | الإصدار النهائي المعتمد |
 
-### Relationship to Basic & Professional Packages
+### العلاقة مع باقتي Basic و Professional
 
-The Enterprise package is a strict superset of the Basic and Professional packages. It includes everything in those PRDs, plus the additional capabilities described in this document. Where a feature appears in multiple PRDs, the Enterprise definition supersedes prior definitions.
+باقة Enterprise هي مجموعة أكبر تضم كل ما في باقتي Basic و Professional. فهي تشمل كل ما في تلك الوثائق، بالإضافة إلى القدرات الإضافية المذكورة هنا. ولو ظهرت ميزة في أكثر من وثيقة، فإن تعريف Enterprise هو الذي يُعتمد.
 
-### Related Documents
+### الوثائق المرتبطة
 
 - Jawla Tours Master Statement of Work (SOW-2026-001)
-- Jawla Tours Basic Package PRD v1.0.0
-- Jawla Tours Professional Package PRD v1.0.0
-- Amadeus Enterprise API Agreement (Negotiations Underway)
-- Hotelbeds, Expedia EAN, TBO Master Distribution Agreements
-- WhatsApp Business API - Meta Cloud API Onboarding
-- Apple Developer Program enrollment (Jawla legal entity)
-- Google Play Developer enrollment (Jawla legal entity)
-- White-Label Master Customer Agreement Template (Legal draft)
-- Egyptian Tourism Authority Licensing memo
-- PCI DSS Level 1 - Initial Assessment
+- وثيقة متطلبات منتج باقة Basic إصدار v1.0.0
+- وثيقة متطلبات منتج باقة Professional إصدار v1.0.0
+- اتفاقية Amadeus Enterprise API (المفاوضات جارية)
+- اتفاقيات التوزيع الرئيسية مع Hotelbeds و Expedia EAN و TBO
+- WhatsApp Business API - الانضمام إلى Meta Cloud API
+- التسجيل في Apple Developer Program (باسم كيان Jawla القانوني)
+- التسجيل في Google Play Developer (باسم كيان Jawla القانوني)
+- قالب اتفاقية White-Label Master Customer Agreement (مسودة قانونية)
+- مذكرة ترخيص هيئة السياحة المصرية |
+- تقييم مبدئي لـ PCI DSS Level 1
 
 ---
 
-## Vision
+## الرؤية
 
-The Enterprise package elevates Jawla from a competitive Egyptian OTA to a regional travel commerce platform. The Basic package proved Jawla can transact. The Professional package proved Jawla can compete. The Enterprise package establishes Jawla as a platform business: a multi-channel, multi-product, multi-tenant operation that can serve direct consumers, travel agents, corporate clients, and white-label partners simultaneously.
+باقة Enterprise ترفع Jawla من مجرد OTA مصري منافس إلى منصة سفر إقليمية. باقة Basic أثبتت إن Jawla تقدر تنفّذ معاملات. باقة Professional أثبتت إنها تقدر تنافس. وباقة Enterprise بتحوّل Jawla إلى عمل منصاتي: عملية متعددة القنوات ومتعددة المنتجات ومتعددة المستأجرين (multi-tenant) تخدم في نفس الوقت المستهلكين المباشرين ووكلاء السفر والعملاء الشركات وشركاء الـ white-label.
 
-Strategic transformations in this package:
+التحولات الاستراتيجية في هذه الباقة:
 
-1. **Product expansion beyond commodity inventory**: tour packages, dynamic flight+hotel bundles, day tours, transfers, and curated multi-destination itineraries - higher-margin offerings that differentiate from price-aggregator competitors.
-2. **Channel expansion**: native iOS and Android mobile apps with push notifications, offline access, biometric auth, and mobile-first booking flows; a dedicated B2B agent portal with markup management, commission accounting, and credit lines.
-3. **Customer expansion**: group bookings (10+ travelers), corporate accounts with policy enforcement, multi-branch operations (Cairo HQ + regional branches), and white-label partner brands.
-4. **Operational maturity**: dynamic pricing engine, real-time fraud detection (ML-based), advanced supplier orchestration with margin optimization, multi-currency multi-entity settlement.
-5. **Platform stewardship**: white-label tenancy, role-based access control across complex personas, API platform for partners, comprehensive audit and compliance posture (PCI DSS Level 1, SOC 2 Type 1 readiness).
+1. **توسيع المنتجات بعيدًا عن المخزون العادي**: tour packages، باقات flight+hotel ديناميكية، رحلات يومية، نقل ومواصلات، ورحلات منسقة متعددة الوجهات - عروض ذات هامش ربح أعلى تميّز Jawla عن المنافسين الذين يعتمدون فقط على تجميع الأسعار.
+2. **توسيع القنوات**: تطبيقات موبايل أصلية لـ iOS و Android بدعم push notifications والوصول offline والمصادقة البيومترية وتدفقات حجز مخصصة للموبايل أولًا؛ وبوابة مخصصة لوكلاء B2B بإدارة الـ markup ومحاسبة العمولات وحدود ائتمان.
+3. **توسيع العملاء**: حجوزات المجموعات (10 مسافرين أو أكثر)، حسابات الشركات بفرض السياسات، عمليات بفروع متعددة (المقر في القاهرة + فروع إقليمية)، وعلامات شركاء white-label.
+4. **النضج التشغيلي**: محرك تسعير ديناميكي، كشف احتيال لحظي (مبني على ML)، تنظيم متقدم للموردين مع تحسين الهامش، وتسوية مالية متعددة العملات والكيانات.
+5. **إدارة المنصة**: إيواء white-label للمستأجرين، تحكم في الوصول مبني على الأدوار (RBAC) عبر شخصيات معقدة، منصة API للشركاء، وموقف شامل من التدقيق والامتثال (PCI DSS Level 1، الاستعداد لـ SOC 2 Type 1).
 
-The Enterprise package is the right scope for Jawla if (a) the Professional package has demonstrated repeat-customer economics, (b) the brand has established credibility in the Egyptian market and is ready to extend into corporate/agent/regional segments, and (c) the operational team is prepared to manage complexity at a different magnitude (10-50x volume). It is NOT the right scope for a Jawla that is still validating direct-consumer demand.
+باقة Enterprise هي النطاق الصحيح لـ Jawla لو (أ) باقة Professional أثبتت اقتصاديات العملاء المتكررين، (ب) العلامة التجارية بنت مصداقية في السوق المصري وجاهزة تمتد لقطاعات الشركات والوكلاء والإقليم، و(ج) فريق العمليات مستعد يدير التعقيد بحجم أكبر (10-50 ضعف الحجم الحالي). ومش النطاق الصحيح لـ Jawla اللي لسه بتختبر طلب المستهلك المباشر.
 
-The Enterprise package is intentionally a multi-quarter investment. It must be approached as a series of vertically-integrated workstreams, not as a feature list to be executed sequentially. Workstreams include: Mobile, B2B, Packages, Dynamic Pricing, Fraud, White-Label, Group/Corporate, Multi-Branch. Each has its own engineering lead, design lead, and acceptance gate.
-
----
-
-## Goals & Success Metrics
-
-### Strategic Goals
-
-1. **Platform GBV exceeds EGP 200M annualized within 6 months of Enterprise launch** (vs ~EGP 75M for Professional baseline).
-2. **Channel diversification**: at least 25% of GBV from B2B (agents + corporate), at least 35% from mobile apps within 12 months.
-3. **Product mix shift**: at least 18% of GBV from packages and ancillary products (vs <1% baseline).
-4. **Regional extension**: launch white-label deployments for at least 2 partner brands within 6 months.
-5. **Operational scale**: support 10,000 concurrent users with no degradation; 50,000 bookings/month at >99.9% uptime.
-6. **Compliance posture**: PCI DSS Level 1 certified; SOC 2 Type 1 attestation in progress; GDPR-equivalent privacy program operationalized.
-7. **Fraud reduction**: chargeback rate < 0.25% (industry-leading); fraud losses < 0.15% of GBV.
-
-### Success Metrics (180 days post Enterprise launch)
-
-| Metric | Target | Baseline (Professional) |
-|--------|--------|---------------------------|
-| Annualized GBV | > EGP 200M | EGP 75M |
-| B2B Share of GBV | > 25% | 0% |
-| Mobile Share of GBV | > 35% | 0% |
-| Package Share of GBV | > 18% | <1% |
-| White-Label Partner Brands Live | >= 2 | 0 |
-| Confirmed Bookings (Monthly Peak) | > 50,000 | ~5,000 |
-| Concurrent Users (Peak) | > 10,000 | ~800 |
-| System Uptime | > 99.9% | 99.7% |
-| Chargeback Rate | < 0.25% | 0.6% |
-| Fraud Loss as % of GBV | < 0.15% | n/a |
-| B2B Agent Active (transacting/month) | > 250 | 0 |
-| Corporate Accounts Live | > 30 | 0 |
-| Mobile App Store Rating (iOS & Android avg) | > 4.5 | n/a |
-| Dynamic Pricing Revenue Lift | > 6% vs flat-markup baseline | n/a |
-| Multi-Branch Locations Operational | >= 3 | 1 |
-| Group Booking Share | > 8% of GBV | <0.5% |
+باقة Enterprise قصدًا هي استثمار يمتد عدة أرباع سنوية. لازم تتعامل معها كسلسلة من خطوط العمل المتكاملة عموديًا، مش كقائمة ميزات تنفذ بالتتابع. خطوط العمل تشمل: الموبايل، B2B، Packages، التسعير الديناميكي، الاحتيال، White-Label، المجموعات/الشركات، الفروع المتعددة. كل خط له قائد هندسي، قائد تصميم، وبوابة قبول خاصة بيه.
 
 ---
 
-## Personas
+## الأهداف ومقاييس النجاح
 
-The Basic and Professional personas remain valid. Enterprise introduces 7 new personas that the platform must serve as first-class users.
+### الأهداف الاستراتيجية
 
-| Persona | Name | Age | Location | Goals | Pain Points |
+1. **GBV السنوي للمنصة يتعدى EGP 200M خلال 6 شهور من إطلاق Enterprise** (مقارنة بـ ~EGP 75M كخط أساس Professional).
+2. **تنويع القنوات**: على الأقل 25% من GBV من B2B (وكلاء + شركات)، وعلى الأقل 35% من تطبيقات الموبايل خلال 12 شهر.
+3. **تحول مزيج المنتجات**: على الأقل 18% من GBV من packages والمنتجات الإضافية (مقارنة بأقل من 1% حاليًا).
+4. **التوسع الإقليمي**: إطلاق نشرات white-label لعلامتين شريكتين على الأقل خلال 6 شهور.
+5. **النطاق التشغيلي**: دعم 10,000 مستخدم متزامن بدون تدهور؛ 50,000 حجز/شهر بنسبة uptime أكبر من 99.9%.
+6. **موقف الامتثال**: شهادة PCI DSS Level 1، شهادة SOC 2 Type 1 قيد التنفيذ، تشغيل برنامج خصوصية مكافئ لـ GDPR.
+7. **تقليل الاحتيال**: نسبة chargeback أقل من 0.25% (الأفضل في الصناعة)؛ خسائر الاحتيال أقل من 0.15% من GBV.
+
+### مقاييس النجاح (180 يوم بعد إطلاق Enterprise)
+
+| المقياس | الهدف | خط الأساس (Professional) |
+|---------|-------|---------------------------|
+| GBV السنوي | > EGP 200M | EGP 75M |
+| حصة B2B من GBV | > 25% | 0% |
+| حصة الموبايل من GBV | > 35% | 0% |
+| حصة Packages من GBV | > 18% | <1% |
+| علامات شركاء White-Label العاملة | >= 2 | 0 |
+| الحجوزات المؤكدة (الذروة الشهرية) | > 50,000 | ~5,000 |
+| المستخدمون المتزامنون (الذروة) | > 10,000 | ~800 |
+| Uptime النظام | > 99.9% | 99.7% |
+| نسبة Chargeback | < 0.25% | 0.6% |
+| خسائر الاحتيال كنسبة من GBV | < 0.15% | n/a |
+| وكلاء B2B النشطين (يحجزون/شهر) | > 250 | 0 |
+| حسابات الشركات العاملة | > 30 | 0 |
+| تقييم تطبيق الموبايل (متوسط iOS و Android) | > 4.5 | n/a |
+| ارتفاع الإيراد من التسعير الديناميكي | > 6% مقارنة بـ flat-markup | n/a |
+| الفروع العاملة | >= 3 | 1 |
+| حصة حجوزات المجموعات | > 8% من GBV | <0.5% |
+
+---
+
+## الشخصيات (Personas)
+
+شخصيات Basic و Professional لسه فعّالة. Enterprise تضيف 7 شخصيات جديدة لازم المنصة تخدمهم كمستخدمين أساسيين.
+
+| الشخصية | الاسم | العمر | المكان | الأهداف | نقاط الألم |
 |---------|------|-----|----------|-------|-------------|
-| Mobile-First Gen Z Traveler | Layla Hany | 23 | Cairo, Egypt | Book everything on mobile in <2 min; use biometric login; receive instant push notifications; share trip with friends | Web-only OTAs feel dated; manual logins are friction; misses real-time updates when app is closed |
-| Independent Travel Agent (B2B) | Mohamed Helal | 38 | Tanta, Egypt | Run his own small agency; book on behalf of walk-in customers; apply his markup; receive monthly commission settlement; access credit line for large bookings | Manual GDS too expensive; consumer OTAs don't allow markup; chasing supplier commissions is exhausting; no credit terms |
-| Corporate Travel Manager | Rania Saad | 42 | Cairo, Egypt (multinational HQ) | Book staff travel within company policy; consolidated monthly invoice; tax-compliant receipts; restrict to allowed airlines/hotels; emergency 24/7 support | Multi-tool stack; policy violations slip through; expense reports are a nightmare; no unified booking history |
-| Group Booking Coordinator | Karim Adel | 35 | Cairo, Egypt | Book 30-person family Umrah group; needs same flight/hotel for all; flexible payment per traveler; bulk passenger data | OTAs cap at 9 passengers; supplier offline rates not accessible to consumers; coordinating payment from multiple sources is messy |
-| White-Label Partner Owner | Hisham Saber | 47 | Riyadh, Saudi Arabia | Launch his own branded OTA "Saber Travel" backed by Jawla's platform; control branding, pricing, agent network; pay Jawla per booking | Building from scratch is expensive; he has the audience, not the engineering team |
-| Multi-Branch Manager | Salma Hossam | 40 | Hurghada Branch | Run the Hurghada branch operations; manage local agents; track branch P&L; sell walk-in customers via branch terminal | Centralized OTAs ignore branch P&L visibility; can't issue local bookings tied to branch revenue |
-| Fraud Analyst (new ops role) | Hassan Mounir | 33 | Cairo HQ | Monitor real-time fraud signals; review high-risk bookings; tune rule sets; investigate chargebacks | Reactive only after chargeback hits; no ML scoring; no case management |
-| (Elevated) Compliance & Risk Officer | Layla Nour | 45 | Cairo HQ | PCI Level 1 management; SOC 2 program; GDPR-equivalent privacy; audit response | Compliance is bolt-on, not integrated; audits surface gaps too late |
-| (Elevated) Executive Stakeholder | Sherif Mahmoud (CEO) | 52 | Cairo HQ | Real-time executive dashboard; channel/segment P&L; cohort retention; investor-grade reporting | Decision data lives in 6 systems; can't see "what is the platform doing right now"; investors ask metrics he doesn't have |
+| مسافرة Gen Z موبايل أولًا | ليلى هاني | 23 | القاهرة، مصر | تحجز كل حاجة من الموبايل في أقل من دقيقتين؛ تستخدم الدخول البيومتري؛ تستقبل push notifications لحظية؛ تشارك الرحلة مع أصحابها | الـ OTAs اللي بس على الويب شكلها قديم؛ تسجيل الدخول اليدوي مزعج؛ بتفوّت التحديثات اللحظية لما التطبيق يكون مقفول |
+| وكيل سفر مستقل (B2B) | محمد هلال | 38 | طنطا، مصر | يدير مكتب سفر صغير؛ يحجز نيابة عن العملاء اللي بييجوا للمكتب؛ يطبّق الـ markup بتاعه؛ يستلم تسوية عمولة شهرية؛ يستفيد من حد ائتماني للحجوزات الكبيرة | الـ GDS اليدوي مكلف جدًا؛ الـ OTAs الاستهلاكية ما بتسمحش بـ markup؛ ملاحقة عمولات الموردين متعبة؛ مفيش شروط ائتمان |
+| مدير سفر شركة | رانيا سعد | 42 | القاهرة، مصر (مقر شركة متعددة الجنسيات) | تحجز سفر الموظفين في حدود سياسة الشركة؛ فاتورة شهرية موحدة؛ إيصالات متوافقة ضريبيًا؛ تقصر الحجوزات على شركات طيران/فنادق معينة؛ دعم 24/7 للطوارئ | كثرة الأدوات؛ خروقات السياسة بتعدي؛ تقارير المصاريف كابوس؛ مفيش سجل حجوزات موحد |
+| منسق حجز مجموعات | كريم عادل | 35 | القاهرة، مصر | يحجز رحلة عمرة لمجموعة عائلية 30 شخص؛ يحتاج نفس الرحلة والفندق للجميع؛ مرونة في الدفع لكل مسافر؛ بيانات ركاب بالجملة | الـ OTAs بتحدد بـ 9 ركاب كحد أقصى؛ أسعار الموردين offline غير متاحة للمستهلكين؛ تنسيق الدفع من مصادر متعددة فوضى |
+| مالك شريك White-Label | هشام صابر | 47 | الرياض، السعودية | يطلق OTA باسم علامته "Saber Travel" مدعومة بمنصة Jawla؛ يتحكم في العلامة والتسعير وشبكة الوكلاء؛ يدفع لـ Jawla مقابل كل حجز | البناء من الصفر مكلف؛ عنده الجمهور مش الفريق الهندسي |
+| مدير فرع | سلمى حسام | 40 | فرع الغردقة | تدير عمليات فرع الغردقة؛ تدير وكلاء محليين؛ تتابع P&L الفرع؛ تبيع للعملاء اللي بييجوا للفرع | الـ OTAs المركزية ما بتديش رؤية P&L على مستوى الفرع؛ مش قادرة تُصدر حجوزات محلية مرتبطة بإيراد الفرع |
+| محلل احتيال (دور تشغيلي جديد) | حسن منير | 33 | المقر بالقاهرة | يرصد إشارات الاحتيال لحظيًا؛ يراجع الحجوزات عالية المخاطر؛ يضبط مجموعات القواعد؛ يحقق في chargebacks | بيتفاعل بس بعد ما الـ chargeback يحصل؛ مفيش ML scoring؛ مفيش إدارة حالات |
+| (مرفّعة) مسؤولة الامتثال والمخاطر | ليلى نور | 45 | المقر بالقاهرة | إدارة PCI Level 1؛ برنامج SOC 2؛ خصوصية مكافئة لـ GDPR؛ الاستجابة للتدقيق | الامتثال مضاف من بره مش متكامل؛ التدقيقات بتكشف الفجوات متأخر |
+| (مرفّع) صاحب مصلحة تنفيذي | شريف محمود (CEO) | 52 | المقر بالقاهرة | dashboard تنفيذي لحظي؛ P&L حسب القناة/القطاع؛ احتفاظ العملاء حسب الـ cohort؛ تقارير بدرجة المستثمرين | بيانات القرار في 6 أنظمة؛ مش شايف "إيه اللي بتعمله المنصة دلوقتي"؛ المستثمرون بيسألوا عن مقاييس مش عنده |
 
-### Persona Coverage Matrix (Enterprise Features)
+### مصفوفة تغطية الشخصيات (ميزات Enterprise)
 
-| Feature | Layla | Mohamed | Rania | Karim | Hisham | Salma | Hassan | Layla N. | Sherif |
+| الميزة | ليلى | محمد | رانيا | كريم | هشام | سلمى | حسن | ليلى ن. | شريف |
 |---------|-------|---------|-------|-------|--------|-------|--------|----------|--------|
-| Mobile Apps | Primary | Secondary | Secondary | - | Required | - | - | - | Observes |
-| B2B Portal | - | Primary | Secondary | - | Required | - | - | - | Observes |
-| Tour Packages | Primary | Secondary | Secondary | Primary | Required | - | - | - | Strategic |
-| Group Bookings | - | Secondary | Secondary | Primary | Required | - | - | - | - |
-| Corporate Accounts | - | - | Primary | - | Required | - | - | - | - |
-| Multi-Branch | - | - | - | - | Required | Primary | - | Audits | - |
-| Dynamic Pricing | Beneficiary | Beneficiary | - | - | Required | - | - | - | Strategic |
-| White-Label | - | - | - | - | Primary | - | - | Audits | Strategic |
-| Fraud Detection | Protected | Protected | Protected | Protected | Required | - | Primary | Audits | - |
-| Executive Dashboard | - | - | - | - | - | - | - | - | Primary |
+| تطبيقات الموبايل | أساسية | ثانوي | ثانوي | - | مطلوب | - | - | - | يلاحظ |
+| بوابة B2B | - | أساسي | ثانوي | - | مطلوب | - | - | - | يلاحظ |
+| Tour Packages | أساسية | ثانوي | ثانوي | أساسي | مطلوب | - | - | - | استراتيجي |
+| حجوزات المجموعات | - | ثانوي | ثانوي | أساسي | مطلوب | - | - | - | - |
+| حسابات الشركات | - | - | أساسي | - | مطلوب | - | - | - | - |
+| فروع متعددة | - | - | - | - | مطلوب | أساسية | - | تدقق | - |
+| التسعير الديناميكي | تستفيد | يستفيد | - | - | مطلوب | - | - | - | استراتيجي |
+| White-Label | - | - | - | - | أساسي | - | - | تدقق | استراتيجي |
+| كشف الاحتيال | محمية | محمي | محمية | محمي | مطلوب | - | أساسي | تدقق | - |
+| Dashboard التنفيذي | - | - | - | - | - | - | - | - | أساسي |
 
 ---
 
-## User Stories
+## قصص المستخدم
 
-Stories continue from US-001..US-038 (inherited from Basic and Professional). Enterprise adds US-039 through US-090.
+القصص بتكمل من US-001..US-038 (الموروثة من Basic و Professional). Enterprise تضيف US-039 إلى US-090.
 
-### Tour Packages & Dynamic Bundling
+### Tour Packages والباقات الديناميكية
 
-**US-039: Browse Pre-Built Tour Packages**
+**US-039: تصفح Tour Packages الجاهزة**
 
-As a traveler, I want to browse Jawla-curated tour packages (e.g., "Cairo + Luxor + Aswan 7 nights") so that I can pick a complete trip without assembling it myself.
+كمسافر، عايز أتصفح الـ tour packages اللي بتنسقها Jawla (مثلاً "القاهرة + الأقصر + أسوان 7 ليالي") عشان أختار رحلة كاملة من غير ما أركّبها بنفسي.
 
-- AC-039.1: Package catalog must include: flight(s), hotel(s), transfers, optional activities; price; itinerary day-by-day; inclusions/exclusions.
-- AC-039.2: Packages must be searchable by destination, theme (cultural, beach, Umrah, honeymoon), duration, max price.
-- AC-039.3: Each package must show: hero image, gallery, day-by-day timeline, departure city options, available departure dates next 365 days.
+- AC-039.1: كتالوج Packages لازم يحتوي على: رحلات الطيران، الفنادق، النقل، الأنشطة الاختيارية؛ السعر؛ برنامج يومي؛ المشمول وغير المشمول.
+- AC-039.2: لازم Packages تكون قابلة للبحث حسب الوجهة، الموضوع (ثقافي، شاطئ، عمرة، شهر عسل)، المدة، السعر الأقصى.
+- AC-039.3: كل package لازم يعرض: صورة رئيسية، معرض صور، خط زمني يومي، خيارات مدن المغادرة، تواريخ المغادرة المتاحة لـ 365 يوم قادمين.
 
-**US-040: Book a Pre-Built Tour Package**
+**US-040: حجز Tour Package جاهز**
 
-As a traveler, I want to book a tour package end-to-end so that I receive a single confirmed itinerary.
+كمسافر، عايز أحجز tour package من البداية للنهاية عشان أستلم رحلة مؤكدة واحدة.
 
-- AC-040.1: Booking flow collects passenger details for all travelers (2-9 by default).
-- AC-040.2: Payment is single transaction; revenue is split internally per component for supplier settlement.
-- AC-040.3: Confirmation includes a single PDF itinerary plus individual vouchers per component (e-tickets, hotel vouchers, transfer vouchers).
-- AC-040.4: Each component must be cancelable (within supplier rules) independently or as a package.
+- AC-040.1: تدفق الحجز يجمع بيانات الركاب لكل المسافرين (2-9 افتراضيًا).
+- AC-040.2: الدفع معاملة واحدة؛ الإيرادات تتقسم داخليًا لكل مكوّن لتسوية الموردين.
+- AC-040.3: التأكيد يشمل PDF خط سير واحد + قسائم منفصلة لكل مكوّن (e-tickets، قسائم فنادق، قسائم نقل).
+- AC-040.4: كل مكوّن لازم يكون قابل للإلغاء (في حدود قواعد المورد) بشكل مستقل أو كباقة.
 
-**US-041: Dynamic Packaging (Build-Your-Own)**
+**US-041: Dynamic Packaging (اعمل بنفسك)**
 
-As a traveler, I want to combine my own flight + hotel selection into a discounted bundle so that I get package-level savings on a custom trip.
+كمسافر، عايز أجمع اختياري الشخصي من رحلة طيران + فندق في باقة بخصم عشان أحصل على وفر مستوى الباقة على رحلة مخصصة.
 
-- AC-041.1: After selecting a flight, the UI must suggest hotels with bundle discount badge.
-- AC-041.2: Bundle discount must be configurable in the pricing engine (default: 5-12% off lead-in rates).
-- AC-041.3: Booking flow must atomically book both components or fail and refund.
-- AC-041.4: Final price must reflect bundle discount transparently.
+- AC-041.1: بعد اختيار الرحلة، الـ UI لازم يقترح فنادق مع شارة خصم الباقة.
+- AC-041.2: خصم الباقة قابل للتهيئة في محرك التسعير (افتراضي: 5-12% خصم على lead-in rates).
+- AC-041.3: تدفق الحجز لازم يحجز المكوّنين معًا atomic أو يفشل ويسترد المبلغ.
+- AC-041.4: السعر النهائي لازم يعكس خصم الباقة بشفافية.
 
-**US-042: Day Tours & Activities**
+**US-042: الرحلات اليومية والأنشطة**
 
-As a traveler, I want to add day tours, transfers, or attraction tickets to my flight/hotel booking so that I plan my full trip on Jawla.
+كمسافر، عايز أضيف رحلات يومية، نقل، أو تذاكر معالم لحجز الطيران/الفندق عشان أنظم رحلتي الكاملة على Jawla.
 
-- AC-042.1: Activities sourced from a partner inventory (Viator, GetYourGuide, or local supplier - TBD).
-- AC-042.2: Cross-sell after flight or hotel booking and on confirmation page.
-- AC-042.3: Booked activities included in customer's My Bookings.
+- AC-042.1: الأنشطة مصدرها مخزون شريك (Viator، GetYourGuide، أو مورد محلي - يحدد لاحقًا).
+- AC-042.2: Cross-sell بعد حجز الطيران أو الفندق وعلى صفحة التأكيد.
+- AC-042.3: الأنشطة المحجوزة تظهر في My Bookings للعميل.
 
 **US-043: Package Admin Builder**
 
-As Hagar (marketing/product), I want to build/edit tour packages in the admin panel so that I can launch new packages without engineering.
+كهاجر (تسويق/منتج)، عايزة أبني/أعدّل tour packages من لوحة الأدمن عشان أطلق باقات جديدة بدون هندسة.
 
-- AC-043.1: Builder UI: select flight legs (manual airport pairs + date windows), select hotels (per night), select activities, set markup, set dates valid.
-- AC-043.2: Preview shows customer-facing package page.
-- AC-043.3: Versioning: published packages can't be edited; create a v2 instead.
+- AC-043.1: واجهة الـ Builder: اختيار أجزاء الرحلات (أزواج مطارات يدوي + نوافذ تواريخ)، اختيار فنادق (لكل ليلة)، اختيار أنشطة، تحديد markup، تحديد التواريخ الصالحة.
+- AC-043.2: المعاينة تعرض صفحة الـ package الموجهة للعميل.
+- AC-043.3: إدارة الإصدارات: الـ packages المنشورة ما تتعدلش؛ يتم إنشاء v2 بدلاً منها.
 
-### B2B Agent Portal
+### بوابة وكلاء B2B
 
-**US-044: Agent Account Application**
+**US-044: طلب حساب وكيل**
 
-As Mohamed (travel agent), I want to apply for a B2B agent account so that I can book on behalf of customers with markup.
+كمحمد (وكيل سفر)، عايز أتقدّم لحساب وكيل B2B عشان أحجز نيابة عن العملاء مع markup.
 
-- AC-044.1: Application form: agency name, tax ID, contact info, expected monthly volume, bank details (for commission settlement).
-- AC-044.2: Application reviewed by Jawla Sales within 48h with approve/request-info/reject.
-- AC-044.3: On approval, agent receives login and a welcome email with portal URL.
+- AC-044.1: نموذج التقديم: اسم الوكالة، الرقم الضريبي، بيانات التواصل، حجم متوقع شهري، بيانات البنك (لتسوية العمولات).
+- AC-044.2: طلب مراجعة من Jawla Sales خلال 48 ساعة بقرار موافقة/طلب معلومات/رفض.
+- AC-044.3: عند الموافقة، الوكيل يستلم بيانات الدخول وإيميل ترحيب مع URL البوابة.
 
-**US-045: Agent Booking Flow**
+**US-045: تدفق حجز الوكيل**
 
-As Mohamed, I want to book flights, hotels, packages on behalf of my customer so that I can sell with my own markup.
+كمحمد، عايز أحجز طيران وفنادق وpackages نيابة عن عميلي عشان أبيع بـ markup الخاص بيا.
 
-- AC-045.1: Booking flow identical to consumer flow but with: customer details fields (separate from agent login), markup field (per booking or default), agent-attributable booking reference.
-- AC-045.2: Agent sees net price + their markup + total customer price.
-- AC-045.3: Payment can be: customer pays direct via gateway link, agent pays from credit line, agent pays from agency wallet.
+- AC-045.1: تدفق الحجز نفس تدفق المستهلك بس مع: حقول بيانات العميل (منفصلة عن دخول الوكيل)، حقل markup (لكل حجز أو افتراضي)، مرجع حجز منسوب للوكيل.
+- AC-045.2: الوكيل يشوف السعر الصافي + الـ markup الخاص بيه + إجمالي سعر العميل.
+- AC-045.3: الدفع ممكن: العميل يدفع مباشرة عبر رابط gateway، الوكيل يدفع من الحد الائتماني، الوكيل يدفع من محفظة الوكالة.
 
-**US-046: Agent Markup Management**
+**US-046: إدارة Markup الوكيل**
 
-As Mohamed, I want to set default markup rules (per product, route, hotel star) so that I don't manually enter markup each booking.
+كمحمد، عايز أحدد قواعد markup افتراضية (لكل منتج، خط، تصنيف فندق) عشان ما أدخلش markup يدوي لكل حجز.
 
-- AC-046.1: Markup rules: % or fixed; per product type; per region; per customer segment.
-- AC-046.2: Per-booking override always permitted.
-- AC-046.3: Markup rules versioned and auditable.
+- AC-046.1: قواعد Markup: نسبة % أو مبلغ ثابت؛ لكل نوع منتج؛ لكل منطقة؛ لكل قطاع عملاء.
+- AC-046.2: تعديل لكل حجز مسموح دائمًا.
+- AC-046.3: قواعد Markup تحت إدارة إصدارات وقابلة للتدقيق.
 
-**US-047: Agent Credit Line**
+**US-047: الحد الائتماني للوكيل**
 
-As Mohamed, I want a credit line so that I can book without paying upfront and settle monthly.
+كمحمد، عايز حد ائتماني عشان أحجز بدون دفع مقدم وأسوّي شهريًا.
 
-- AC-047.1: Credit line approved by Jawla Finance with a limit (e.g., EGP 50,000 - 500,000).
-- AC-047.2: Each booking decrements available credit; cancellation refund restores credit.
-- AC-047.3: Monthly invoice generated for outstanding balance; payment due in 15 days.
-- AC-047.4: Auto-suspension on overdue >7 days.
+- AC-047.1: الحد الائتماني معتمد من Jawla Finance بحد (مثلاً EGP 50,000 - 500,000).
+- AC-047.2: كل حجز ينقص الائتمان المتاح؛ استرداد الإلغاء يعيد الائتمان.
+- AC-047.3: فاتورة شهرية تتوّلد للرصيد المستحق؛ الدفع خلال 15 يوم.
+- AC-047.4: إيقاف تلقائي عند تأخر يتعدى 7 أيام.
 
-**US-048: Agent Commission Statement**
+**US-048: كشف عمولات الوكيل**
 
-As Mohamed, I want a monthly commission statement so that I can reconcile.
+كمحمد، عايز كشف عمولات شهري عشان أوفّق حساباتي.
 
-- AC-048.1: Statement: bookings, markup retained by agent, net commission from Jawla (if applicable), credit line activity, settlements.
-- AC-048.2: Available as PDF and CSV.
+- AC-048.1: الكشف: الحجوزات، الـ markup المحتفظ بيه الوكيل، صافي العمولة من Jawla (لو موجودة)، نشاط الحد الائتماني، التسويات.
+- AC-048.2: متاح كـ PDF و CSV.
 
-**US-049: Agent Sub-User Management**
+**US-049: إدارة المستخدمين الفرعيين للوكيل**
 
-As Mohamed (agency owner), I want to add sub-users (my staff) with limited permissions so that my team can book under my account.
+كمحمد (مالك الوكالة)، عايز أضيف مستخدمين فرعيين (موظفيني) بصلاحيات محدودة عشان فريقي يحجز تحت حسابي.
 
-- AC-049.1: Sub-user roles: Booker (book only), Manager (book + reports), Admin (everything except billing).
-- AC-049.2: All sub-user actions logged under the agency account.
+- AC-049.1: أدوار المستخدمين الفرعيين: Booker (حجز فقط)، Manager (حجز + تقارير)، Admin (كل حاجة عدا الفواتير).
+- AC-049.2: كل أفعال المستخدمين الفرعيين تتسجّل تحت حساب الوكالة.
 
-**US-050: B2B Reporting**
+**US-050: تقارير B2B**
 
-As Mohamed, I want to see my agency's bookings, revenue, top customers, top destinations so that I can manage my business.
+كمحمد، عايز أشوف حجوزات وكالتي، الإيراد، أفضل العملاء، أفضل الوجهات عشان أدير نشاطي.
 
-- AC-050.1: Dashboard: this month bookings + GBV, top 5 customers, top 5 destinations, conversion rate.
-- AC-050.2: Filters: date range, product, sub-user.
+- AC-050.1: Dashboard: حجوزات الشهر + GBV، أعلى 5 عملاء، أعلى 5 وجهات، معدل التحويل.
+- AC-050.2: فلاتر: نطاق التاريخ، المنتج، المستخدم الفرعي.
 
-### Mobile Applications (iOS + Android)
+### تطبيقات الموبايل (iOS + Android)
 
-**US-051: Mobile App Onboarding**
+**US-051: انضمام لتطبيق الموبايل**
 
-As Layla, I want a fast, friendly first-launch experience so that I'm booking within 2 minutes.
+كليلى، عايزة تجربة أول استخدام سريعة وودودة عشان أحجز خلال دقيقتين.
 
-- AC-051.1: Onboarding: 3 screens max (welcome, key value props, language); skippable.
-- AC-051.2: Login: email/password, phone OTP, Apple Sign-In (iOS), Google Sign-In (both), biometric subsequent login.
-- AC-051.3: Permission requests: notifications (asked at right moment, not on app start), location (only when relevant).
+- AC-051.1: الانضمام: 3 شاشات حد أقصى (ترحيب، أهم القيم، اللغة)؛ قابلة للتخطي.
+- AC-051.2: الدخول: إيميل/كلمة سر، OTP بالموبايل، Apple Sign-In (iOS)، Google Sign-In (الاثنين)، دخول بيومتري في المرات التالية.
+- AC-051.3: طلبات الأذونات: notifications (تتطلب في الوقت المناسب مش بداية التطبيق)، الموقع (لما يكون مطلوب فقط).
 
-**US-052: Mobile Flight Search & Book**
+**US-052: بحث وحجز رحلات الطيران من الموبايل**
 
-As Layla, I want the same search and booking experience as web, optimized for mobile.
+كليلى، عايزة نفس تجربة البحث والحجز اللي على الويب، محسّنة للموبايل.
 
-- AC-052.1: Mobile flight search uses native date pickers and airport autocomplete with recent searches.
-- AC-052.2: Booking flow steps reduced to fewer screens vs web (combined passenger forms).
-- AC-052.3: Payment uses Apple Pay (iOS) and Google Pay (Android) as primary, gateway forms secondary.
+- AC-052.1: بحث رحلات الموبايل يستخدم date pickers الأصلية و autocomplete للمطارات مع البحث الحديث.
+- AC-052.2: خطوات تدفق الحجز قلّت لشاشات أقل مقارنة بالويب (نماذج ركاب مدمجة).
+- AC-052.3: الدفع باستخدام Apple Pay (iOS) و Google Pay (Android) كأساسي، نماذج gateway كثانوي.
 
-**US-053: Mobile Hotel Search & Book**
+**US-053: بحث وحجز الفنادق من الموبايل**
 
-As above for hotels with map view as primary, list secondary.
+نفس اللي فوق للفنادق مع عرض الخريطة كأساسي، والقائمة كثانوي.
 
 **US-054: Push Notifications**
 
-As Layla, I want to receive push notifications for booking updates, price drops on saved searches, and trip reminders.
+كليلى، عايزة أستلم push notifications لتحديثات الحجز، انخفاض السعر على البحث المحفوظ، وتذكيرات الرحلة.
 
-- AC-054.1: Notification types: booking confirmed, payment processed, refund issued, trip reminder (24h, 2h), price drop on saved search, promo announcement.
-- AC-054.2: Notification preferences per type in app settings.
-- AC-054.3: Deep links open the relevant screen.
+- AC-054.1: أنواع الإشعارات: تأكيد الحجز، معالجة الدفع، إصدار استرداد، تذكير الرحلة (24 ساعة، ساعتين)، انخفاض سعر بحث محفوظ، إعلان عرض.
+- AC-054.2: تفضيلات الإشعارات لكل نوع في إعدادات التطبيق.
+- AC-054.3: deep links تفتح الشاشة المعنية.
 
-**US-055: Offline Access**
+**US-055: الوصول Offline**
 
-As Layla, I want to access my booking confirmations and vouchers offline (e.g., while traveling without data).
+كليلى، عايزة أوصل لتأكيدات الحجز والقسائم بدون إنترنت (مثلاً وأنا مسافرة بدون داتا).
 
-- AC-055.1: Confirmed bookings cached locally on device.
-- AC-055.2: Offline mode banner indicates degraded experience.
-- AC-055.3: Wallet pass integration (Apple Wallet + Google Wallet) for boarding passes and vouchers.
+- AC-055.1: الحجوزات المؤكدة محفوظة محليًا على الجهاز.
+- AC-055.2: شريط offline mode يوضّح إن التجربة محدودة.
+- AC-055.3: تكامل Wallet pass (Apple Wallet + Google Wallet) لبطاقات الصعود والقسائم.
 
-**US-056: Biometric Authentication**
+**US-056: المصادقة البيومترية**
 
-As Layla, after first login, I want Face ID/Touch ID/Fingerprint to log me in so that I don't type passwords.
+كليلى، بعد أول دخول، عايزة Face ID/Touch ID/البصمة تدخّلني عشان ما أكتبش كلمة سر.
 
-- AC-056.1: Biometric enabled in app settings.
-- AC-056.2: Falls back to PIN/password.
+- AC-056.1: البيومتري متاح من إعدادات التطبيق.
+- AC-056.2: يرجع لـ PIN/كلمة سر لو فشلت.
 
-**US-057: Mobile Loyalty & Wallet**
+**US-057: الولاء والمحفظة من الموبايل**
 
-As Layla, I want full loyalty/wallet functionality on mobile, including QR code for in-branch redemption.
+كليلى، عايزة وظائف الولاء والمحفظة كاملة على الموبايل، يشمل QR code للاسترداد في الفرع.
 
-- AC-057.1: Loyalty tier, points balance prominently displayed.
-- AC-057.2: Wallet QR code generates an in-branch redemption code valid for 5 min.
+- AC-057.1: درجة الولاء ورصيد النقاط بارزة في العرض.
+- AC-057.2: QR code للمحفظة يولّد كود استرداد في الفرع صالح لـ 5 دقايق.
 
-### Dynamic Pricing
+### التسعير الديناميكي
 
-**US-058: Dynamic Markup Rules Engine**
+**US-058: محرك قواعد Markup الديناميكية**
 
-As Hagar (revenue management), I want to define rules that adjust markup based on signals so that revenue is optimized.
+كهاجر (إدارة الإيرادات)، عايزة أحدد قواعد بتعدّل الـ markup بناءً على إشارات عشان يتحسّن الإيراد.
 
-- AC-058.1: Rule attributes: product, route/destination, season, day of week, days-to-departure, customer tier, supplier, demand signal (search velocity), competitor reference (if data exists).
-- AC-058.2: Rules combine: base markup + adjustments; final markup capped at floor/ceiling.
-- AC-058.3: Each rule has audit log and effective dates.
-- AC-058.4: Dry-run mode shows historical impact without applying.
+- AC-058.1: خصائص القاعدة: المنتج، الخط/الوجهة، الموسم، يوم الأسبوع، الأيام للمغادرة، درجة العميل، المورد، إشارة الطلب (سرعة البحث)، مرجع المنافس (لو البيانات موجودة).
+- AC-058.2: القواعد تتجمع: markup أساسي + تعديلات؛ markup نهائي محدود بـ floor/ceiling.
+- AC-058.3: كل قاعدة لها سجل تدقيق وتواريخ سريان.
+- AC-058.4: وضع Dry-run يعرض الأثر التاريخي بدون تطبيق.
 
-**US-059: Demand-Based Pricing**
+**US-059: التسعير بناءً على الطلب**
 
-As above, with automated demand signals from internal search volume.
+نفس اللي فوق، مع إشارات طلب تلقائية من حجم البحث الداخلي.
 
-- AC-059.1: Search velocity per route/property normalized over rolling window.
-- AC-059.2: High-demand items receive uplift markup; low-demand items receive discount to clear.
-- AC-059.3: Uplift/discount range bounded (e.g., -5% to +8%).
+- AC-059.1: سرعة البحث لكل خط/عقار تتطبّع على نافذة متحركة.
+- AC-059.2: العناصر عالية الطلب تستلم زيادة markup؛ العناصر منخفضة الطلب تستلم خصم للتصريف.
+- AC-059.3: نطاق الزيادة/الخصم محدود (مثلاً -5% إلى +8%).
 
-**US-060: Competitor Reference (If Data Available)**
+**US-060: مرجع المنافس (لو البيانات موجودة)**
 
-As Hagar, I want to incorporate competitor price feeds when available so that I price competitively.
+كهاجر، عايزة أدمج بيانات سعر المنافسين لما تكون متاحة عشان أسعّر بشكل تنافسي.
 
-- AC-060.1: Competitor data ingested via partner feed or scraping service (legal review required).
-- AC-060.2: Pricing engine surfaces "vs competitor: -3%" badge per offer.
+- AC-060.1: بيانات المنافس مدخلة عبر partner feed أو خدمة scraping (مراجعة قانونية مطلوبة).
+- AC-060.2: محرك التسعير يعرض شارة "مقابل المنافس: -3%" لكل عرض.
 
-**US-061: Revenue Impact Dashboard**
+**US-061: Dashboard أثر الإيراد**
 
-As Hagar, I want to see the revenue impact of dynamic pricing rules so that I can iterate.
+كهاجر، عايزة أشوف أثر قواعد التسعير الديناميكي على الإيراد عشان أكرّر التحسين.
 
-- AC-061.1: Dashboard: estimated revenue lift % vs control, by rule.
-- AC-061.2: A/B testing supported via the experimentation platform.
+- AC-061.1: Dashboard: تقدير ارتفاع الإيراد % مقابل التحكم، لكل قاعدة.
+- AC-061.2: اختبارات A/B مدعومة عبر منصة التجارب.
 
-### Group & Corporate Bookings
+### حجوزات المجموعات والشركات
 
-**US-062: Group Booking Request**
+**US-062: طلب حجز مجموعة**
 
-As Karim, I want to request a group booking (10-50 passengers) so that Jawla quotes me on offline rates.
+ككريم، عايز أطلب حجز مجموعة (10-50 راكب) عشان Jawla تسعّر لي على الأسعار offline.
 
-- AC-062.1: Form: route/destination, dates, passenger count, preferred class/category, special needs (dietary, mobility).
-- AC-062.2: Request routes to group ops desk with SLA 24h response.
-- AC-062.3: Quote delivered in-platform; customer accepts/negotiates.
+- AC-062.1: النموذج: الخط/الوجهة، التواريخ، عدد الركاب، الدرجة/الفئة المفضلة، احتياجات خاصة (غذائية، حركة).
+- AC-062.2: الطلب يوجَّه لفريق عمليات المجموعات بـ SLA رد خلال 24 ساعة.
+- AC-062.3: السعر يُسلّم داخل المنصة؛ العميل يقبل/يفاوض.
 
-**US-063: Group Booking Confirmation & Payment**
+**US-063: تأكيد ودفع حجز المجموعة**
 
-As Karim, I want to pay for the group flexibly so that family/friends can each pay their share.
+ككريم، عايز أدفع للمجموعة بمرونة عشان العائلة/الأصحاب كل واحد يدفع نصيبه.
 
-- AC-063.1: Quote acceptance generates a holding booking with deposit deadline.
-- AC-063.2: Per-traveler payment links; payments aggregate to the holding.
-- AC-063.3: Full payment by deadline triggers final ticketing/voucher.
+- AC-063.1: قبول السعر يولّد حجز معلّق بموعد نهائي للعربون.
+- AC-063.2: روابط دفع لكل مسافر؛ المدفوعات تتجمع للحجز المعلّق.
+- AC-063.3: الدفع الكامل في الموعد النهائي يطلق إصدار التذاكر/القسائم النهائي.
 
-**US-064: Corporate Account Setup**
+**US-064: إعداد حساب شركة**
 
-As Rania, I want to set up our corporate account with travel policy and billing details so that staff can book within rules.
+كرانيا، عايزة أعدّ حساب شركتنا مع سياسة السفر وبيانات الفواتير عشان الموظفين يحجزوا في حدود القواعد.
 
-- AC-064.1: Account setup: company details, billing address, tax info, credit limit, default approvers.
-- AC-064.2: Travel policy: airline whitelist/blacklist, max class per route distance, max hotel star, advance-booking minimum, max accommodation rate.
-- AC-064.3: User management: add staff with roles (Traveler, Approver, Admin).
+- AC-064.1: إعداد الحساب: بيانات الشركة، عنوان الفواتير، بيانات ضريبية، حد ائتماني، معتمدون افتراضيون.
+- AC-064.2: سياسة السفر: قائمة سماح/حظر شركات الطيران، أقصى درجة حسب مسافة الخط، أقصى تصنيف فندقي، حد أدنى للحجز المسبق، أقصى سعر إقامة.
+- AC-064.3: إدارة المستخدمين: إضافة موظفين بأدوار (Traveler، Approver، Admin).
 
-**US-065: Corporate Travel Policy Enforcement**
+**US-065: فرض سياسة سفر الشركة**
 
-As Rania, I want bookings that violate policy to require approval so that we control costs.
+كرانيا، عايزة الحجوزات اللي تخالف السياسة تحتاج موافقة عشان نتحكم في التكاليف.
 
-- AC-065.1: Booking flow validates against policy at quote time; non-compliant offers flagged.
-- AC-065.2: Booking submission with violation triggers approver workflow.
-- AC-065.3: Approver receives email/notification with one-click approve/reject.
+- AC-065.1: تدفق الحجز يفحص ضد السياسة وقت السعر؛ العروض غير المتوافقة معلّمة.
+- AC-065.2: تقديم الحجز بمخالفة يطلق سير عمل المعتمد.
+- AC-065.3: المعتمد يستلم إيميل/إشعار بزر موافقة/رفض.
 
-**US-066: Corporate Consolidated Invoicing**
+**US-066: فاتورة شركة موحدة**
 
-As Rania, I want a single monthly invoice for all company bookings so that AP is simplified.
+كرانيا، عايزة فاتورة شهرية واحدة لكل حجوزات الشركة عشان يسهل على الحسابات.
 
-- AC-066.1: Monthly statement: all bookings with traveler, route, dates, cost, policy compliance.
-- AC-066.2: Invoice PDF + XLSX, downloadable and emailed.
-- AC-066.3: Payment terms net-30 or as contracted.
+- AC-066.1: كشف شهري: كل الحجوزات بالمسافر، الخط، التواريخ، التكلفة، الالتزام بالسياسة.
+- AC-066.2: فاتورة PDF + XLSX، قابلة للتحميل والإرسال بالإيميل.
+- AC-066.3: شروط الدفع net-30 أو حسب التعاقد.
 
-**US-067: Corporate 24/7 Support**
+**US-067: دعم 24/7 للشركات**
 
-As Rania, I want priority support during travel disruptions so that our staff are taken care of.
+كرانيا، عايزة دعم بأولوية خلال اضطرابات السفر عشان موظفينا يلاقوا رعاية.
 
-- AC-067.1: Corporate tier identified at support intake.
-- AC-067.2: Dedicated phone line / WhatsApp number for corporate.
-- AC-067.3: SLA: 15 min response after-hours.
+- AC-067.1: درجة الشركات محددة وقت استقبال الدعم.
+- AC-067.2: خط هاتف مخصص / رقم WhatsApp للشركات.
+- AC-067.3: SLA: استجابة في 15 دقيقة بعد ساعات العمل.
 
-### Multi-Branch Operations
+### عمليات الفروع المتعددة
 
-**US-068: Branch Account Setup**
+**US-068: إعداد حساب فرع**
 
-As Salma, I want my Hurghada branch set up with users, P&L attribution, and inventory access so that we operate as a branch.
+كسلمى، عايزة فرع الغردقة بتاعي يتعدّ بمستخدمين، نسب P&L، ووصول للمخزون عشان نشتغل كفرع.
 
-- AC-068.1: Branch entity: name, location, manager, tax/cost center reference.
-- AC-068.2: Branch user roles: Manager, Counter Agent, Cashier.
-- AC-068.3: All bookings created by branch users attribute to the branch P&L.
+- AC-068.1: كيان الفرع: الاسم، الموقع، المدير، مرجع المركز الضريبي/مركز التكلفة.
+- AC-068.2: أدوار مستخدمي الفرع: Manager، Counter Agent، Cashier.
+- AC-068.3: كل الحجوزات المنشأة من مستخدمي الفرع تُنسب لـ P&L الفرع.
 
-**US-069: Branch P&L Dashboard**
+**US-069: Dashboard P&L الفرع**
 
-As Salma, I want to see my branch's bookings, revenue, costs, and margin so that I run my branch as a profit center.
+كسلمى، عايزة أشوف حجوزات فرعي، الإيراد، التكاليف، والهامش عشان أدير الفرع كمركز ربح.
 
-- AC-069.1: Dashboard: daily/weekly/monthly bookings, GBV, COGS, gross margin, top sellers.
-- AC-069.2: Drill-down to transaction level.
+- AC-069.1: Dashboard: حجوزات يومية/أسبوعية/شهرية، GBV، COGS، الهامش الإجمالي، الأكثر مبيعًا.
+- AC-069.2: تعمّق لمستوى المعاملة.
 
-**US-070: Branch Counter Sales**
+**US-070: مبيعات الفرع المباشرة**
 
-As a branch counter agent, I want to book walk-in customers and accept cash/POS payment so that I sell in person.
+كموظف counter في الفرع، عايز أحجز للعملاء اللي بييجوا وأقبل نقدي/POS عشان أبيع شخصيًا.
 
-- AC-070.1: Counter booking flow simplified, no customer login required.
-- AC-070.2: Payment methods include: cash (with shift reconciliation), POS terminal, wallet top-up.
-- AC-070.3: Receipt printed via local printer (USB or IP).
+- AC-070.1: تدفق حجز counter مبسّط، بدون دخول عميل مطلوب.
+- AC-070.2: طرق الدفع تشمل: كاش (مع تسوية الشيفت)، POS terminal، تعبئة محفظة.
+- AC-070.3: الإيصال يطبع عبر طابعة محلية (USB أو IP).
 
-**US-071: Branch Cash Reconciliation**
+**US-071: تسوية كاش الفرع**
 
-As Salma, I want end-of-day cash reconciliation so that I close the branch correctly.
+كسلمى، عايزة تسوية كاش نهاية اليوم عشان أقفل الفرع صح.
 
-- AC-071.1: Shift open/close workflow.
-- AC-071.2: Counted cash vs system cash, variance recorded.
-- AC-071.3: Daily reconciliation report sent to HQ Finance.
+- AC-071.1: سير عمل فتح/قفل الشيفت.
+- AC-071.2: الكاش المعدود مقابل كاش النظام، الفروقات مسجلة.
+- AC-071.3: تقرير تسوية يومي يُرسل لمالية المقر.
 
 ### White-Label
 
-**US-072: White-Label Partner Onboarding**
+**US-072: انضمام شريك White-Label**
 
-As Hisham (Saber Travel), I want to launch my brand on Jawla's platform so that I have my own OTA without engineering investment.
+كهشام (Saber Travel)، عايز أطلق علامتي على منصة Jawla عشان يكون عندي OTA خاص بيا بدون استثمار هندسي.
 
-- AC-072.1: White-label tenant provisioned with: brand identity (logo, colors, fonts), domain (saberttravel.com), email sending domain, terms/privacy.
-- AC-072.2: Inventory and pricing inheritance: full Jawla inventory at agreed rates.
-- AC-072.3: Configurable: payment gateways (partner's own or Jawla's), supported languages, supported currencies.
+- AC-072.1: المستأجر White-label مُعَدّ بـ: هوية العلامة (logo، ألوان، خطوط)، النطاق (saberttravel.com)، نطاق إرسال الإيميل، شروط/خصوصية.
+- AC-072.2: وراثة المخزون والتسعير: مخزون Jawla الكامل بالأسعار المتفق عليها.
+- AC-072.3: قابل للتهيئة: بوابات الدفع (بتاعت الشريك أو بتاعت Jawla)، اللغات المدعومة، العملات المدعومة.
 
-**US-073: White-Label Tenant Isolation**
+**US-073: عزل المستأجر White-Label**
 
-As Hisham, I want my customers' data isolated from Jawla's other tenants so that we have data sovereignty.
+كهشام، عايز بيانات عملائي معزولة عن باقي مستأجرين Jawla عشان نمتلك سيادة بياناتنا.
 
-- AC-073.1: Database-level tenant separation (tenant_id on all rows, with enforcement).
-- AC-073.2: No cross-tenant data leakage in any UI or API.
-- AC-073.3: Per-tenant backup and restore.
+- AC-073.1: فصل المستأجر على مستوى قاعدة البيانات (tenant_id على كل الصفوف، مع فرض).
+- AC-073.2: مفيش تسريب بيانات عبر المستأجرين في أي UI أو API.
+- AC-073.3: نسخ احتياطي واستعادة لكل مستأجر.
 
-**US-074: White-Label Admin**
+**US-074: أدمن White-Label**
 
-As Hisham, I want a white-label admin to manage my brand's customers, bookings, and reports so that I operate independently.
+كهشام، عايز أدمن white-label لإدارة عملاء علامتي وحجوزاتها وتقاريرها عشان أشتغل بشكل مستقل.
 
-- AC-074.1: Admin instance scoped to tenant.
-- AC-074.2: Reports show only tenant's data.
-- AC-074.3: Configurable agent/staff roles per tenant.
+- AC-074.1: نسخة الأدمن محدودة بالمستأجر.
+- AC-074.2: التقارير تعرض بيانات المستأجر بس.
+- AC-074.3: أدوار وكلاء/موظفين قابلة للتهيئة لكل مستأجر.
 
-**US-075: White-Label Billing**
+**US-075: فواتير White-Label**
 
-As Hisham, I want a monthly invoice from Jawla for platform fees and per-booking fees so that I pay clearly.
+كهشام، عايز فاتورة شهرية من Jawla برسوم المنصة ورسوم الحجز عشان أدفع بوضوح.
 
-- AC-075.1: Billing model: monthly platform fee + per-booking fee + % of GBV (per contract).
-- AC-075.2: Statement: all transactions, fees breakdown, payment due.
+- AC-075.1: نموذج الفواتير: رسوم منصة شهرية + رسوم لكل حجز + % من GBV (حسب العقد).
+- AC-075.2: الكشف: كل المعاملات، تفصيل الرسوم، الدفع المستحق.
 
-### Fraud Detection
+### كشف الاحتيال
 
-**US-076: Real-Time Fraud Scoring**
+**US-076: تقييم الاحتيال اللحظي**
 
-As Hassan (fraud analyst), I want every booking scored for fraud risk in real time so that I can block high-risk before payment.
+كحسن (محلل احتيال)، عايز كل حجز يتقيّم لمخاطر الاحتيال لحظيًا عشان أمنع المخاطر العالية قبل الدفع.
 
-- AC-076.1: Fraud signals: BIN, IP geolocation, device fingerprint, velocity (per-card, per-email, per-IP), behavior (time-on-page, browsing pattern), customer history.
-- AC-076.2: ML model trained on Jawla's historical chargebacks and curated fraud cases.
-- AC-076.3: Scoring < 200ms; booking flow blocks at score >= 85 (config), reviews at 60-85, allows < 60.
+- AC-076.1: إشارات الاحتيال: BIN، IP geolocation، device fingerprint، السرعة (لكل بطاقة، لكل إيميل، لكل IP)، السلوك (الوقت على الصفحة، نمط التصفح)، تاريخ العميل.
+- AC-076.2: نموذج ML مدرّب على chargebacks تاريخية لـ Jawla وحالات احتيال منسّقة.
+- AC-076.3: التقييم < 200ms؛ تدفق الحجز يحظر عند تقييم >= 85 (قابل للتهيئة)، يراجع في 60-85، يسمح < 60.
 
-**US-077: Fraud Review Queue**
+**US-077: قائمة مراجعة الاحتيال**
 
-As Hassan, I want a queue of medium-risk bookings to review manually so that we balance friction vs fraud.
+كحسن، عايز قائمة بالحجوزات متوسطة المخاطر لأراجعها يدويًا عشان نوازن الاحتكاك مقابل الاحتيال.
 
-- AC-077.1: Queue prioritized by score and booking value.
-- AC-077.2: Reviewer sees: signals, customer history, similar past cases.
-- AC-077.3: Actions: approve, reject, request additional info from customer.
+- AC-077.1: القائمة مرتبة حسب التقييم وقيمة الحجز.
+- AC-077.2: المراجع يشوف: الإشارات، تاريخ العميل، حالات مشابهة سابقة.
+- AC-077.3: الإجراءات: موافقة، رفض، طلب معلومات إضافية من العميل.
 
-**US-078: Fraud Rules Editor**
+**US-078: محرر قواعد الاحتيال**
 
-As Hassan, I want to add/edit fraud rules (in addition to ML) so that I respond to emerging patterns.
+كحسن، عايز أضيف/أعدّل قواعد احتيال (بالإضافة لـ ML) عشان أرد على الأنماط الناشئة.
 
-- AC-078.1: Rule editor: signal threshold + action.
-- AC-078.2: Rules tested against historical data before deploy.
+- AC-078.1: محرر القواعد: عتبة الإشارة + إجراء.
+- AC-078.2: القواعد تُختبر على البيانات التاريخية قبل النشر.
 
-**US-079: Chargeback Management**
+**US-079: إدارة Chargebacks**
 
-As Hassan, I want a workflow for incoming chargebacks so that I respond with evidence.
+كحسن، عايز سير عمل للـ chargebacks الواردة عشان أرد بأدلة.
 
-- AC-079.1: Gateway chargeback webhook creates case.
-- AC-079.2: Evidence pack auto-assembled: booking, customer info, IP/device, communications, voucher delivery proof.
-- AC-079.3: Submit evidence to gateway via API.
+- AC-079.1: webhook الـ chargeback من البوابة ينشئ حالة.
+- AC-079.2: حزمة الأدلة تتجمع تلقائيًا: الحجز، بيانات العميل، IP/الجهاز، التواصل، إثبات تسليم القسيمة.
+- AC-079.3: تقديم الأدلة للبوابة عبر API.
 
-### Advanced Admin & Platform Operations
+### الأدمن المتقدم وعمليات المنصة
 
-**US-080: Multi-Tenant Admin Console**
+**US-080: لوحة أدمن متعددة المستأجرين**
 
-As Jawla Operations Director, I want a meta-admin console to manage all tenants (Jawla + white-label partners) so that I oversee the platform.
+كمدير عمليات Jawla، عايز لوحة أدمن meta لإدارة كل المستأجرين (Jawla + شركاء white-label) عشان أشرف على المنصة.
 
-- AC-080.1: Tenant list with health (uptime, bookings, revenue).
-- AC-080.2: Drill-down to tenant-scoped admin.
-- AC-080.3: Cross-tenant reporting (Jawla-only view).
+- AC-080.1: قائمة المستأجرين بالصحة (uptime، حجوزات، إيراد).
+- AC-080.2: تعمّق لأدمن في نطاق المستأجر.
+- AC-080.3: تقارير عبر المستأجرين (عرض Jawla فقط).
 
-**US-081: API Platform for Partners**
+**US-081: منصة API للشركاء**
 
-As an integration partner, I want a public API to embed Jawla's inventory in my own site so that we expand distribution.
+كشريك تكامل، عايز API عام عشان أضمّن مخزون Jawla في موقعي عشان نوسع التوزيع.
 
-- AC-081.1: REST + GraphQL APIs for search, book, manage.
-- AC-081.2: API key management, rate limiting, webhook subscriptions.
-- AC-081.3: Public docs and sandbox.
+- AC-081.1: REST + GraphQL APIs للبحث، الحجز، الإدارة.
+- AC-081.2: إدارة مفاتيح API، rate limiting، اشتراكات webhook.
+- AC-081.3: مستندات عامة و sandbox.
 
-**US-082: Executive Real-Time Dashboard**
+**US-082: Dashboard تنفيذي لحظي**
 
-As Sherif (CEO), I want a real-time executive dashboard so that I see the business pulse.
+كشريف (CEO)، عايز dashboard تنفيذي لحظي عشان أشوف نبض العمل.
 
-- AC-082.1: Today's bookings + GBV + revenue, channel mix (B2C, B2B, mobile, white-label), top tenants, top issues.
-- AC-082.2: Mobile-optimized for phone viewing.
-- AC-082.3: Weekly executive summary email auto-generated.
+- AC-082.1: حجوزات اليوم + GBV + الإيراد، مزيج القناة (B2C، B2B، موبايل، white-label)، أعلى المستأجرين، أعلى المشاكل.
+- AC-082.2: محسّن للموبايل للعرض على التليفون.
+- AC-082.3: ملخص تنفيذي أسبوعي بالإيميل يتوّلد تلقائيًا.
 
-**US-083: Cohort & Retention Analytics**
+**US-083: تحليلات Cohort والاحتفاظ**
 
-As Sherif, I want cohort analysis (acquisition month vs repeat purchase) so that I understand LTV.
+كشريف، عايز تحليل cohort (شهر الاكتساب مقابل الشراء المتكرر) عشان أفهم LTV.
 
-- AC-083.1: Cohort chart with configurable acquisition definition.
-- AC-083.2: Drill-down to channel, segment.
+- AC-083.1: رسم cohort بتعريف اكتساب قابل للتهيئة.
+- AC-083.2: تعمّق للقناة، القطاع.
 
-### Compliance & Security
+### الامتثال والأمن
 
-**US-084: PCI DSS Level 1 Posture**
+**US-084: موقف PCI DSS Level 1**
 
-As Layla Nour (compliance), the platform must meet PCI DSS Level 1 requirements so that we are audited and certified.
+كليلى نور (الامتثال)، المنصة لازم تستوفي متطلبات PCI DSS Level 1 عشان نتعرّض للتدقيق والشهادة.
 
-- AC-084.1: Network segmentation isolating cardholder data environment (CDE).
-- AC-084.2: Annual penetration test, quarterly vulnerability scan.
-- AC-084.3: Documented policies, RBAC enforcement, encryption at rest + in transit.
-- AC-084.4: Approved QSA engagement for assessment.
+- AC-084.1: تقسيم الشبكة لعزل بيئة بيانات حاملي البطاقات (CDE).
+- AC-084.2: اختبار اختراق سنوي، فحص ثغرات ربع سنوي.
+- AC-084.3: سياسات موثقة، فرض RBAC، تشفير at rest + in transit.
+- AC-084.4: تعاقد مع QSA معتمد للتقييم.
 
-**US-085: SOC 2 Type 1 Readiness**
+**US-085: الاستعداد لـ SOC 2 Type 1**
 
-As above, the platform must achieve SOC 2 Type 1 attestation within 6 months of Enterprise launch.
+نفس اللي فوق، المنصة لازم تحقق شهادة SOC 2 Type 1 خلال 6 شهور من إطلاق Enterprise.
 
-- AC-085.1: Control framework implemented (CC1-CC9 + selected criteria).
-- AC-085.2: Evidence collection automated where possible (Vanta, Drata, or in-house).
+- AC-085.1: إطار الضوابط مطبق (CC1-CC9 + معايير مختارة).
+- AC-085.2: جمع الأدلة مؤتمت قدر الإمكان (Vanta، Drata، أو داخلي).
 
-**US-086: GDPR-Equivalent Privacy Program**
+**US-086: برنامج خصوصية مكافئ لـ GDPR**
 
-As Layla Nour, the platform must support data subject rights (access, deletion, portability) so that we comply with the strictest privacy regime applicable.
+كليلى نور، المنصة لازم تدعم حقوق صاحب البيانات (الوصول، الحذف، النقل) عشان نمتثل بأشد نظام خصوصية ينطبق.
 
-- AC-086.1: Customer self-serve: download my data, delete my account.
-- AC-086.2: Soft-delete with hard-delete after 30 days (where legal permits).
-- AC-086.3: Data processing agreements with all vendors.
+- AC-086.1: خدمة ذاتية للعميل: تنزيل بياناتي، حذف حسابي.
+- AC-086.2: حذف ناعم مع حذف صلب بعد 30 يوم (حيث يسمح القانون).
+- AC-086.3: اتفاقيات معالجة بيانات مع كل الموردين.
 
-**US-087: Audit Logging at Platform Scale**
+**US-087: تسجيل التدقيق بنطاق المنصة**
 
-As Layla Nour, all sensitive actions across the platform must be logged immutably with retention so that audits succeed.
+كليلى نور، كل الأفعال الحساسة عبر المنصة لازم تتسجل بشكل ثابت مع احتفاظ عشان التدقيقات تنجح.
 
-- AC-087.1: Append-only audit log to immutable storage (AWS QLDB or equivalent).
-- AC-087.2: 7-year retention.
-- AC-087.3: Audit log query interface for compliance team.
+- AC-087.1: سجل تدقيق append-only لتخزين ثابت (AWS QLDB أو ما يعادله).
+- AC-087.2: احتفاظ 7 سنوات.
+- AC-087.3: واجهة استعلام سجل التدقيق لفريق الامتثال.
 
-### Scale & Performance
+### النطاق والأداء
 
-**US-088: Horizontal Scaling**
+**US-088: التوسع الأفقي**
 
-As the engineering team, the platform must scale horizontally so that peak loads are served.
+كفريق الهندسة، المنصة لازم تتوسع أفقيًا عشان نخدم أحمال الذروة.
 
-- AC-088.1: Stateless services scaled via container orchestrator (Kubernetes or Nomad).
-- AC-088.2: Database read replicas; warehouse separation.
-- AC-088.3: Caching layers (Redis, CDN) for hot paths.
+- AC-088.1: خدمات stateless متوسعة عبر container orchestrator (Kubernetes أو Nomad).
+- AC-088.2: نسخ قراءة لقاعدة البيانات؛ فصل warehouse.
+- AC-088.3: طبقات caching (Redis، CDN) للمسارات الساخنة.
 
-**US-089: Multi-Region Disaster Recovery**
+**US-089: التعافي من الكوارث متعدد المناطق**
 
-As the engineering team, the platform must survive a region outage with < 1h RTO so that the business is resilient.
+كفريق الهندسة، المنصة لازم تنجو من انقطاع منطقة مع RTO < 1 ساعة عشان العمل يكون مرن.
 
-- AC-089.1: Active region + warm standby in second region.
-- AC-089.2: Automated failover drills quarterly.
-- AC-089.3: Documented runbooks.
+- AC-089.1: منطقة نشطة + standby دافئ في منطقة ثانية.
+- AC-089.2: تجارب failover مؤتمتة كل ربع سنة.
+- AC-089.3: runbooks موثقة.
 
-**US-090: Comprehensive Observability**
+**US-090: قابلية ملاحظة شاملة**
 
-As the engineering team, the platform must have comprehensive observability so that incidents are diagnosed in minutes.
+كفريق الهندسة، المنصة لازم يكون عندها قابلية ملاحظة شاملة عشان الحوادث تتشخّص خلال دقائق.
 
-- AC-090.1: Distributed tracing on every request (OpenTelemetry).
-- AC-090.2: Centralized logs with structured search.
-- AC-090.3: Per-tenant, per-supplier, per-endpoint dashboards.
-- AC-090.4: SLO/SLA dashboards for executive view.
+- AC-090.1: distributed tracing على كل طلب (OpenTelemetry).
+- AC-090.2: logs مركزية ببحث منظم.
+- AC-090.3: dashboards لكل مستأجر، لكل مورد، لكل endpoint.
+- AC-090.4: dashboards SLO/SLA للعرض التنفيذي.
 
 ---
 
-## Business Requirements
+## المتطلبات التجارية
 
-The Basic (BR-001..BR-025) and Professional (BR-026..BR-050) requirements remain in force. Enterprise adds:
+متطلبات Basic (BR-001..BR-025) و Professional (BR-026..BR-050) لسه سارية. Enterprise تضيف:
 
-| ID | Requirement | Priority | Source |
-|----|-------------|----------|--------|
-| BR-051 | The platform must support tour packages (pre-built and dynamically assembled) with end-to-end booking, payment, and confirmation as a single transaction. | Must | Product |
-| BR-052 | The platform must support a B2B agent portal with markup management, credit lines, commission accounting, and sub-user management. | Must | Sales |
-| BR-053 | The platform must offer native mobile applications for iOS and Android with feature parity to web for core booking flows, plus mobile-only capabilities (biometric, push, offline, wallet integration). | Must | Product |
-| BR-054 | The platform must support white-label tenancy with tenant-isolated data, branding, domains, and admin. | Must | Sales |
-| BR-055 | The platform must include a dynamic pricing engine with configurable rules and demand-based adjustments, with all changes audited and reversible. | Must | Revenue |
-| BR-056 | The platform must support group bookings (10+ passengers) with offline-rate workflow, holding bookings, deposit collection, and per-traveler payment links. | Must | Product |
-| BR-057 | The platform must support corporate accounts with travel policy enforcement, approver workflows, and consolidated monthly invoicing. | Must | Sales |
-| BR-058 | The platform must support multi-branch operations with branch-level P&L, branch user roles, counter sales (cash + POS), and cash reconciliation. | Must | Operations |
-| BR-059 | The platform must implement real-time fraud scoring using a combination of rule-based and ML-based methods, with chargeback evidence assembly and submission. | Must | Finance + Security |
-| BR-060 | The platform must achieve PCI DSS Level 1 certification within 9 months of Enterprise go-live. | Must | Compliance |
-| BR-061 | The platform must achieve SOC 2 Type 1 attestation within 12 months of Enterprise go-live. | Must | Compliance |
-| BR-062 | The platform must support data subject rights (access, deletion, portability) with self-service workflows. | Must | Legal |
-| BR-063 | The platform must operate at >= 99.9% availability with multi-region disaster recovery, RTO < 1 hour, RPO < 5 minutes. | Must | Engineering + Business |
-| BR-064 | The platform must scale to >= 10,000 concurrent users and >= 50,000 bookings/month without performance degradation. | Must | Engineering |
-| BR-065 | The platform must expose a public API platform for distribution partners with key management, rate limiting, and webhooks. | Should | Sales |
-| BR-066 | All mobile apps must support biometric authentication, push notifications, offline access, deep linking, app-to-web continuity, and wallet integration (Apple Wallet, Google Wallet). | Must | Product |
-| BR-067 | The platform must integrate at least 2 day-tour/activity inventory sources for cross-sell. | Should | Product |
-| BR-068 | The platform must offer a per-tenant configurable payment gateway selection so that white-label partners may use their own merchant accounts. | Must | Sales + Compliance |
-| BR-069 | The platform must include observability tooling (distributed tracing, centralized logs, dashboards, alerting) covering 100% of critical paths. | Must | Engineering |
-| BR-070 | All deploys must be progressive (canary or blue/green) with automated rollback on error budget burn. | Must | Engineering |
-| BR-071 | The platform must run on a container orchestrator (Kubernetes recommended) with autoscaling. | Must | Engineering |
-| BR-072 | The platform must maintain a service catalog with documented owners, SLOs, dependencies, and runbooks for every service. | Must | Engineering |
-| BR-073 | All sensitive admin actions across the platform must be logged to immutable storage and retained for 7 years. | Must | Compliance |
-| BR-074 | The platform must support per-tenant data residency configuration (Egypt-resident vs offshore) once Egyptian data residency is enabled. | Should | Legal |
-| BR-075 | Corporate account billing must produce tax-compliant invoices per Egyptian Tax Authority e-invoicing standards. | Must | Finance + Legal |
-| BR-076 | The platform must implement role-based access control with at least 12 distinct roles across consumer, B2B, branch, white-label, and admin contexts. | Must | Security |
-| BR-077 | Fraud detection models must be retrained at minimum monthly, with model performance metrics dashboards. | Must | Engineering + Finance |
-| BR-078 | The platform must support promotional campaigns (codes, automatic, tier-based) with usage limits, expiration, and audit. | Should | Marketing |
-| BR-079 | The platform must support referral programs with attribution, reward issuance, and fraud protection. | Should | Marketing |
-| BR-080 | Mobile apps must be available in App Store and Play Store under Jawla's developer accounts with stable submission/review process. | Must | Product |
-| BR-081 | The platform must integrate at least one accounting system (Xero, QuickBooks, or local ERP) for financial sync. | Should | Finance |
-| BR-082 | Multi-branch operations must enforce that branch users see only their branch's customers and bookings. | Must | Security |
-| BR-083 | White-label partners' admin users must not be able to access Jawla operational tooling under any circumstance. | Must | Security |
-| BR-084 | Group booking offline-rate workflow must integrate with at least 2 group-rate suppliers (or be operable with manual sourcing). | Should | Product |
-| BR-085 | Customer LTV calculations and cohort reports must be available to executives in real time. | Must | Executive |
-
----
-
-## Functional Acceptance Criteria
-
-The FAC-1..FAC-14 from prior packages remain. Enterprise adds:
-
-### FAC-15: Package Booking End-to-End
-
-A package booking is functionally correct when:
-1. Customer browses, selects, and configures the package.
-2. Component inventory is verified across all components.
-3. Payment is captured in a single transaction.
-4. Each component is booked atomically with the supplier.
-5. If any component fails, all others are rolled back and customer is refunded fully.
-6. Single confirmation includes itinerary PDF + individual component vouchers.
-7. Admin sees the package booking with each component reconciled separately.
-
-### FAC-16: B2B Agent Booking with Markup
-
-A B2B booking is functionally correct when:
-1. Agent is authenticated.
-2. Customer details captured.
-3. Net price + agent markup = customer price computed and shown.
-4. Payment via customer link, credit line, or wallet.
-5. Booking attributed to agent in DB with full audit.
-6. Customer receives confirmation under agent branding (if configured) or Jawla branding (default).
-7. Commission/markup tracked for monthly settlement.
-
-### FAC-17: Corporate Booking with Policy Enforcement
-
-A corporate booking is functionally correct when:
-1. Traveler is authenticated as corporate user.
-2. Policy validation runs on every offer.
-3. Non-compliant offers display warning; selection requires acknowledgment.
-4. Booking submission with violation routes to approver.
-5. Approver sees full context, can approve/reject.
-6. Approved booking proceeds; rejected booking notifies traveler.
-7. Booking added to corporate's monthly statement.
-
-### FAC-18: Mobile Booking Parity
-
-A mobile booking is functionally correct when:
-1. Search returns same results as web for same query.
-2. Pricing matches web.
-3. Payment via Apple Pay/Google Pay or gateway forms.
-4. Confirmation in app + push notification + email + WhatsApp.
-5. Booking visible in My Bookings on web and mobile.
-6. Voucher saved to Apple Wallet / Google Wallet on user action.
-
-### FAC-19: Dynamic Pricing Application
-
-Dynamic pricing is functionally correct when:
-1. Base markup applied first.
-2. Rule chain evaluated in defined order.
-3. Final markup capped at floor/ceiling.
-4. Markup applied to net rate to produce displayed price.
-5. Markup decision logged for audit and replay.
-6. Customer NEVER sees raw markup math.
-
-### FAC-20: White-Label Tenant Isolation
-
-Tenant isolation is functionally correct when:
-1. Every DB row has tenant_id.
-2. Every query is tenant-scoped at the framework level (Prisma middleware or equivalent).
-3. Tenant admin cannot SELECT, JOIN, or otherwise access other tenants' data.
-4. Backups are per-tenant restorable.
-5. Per-tenant disaster recovery testing succeeds quarterly.
-
-### FAC-21: Fraud Scoring & Action
-
-Fraud scoring is functionally correct when:
-1. Signals collected pre-payment.
-2. Score returned within 200ms p95.
-3. Action applied per threshold (block, review, allow).
-4. Decision logged with signals + score + action.
-5. Customer message localized for the action (e.g., "Please contact support to complete this booking").
-6. Fraud team can override block via admin.
-
-### FAC-22: Group Booking Holding & Settlement
-
-A group booking is functionally correct when:
-1. Quote accepted creates a holding with reference and deposit deadline.
-2. Per-traveler payment links generated.
-3. Payments aggregate to the holding; balance visible to coordinator.
-4. Full payment by deadline triggers final ticketing.
-5. Partial payment by deadline triggers configurable action (extension, partial release, full cancellation).
-
-### FAC-23: Multi-Branch Cash Reconciliation
-
-A branch shift close is functionally correct when:
-1. Shift opening cash recorded.
-2. All transactions during shift logged.
-3. Closing cash counted, variance computed.
-4. Variance >5% of cash transacted requires supervisor sign-off.
-5. Daily reconciliation report transmits to HQ Finance.
-
-### FAC-24: PCI DSS Continuous Compliance
-
-PCI compliance is continuously satisfied when:
-1. Quarterly vulnerability scans pass.
-2. Annual penetration test conducted by external firm.
-3. CDE network segmentation verified.
-4. All staff with CDE access trained annually.
-5. Incident response plan tested annually.
+| ID | المتطلب | الأولوية | المصدر |
+|----|---------|---------|--------|
+| BR-051 | المنصة لازم تدعم tour packages (جاهزة + مجمعة ديناميكيًا) بحجز ودفع وتأكيد كاملين كمعاملة واحدة. | Must | Product |
+| BR-052 | المنصة لازم تدعم بوابة وكلاء B2B بإدارة markup، حدود ائتمان، محاسبة عمولات، وإدارة مستخدمين فرعيين. | Must | Sales |
+| BR-053 | المنصة لازم تقدم تطبيقات موبايل أصلية لـ iOS و Android بمستوى موازي للويب في تدفقات الحجز الأساسية، بالإضافة لقدرات موبايل فقط (بيومتري، push، offline، تكامل wallet). | Must | Product |
+| BR-054 | المنصة لازم تدعم إيواء white-label بفصل بيانات المستأجر، علامة، نطاقات، وأدمن. | Must | Sales |
+| BR-055 | المنصة لازم تشمل محرك تسعير ديناميكي بقواعد قابلة للتهيئة وتعديلات حسب الطلب، مع تدقيق كل التغييرات وقابلية التراجع. | Must | Revenue |
+| BR-056 | المنصة لازم تدعم حجوزات المجموعات (10+ ركاب) بتدفق سعر offline، حجوزات معلّقة، تحصيل عربون، وروابط دفع لكل مسافر. | Must | Product |
+| BR-057 | المنصة لازم تدعم حسابات الشركات بفرض سياسة السفر، تدفقات المعتمد، وفاتورة شهرية موحدة. | Must | Sales |
+| BR-058 | المنصة لازم تدعم عمليات الفروع المتعددة بـ P&L على مستوى الفرع، أدوار مستخدمي الفرع، مبيعات counter (كاش + POS)، وتسوية كاش. | Must | Operations |
+| BR-059 | المنصة لازم تنفّذ تقييم احتيال لحظي باستخدام مزيج من الطرق المبنية على القواعد و ML، مع تجميع وتقديم أدلة chargeback. | Must | Finance + Security |
+| BR-060 | المنصة لازم تحقق شهادة PCI DSS Level 1 خلال 9 شهور من إطلاق Enterprise. | Must | Compliance |
+| BR-061 | المنصة لازم تحقق شهادة SOC 2 Type 1 خلال 12 شهر من إطلاق Enterprise. | Must | Compliance |
+| BR-062 | المنصة لازم تدعم حقوق صاحب البيانات (الوصول، الحذف، النقل) بتدفقات خدمة ذاتية. | Must | Legal |
+| BR-063 | المنصة لازم تشتغل بـ >= 99.9% availability مع تعافي كوارث متعدد المناطق، RTO < 1 ساعة، RPO < 5 دقايق. | Must | Engineering + Business |
+| BR-064 | المنصة لازم تتوسع لـ >= 10,000 مستخدم متزامن و >= 50,000 حجز/شهر بدون تدهور أداء. | Must | Engineering |
+| BR-065 | المنصة لازم تعرض منصة API عامة لشركاء التوزيع بإدارة مفاتيح، rate limiting، و webhooks. | Should | Sales |
+| BR-066 | كل تطبيقات الموبايل لازم تدعم مصادقة بيومترية، push notifications، وصول offline، deep linking، تواصل تطبيق-إلى-ويب، وتكامل wallet (Apple Wallet، Google Wallet). | Must | Product |
+| BR-067 | المنصة لازم تتكامل مع مصدرين على الأقل لمخزون الرحلات اليومية/الأنشطة للـ cross-sell. | Should | Product |
+| BR-068 | المنصة لازم تقدم اختيار بوابة دفع قابل للتهيئة لكل مستأجر عشان شركاء white-label يستخدموا حسابات الـ merchant بتاعتهم. | Must | Sales + Compliance |
+| BR-069 | المنصة لازم تشمل أدوات قابلية ملاحظة (distributed tracing، logs مركزية، dashboards، تنبيهات) تغطي 100% من المسارات الحرجة. | Must | Engineering |
+| BR-070 | كل النشر لازم يكون تدريجي (canary أو blue/green) مع تراجع مؤتمت عند استنفاد ميزانية الأخطاء. | Must | Engineering |
+| BR-071 | المنصة لازم تشتغل على container orchestrator (Kubernetes موصى به) بـ autoscaling. | Must | Engineering |
+| BR-072 | المنصة لازم تحافظ على service catalog بمالكين موثقين، SLOs، dependencies، و runbooks لكل خدمة. | Must | Engineering |
+| BR-073 | كل أفعال الأدمن الحساسة عبر المنصة لازم تتسجل لتخزين ثابت ويتم الاحتفاظ بها 7 سنوات. | Must | Compliance |
+| BR-074 | المنصة لازم تدعم تهيئة إقامة البيانات لكل مستأجر (مقيمة في مصر مقابل خارجها) لما تتفعّل إقامة البيانات المصرية. | Should | Legal |
+| BR-075 | فواتير حسابات الشركات لازم تنتج فواتير متوافقة ضريبيًا حسب معايير الفواتير الإلكترونية لمصلحة الضرائب المصرية. | Must | Finance + Legal |
+| BR-076 | المنصة لازم تنفّذ تحكم وصول مبني على الأدوار بـ 12 دور مميز على الأقل عبر سياقات المستهلك، B2B، الفرع، white-label، والأدمن. | Must | Security |
+| BR-077 | نماذج كشف الاحتيال لازم تتدرّب على الأقل شهريًا، مع dashboards لمقاييس أداء النموذج. | Must | Engineering + Finance |
+| BR-078 | المنصة لازم تدعم الحملات الترويجية (أكواد، تلقائية، مبنية على الدرجة) بحدود استخدام، انتهاء، وتدقيق. | Should | Marketing |
+| BR-079 | المنصة لازم تدعم برامج الإحالة بنسب، إصدار مكافآت، وحماية ضد الاحتيال. | Should | Marketing |
+| BR-080 | تطبيقات الموبايل لازم تكون متاحة في App Store و Play Store تحت حسابات Jawla للمطورين بعملية تقديم/مراجعة مستقرة. | Must | Product |
+| BR-081 | المنصة لازم تتكامل مع نظام محاسبة واحد على الأقل (Xero، QuickBooks، أو ERP محلي) للمزامنة المالية. | Should | Finance |
+| BR-082 | عمليات الفروع المتعددة لازم تفرض إن مستخدمي الفرع يشوفوا بس عملاء وحجوزات فرعهم. | Must | Security |
+| BR-083 | مستخدمين أدمن شركاء white-label ما لازمش يقدروا يوصلوا لأدوات تشغيل Jawla تحت أي ظرف. | Must | Security |
+| BR-084 | تدفق سعر offline لحجز المجموعات لازم يتكامل مع موردين على الأقل لأسعار المجموعات (أو قابل للتشغيل بمصادر يدوية). | Should | Product |
+| BR-085 | حسابات LTV العميل وتقارير cohort لازم تكون متاحة للتنفيذيين لحظيًا. | Must | Executive |
 
 ---
 
-## KPIs
+## معايير القبول الوظيفية
 
-The Basic and Professional KPIs remain in force. Enterprise KPIs:
+FAC-1..FAC-14 من الباقات السابقة لسه سارية. Enterprise تضيف:
 
-| KPI | Target | Measurement | Owner | Cadence |
-|-----|--------|-------------|-------|---------|
-| Annualized GBV | > EGP 200M | Warehouse | Executive | Monthly |
-| B2B Share of GBV | > 25% | Warehouse | Sales | Monthly |
-| Mobile Share of GBV | > 35% | Warehouse | Product | Monthly |
-| Package Share of GBV | > 18% | Warehouse | Product | Monthly |
-| White-Label Brands Live | >= 2 | Tenant DB | Sales | Monthly |
-| Active B2B Agents (transacting/month) | > 250 | Warehouse | Sales | Monthly |
-| Active Corporate Accounts | > 30 | Warehouse | Sales | Monthly |
-| Group Booking Share of GBV | > 8% | Warehouse | Product | Monthly |
-| Mobile App Store Rating (iOS) | > 4.5 | App Store | Product | Monthly |
-| Mobile App Store Rating (Android) | > 4.5 | Play Store | Product | Monthly |
-| Mobile App Crash-Free Sessions | > 99.5% | Firebase Crashlytics | Engineering | Weekly |
-| Push Notification Open Rate | > 18% | Mobile analytics | Marketing | Weekly |
-| Mobile DAU/MAU | > 25% | Mobile analytics | Product | Monthly |
-| Dynamic Pricing Revenue Lift | > 6% vs control | A/B + warehouse | Revenue Mgmt | Monthly |
-| Fraud Score Latency (p95) | < 200ms | APM | Engineering | Weekly |
-| Fraud Decline Rate | < 2% of all bookings | DB | Fraud | Weekly |
-| Chargeback Rate | < 0.25% | Gateway + DB | Fraud | Weekly |
-| Fraud Loss % of GBV | < 0.15% | DB | Fraud | Monthly |
-| False Positive Rate (Fraud) | < 8% (declined-good-customer) | Review queue + customer outreach | Fraud | Monthly |
-| Site Uptime | > 99.9% | Monitoring | Engineering | Monthly |
-| Mobile App Uptime (API) | > 99.9% | Monitoring | Engineering | Monthly |
-| MTTR | < 20 minutes | Incident logs | Engineering | Per incident |
-| Disaster Recovery Drill | Successful quarterly | Drill execution | Engineering | Quarterly |
-| PCI DSS Vulnerability Scan | Pass quarterly | QSA / scanner | Compliance | Quarterly |
-| PCI DSS Penetration Test | Pass annually | Third party | Compliance | Annual |
-| SOC 2 Control Coverage | 100% by month 9 | Vanta/Drata | Compliance | Monthly |
-| Data Subject Requests (DSR) SLA | < 30 days | Privacy ticket system | Legal | Per request |
-| API Platform Adoption | > 5 active partners by month 6 | API key registry | Sales | Monthly |
-| Tenant Onboarding Time (White-Label) | < 14 days from contract to live | Project tracker | Sales | Per onboarding |
-| Branch P&L Margin | > 15% per branch | Warehouse | Finance | Monthly |
-| Corporate AR Days Sales Outstanding | < 35 days | AR aging | Finance | Monthly |
-| Cohort Repeat Rate (Day 90) | > 22% | Cohort warehouse | Marketing | Monthly |
-| Customer LTV (24-month) | > EGP 45,000 | Cohort warehouse | Marketing | Quarterly |
-| Mobile Conversion Rate | > 1.8% (search-to-book) | Mobile analytics | Product | Weekly |
-| Package Conversion Rate | > 2.4% | Warehouse | Product | Monthly |
-| Concurrent User Capacity Tested | >= 10,000 | Load test | Engineering | Quarterly |
-| Event Bus Throughput | > 2,000 events/sec | Load test | Engineering | Quarterly |
-| Warehouse Query p95 | < 4 seconds for top 20 dashboards | Warehouse logs | Engineering | Weekly |
+### FAC-15: حجز Package من البداية للنهاية
 
----
+حجز package يكون صحيح وظيفيًا لما:
+1. العميل يتصفح، يختار، ويهيئ الـ package.
+2. يتم التحقق من مخزون المكوّنات لكل المكوّنات.
+3. الدفع يتم في معاملة واحدة.
+4. كل مكوّن يتحجز atomic مع المورد.
+5. لو أي مكوّن فشل، يتم التراجع عن الباقي ويتم رد المبلغ كامل للعميل.
+6. تأكيد واحد يشمل PDF خط سير + قسائم لكل مكوّن.
+7. الأدمن يشوف حجز الـ package مع توفيق كل مكوّن بشكل منفصل.
 
-## Milestones
+### FAC-16: حجز وكيل B2B بـ Markup
 
-Enterprise is structured as parallel workstreams rather than a single sequential timeline. Workstreams progress in parallel with periodic integration gates.
+حجز B2B يكون صحيح وظيفيًا لما:
+1. الوكيل مصادق عليه.
+2. بيانات العميل ملتقطة.
+3. السعر الصافي + markup الوكيل = سعر العميل محسوب ومعروض.
+4. الدفع عبر رابط العميل، الحد الائتماني، أو المحفظة.
+5. الحجز منسوب للوكيل في DB بتدقيق كامل.
+6. العميل يستلم تأكيد تحت علامة الوكيل (لو مهيّأ) أو علامة Jawla (افتراضي).
+7. العمولة/markup مسجّلة للتسوية الشهرية.
 
-| Phase | Deliverables | Duration | Payment Trigger | Payment % | Amount (EGP) |
-|-------|--------------|----------|-----------------|-----------|---------------|
-| M0 - Contract Signing | Signed SOW, executive kickoff, full team assembled, Amadeus consultant continuation, mobile dev environments, white-label legal templates initiated | Day 0 | Contract executed | 18% | 250,200 |
-| M1 - Discovery, Architecture, Design | Per-workstream architecture (mobile, B2B, packages, dynamic pricing, white-label, fraud, group/corp, multi-branch); full Figma library (web, iOS, Android, B2B portal); compliance roadmap; capacity model; team structure finalized | Weeks 1-3 | M1 acceptance | 10% | 139,000 |
-| M2 - Platform & Foundations | Kubernetes (or chosen orchestrator) live; observability stack; multi-tenant DB schema; RBAC framework; feature flag platform; mobile app skeletons (iOS + Android) submitted to internal TestFlight/Internal Track | Weeks 3-7 | Platform smoke test pass; mobile shells running | 12% | 166,800 |
-| M3 - Packages & Dynamic Pricing | Pre-built packages catalog + booking; dynamic packaging (flight+hotel bundle); package admin builder; dynamic pricing rules engine; demand-based adjustments; revenue lift dashboard | Weeks 7-11 | Package end-to-end booking + pricing rule demonstration | 12% | 166,800 |
-| M4 - B2B Agent Portal | Agent application/onboarding; agent booking flow; markup management; credit lines; commission statements; sub-user management; B2B reporting | Weeks 9-13 | First 5 partner agents live and transacting in staging | 12% | 166,800 |
-| M5 - Mobile Apps (iOS + Android) | Feature-complete mobile apps for flights, hotels, packages, loyalty, wallet, push, offline, biometric, wallet integration; beta in TestFlight + Play Internal | Weeks 9-15 | Beta apps available to 50+ internal testers | 12% | 166,800 |
-| M6 - Group, Corporate, Multi-Branch | Group booking workflow; corporate accounts with policy + approver; consolidated invoicing; branch entities; branch P&L; counter sales; cash reconciliation | Weeks 13-17 | Live group booking processed; first corporate account + first branch operational | 10% | 139,000 |
-| M7 - White-Label & Fraud | White-label tenant provisioning; tenant-isolated admin; per-tenant gateway config; partner billing; fraud scoring engine; fraud review queue; chargeback management; ML model v1 trained | Weeks 15-20 | First white-label tenant live with mock data; fraud scoring on 100% of bookings | 8% | 111,200 |
-| M8 - Compliance, Hardening, Launch | PCI DSS gap remediation; SOC 2 control deployment; DSR self-serve; full UAT (600+ cases); load test 10k concurrent; mobile app store submission and approval; production deploy; 4-week hypercare | Weeks 20-24 | Production live; mobile apps approved; PCI gap analysis report delivered | 6% | 83,400 |
-| **TOTAL** | | **20-24 weeks** | | **100%** | **1,390,000** |
+### FAC-17: حجز شركة بفرض السياسة
 
-### Detailed Milestone Acceptance Criteria
+حجز شركة يكون صحيح وظيفيًا لما:
+1. المسافر مصادق عليه كمستخدم شركة.
+2. التحقق من السياسة يجري على كل عرض.
+3. العروض غير المتوافقة تعرض تحذير؛ الاختيار يتطلب إقرار.
+4. تقديم الحجز بمخالفة يوجَّه للمعتمد.
+5. المعتمد يشوف السياق الكامل، يقدر يوافق/يرفض.
+6. الحجز الموافق عليه يكمل؛ الحجز المرفوض ينبّه المسافر.
+7. الحجز يضاف لكشف الشركة الشهري.
 
-**M1 Acceptance**
-- Per-workstream architecture docs (8 workstreams) reviewed and signed off.
-- Figma library complete for web + iOS + Android + B2B + admin (estimated 200+ frames).
-- Compliance roadmap with PCI/SOC 2 timeline.
-- Capacity model: traffic projections, peak load, scaling plan.
-- Team structure: leads per workstream, accountability matrix.
+### FAC-18: تطابق حجز الموبايل
 
-**M2 Acceptance**
-- Kubernetes (or alternative) running with autoscaling.
-- Observability stack live (tracing, logs, metrics, dashboards).
-- Multi-tenant schema migration tested.
-- RBAC enforcement validated against test users for each role.
-- Feature flags switchable in admin.
-- Mobile shells run on iOS + Android, login flow works.
+حجز الموبايل يكون صحيح وظيفيًا لما:
+1. البحث يرجع نفس النتائج اللي على الويب لنفس الاستعلام.
+2. التسعير يطابق الويب.
+3. الدفع عبر Apple Pay/Google Pay أو نماذج gateway.
+4. التأكيد في التطبيق + push notification + إيميل + WhatsApp.
+5. الحجز ظاهر في My Bookings على الويب والموبايل.
+6. القسيمة محفوظة في Apple Wallet / Google Wallet بإجراء المستخدم.
 
-**M3 Acceptance**
-- 10 sample packages live in staging.
-- Dynamic packaging (flight+hotel bundle) bookable end-to-end.
-- Pricing rule editor functional; sample rule changes propagate.
-- Demand-based adjustment running on test traffic.
+### FAC-19: تطبيق التسعير الديناميكي
 
-**M4 Acceptance**
-- Agent onboarding workflow tested with 5 real agencies.
-- Markup, credit, commission flows tested for live transactions.
-- Sub-user roles enforced.
+التسعير الديناميكي يكون صحيح وظيفيًا لما:
+1. الـ markup الأساسي يُطبَّق أولًا.
+2. سلسلة القواعد تُقيَّم بترتيب محدد.
+3. الـ markup النهائي محدود بـ floor/ceiling.
+4. الـ markup يُطبَّق على السعر الصافي لإنتاج السعر المعروض.
+5. قرار الـ markup مسجّل للتدقيق وإعادة التشغيل.
+6. العميل لا يشوف أبدًا حساب الـ markup الخام.
 
-**M5 Acceptance**
-- iOS + Android apps support: login, search (flight + hotel), book, payment (Apple/Google Pay + gateway), confirmations, push, offline.
-- Beta distributed to 50+ testers; <10 critical bugs.
-- Crash-free sessions > 99% in beta.
+### FAC-20: عزل مستأجر White-Label
 
-**M6 Acceptance**
-- One live group booking (10+ pax) processed end-to-end.
-- Corporate account (test entity) booked with policy violation triggering approval.
-- One branch entity operational with live counter sale + reconciliation.
+عزل المستأجر يكون صحيح وظيفيًا لما:
+1. كل صف في DB له tenant_id.
+2. كل استعلام محدود بالمستأجر على مستوى الإطار (Prisma middleware أو ما يعادله).
+3. أدمن المستأجر ما يقدرش يـ SELECT أو JOIN أو يصل بأي طريقة لبيانات المستأجرين الآخرين.
+4. النسخ الاحتياطية قابلة للاستعادة لكل مستأجر.
+5. اختبار التعافي من الكوارث لكل مستأجر ينجح كل ربع سنة.
 
-**M7 Acceptance**
-- White-label tenant provisioned in <14 days from "go".
-- Tenant-isolated admin verified with no cross-tenant data leakage (security audit).
-- Fraud scoring on 100% of bookings; review queue active.
-- ML model v1 deployed with documented performance.
+### FAC-21: تقييم الاحتيال والإجراء
 
-**M8 Acceptance**
-- UAT (600+ cases) > 96% pass rate.
-- Security audit: no Critical findings; <3 High open.
-- Load test sustains 10,000 concurrent with p95 < 3s on key endpoints.
-- iOS app approved in App Store; Android app approved in Play Store.
-- PCI gap analysis delivered with remediation plan and timeline.
-- 4-week hypercare window with on-call rotation.
+تقييم الاحتيال يكون صحيح وظيفيًا لما:
+1. الإشارات تُجمَع قبل الدفع.
+2. التقييم يُرجَع خلال 200ms p95.
+3. الإجراء يُطبَّق حسب العتبة (حظر، مراجعة، سماح).
+4. القرار مسجّل بالإشارات + التقييم + الإجراء.
+5. رسالة العميل مترجمة للإجراء (مثلاً "الرجاء التواصل مع الدعم لإتمام هذا الحجز").
+6. فريق الاحتيال يقدر يعدّل الحظر عبر الأدمن.
+
+### FAC-22: تعليق حجز المجموعة والتسوية
+
+حجز المجموعة يكون صحيح وظيفيًا لما:
+1. قبول السعر ينشئ حجز معلّق بمرجع وموعد نهائي للعربون.
+2. روابط دفع لكل مسافر مولّدة.
+3. المدفوعات تتجمع للحجز المعلّق؛ الرصيد ظاهر للمنسق.
+4. الدفع الكامل في الموعد النهائي يطلق إصدار التذاكر النهائي.
+5. الدفع الجزئي في الموعد النهائي يطلق إجراء قابل للتهيئة (تمديد، إصدار جزئي، إلغاء كامل).
+
+### FAC-23: تسوية كاش الفروع المتعددة
+
+قفل شيفت الفرع يكون صحيح وظيفيًا لما:
+1. كاش فتح الشيفت مسجّل.
+2. كل المعاملات خلال الشيفت مسجّلة.
+3. كاش القفل معدود، الفرق محسوب.
+4. فرق > 5% من الكاش المتحرك يحتاج توقيع المشرف.
+5. تقرير تسوية يومي يُرسل لمالية المقر.
+
+### FAC-24: امتثال PCI DSS المستمر
+
+امتثال PCI يكون مستوفى باستمرار لما:
+1. فحوصات الثغرات الربع سنوية تنجح.
+2. اختبار اختراق سنوي بشركة خارجية.
+3. تقسيم شبكة CDE متحقق منه.
+4. كل الموظفين بوصول لـ CDE مدرّبين سنويًا.
+5. خطة الاستجابة للحوادث مختبرة سنويًا.
 
 ---
 
-## Feature Prioritization (MoSCoW)
+## مؤشرات الأداء (KPIs)
+
+مؤشرات Basic و Professional لسه سارية. مؤشرات Enterprise:
+
+| المؤشر | الهدف | القياس | المالك | التكرار |
+|--------|------|--------|--------|---------|
+| GBV السنوي | > EGP 200M | Warehouse | Executive | شهري |
+| حصة B2B من GBV | > 25% | Warehouse | Sales | شهري |
+| حصة الموبايل من GBV | > 35% | Warehouse | Product | شهري |
+| حصة Packages من GBV | > 18% | Warehouse | Product | شهري |
+| علامات White-Label العاملة | >= 2 | Tenant DB | Sales | شهري |
+| وكلاء B2B النشطين (يحجزون/شهر) | > 250 | Warehouse | Sales | شهري |
+| حسابات شركات نشطة | > 30 | Warehouse | Sales | شهري |
+| حصة حجوزات المجموعات من GBV | > 8% | Warehouse | Product | شهري |
+| تقييم تطبيق الموبايل (iOS) | > 4.5 | App Store | Product | شهري |
+| تقييم تطبيق الموبايل (Android) | > 4.5 | Play Store | Product | شهري |
+| جلسات بدون انهيار في الموبايل | > 99.5% | Firebase Crashlytics | Engineering | أسبوعي |
+| معدل فتح Push Notification | > 18% | Mobile analytics | Marketing | أسبوعي |
+| DAU/MAU الموبايل | > 25% | Mobile analytics | Product | شهري |
+| ارتفاع الإيراد من التسعير الديناميكي | > 6% مقابل التحكم | A/B + warehouse | Revenue Mgmt | شهري |
+| كمون تقييم الاحتيال (p95) | < 200ms | APM | Engineering | أسبوعي |
+| معدل رفض الاحتيال | < 2% من كل الحجوزات | DB | Fraud | أسبوعي |
+| نسبة Chargeback | < 0.25% | Gateway + DB | Fraud | أسبوعي |
+| خسائر الاحتيال % من GBV | < 0.15% | DB | Fraud | شهري |
+| معدل الإيجابيات الزائفة (الاحتيال) | < 8% (عملاء جيدين مرفوضين) | قائمة المراجعة + تواصل العميل | Fraud | شهري |
+| Uptime الموقع | > 99.9% | Monitoring | Engineering | شهري |
+| Uptime تطبيق الموبايل (API) | > 99.9% | Monitoring | Engineering | شهري |
+| MTTR | < 20 دقيقة | سجلات الحوادث | Engineering | لكل حادث |
+| تجربة التعافي من الكوارث | ناجحة ربع سنوي | تنفيذ التجربة | Engineering | ربع سنوي |
+| فحص ثغرات PCI DSS | يجتاز ربع سنوي | QSA / scanner | Compliance | ربع سنوي |
+| اختبار اختراق PCI DSS | يجتاز سنوي | طرف ثالث | Compliance | سنوي |
+| تغطية ضوابط SOC 2 | 100% بحلول الشهر 9 | Vanta/Drata | Compliance | شهري |
+| SLA لطلبات أصحاب البيانات (DSR) | < 30 يوم | نظام تذاكر الخصوصية | Legal | لكل طلب |
+| تبني منصة API | > 5 شركاء نشطين بحلول الشهر 6 | سجل مفاتيح API | Sales | شهري |
+| وقت انضمام المستأجر (White-Label) | < 14 يوم من العقد للإطلاق | متابع المشروع | Sales | لكل انضمام |
+| هامش P&L الفرع | > 15% لكل فرع | Warehouse | Finance | شهري |
+| أيام التحصيل المستحقة للشركات | < 35 يوم | AR aging | Finance | شهري |
+| معدل تكرار Cohort (اليوم 90) | > 22% | Cohort warehouse | Marketing | شهري |
+| LTV العميل (24 شهر) | > EGP 45,000 | Cohort warehouse | Marketing | ربع سنوي |
+| معدل تحويل الموبايل | > 1.8% (بحث-إلى-حجز) | Mobile analytics | Product | أسبوعي |
+| معدل تحويل Package | > 2.4% | Warehouse | Product | شهري |
+| سعة المستخدمين المتزامنين المختبرة | >= 10,000 | Load test | Engineering | ربع سنوي |
+| إنتاجية Event Bus | > 2,000 حدث/ثانية | Load test | Engineering | ربع سنوي |
+| استعلام Warehouse p95 | < 4 ثواني لأعلى 20 dashboard | سجلات Warehouse | Engineering | أسبوعي |
+
+---
+
+## المراحل الزمنية
+
+Enterprise منظمة كخطوط عمل متوازية مش جدول زمني تسلسلي واحد. خطوط العمل تتقدم بالتوازي مع بوابات تكامل دورية.
+
+| المرحلة | المخرجات | المدة | محفز الدفع | % الدفع | المبلغ (EGP) |
+|---------|----------|------|-----------|--------|--------------|
+| M0 - توقيع العقد | SOW موقع، انطلاق تنفيذي، تجميع الفريق الكامل، استمرار مستشار Amadeus، بيئات تطوير الموبايل، بدء قوالب white-label القانونية | اليوم 0 | تنفيذ العقد | 18% | 250,200 |
+| M1 - الاكتشاف والمعمارية والتصميم | معمارية لكل خط عمل (موبايل، B2B، packages، تسعير ديناميكي، white-label، احتيال، مجموعات/شركات، فروع متعددة)؛ مكتبة Figma كاملة (ويب، iOS، Android، بوابة B2B)؛ خارطة طريق الامتثال؛ نموذج السعة؛ هيكل الفريق نهائي | الأسابيع 1-3 | قبول M1 | 10% | 139,000 |
+| M2 - المنصة والأساسيات | Kubernetes (أو orchestrator مختار) جاهز؛ stack القابلية للملاحظة؛ schema DB متعدد المستأجرين؛ إطار RBAC؛ منصة feature flag؛ هياكل تطبيقات الموبايل (iOS + Android) مقدمة لـ TestFlight الداخلي/Internal Track | الأسابيع 3-7 | اختبار smoke للمنصة ينجح؛ هياكل الموبايل تشتغل | 12% | 166,800 |
+| M3 - Packages والتسعير الديناميكي | كتالوج packages جاهزة + حجز؛ packaging ديناميكي (باقة flight+hotel)؛ package admin builder؛ محرك قواعد التسعير الديناميكي؛ تعديلات حسب الطلب؛ dashboard ارتفاع الإيراد | الأسابيع 7-11 | حجز package من البداية للنهاية + إثبات قاعدة تسعير | 12% | 166,800 |
+| M4 - بوابة وكلاء B2B | تقديم/انضمام الوكلاء؛ تدفق حجز الوكيل؛ إدارة markup؛ حدود ائتمان؛ كشوف عمولات؛ إدارة مستخدمين فرعيين؛ تقارير B2B | الأسابيع 9-13 | أول 5 وكلاء شركاء جاهزين ويحجزون في staging | 12% | 166,800 |
+| M5 - تطبيقات الموبايل (iOS + Android) | تطبيقات موبايل مكتملة للطيران، الفنادق، packages، الولاء، المحفظة، push، offline، بيومتري، تكامل wallet؛ نسخة beta في TestFlight + Play Internal | الأسابيع 9-15 | تطبيقات beta متاحة لـ 50+ مختبر داخلي | 12% | 166,800 |
+| M6 - المجموعات والشركات والفروع المتعددة | تدفق حجز المجموعات؛ حسابات الشركات بالسياسة + المعتمد؛ فواتير موحدة؛ كيانات الفروع؛ P&L الفروع؛ مبيعات counter؛ تسوية الكاش | الأسابيع 13-17 | حجز مجموعة حي تم؛ أول حساب شركة + أول فرع عامل | 10% | 139,000 |
+| M7 - White-Label والاحتيال | تجهيز مستأجر white-label؛ أدمن معزول لكل مستأجر؛ تهيئة gateway لكل مستأجر؛ فواتير الشركاء؛ محرك تقييم الاحتيال؛ قائمة مراجعة الاحتيال؛ إدارة chargeback؛ نموذج ML v1 مدرّب | الأسابيع 15-20 | أول مستأجر white-label جاهز ببيانات وهمية؛ تقييم الاحتيال على 100% من الحجوزات | 8% | 111,200 |
+| M8 - الامتثال والتقوية والإطلاق | معالجة فجوات PCI DSS؛ نشر ضوابط SOC 2؛ خدمة ذاتية DSR؛ UAT كامل (600+ حالة)؛ load test 10k متزامن؛ تقديم وموافقة متجر التطبيقات للموبايل؛ نشر إنتاج؛ 4 أسابيع رعاية مكثفة | الأسابيع 20-24 | الإنتاج حي؛ تطبيقات الموبايل معتمدة؛ تقرير تحليل فجوات PCI مسلّم | 6% | 83,400 |
+| **الإجمالي** | | **20-24 أسبوع** | | **100%** | **1,390,000** |
+
+### معايير قبول المراحل التفصيلية
+
+**قبول M1**
+- مستندات معمارية لكل خط عمل (8 خطوط) مراجَعة وموقّعة.
+- مكتبة Figma كاملة للويب + iOS + Android + B2B + الأدمن (تقدير 200+ إطار).
+- خارطة طريق الامتثال بمواعيد PCI/SOC 2.
+- نموذج السعة: توقعات الزيارات، حمل الذروة، خطة التوسع.
+- هيكل الفريق: قادة لكل خط عمل، مصفوفة المسؤولية.
+
+**قبول M2**
+- Kubernetes (أو بديل) يشتغل بـ autoscaling.
+- Stack القابلية للملاحظة جاهز (tracing، logs، metrics، dashboards).
+- ترحيل schema متعدد المستأجرين مختبر.
+- فرض RBAC متحقق منه ضد مستخدمين اختبار لكل دور.
+- Feature flags قابلة للتبديل من الأدمن.
+- هياكل الموبايل تشتغل على iOS + Android، تدفق الدخول شغّال.
+
+**قبول M3**
+- 10 packages عيّنة جاهزة في staging.
+- Packaging ديناميكي (باقة flight+hotel) قابل للحجز من البداية للنهاية.
+- محرر قواعد التسعير شغّال؛ تغييرات قواعد عيّنة تنتشر.
+- التعديل المبني على الطلب يشتغل على زيارات اختبار.
+
+**قبول M4**
+- تدفق انضمام الوكلاء مختبر مع 5 وكالات حقيقية.
+- تدفقات markup، ائتمان، عمولة مختبرة لمعاملات حية.
+- أدوار المستخدمين الفرعيين مفروضة.
+
+**قبول M5**
+- تطبيقات iOS + Android تدعم: دخول، بحث (طيران + فندق)، حجز، دفع (Apple/Google Pay + gateway)، تأكيدات، push، offline.
+- Beta موزعة على 50+ مختبر؛ < 10 أخطاء حرجة.
+- جلسات بدون انهيار > 99% في beta.
+
+**قبول M6**
+- حجز مجموعة حي واحد (10+ ركاب) معالج من البداية للنهاية.
+- حساب شركة (كيان اختبار) محجوز بمخالفة سياسة تطلق موافقة.
+- كيان فرع واحد عامل مع بيع counter حي + تسوية.
+
+**قبول M7**
+- مستأجر white-label مُجهَّز خلال < 14 يوم من "ابدأ".
+- أدمن معزول لكل مستأجر متحقق منه بدون تسريب بيانات عبر المستأجرين (تدقيق أمني).
+- تقييم الاحتيال على 100% من الحجوزات؛ قائمة المراجعة نشطة.
+- نموذج ML v1 منشور بأداء موثق.
+
+**قبول M8**
+- UAT (600+ حالة) > 96% نسبة نجاح.
+- تدقيق أمني: لا توجد نتائج Critical؛ < 3 High مفتوحة.
+- Load test يصمد لـ 10,000 متزامن بـ p95 < 3 ثواني على endpoints رئيسية.
+- تطبيق iOS معتمد في App Store؛ تطبيق Android معتمد في Play Store.
+- تحليل فجوات PCI مسلّم بخطة معالجة وجدول زمني.
+- نافذة رعاية مكثفة 4 أسابيع بدوران on-call.
+
+---
+
+## أولويات الميزات (MoSCoW)
 
 ### Must Have
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Tour packages (pre-built + dynamic) | Margin differentiation, strategic |
-| Day tours / activities cross-sell | Higher attach rate, margin |
-| B2B agent portal (full) | Channel diversification |
-| B2B credit lines, commission accounting | Required to compete with offline GDS resellers |
-| Mobile apps (iOS + Android) | Channel diversification; market expectation |
-| Push notifications, offline, biometric | Mobile feature parity with leading OTAs |
-| Apple Pay / Google Pay | Conversion lift |
-| White-label tenancy | Strategic platform business |
-| Per-tenant payment gateway | White-label flexibility |
-| Dynamic pricing engine | Revenue optimization |
-| Demand-based pricing | Margin lift |
-| Group booking workflow (10+) | Lucrative segment |
-| Corporate accounts with policy | Lucrative segment, recurring revenue |
-| Consolidated invoicing | Corporate requirement |
-| Multi-branch operations | Operational reality |
-| Branch P&L dashboard | Branch motivation |
-| Counter sales (cash + POS) | Walk-in revenue |
-| Fraud scoring (rules + ML) | Risk reduction |
-| Chargeback management | Loss reduction |
-| PCI DSS Level 1 posture | Compliance requirement at scale |
-| SOC 2 Type 1 readiness | Required for corporate sales |
-| GDPR-equivalent DSR | Compliance |
-| Kubernetes / horizontal scaling | Required at this volume |
-| Multi-region disaster recovery | Resilience |
-| Comprehensive observability | Operational requirement |
-| Public API platform | Distribution expansion |
-| Executive real-time dashboard | Decision support |
-| Cohort & retention analytics | Strategic decision support |
-| Multi-tenant admin console | Platform operations |
-| RBAC across 12+ roles | Security requirement at scale |
-| Promotional campaigns engine | Marketing requirement |
-| Referral program | Acquisition |
+| Tour packages (جاهزة + ديناميكية) | تمييز هامش، استراتيجي |
+| Cross-sell الرحلات اليومية / الأنشطة | معدل ربط أعلى، هامش |
+| بوابة وكلاء B2B (كاملة) | تنويع القنوات |
+| حدود ائتمان B2B، محاسبة عمولات | مطلوب للمنافسة مع موزعي GDS offline |
+| تطبيقات موبايل (iOS + Android) | تنويع القنوات؛ توقع السوق |
+| Push notifications، offline، بيومتري | تطابق ميزات الموبايل مع OTAs الرائدة |
+| Apple Pay / Google Pay | ارتفاع التحويل |
+| إيواء White-label | عمل منصاتي استراتيجي |
+| بوابة دفع لكل مستأجر | مرونة White-label |
+| محرك تسعير ديناميكي | تحسين الإيراد |
+| التسعير بناءً على الطلب | ارتفاع الهامش |
+| تدفق حجز المجموعات (10+) | قطاع مربح |
+| حسابات الشركات بالسياسة | قطاع مربح، إيراد متكرر |
+| فواتير موحدة | متطلب الشركات |
+| عمليات الفروع المتعددة | واقع تشغيلي |
+| Dashboard P&L الفرع | تحفيز الفرع |
+| مبيعات Counter (كاش + POS) | إيراد العملاء الحضوريين |
+| تقييم الاحتيال (قواعد + ML) | تقليل المخاطر |
+| إدارة Chargeback | تقليل الخسائر |
+| موقف PCI DSS Level 1 | متطلب امتثال عند النطاق |
+| استعداد SOC 2 Type 1 | مطلوب لمبيعات الشركات |
+| DSR مكافئ لـ GDPR | امتثال |
+| Kubernetes / التوسع الأفقي | مطلوب عند هذا الحجم |
+| تعافي من الكوارث متعدد المناطق | مرونة |
+| قابلية ملاحظة شاملة | متطلب تشغيلي |
+| منصة API عامة | توسيع التوزيع |
+| Dashboard تنفيذي لحظي | دعم قرار |
+| تحليلات Cohort والاحتفاظ | دعم قرار استراتيجي |
+| لوحة أدمن متعددة المستأجرين | عمليات المنصة |
+| RBAC عبر 12+ دور | متطلب أمن عند النطاق |
+| محرك حملات ترويجية | متطلب تسويق |
+| برنامج إحالة | اكتساب |
 
 ### Should Have
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| iOS / Android tablet UX optimization | Polish |
-| Accounting integration (Xero/QuickBooks) | Finance efficiency |
-| In-app live chat with agent routing | Mobile-first support |
-| Loyalty marketplace (non-travel redemption) | Engagement |
-| Agent training certifications in portal | Quality control |
-| Corporate travel reports (CO2 footprint) | ESG storytelling |
-| Group-rate supplier direct integrations | Margin |
-| Multi-language beyond AR/EN (FR, DE in mobile) | Tourist market |
-| Branch staff KPI / commission dashboards | Branch motivation |
-| Voice booking via WhatsApp AI (beta) | Innovation |
-| White-label co-marketing tools | Partner empowerment |
+| تحسين UX للموبايل tablet (iOS / Android) | لمسة نهائية |
+| تكامل محاسبي (Xero/QuickBooks) | كفاءة مالية |
+| دردشة حية داخل التطبيق مع توجيه وكيل | دعم موبايل أولًا |
+| سوق ولاء (استرداد غير سفر) | تفاعل |
+| شهادات تدريب الوكلاء في البوابة | تحكم جودة |
+| تقارير سفر الشركات (بصمة CO2) | سرد ESG |
+| تكامل مباشر مع موردي أسعار المجموعات | هامش |
+| لغات متعددة بعد AR/EN (FR، DE في الموبايل) | سوق السياح |
+| dashboards KPI / عمولة لموظفي الفرع | تحفيز الفرع |
+| حجز صوتي عبر WhatsApp AI (beta) | ابتكار |
+| أدوات تسويق مشترك White-label | تمكين الشريك |
 
 ### Could Have
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Crypto payments (USDC) | Niche but trend-aware |
-| BNPL via Tabby/Tamara | Conversion |
-| In-app AR hotel previews | Differentiator |
-| Trip diary / social sharing | Engagement |
-| Loyalty status matching from other programs | Acquisition |
-| Branch chatbot / kiosk mode | Branch automation |
-| Carbon offset purchase at checkout | ESG |
+| دفع كريبتو (USDC) | متخصص لكن واعي للتوجه |
+| BNPL عبر Tabby/Tamara | تحويل |
+| معاينات فنادق AR داخل التطبيق | مميِّز |
+| دفتر يوميات الرحلة / مشاركة اجتماعية | تفاعل |
+| مطابقة حالة ولاء من برامج أخرى | اكتساب |
+| chatbot / وضع kiosk للفرع | أتمتة الفرع |
+| شراء تعويض كربون عند الدفع | ESG |
 
-### Won't Have (Enterprise Final - reserved for post-Enterprise)
+### Won't Have (Enterprise النهائية - مؤجلة لما بعد Enterprise)
 
-| Feature | Notes |
+| الميزة | ملاحظات |
 |---------|-------|
-| Acquired-company OTA integration (M&A scenario) | Out of scope |
-| GDS-direct NDC distribution (selling to other OTAs) | Out of scope |
-| Native cruise booking | Future |
-| Long-stay rentals (>30 days) | Future |
-| In-house insurance underwriting | Out of scope |
-| Custom CRM build | Use existing |
-| Custom helpdesk build | Use existing |
+| تكامل OTA لشركة مكتسبة (سيناريو M&A) | خارج النطاق |
+| توزيع NDC مباشر للـ GDS (البيع لـ OTAs أخرى) | خارج النطاق |
+| حجز كروز أصلي | مستقبلي |
+| إيجارات طويلة (>30 يوم) | مستقبلي |
+| تأمين داخلي | خارج النطاق |
+| بناء CRM مخصص | استخدم الموجود |
+| بناء helpdesk مخصص | استخدم الموجود |
 
 ---
 
-## Out of Scope
+## خارج النطاق
 
-Despite the breadth of the Enterprise package, the following are explicitly NOT included:
+رغم اتساع باقة Enterprise، التالي مستبعد صراحة:
 
-1. **Acquired-Brand Integration**: If Jawla acquires another OTA, integration is a separate engagement.
-2. **NDC Distribution Outward**: Selling Jawla's negotiated rates to other OTAs via NDC standards.
-3. **Cruise Bookings**: Cruise inventory and booking flows.
-4. **Long-Stay Rentals (Airbnb-like)**: Different inventory model.
-5. **Custom-Built CRM or Helpdesk**: Use third-party (HubSpot, Zendesk).
-6. **In-House Payments Infrastructure (Becoming a Payment Service Provider)**: Continue using Paymob/Stripe.
-7. **Hardware POS Manufacturing**: Use existing third-party terminals.
-8. **VR/AR Beyond Polish**: Full VR experience not in scope.
-9. **Insurance Underwriting**: Continue affiliate referral to insurance partners.
-10. **Loyalty Tokenization / Blockchain**: Out of scope.
-11. **Bidding / Auction Travel Models (Priceline-like)**: Out of scope.
-12. **AI Trip Planner with LLM**: Could be added but not committed in Enterprise scope.
-13. **Multi-Country Tax/VAT Complete Engine**: Egypt + KSA + UAE only.
-14. **Visa Processing Services**: Affiliate referral only.
-15. **Charter Flight Operations**: Out of scope.
-16. **Hotel Channel Manager for Direct Properties**: Jawla is a buyer not a seller for hotels.
-17. **Migration from Legacy Booking System**: If Jawla has pre-existing systems, migration is separate.
-18. **Hardware Procurement (Branch POS, Receipt Printers)**: Software integration only; hardware procured separately.
-19. **24/7 NOC Outsourcing**: Build the platform to be operable by Jawla; NOC contract is separate.
-20. **Voice Channel (Call Center Telephony Integration)**: Beyond click-to-call deep links.
-21. **Full Mobile Tablet App with Tablet-Specific UX**: Mobile-first; tablets get the mobile layout scaled.
-22. **Localization Beyond AR/EN in Web; AR/EN/FR/DE in Mobile**: Other languages later.
-23. **Per-Tenant Currency Beyond the Platform's Supported 5**: Tenants choose from the platform's set.
-24. **Per-Tenant Custom Feature Development**: White-label is configuration not custom code.
-25. **Investor-Grade Audited Financials**: Compliance posture supports audit; the audit itself is a separate engagement.
-
----
-
-## Risks & Mitigation
-
-The Basic (R-001..R-020) and Professional (R-021..R-040) risks remain. Enterprise-specific risks:
-
-| ID | Risk | Likelihood | Impact | Mitigation | Owner |
-|----|------|------------|--------|------------|-------|
-| R-041 | Scope is too large for 24 weeks; multiple workstreams slip | Very High | Critical | Workstream leads with parallel teams; strict scope gates at M3, M5, M7; reserve weeks 24-26 as schedule buffer (not promised externally) | Project Lead |
-| R-042 | Mobile app store review rejections delay launch | High | High | Submit early to internal tracks (M5); engage Apple/Google liaisons; have alternative submission strategies (separate apps for B2C vs B2B if needed) | Mobile Lead |
-| R-043 | PCI Level 1 certification takes longer than 9 months | Medium | High | Engage QSA at M1; gap analysis at M3; remediation continuous; phased approach (compensating controls first) | Compliance |
-| R-044 | SOC 2 readiness conflicts with engineering velocity | Medium | Medium | Vanta/Drata to automate evidence; engineering controls baked-in from M2; weekly compliance review with engineering | Compliance + Engineering |
-| R-045 | Multi-tenant data leakage incident | Medium | Critical | Tenant-isolation framework with automated tests (every PR); penetration test focused on multi-tenant; bug bounty program post-launch | Security |
-| R-046 | Dynamic pricing rules cause customer outrage (perceived gouging) | High | High | Cap upward adjustments aggressively; reference price always shown; PR-friendly explanation of pricing model; rapid rollback capability | Product + Comms |
-| R-047 | Fraud ML model has high false-positive rate, blocks good customers | High | High | Conservative thresholds at launch; review queue for borderline; weekly false-positive review; customer outreach for blocked-good | Fraud + Product |
-| R-048 | B2B agents abuse credit lines, defaults rise | Medium | High | KYC + credit check on application; auto-suspension on overdue; legal recourse documented; staged credit limit increases | Finance |
-| R-049 | Corporate clients demand custom features not in scope | High | Medium | Standard contract excludes custom dev; change request process; have a "custom" tier with premium pricing | Sales |
-| R-050 | White-label partner brand damages Jawla's reputation | Medium | High | Brand controls in contract; quality bar for tenant onboarding; ability to terminate; Jawla brand attribution in fine print | Legal + Brand |
-| R-051 | Group booking offline workflows are operationally heavy | High | Medium | Dedicated group ops team trained; SLA-driven; queue management; automation where possible | Operations |
-| R-052 | Multi-branch software adoption is poor (branches go around the system) | Medium | Medium | Branch manager incentive aligned with system use; training; KPI on system bookings vs paper | Operations |
-| R-053 | Mobile push notification cost (per-device) scales unfavorably | Low | Low | Optimize notification frequency; preference granularity; cost monitoring | Engineering |
-| R-054 | Disaster recovery drill reveals failover gaps | Medium | High | Quarterly drills with documented findings + remediation; insurance for residual risk | Engineering |
-| R-055 | Kubernetes operational complexity exceeds team capability | High | High | Use managed K8s (EKS/GKE); document everything; on-call rotation; SRE training; consider Nomad or simpler alternative if team strain visible | Engineering Leadership |
-| R-056 | API platform adoption is low (no partners use it) | Medium | Medium | Sales engagement for partner pipeline before launch; documentation excellence; sample integrations | Sales + Engineering |
-| R-057 | Executive dashboard data quality issues erode trust | Medium | High | Data quality testing in warehouse; documented data lineage; on-call data engineer for executive concerns | Data |
-| R-058 | Compliance program (SOC 2) creates bureaucracy that slows ship velocity | Medium | Medium | Lightweight controls; embed in CI/CD; quarterly retrospective on compliance cost | Compliance + Engineering |
-| R-059 | Mobile app downloads are low (acquisition cost > ROI) | Medium | High | App store optimization (ASO); paid acquisition budget reserved; deep link strategy from existing web traffic; smart banners | Marketing |
-| R-060 | Egyptian Tax Authority e-invoicing integration breaks (regulatory change) | Medium | High | Modular invoice generation; monitor regulatory updates; legal+finance liaison | Finance + Legal |
-| R-061 | Cost of running enterprise infrastructure exceeds revenue lift | Medium | Critical | Monthly unit economics review; ability to right-size autoscaling; defer optional features if cost outpaces revenue | Finance + Engineering |
-| R-062 | Talent risk: lead engineers leave during 24-week timeline | Medium | High | Cross-training; pairing; documentation; retention bonus tied to launch | Engineering Leadership |
-| R-063 | Vendor lock-in on white-label payment gateways limits partner choice | Medium | Medium | Abstract gateway interface; support 3+ gateways; document onboarding new gateway | Engineering |
-| R-064 | Branch cash handling fraud (skimming) | Medium | Medium | Daily reconciliation; surprise audits; CCTV at branches (operational); cash limits | Operations + Finance |
-| R-065 | Corporate AR (accounts receivable) collection issues | Medium | High | Credit check on onboarding; payment terms enforced; collections process; consider factoring for slow payers | Finance |
-| R-066 | Refund liability across packages becomes operationally complex | High | Medium | Per-component refund clarity; clear policy documentation; automation where possible | Engineering + Operations |
-| R-067 | Apple/Google policies on travel apps change (e.g., booking fees requirement) | Low | High | Compliance monitoring; in-app booking with no fee; web-based booking via deep link as fallback | Mobile |
+1. **تكامل علامة مكتسبة**: لو Jawla اكتسبت OTA آخر، التكامل التزام منفصل.
+2. **توزيع NDC الخارجي**: بيع أسعار Jawla المتفاوض عليها لـ OTAs أخرى عبر معايير NDC.
+3. **حجوزات الكروز**: مخزون وتدفقات حجز الكروز.
+4. **إيجارات طويلة (شبه Airbnb)**: نموذج مخزون مختلف.
+5. **CRM أو Helpdesk مبني مخصص**: استخدم طرف ثالث (HubSpot، Zendesk).
+6. **بنية مدفوعات داخلية (تصبح Payment Service Provider)**: استمر باستخدام Paymob/Stripe.
+7. **تصنيع أجهزة POS**: استخدم terminals طرف ثالث موجودة.
+8. **VR/AR ما وراء اللمسات النهائية**: تجربة VR كاملة خارج النطاق.
+9. **تأمين تأمين**: استمر في الإحالة لشركاء التأمين.
+10. **توكينات ولاء / Blockchain**: خارج النطاق.
+11. **نماذج سفر مزايدة / مزاد (شبه Priceline)**: خارج النطاق.
+12. **مخطط رحلة AI بـ LLM**: ممكن يضاف لكن غير ملتزم في نطاق Enterprise.
+13. **محرك ضرائب/VAT كامل متعدد الدول**: مصر + السعودية + الإمارات فقط.
+14. **خدمات معالجة التأشيرات**: إحالة فقط.
+15. **عمليات طيران تشارتر**: خارج النطاق.
+16. **Hotel Channel Manager للممتلكات المباشرة**: Jawla مشتري مش بايع للفنادق.
+17. **الترحيل من نظام حجز قديم**: لو Jawla عندها أنظمة سابقة، الترحيل التزام منفصل.
+18. **شراء أجهزة (POS الفرع، طابعات إيصال)**: تكامل برمجي فقط؛ الأجهزة تُشترى منفصلة.
+19. **توريد NOC 24/7**: ابني المنصة بحيث تكون قابلة للتشغيل من Jawla؛ عقد NOC منفصل.
+20. **قناة صوتية (تكامل اتصال مركز الاتصال)**: ما وراء deep links للاتصال.
+21. **تطبيق tablet كامل للموبايل بـ UX خاص بالـ tablet**: موبايل أولًا؛ الـ tablets تستلم تخطيط الموبايل مكبّر.
+22. **توطين ما وراء AR/EN في الويب؛ AR/EN/FR/DE في الموبايل**: لغات أخرى لاحقًا.
+23. **عملة لكل مستأجر ما وراء الـ 5 المدعومة في المنصة**: المستأجرون يختاروا من مجموعة المنصة.
+24. **تطوير ميزة مخصصة لكل مستأجر**: White-label تهيئة مش كود مخصص.
+25. **بيانات مالية مدققة بدرجة المستثمر**: موقف الامتثال يدعم التدقيق؛ التدقيق نفسه التزام منفصل.
 
 ---
 
-## Open Questions
+## المخاطر وتخفيفها
 
-The prior packages' open questions remain. Enterprise adds:
+مخاطر Basic (R-001..R-020) و Professional (R-021..R-040) لسه سارية. مخاطر خاصة بـ Enterprise:
 
-| ID | Question | Owner | Required By |
-|----|----------|-------|-------------|
-| OQ-051 | What is the package mix - pre-built (operations-heavy) vs dynamic (engine-driven)? Affects content team sizing. | Product + Operations | M1 |
-| OQ-052 | Day tours/activities supplier - Viator, GetYourGuide, local Egyptian operators, or hybrid? | Product | M1 |
-| OQ-053 | B2B credit line - what is the underwriting model? Manual (Finance review per agent) or automated (KYC + score)? | Finance | M1 |
-| OQ-054 | B2B agent commission structure - retain markup only, or % commission from Jawla on top? | Sales | M1 |
-| OQ-055 | Mobile development approach - React Native (shared codebase) or native Swift + Kotlin (best UX, higher cost)? | Engineering | M1 |
-| OQ-056 | Mobile minimum supported OS versions - iOS 16+ (90%+ devices) and Android 10+ (85%+ devices)? | Product | M1 |
-| OQ-057 | Mobile API strategy - share existing web API or build mobile-specific (faster, more efficient)? | Engineering | M1 |
-| OQ-058 | White-label commercial model - fixed monthly + per-booking, % of GBV, or hybrid? | Sales | M1 |
-| OQ-059 | White-label partner approval criteria - any travel agency, or curated only? | Sales | M2 |
-| OQ-060 | Dynamic pricing controls - is there a competitive monitoring tool we'd subscribe to? Budget? | Revenue Mgmt + Finance | M1 |
-| OQ-061 | Dynamic pricing publicity - do we disclose to customers that pricing is dynamic? Material consumer-protection question. | Legal | M3 |
-| OQ-062 | Group booking deposits - what % is required to hold? 25%, 50%, full? | Finance + Product | M2 |
-| OQ-063 | Corporate sales motion - do we hire dedicated B2B sales staff, or product-led growth? | Sales | M1 |
-| OQ-064 | Corporate billing - do we offer USD invoicing for multinational HQs based in Egypt? | Finance | M1 |
-| OQ-065 | Multi-branch P&L - how is overhead (engineering, marketing) allocated? Direct-attributable only, or cost share? | Finance | M2 |
-| OQ-066 | Branch counter hardware - what POS terminals are in use? What integration is required (USB driver, network, etc.)? | Operations + Engineering | M2 |
-| OQ-067 | Fraud ML training data - do we have enough historical chargeback data for ML, or do we start rule-based and grow into ML? | Engineering + Fraud | M1 |
-| OQ-068 | Fraud detection vendor - build in-house, use Sift / Riskified / Forter (expensive), or hybrid? | Engineering + Finance | M1 |
-| OQ-069 | PCI Level 1 QSA selection - which firm? Budget? | Compliance | M1 |
-| OQ-070 | SOC 2 timeline - is Type 1 sufficient at launch, or do we push for Type 2 (longer)? | Compliance | M1 |
-| OQ-071 | Data residency - does any white-label partner require data resident in their country (e.g., KSA Personal Data Law)? | Legal | M2 |
-| OQ-072 | Kubernetes operator - managed (EKS, GKE, AKS) or self-hosted? | Engineering | M1 |
-| OQ-073 | Multi-region DR - active-active, active-passive, or backup-only? Cost difference is material. | Engineering + Finance | M1 |
-| OQ-074 | Observability stack - Datadog (expensive, integrated), open-source (Grafana + Loki + Tempo, cheaper, more ops), or hybrid? | Engineering | M1 |
-| OQ-075 | API platform monetization - free (acquire partners), per-call (revenue), or revenue share on resulting bookings? | Sales | M3 |
-| OQ-076 | Executive dashboard - real-time (expensive) or near-real-time (5-15 min lag, cheaper)? | Engineering + Executive | M2 |
-| OQ-077 | Multi-tenant admin - one Jawla user can switch tenants, or per-tenant accounts? | Security | M2 |
-| OQ-078 | RBAC model - inherit from existing tools (Google Workspace groups) or first-class in platform? | Security | M2 |
-| OQ-079 | Promotional campaign rules engine - build in-house or use third-party (Talon.One, Voucherify)? | Product + Engineering | M3 |
-| OQ-080 | Referral program design - cash, points, wallet credit, tiered? | Marketing | M3 |
-| OQ-081 | Mobile app marketing - paid acquisition budget for launch quarter? | Marketing + Finance | M5 |
-| OQ-082 | App store presence - one app for B2C only, separate B2B app, or unified with mode toggle? | Product | M1 |
-| OQ-083 | Tablet UX - support as first-class, mobile layout scaled, or unsupported? | Product | M1 |
-| OQ-084 | Accessibility commitment - WCAG 2.1 AA on all surfaces (web, mobile, B2B portal, admin)? | Product + Legal | M1 |
-| OQ-085 | Continuous-improvement plan post-launch - retainer, follow-on SOW, or transition to Jawla-internal? | Contract | M8 |
-| OQ-086 | Jawla's internal engineering hiring plan - the platform requires Jawla-side ops; what is the target team by month 6 post-launch? | Operations + Executive | M5 |
-| OQ-087 | Brand strategy for white-label - does Jawla brand show as "Powered by"? | Brand + Sales | M2 |
-| OQ-088 | Sales channel for B2B and white-label - direct, partners, or both? Commission for partners? | Sales | M3 |
-| OQ-089 | Insurance product - travel insurance affiliate or embedded? | Product + Legal | M5 |
-| OQ-090 | Customer success function - is there a CS team for high-value customers (corporate, top B2B agents)? | Operations | M5 |
+| ID | المخاطر | الاحتمال | الأثر | التخفيف | المالك |
+|----|---------|---------|------|---------|--------|
+| R-041 | النطاق كبير جدًا على 24 أسبوع؛ خطوط عمل متعددة تتأخر | عالٍ جدًا | حرج | قادة خطوط عمل بفرق متوازية؛ بوابات نطاق صارمة عند M3، M5، M7؛ احتجاز الأسابيع 24-26 كاحتياطي جدول (غير موعود به خارجيًا) | Project Lead |
+| R-042 | رفض مراجعة متجر تطبيقات الموبايل يؤخر الإطلاق | عالٍ | عالٍ | تقديم مبكر للقنوات الداخلية (M5)؛ تواصل مع منسقي Apple/Google؛ استراتيجيات تقديم بديلة (تطبيقات منفصلة لـ B2C مقابل B2B لو محتاج) | Mobile Lead |
+| R-043 | شهادة PCI Level 1 تستغرق أكثر من 9 شهور | متوسط | عالٍ | تعاقد مع QSA عند M1؛ تحليل فجوات عند M3؛ معالجة مستمرة؛ نهج تدريجي (ضوابط تعويضية أولًا) | Compliance |
+| R-044 | استعداد SOC 2 يتعارض مع سرعة الهندسة | متوسط | متوسط | Vanta/Drata لأتمتة الأدلة؛ ضوابط هندسية مدمجة من M2؛ مراجعة امتثال أسبوعية مع الهندسة | Compliance + Engineering |
+| R-045 | حادث تسريب بيانات متعدد المستأجرين | متوسط | حرج | إطار عزل مستأجر باختبارات مؤتمتة (كل PR)؛ اختبار اختراق مركز على متعدد المستأجرين؛ برنامج bug bounty بعد الإطلاق | Security |
+| R-046 | قواعد التسعير الديناميكي تسبب غضب العملاء (استغلال مُدرَك) | عالٍ | عالٍ | تحديد تعديلات الرفع بشدة؛ السعر المرجعي معروض دائمًا؛ شرح ودود للعلاقات العامة لنموذج التسعير؛ قدرة تراجع سريعة | Product + Comms |
+| R-047 | نموذج ML الاحتيال له معدل إيجابيات زائفة عالٍ، يحظر عملاء جيدين | عالٍ | عالٍ | عتبات محافظة عند الإطلاق؛ قائمة مراجعة للحالات الحدية؛ مراجعة إيجابيات زائفة أسبوعية؛ تواصل العملاء للمحظورين الجيدين | Fraud + Product |
+| R-048 | وكلاء B2B يسيئون استخدام حدود الائتمان، التعثرات ترتفع | متوسط | عالٍ | KYC + فحص ائتمان عند التقديم؛ إيقاف تلقائي عند التأخر؛ ملاذ قانوني موثق؛ زيادات حد ائتمان تدريجية | Finance |
+| R-049 | عملاء الشركات يطلبون ميزات مخصصة خارج النطاق | عالٍ | متوسط | العقد القياسي يستبعد التطوير المخصص؛ عملية طلب تغيير؛ يكون عندنا درجة "مخصصة" بتسعير مميز | Sales |
+| R-050 | شريك علامة white-label يضر بسمعة Jawla | متوسط | عالٍ | ضوابط علامة في العقد؛ معيار جودة لانضمام المستأجر؛ قدرة الإنهاء؛ نسب علامة Jawla بخط صغير | Legal + Brand |
+| R-051 | تدفقات حجز المجموعات offline ثقيلة تشغيليًا | عالٍ | متوسط | فريق عمليات مجموعات مخصص مدرّب؛ مدفوع بـ SLA؛ إدارة قائمة؛ أتمتة حيث يمكن | Operations |
+| R-052 | تبني برمجيات الفروع المتعددة ضعيف (الفروع تتجاوز النظام) | متوسط | متوسط | حافز مدير الفرع متوافق مع استخدام النظام؛ تدريب؛ KPI على حجوزات النظام مقابل الورق | Operations |
+| R-053 | تكلفة push notifications للموبايل (لكل جهاز) تتوسع بشكل غير مناسب | منخفض | منخفض | تحسين تكرار الإشعارات؛ دقة التفضيلات؛ مراقبة التكلفة | Engineering |
+| R-054 | تجربة التعافي من الكوارث تكشف فجوات failover | متوسط | عالٍ | تجارب ربع سنوية بنتائج موثقة + معالجة؛ تأمين للمخاطر المتبقية | Engineering |
+| R-055 | تعقيد تشغيل Kubernetes يتجاوز قدرة الفريق | عالٍ | عالٍ | استخدم K8s مُدار (EKS/GKE)؛ توثيق كل شيء؛ دوران on-call؛ تدريب SRE؛ ضع في الاعتبار Nomad أو بديل أبسط لو ظهر إجهاد الفريق | Engineering Leadership |
+| R-056 | تبني منصة API ضعيف (لا شركاء يستخدمونها) | متوسط | متوسط | تفاعل مبيعات لخط أنابيب الشركاء قبل الإطلاق؛ امتياز التوثيق؛ تكاملات عيّنة | Sales + Engineering |
+| R-057 | مشاكل جودة بيانات Dashboard التنفيذي تآكل الثقة | متوسط | عالٍ | اختبار جودة بيانات في warehouse؛ نسب بيانات موثقة؛ مهندس بيانات on-call للمخاوف التنفيذية | Data |
+| R-058 | برنامج الامتثال (SOC 2) يخلق بيروقراطية تبطئ سرعة الشحن | متوسط | متوسط | ضوابط خفيفة؛ مدمجة في CI/CD؛ مراجعة استرجاعية ربع سنوية لتكلفة الامتثال | Compliance + Engineering |
+| R-059 | تحميلات تطبيق الموبايل منخفضة (تكلفة الاكتساب > ROI) | متوسط | عالٍ | تحسين متجر التطبيقات (ASO)؛ ميزانية اكتساب مدفوع محتجزة؛ استراتيجية deep link من زيارات الويب الحالية؛ smart banners | Marketing |
+| R-060 | تكامل الفوترة الإلكترونية لمصلحة الضرائب المصرية يتعطل (تغيير تنظيمي) | متوسط | عالٍ | توليد فاتورة معياري؛ مراقبة التحديثات التنظيمية؛ تواصل مالي+قانوني | Finance + Legal |
+| R-061 | تكلفة تشغيل بنية Enterprise تتجاوز ارتفاع الإيراد | متوسط | حرج | مراجعة شهرية للاقتصاديات الوحدوية؛ قدرة على تحجيم autoscaling؛ تأجيل ميزات اختيارية لو التكلفة تتجاوز الإيراد | Finance + Engineering |
+| R-062 | مخاطر المواهب: قادة المهندسين يغادرون خلال 24 أسبوع | متوسط | عالٍ | تدريب متبادل؛ pairing؛ توثيق؛ مكافأة احتفاظ مرتبطة بالإطلاق | Engineering Leadership |
+| R-063 | الانغلاق على مورد بوابات دفع white-label يحد من اختيار الشريك | متوسط | متوسط | تجريد واجهة gateway؛ دعم 3+ بوابات؛ توثيق انضمام gateway جديد | Engineering |
+| R-064 | احتيال التعامل بالكاش في الفرع (السطو) | متوسط | متوسط | تسوية يومية؛ تدقيقات مفاجئة؛ CCTV في الفروع (تشغيلي)؛ حدود كاش | Operations + Finance |
+| R-065 | مشاكل تحصيل AR (حسابات قبض) الشركات | متوسط | عالٍ | فحص ائتمان عند الانضمام؛ شروط دفع مفروضة؛ عملية تحصيل؛ ضع في الاعتبار factoring للمتأخرين | Finance |
+| R-066 | مسؤولية الاسترداد عبر packages تصبح معقدة تشغيليًا | عالٍ | متوسط | وضوح استرداد لكل مكوّن؛ توثيق سياسة واضح؛ أتمتة حيث يمكن | Engineering + Operations |
+| R-067 | سياسات Apple/Google على تطبيقات السفر تتغير (مثلاً متطلب رسوم حجز) | منخفض | عالٍ | مراقبة الامتثال؛ حجز داخل التطبيق بدون رسوم؛ حجز عبر الويب بـ deep link كاحتياطي | Mobile |
 
 ---
 
-## Appendix A: Architecture Additions (Reference)
+## أسئلة مفتوحة
 
-| Layer | Addition vs Professional |
-|-------|---------------------------|
-| Compute | Kubernetes (EKS recommended), autoscaling, multi-AZ |
-| Mobile | React Native (default) with native modules for Apple/Google Pay, biometric, push, wallet |
-| API Platform | API Gateway (Kong, AWS API Gateway, or in-house); developer portal |
-| Tenant Isolation | Tenant ID propagation via middleware; row-level security in PostgreSQL where possible |
-| Dynamic Pricing | Standalone service with rule editor UI; rules in DB; pricing as a function chain |
-| Fraud Detection | Standalone service; ML model served via Python microservice (FastAPI) called from booking flow; case management UI |
-| Group Booking | Standalone workflow service with state machine (XState or NestJS-based) |
-| Corporate Accounts | Subset of CRM functionality; policy engine separate |
-| Multi-Branch | Branch dimension in all relevant tables; branch-scoped queries; branch-specific UI/admin views |
-| White-Label | Platform configuration + per-tenant theming + per-tenant subdomain routing |
-| Observability | OpenTelemetry collectors; centralized backend (Datadog or Grafana stack); dashboards as code |
-| Compliance Tooling | Vanta or Drata for SOC 2 evidence collection; in-house dashboards for PCI controls |
-| Disaster Recovery | Multi-region warm standby; DB replication; storage cross-region replication; automated failover playbooks |
-| CI/CD | Trunk-based development; progressive delivery (Argo Rollouts or LaunchDarkly canaries); automated rollback |
+الأسئلة المفتوحة من الباقات السابقة لسه سارية. Enterprise تضيف:
 
-## Appendix B: Workstream Ownership Matrix
+| ID | السؤال | المالك | المطلوب بحلول |
+|----|--------|--------|---------------|
+| OQ-051 | إيه مزيج packages - جاهزة (ثقيلة تشغيليًا) مقابل ديناميكية (مدفوعة بالمحرك)؟ يؤثر على حجم فريق المحتوى. | Product + Operations | M1 |
+| OQ-052 | مورد الرحلات اليومية/الأنشطة - Viator، GetYourGuide، مشغلون مصريون محليون، أم هجين؟ | Product | M1 |
+| OQ-053 | حد ائتمان B2B - إيه نموذج الاكتتاب؟ يدوي (مراجعة Finance لكل وكيل) أم مؤتمت (KYC + score)؟ | Finance | M1 |
+| OQ-054 | هيكل عمولة وكيل B2B - الاحتفاظ بالـ markup فقط، أم % عمولة من Jawla بالإضافة؟ | Sales | M1 |
+| OQ-055 | نهج تطوير الموبايل - React Native (codebase مشترك) أم Swift أصلي + Kotlin (أفضل UX، تكلفة أعلى)؟ | Engineering | M1 |
+| OQ-056 | الحد الأدنى لإصدارات OS المدعومة للموبايل - iOS 16+ (90%+ أجهزة) و Android 10+ (85%+ أجهزة)؟ | Product | M1 |
+| OQ-057 | استراتيجية API الموبايل - مشاركة API الويب الحالي أم بناء خاص بالموبايل (أسرع، أكفأ)؟ | Engineering | M1 |
+| OQ-058 | نموذج White-label التجاري - شهري ثابت + لكل حجز، % من GBV، أم هجين؟ | Sales | M1 |
+| OQ-059 | معايير الموافقة على شريك White-label - أي وكالة سفر، أم منسّقون فقط؟ | Sales | M2 |
+| OQ-060 | ضوابط التسعير الديناميكي - فيه أداة مراقبة منافس بنشترك فيها؟ ميزانية؟ | Revenue Mgmt + Finance | M1 |
+| OQ-061 | الإعلان عن التسعير الديناميكي - بنفصح للعملاء إن التسعير ديناميكي؟ سؤال حماية مستهلك جوهري. | Legal | M3 |
+| OQ-062 | عربون حجز المجموعات - إيه % المطلوب للتعليق؟ 25%، 50%، كامل؟ | Finance + Product | M2 |
+| OQ-063 | حركة مبيعات الشركات - بنوظف موظفين مبيعات B2B مخصصين، أم نمو مدفوع بالمنتج؟ | Sales | M1 |
+| OQ-064 | فواتير الشركات - بنقدم فواتير USD لمقرات الشركات متعددة الجنسيات في مصر؟ | Finance | M1 |
+| OQ-065 | P&L الفروع المتعددة - إزاي تتوزع التكاليف العامة (هندسة، تسويق)؟ تخصيص مباشر فقط، أم تقاسم تكلفة؟ | Finance | M2 |
+| OQ-066 | أجهزة counter الفرع - إيه terminals POS المستخدمة؟ إيه التكامل المطلوب (USB driver، شبكة، إلخ)؟ | Operations + Engineering | M2 |
+| OQ-067 | بيانات تدريب ML الاحتيال - عندنا بيانات chargeback تاريخية كافية لـ ML، أم نبدأ مبني على القواعد ونتوسع لـ ML؟ | Engineering + Fraud | M1 |
+| OQ-068 | مورد كشف الاحتيال - نبني داخليًا، نستخدم Sift / Riskified / Forter (مكلف)، أم هجين؟ | Engineering + Finance | M1 |
+| OQ-069 | اختيار QSA لـ PCI Level 1 - إيه الشركة؟ ميزانية؟ | Compliance | M1 |
+| OQ-070 | جدول SOC 2 - Type 1 كافٍ عند الإطلاق، أم نضغط لـ Type 2 (أطول)؟ | Compliance | M1 |
+| OQ-071 | إقامة البيانات - فيه شريك white-label محتاج بيانات مقيمة في دولته (مثلاً قانون البيانات الشخصية السعودي)؟ | Legal | M2 |
+| OQ-072 | مشغّل Kubernetes - مُدار (EKS، GKE، AKS) أم ذاتي الاستضافة؟ | Engineering | M1 |
+| OQ-073 | DR متعدد المناطق - active-active، active-passive، أم نسخ احتياطي فقط؟ فرق التكلفة جوهري. | Engineering + Finance | M1 |
+| OQ-074 | stack القابلية للملاحظة - Datadog (مكلف، متكامل)، open-source (Grafana + Loki + Tempo، أرخص، عمليات أكثر)، أم هجين؟ | Engineering | M1 |
+| OQ-075 | تربيح منصة API - مجاني (اكتساب شركاء)، لكل مكالمة (إيراد)، أم تقاسم إيراد على الحجوزات الناتجة؟ | Sales | M3 |
+| OQ-076 | Dashboard التنفيذي - لحظي (مكلف) أم قريب من اللحظي (5-15 دقيقة تأخر، أرخص)؟ | Engineering + Executive | M2 |
+| OQ-077 | أدمن متعدد المستأجرين - مستخدم Jawla واحد يقدر يبدّل بين المستأجرين، أم حسابات لكل مستأجر؟ | Security | M2 |
+| OQ-078 | نموذج RBAC - وراثة من الأدوات الموجودة (Google Workspace groups) أم درجة أولى في المنصة؟ | Security | M2 |
+| OQ-079 | محرك قواعد الحملات الترويجية - بناء داخلي أم استخدام طرف ثالث (Talon.One، Voucherify)؟ | Product + Engineering | M3 |
+| OQ-080 | تصميم برنامج الإحالة - كاش، نقاط، رصيد محفظة، متدرج؟ | Marketing | M3 |
+| OQ-081 | تسويق تطبيق الموبايل - ميزانية اكتساب مدفوع لربع الإطلاق؟ | Marketing + Finance | M5 |
+| OQ-082 | حضور متجر التطبيقات - تطبيق واحد B2C فقط، تطبيق B2B منفصل، أم موحد بمبدّل وضع؟ | Product | M1 |
+| OQ-083 | UX الـ Tablet - دعم درجة أولى، تخطيط موبايل مكبّر، أم غير مدعوم؟ | Product | M1 |
+| OQ-084 | التزام الوصولية - WCAG 2.1 AA على كل السطوح (ويب، موبايل، بوابة B2B، أدمن)؟ | Product + Legal | M1 |
+| OQ-085 | خطة التحسين المستمر بعد الإطلاق - retainer، follow-on SOW، أم انتقال لداخل Jawla؟ | Contract | M8 |
+| OQ-086 | خطة توظيف هندسة Jawla الداخلية - المنصة تتطلب عمليات من جانب Jawla؛ إيه الفريق المستهدف بحلول الشهر 6 بعد الإطلاق؟ | Operations + Executive | M5 |
+| OQ-087 | استراتيجية العلامة لـ white-label - علامة Jawla تظهر كـ "Powered by"؟ | Brand + Sales | M2 |
+| OQ-088 | قناة المبيعات لـ B2B و white-label - مباشر، شركاء، أم الاثنين؟ عمولة للشركاء؟ | Sales | M3 |
+| OQ-089 | منتج التأمين - تأمين سفر تابع أم مدمج؟ | Product + Legal | M5 |
+| OQ-090 | وظيفة نجاح العملاء - فيه فريق CS للعملاء عاليي القيمة (شركات، أعلى وكلاء B2B)؟ | Operations | M5 |
 
-| Workstream | Engineering Lead | Product Lead | Design Lead | QA Lead |
+---
+
+## ملحق A: إضافات المعمارية (مرجعي)
+
+| الطبقة | الإضافة مقابل Professional |
+|--------|---------------------------|
+| Compute | Kubernetes (EKS موصى به)، autoscaling، multi-AZ |
+| Mobile | React Native (افتراضي) مع modules أصلية لـ Apple/Google Pay، بيومتري، push، wallet |
+| API Platform | API Gateway (Kong، AWS API Gateway، أو داخلي)؛ بوابة مطورين |
+| عزل المستأجر | انتشار Tenant ID عبر middleware؛ أمان على مستوى الصف في PostgreSQL حيث يمكن |
+| التسعير الديناميكي | خدمة مستقلة بمحرر قواعد UI؛ قواعد في DB؛ التسعير كسلسلة دوال |
+| كشف الاحتيال | خدمة مستقلة؛ نموذج ML مُقدّم عبر microservice Python (FastAPI) يُستدعى من تدفق الحجز؛ UI إدارة حالات |
+| حجز المجموعات | خدمة سير عمل مستقلة بآلة حالة (XState أو مبني على NestJS) |
+| حسابات الشركات | جزء من وظائف CRM؛ محرك سياسة منفصل |
+| الفروع المتعددة | بُعد الفرع في كل الجداول المعنية؛ استعلامات بنطاق الفرع؛ عروض UI/أدمن خاصة بالفرع |
+| White-Label | تهيئة المنصة + theming لكل مستأجر + توجيه subdomain لكل مستأجر |
+| القابلية للملاحظة | OpenTelemetry collectors؛ backend مركزي (Datadog أو Grafana stack)؛ dashboards as code |
+| أدوات الامتثال | Vanta أو Drata لجمع أدلة SOC 2؛ dashboards داخلية لضوابط PCI |
+| التعافي من الكوارث | standby دافئ متعدد المناطق؛ تكرار DB؛ تكرار تخزين عبر المناطق؛ playbooks failover مؤتمتة |
+| CI/CD | تطوير trunk-based؛ توصيل تدريجي (Argo Rollouts أو LaunchDarkly canaries)؛ تراجع مؤتمت |
+
+## ملحق B: مصفوفة ملكية خطوط العمل
+
+| خط العمل | قائد الهندسة | قائد المنتج | قائد التصميم | قائد QA |
 |------------|------------------|--------------|-------------|---------|
 | Packages | Backend Lead A | PM A | Designer A | QA A |
-| B2B Portal | Backend Lead B | PM B | Designer B | QA B |
-| Mobile | Mobile Lead | PM C | Designer C (mobile) | QA C |
-| Dynamic Pricing | Platform Lead | PM D | (no UI) | QA D |
-| Group & Corporate | Backend Lead A | PM A | Designer A | QA A |
-| Multi-Branch | Backend Lead B | PM B | Designer B | QA B |
+| بوابة B2B | Backend Lead B | PM B | Designer B | QA B |
+| Mobile | Mobile Lead | PM C | Designer C (موبايل) | QA C |
+| التسعير الديناميكي | Platform Lead | PM D | (بدون UI) | QA D |
+| المجموعات والشركات | Backend Lead A | PM A | Designer A | QA A |
+| الفروع المتعددة | Backend Lead B | PM B | Designer B | QA B |
 | White-Label | Platform Lead | PM E | Designer D | QA D |
-| Fraud | Platform Lead + Data Scientist | PM D | Designer E | QA D |
-| Platform / Compliance | Platform Lead | PM E | (limited UI) | QA E + Compliance |
+| الاحتيال | Platform Lead + Data Scientist | PM D | Designer E | QA D |
+| المنصة / الامتثال | Platform Lead | PM E | (UI محدود) | QA E + Compliance |
 
-## Appendix C: Glossary Additions
+## ملحق C: إضافات المصطلحات
 
-| Term | Definition |
+| المصطلح | التعريف |
 |------|------------|
-| NDC | New Distribution Capability (IATA airline distribution standard) |
-| DSR | Data Subject Request (GDPR-style) |
-| QSA | Qualified Security Assessor (PCI auditor) |
+| NDC | New Distribution Capability (معيار توزيع طيران IATA) |
+| DSR | Data Subject Request (نمط GDPR) |
+| QSA | Qualified Security Assessor (مدقق PCI) |
 | CDE | Cardholder Data Environment |
 | ASO | App Store Optimization |
 | RTO | Recovery Time Objective |
@@ -1093,16 +1153,16 @@ The prior packages' open questions remain. Enterprise adds:
 | OLAP | Online Analytical Processing |
 | ML | Machine Learning |
 
-## Appendix D: Sign-off
+## ملحق D: التوقيعات
 
-| Role | Name | Signature | Date |
+| الدور | الاسم | التوقيع | التاريخ |
 |------|------|-----------|------|
-| Business Sponsor (CEO) | _________________ | _________________ | _________ |
-| Board Representative | _________________ | _________________ | _________ |
-| Product Lead | Ahmed Mahmoud | _________________ | 2026-06-29 |
-| Engineering Lead | _________________ | _________________ | _________ |
-| Mobile Lead | _________________ | _________________ | _________ |
-| Finance Approver (CFO) | _________________ | _________________ | _________ |
-| Compliance Officer | _________________ | _________________ | _________ |
-| Legal Counsel | _________________ | _________________ | _________ |
-| Sales Lead | _________________ | _________________ | _________ |
+| الراعي التجاري (CEO) | _________________ | _________________ | _________ |
+| ممثل مجلس الإدارة | _________________ | _________________ | _________ |
+| قائد المنتج | أحمد محمود | _________________ | 2026-06-29 |
+| قائد الهندسة | _________________ | _________________ | _________ |
+| قائد الموبايل | _________________ | _________________ | _________ |
+| المعتمد المالي (CFO) | _________________ | _________________ | _________ |
+| مسؤول الامتثال | _________________ | _________________ | _________ |
+| المستشار القانوني | _________________ | _________________ | _________ |
+| قائد المبيعات | _________________ | _________________ | _________ |

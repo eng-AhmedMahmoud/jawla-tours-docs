@@ -1,97 +1,149 @@
-# Software Requirements Specification — Jawla Tours OTA (Basic Tier)
+## 🎯 ملخص فني لمجلس الإدارة (بلغة الأعمال)
 
-## Document Control
+هذه الوثيقة هي المخطط الهندسي الكامل للنظام في الباقة الأساسية، مكتوب بلغة المهندسين. هذا الملخص يترجم محتواها إلى لغة الأعمال حتى يستطيع مجلس الإدارة فهم ما سيتم بناؤه واتخاذ القرار المناسب دون الحاجة لمراجعة كل التفاصيل التقنية.
 
-| Field             | Value                                                  |
-| ----------------- | ------------------------------------------------------ |
-| Document Title    | Jawla Tours OTA — SRS (Basic Tier)                     |
-| Document ID       | JAWLA-SRS-BASIC                                        |
-| Version           | 1.0                                                    |
-| Issue Date        | 2026-06-29                                             |
-| Status            | Approved — Baseline                                    |
-| Classification    | Internal — Engineering / Product                       |
-| Owner             | Jawla Engineering                                      |
-| Prepared By       | Platform Architecture Group                            |
-| Reviewed By       | CTO, Head of Product, QA Lead                          |
-| Approved By       | CTO                                                    |
-| Distribution      | Engineering, Product, QA, DevOps, Security             |
+### ماذا يبنيه فريق الهندسة؟
 
-### Revision History
+- موقع ويب حديث يعمل على الكمبيوتر والهاتف والتابلت ويدعم اللغتين العربية والإنجليزية
+- خوادم خلفية مسؤولة عن استقبال الحجوزات ومعالجة الدفعات وإصدار التذاكر
+- قاعدة بيانات آمنة تحفظ معلومات العملاء والحجوزات والمدفوعات بشكل مشفّر
+- ربط مباشر مع نظام Amadeus العالمي للبحث عن الرحلات والحصول على الأسعار اللحظية
+- ربط مع بوابات الدفع Stripe و Paymob لقبول الدفع داخل الموقع بالكامل
+- نظام إرسال رسائل بريد إلكتروني تلقائية لتأكيدات الحجز وإرسال التذاكر
+- لوحة تحكم بسيطة للإدارة الداخلية لمتابعة الحجوزات والعملاء والمبيعات
 
-| Version | Date       | Author              | Section(s)      | Change Summary                                            |
-| ------- | ---------- | ------------------- | --------------- | --------------------------------------------------------- |
-| 0.1     | 2026-05-12 | Platform Arch Group | All             | Initial draft (gap analysis from discovery workshops)     |
-| 0.2     | 2026-05-28 | Platform Arch Group | FR, NFR, API    | Added flight + hotel FR set after Amadeus PoC             |
-| 0.3     | 2026-06-10 | QA Lead             | Acceptance      | Added AT-001..AT-024 from BDD review                      |
-| 0.4     | 2026-06-19 | Security            | Security, Auth  | Hardened OWASP mitigations, added OTP for refunds         |
-| 1.0     | 2026-06-29 | CTO                 | All             | Baseline approval for Basic Tier MVP                      |
+### كيف نضمن أن النظام آمن وموثوق؟
 
-### Glossary
+| الضمان                          | الطريقة بلغة الأعمال                                                                  |
+| ------------------------------- | ------------------------------------------------------------------------------------- |
+| الموقع متاح دائماً               | استضافة سحابية محترفة بضمان وقت تشغيل 99.0% (أي توقف لا يتجاوز 7 ساعات شهرياً)            |
+| أمان معلومات الدفع              | جميع المعاملات تمر عبر بوابات معتمدة من المصارف (PCI-DSS) ولا نخزن أرقام البطاقات     |
+| حماية بيانات العملاء            | تشفير كامل عند النقل وعند التخزين، وفصل صلاحيات الوصول لكل موظف                    |
+| نسخ احتياطية يومية              | حفظ نسخة كاملة من قاعدة البيانات يومياً، مع إمكانية الاستعادة خلال ساعتين كحد أقصى     |
+| مراقبة مستمرة                   | نظام يكتشف أي خطأ أو تأخر فور حدوثه ويرسل تنبيهات للفريق التقني                       |
+| الامتثال لحماية البيانات        | الالتزام بقانون حماية البيانات المصري وتوفير حق العميل في حذف بياناته                  |
 
-| Term      | Meaning                                                                            |
-| --------- | ---------------------------------------------------------------------------------- |
-| OTA       | Online Travel Agency                                                               |
-| PNR       | Passenger Name Record (Amadeus reservation handle)                                 |
-| GDS       | Global Distribution System                                                         |
-| BSP       | Bank Settlement Plan                                                               |
-| 3DS       | 3-D Secure (cardholder authentication, EMV 3DS 2.x)                                |
-| PCI DSS   | Payment Card Industry Data Security Standard                                       |
-| SCA       | Strong Customer Authentication (PSD2)                                              |
-| RBAC      | Role-Based Access Control                                                          |
-| OTP       | One-Time Password (TOTP / numeric SMS or email code)                               |
-| FR        | Functional Requirement                                                             |
-| NFR       | Non-Functional Requirement                                                         |
-| AT        | Acceptance Test                                                                    |
-| BCD       | Booking Confirmation Document (e-ticket / voucher)                                 |
+### الأرقام المهمة لاتخاذ القرار
+
+| المتغير                                      | القيمة                                       |
+| -------------------------------------------- | -------------------------------------------- |
+| عدد المستخدمين المتوقع (السنة الأولى)         | 15,000 – 25,000 مستخدم نشط                  |
+| متوسط زمن استجابة الصفحة                      | أقل من ثانيتين                              |
+| نسبة وقت تشغيل النظام (Uptime SLA)            | 99.0%                                         |
+| حجم البيانات المتوقع (السنة الأولى)            | 5 – 10 GB                                    |
+| التكاليف الشهرية للبنية التحتية (Hosting)     | حوالي 350 – 550 USD شهرياً                  |
+| عدد المهندسين العاملين على المشروع           | 3 (Backend + Frontend + DevOps بدوام جزئي)  |
+
+### اعتمادنا على الموردين الخارجيين
+
+| المورد                  | لماذا نحتاجه بلغة الأعمال                                                       |
+| ----------------------- | ------------------------------------------------------------------------------- |
+| Amadeus                 | المصدر العالمي لبيانات الرحلات والأسعار اللحظية والحجز الفعلي للتذاكر          |
+| Stripe / Paymob         | بوابات الدفع التي تقبل البطاقات المصرية والدولية وتحوّل الأموال لحسابنا            |
+| Mailgun / SendGrid      | خدمة إرسال البريد الإلكتروني لتأكيدات الحجز والتذاكر بشكل موثوق                |
+| استضافة سحابية (AWS/Vercel) | الخوادم التي يعمل عليها الموقع، مرنة ويمكن زيادة قدرتها فوراً عند الحاجة         |
+
+### ما الذي يحتاج المجلس أن يعرفه؟
+
+- نحن نملك الكود المصدري وقاعدة البيانات بالكامل ولا يوجد قفل تكنولوجي على أي مورد
+- يمكن استبدال أي مورد خارجي (بوابة دفع، خدمة بريد) خلال شهر دون توقف الخدمة
+- البنية مصممة لتحمّل زيادة 10 أضعاف في عدد العملاء دون إعادة بناء
+- التكاليف الشهرية للصيانة والاستضافة محددة وقابلة للتنبؤ على مدى 3 سنوات
 
 ---
 
-## Introduction
+# مواصفات متطلبات البرنامج — Jawla Tours OTA (Basic Tier)
 
-### Purpose
+## التحكم في الوثيقة
 
-This document defines the **Basic Tier** software requirements for *Jawla Tours*, an
-Online Travel Agency platform. The Basic Tier represents the MVP scope intended for the
-first production launch in a single region (eu-central-1 primary, no multi-region
-failover) targeting the Egyptian and pan-Arab market. It establishes the agreed scope,
-constraints, and quality bars that the engineering organization commits to deliver.
+| الحقل             | القيمة                                                  |
+| ----------------- | ------------------------------------------------------ |
+| عنوان الوثيقة     | Jawla Tours OTA — SRS (Basic Tier)                     |
+| معرّف الوثيقة     | JAWLA-SRS-BASIC                                        |
+| الإصدار           | 1.0                                                    |
+| تاريخ الإصدار     | 2026-06-29                                             |
+| الحالة            | معتمد — Baseline                                       |
+| التصنيف           | داخلي — Engineering / Product                          |
+| المالك            | Jawla Engineering                                      |
+| الإعداد           | Platform Architecture Group                            |
+| المراجعة          | CTO, Head of Product, QA Lead                          |
+| الاعتماد          | CTO                                                    |
+| التوزيع           | Engineering, Product, QA, DevOps, Security             |
 
-The audience for this document is: software engineers, QA engineers, DevOps,
-security reviewers, product managers, and external auditors performing PCI scope review.
+### سجل المراجعات
 
-### Scope
+| الإصدار | التاريخ    | المؤلف              | القسم/الأقسام   | ملخص التغيير                                              |
+| ------- | ---------- | ------------------- | --------------- | --------------------------------------------------------- |
+| 0.1     | 2026-05-12 | Platform Arch Group | الكل            | المسودة الأولى (تحليل الفجوات من ورش الاكتشاف)            |
+| 0.2     | 2026-05-28 | Platform Arch Group | FR, NFR, API    | إضافة متطلبات الـ flights والـ hotels بعد Amadeus PoC     |
+| 0.3     | 2026-06-10 | QA Lead             | Acceptance      | إضافة AT-001..AT-024 من مراجعة الـ BDD                    |
+| 0.4     | 2026-06-19 | Security            | Security, Auth  | تشديد إجراءات OWASP وإضافة OTP للـ refunds                |
+| 1.0     | 2026-06-29 | CTO                 | الكل            | اعتماد الـ Baseline لـ Basic Tier MVP                     |
 
-In scope for the Basic Tier:
+### المصطلحات
 
-- A consumer-facing booking funnel for **flights and hotels** rendered by the existing
-  Next.js marketing site, extended with new authenticated booking modules.
-- A NestJS backend exposing **~20 REST endpoints** for search, booking, payment, and
-  notifications.
-- One flight provider (**Amadeus Self-Service / Enterprise Test endpoints**) and
-  **one hotel provider** (Amadeus Hotel Search v3 + Hotel Booking v2).
-- Card payment via **Stripe** (single PSP for MVP), with Paymob/Adyen designed for but
-  not enabled in this tier.
-- Email notifications via a transactional provider (SES or Resend).
-- A basic internal admin console for support staff to view bookings, refunds, and audit
-  trail. **Manual refunds via the PSP dashboard are acceptable in this tier.**
-- Single primary currency (USD) at checkout, with display-only conversion to EGP, SAR, AED.
+| المصطلح   | المعنى                                                                            |
+| --------- | ---------------------------------------------------------------------------------- |
+| OTA       | Online Travel Agency (وكالة سفر إلكترونية)                                         |
+| PNR       | Passenger Name Record (مرجع الحجز في Amadeus)                                      |
+| GDS       | Global Distribution System                                                          |
+| BSP       | Bank Settlement Plan                                                                |
+| 3DS       | 3-D Secure (تأكيد هوية حامل البطاقة، EMV 3DS 2.x)                                  |
+| PCI DSS   | Payment Card Industry Data Security Standard                                        |
+| SCA       | Strong Customer Authentication (PSD2)                                               |
+| RBAC      | Role-Based Access Control                                                           |
+| OTP       | One-Time Password (كود لمرة واحدة عبر TOTP أو SMS أو email)                        |
+| FR        | Functional Requirement                                                              |
+| NFR       | Non-Functional Requirement                                                          |
+| AT        | Acceptance Test                                                                     |
+| BCD       | Booking Confirmation Document (e-ticket أو voucher)                                |
 
-Out of scope for the Basic Tier (deferred to Professional / Enterprise):
+---
 
-- Mobile apps, B2B agent portal, white-label theming, fraud ML, dynamic pricing engine.
-- WhatsApp Business notifications.
-- Multi-region active-active deployment.
-- Automated refund orchestration.
-- Multi-provider hotel aggregation.
+## المقدمة
 
-### Definitions, Acronyms, and Abbreviations
+### الغرض
 
-See the Glossary table above. Industry-standard travel terminology follows IATA
-Resolution 830a and Amadeus Self-Service API conventions.
+الوثيقة دي بتحدد متطلبات الـ **Basic Tier** لمنصة *Jawla Tours*، وهي منصة Online Travel Agency.
+الـ Basic Tier ده هو نطاق الـ MVP اللي هينزل في أول إطلاق على الإنتاج في منطقة واحدة
+(eu-central-1 كـ primary من غير multi-region failover)، ومستهدف السوق المصري والعربي.
+الوثيقة بتحدد النطاق المتفق عليه والقيود ومستوى الجودة اللي فريق الـ engineering ملتزم يوصله.
 
-### References
+الجمهور المستهدف للوثيقة دي: مهندسي software، مهندسي QA، فريق DevOps، مراجعي الـ security،
+الـ product managers، والـ external auditors اللي بيعملوا مراجعة PCI scope.
 
-| Ref ID | Reference                                                                    |
+### النطاق
+
+الموجود ضمن نطاق الـ Basic Tier:
+
+- مسار حجز موجّه للمستهلك لـ **flights وhotels** يظهر من خلال موقع الـ Next.js التسويقي
+  الموجود حالياً، مع إضافة modules حجز محمية بـ authentication.
+- backend بـ NestJS بيوفر **حوالي 20 REST endpoint** للبحث والحجز والدفع والإشعارات.
+- مزوّد flights واحد (**Amadeus Self-Service / Enterprise Test endpoints**) و
+  **مزوّد hotels واحد** (Amadeus Hotel Search v3 + Hotel Booking v2).
+- الدفع بالكارت عن طريق **Stripe** (PSP واحد للـ MVP)، مع تجهيز Paymob/Adyen معمارياً
+  من غير ما يتفعّلوا في الـ tier ده.
+- إشعارات email عن طريق مزوّد transactional (SES أو Resend).
+- console إداري بسيط لفريق الدعم لمراجعة الـ bookings والـ refunds والـ audit trail.
+  **الـ refunds اليدوية عن طريق PSP dashboard مقبولة في الـ tier ده.**
+- عملة أساسية واحدة (USD) عند الـ checkout، مع تحويل عرض فقط لـ EGP, SAR, AED.
+
+خارج نطاق الـ Basic Tier (مؤجل لـ Professional / Enterprise):
+
+- تطبيقات الموبايل، B2B agent portal، white-label theming، fraud ML، dynamic pricing engine.
+- إشعارات WhatsApp Business.
+- multi-region active-active deployment.
+- automated refund orchestration.
+- تجميع hotels من أكتر من مزوّد.
+
+### التعريفات والاختصارات
+
+ارجع لجدول المصطلحات اللي فوق. المصطلحات الصناعية المعيارية للسفر بتتبع
+IATA Resolution 830a وأعراف Amadeus Self-Service API.
+
+### المراجع
+
+| Ref ID | المرجع                                                                       |
 | ------ | ---------------------------------------------------------------------------- |
 | R-01   | Amadeus Self-Service API Reference (v3, retrieved 2026-05)                   |
 | R-02   | Stripe API Reference (2025-11-20 API version)                                |
@@ -104,205 +156,205 @@ Resolution 830a and Amadeus Self-Service API conventions.
 | R-09   | WCAG 2.1 AA, EN 301 549 v3.2.1                                               |
 | R-10   | Next.js 15 App Router, NestJS 10 documentation                               |
 
-### Document Conventions
+### أعراف الوثيقة
 
-- Functional requirements are identified as `FR-XXX` and are testable (have an AT).
-- Non-functional requirements use `NFR-XXX`.
-- Acceptance criteria use Gherkin-style `Given / When / Then`.
-- MUST, SHOULD, MAY follow RFC 2119 semantics.
-- HTTP status code use follows RFC 9110.
+- المتطلبات الـ functional بتتسمّى `FR-XXX` ولازم تكون قابلة للاختبار (ليها AT).
+- المتطلبات الـ non-functional بتستخدم `NFR-XXX`.
+- معايير القبول مكتوبة بصيغة Gherkin: `Given / When / Then`.
+- MUST، SHOULD، MAY بمعناها في RFC 2119.
+- استخدام HTTP status codes بيتبع RFC 9110.
 
 ---
 
-## Functional Requirements
+## المتطلبات الـ Functional
 
 ### Module: Authentication (FR-001 — FR-018)
 
-| ID     | Requirement                                                                                                | Priority |
+| ID     | المتطلب                                                                                                    | Priority |
 | ------ | ---------------------------------------------------------------------------------------------------------- | -------- |
-| FR-001 | The system MUST allow registration with email + password (min 10 chars, zxcvbn score ≥ 3).                  | MUST     |
-| FR-002 | The system MUST verify the email address via a signed token (24 h TTL) before enabling bookings.            | MUST     |
-| FR-003 | The system MUST support login with email + password and return an access (15 min) + refresh (30 d) JWT.     | MUST     |
-| FR-004 | The system MUST support refresh-token rotation; reused refresh tokens MUST invalidate the entire family.    | MUST     |
-| FR-005 | The system MUST allow a forgotten-password flow via signed email link (30 min TTL, one-shot).               | MUST     |
-| FR-006 | The system MUST lock an account for 15 minutes after 5 failed login attempts in a 10-minute window.         | MUST     |
-| FR-007 | The system MUST allow logout that revokes the active refresh token.                                         | MUST     |
-| FR-008 | The system MUST hash passwords with Argon2id (m=64 MiB, t=3, p=2).                                          | MUST     |
-| FR-009 | The system MUST allow profile update (name, phone, locale, default currency display).                       | MUST     |
-| FR-010 | The system MUST allow account deletion, soft-deleting personal data after a 30-day grace period.            | MUST     |
-| FR-011 | The system MUST require email OTP confirmation before applying any refund initiated by a customer.          | MUST     |
-| FR-012 | The system MUST log every auth event (login, logout, password reset, OTP issuance) to the audit trail.      | MUST     |
-| FR-013 | The system SHOULD support Google OAuth single sign-on (deferred-capable; flag-gated in Basic).              | SHOULD   |
-| FR-014 | The system MUST enforce JWT signature with RS256, keys rotated every 90 days.                                | MUST     |
-| FR-015 | The system MUST expose `/auth/me` returning the authenticated user profile + permissions array.              | MUST     |
-| FR-016 | The system MUST enforce CAPTCHA (hCaptcha) on register, login, and password-reset endpoints.                | MUST     |
-| FR-017 | The system MUST allow staff (role=`admin`) to impersonate a user for support, recording the action.         | MUST     |
-| FR-018 | The system MUST expire idle sessions after 24 h of no refresh, even if refresh-token TTL has not elapsed.   | MUST     |
+| FR-001 | لازم النظام يسمح بالتسجيل بـ email + password (10 حروف على الأقل، zxcvbn score ≥ 3).                       | MUST     |
+| FR-002 | لازم النظام يأكد الـ email عن طريق signed token (TTL = 24 ساعة) قبل ما يفعّل الحجز.                        | MUST     |
+| FR-003 | لازم النظام يدعم login بـ email + password ويرجع access token (15 دقيقة) + refresh token (30 يوم) JWT.     | MUST     |
+| FR-004 | لازم النظام يدعم refresh-token rotation؛ أي refresh token مستخدم مرتين لازم يلغي الـ family كلها.          | MUST     |
+| FR-005 | لازم النظام يسمح بمسار نسيان كلمة المرور عن طريق signed email link (TTL = 30 دقيقة، استخدام واحد).         | MUST     |
+| FR-006 | لازم النظام يقفل الحساب 15 دقيقة بعد 5 محاولات login فاشلة خلال 10 دقايق.                                  | MUST     |
+| FR-007 | لازم النظام يسمح بـ logout ويلغي الـ refresh token النشط.                                                  | MUST     |
+| FR-008 | لازم النظام يـ hash كلمات المرور بـ Argon2id (m=64 MiB, t=3, p=2).                                         | MUST     |
+| FR-009 | لازم النظام يسمح بتحديث الـ profile (الاسم، التليفون، locale، العملة الافتراضية للعرض).                    | MUST     |
+| FR-010 | لازم النظام يسمح بحذف الحساب، مع soft-delete للبيانات الشخصية بعد فترة سماح 30 يوم.                       | MUST     |
+| FR-011 | لازم النظام يطلب تأكيد OTP عن طريق email قبل أي refund العميل بيبدأه.                                      | MUST     |
+| FR-012 | لازم النظام يـ log كل auth event (login، logout، إعادة تعيين كلمة المرور، إصدار OTP) في الـ audit trail.   | MUST     |
+| FR-013 | المفروض النظام يدعم Google OAuth SSO (قابل للتأجيل، behind feature flag في Basic).                          | SHOULD   |
+| FR-014 | لازم النظام يفرض signature على الـ JWT بـ RS256، مع rotation للـ keys كل 90 يوم.                            | MUST     |
+| FR-015 | لازم النظام يوفّر `/auth/me` بيرجع الـ profile للمستخدم المسجّل + array الـ permissions.                    | MUST     |
+| FR-016 | لازم النظام يفرض CAPTCHA (hCaptcha) على endpoints الـ register والـ login وreset password.                  | MUST     |
+| FR-017 | لازم النظام يسمح لموظفي الدعم (role=`admin`) بانتحال شخصية مستخدم للدعم، مع تسجيل الفعل.                   | MUST     |
+| FR-018 | لازم النظام ينهي الـ sessions الخاملة بعد 24 ساعة بدون refresh، حتى لو الـ TTL مخلصش.                       | MUST     |
 
 ### Module: Flights (FR-019 — FR-032)
 
-| ID     | Requirement                                                                                                                          | Priority |
+| ID     | المتطلب                                                                                                                              | Priority |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-019 | The system MUST allow searching one-way and round-trip flights by origin, destination, departure date, return date, pax counts.       | MUST     |
-| FR-020 | The system MUST support up to 9 passengers per booking (adults+children+infants, IATA limit).                                          | MUST     |
-| FR-021 | The system MUST display fare per pax type and total fare, including taxes and carrier surcharges.                                     | MUST     |
-| FR-022 | The system MUST cache Amadeus flight-offer responses for ≤ 10 minutes keyed on `(origin,dest,date,pax,cabin)`.                         | MUST     |
-| FR-023 | The system MUST run a price-confirm call against Amadeus Flight Offers Price before showing the checkout page.                         | MUST     |
-| FR-024 | If price has changed by more than 0.5%, the system MUST surface a confirmation dialog before allowing checkout.                        | MUST     |
-| FR-025 | The system MUST collect passenger details (title, given/family name, DOB, document type/number/expiry/issuing country) at checkout.    | MUST     |
-| FR-026 | The system MUST validate that passport expiry ≥ 6 months after return date.                                                            | MUST     |
-| FR-027 | The system MUST issue a PNR via Amadeus Flight Create Orders after successful payment authorization.                                   | MUST     |
-| FR-028 | The system MUST retry PNR creation up to 3× with exponential backoff on 5xx; voiding charge if all retries fail.                       | MUST     |
-| FR-029 | The system MUST support cabin classes: ECONOMY, PREMIUM_ECONOMY, BUSINESS, FIRST.                                                      | MUST     |
-| FR-030 | The system MUST support fare filters: number of stops, max duration, carriers, departure window.                                       | MUST     |
-| FR-031 | The system MUST send the e-ticket PDF as an email attachment within 60 s of ticketing.                                                 | MUST     |
-| FR-032 | The system MAY display a baggage allowance summary when the carrier supplies it; absence is not blocking.                              | MAY      |
+| FR-019 | لازم النظام يسمح بالبحث عن رحلات one-way وround-trip بـ origin، destination، departure date، return date، عدد الـ pax.               | MUST     |
+| FR-020 | لازم النظام يدعم حتى 9 ركاب في الحجز الواحد (adults+children+infants، حد IATA).                                                        | MUST     |
+| FR-021 | لازم النظام يعرض fare لكل نوع pax والـ total fare، شاملاً الضرايب ورسوم الناقل.                                                       | MUST     |
+| FR-022 | لازم النظام يـ cache ردود Amadeus flight-offer لمدة ≤ 10 دقايق بـ key على `(origin,dest,date,pax,cabin)`.                              | MUST     |
+| FR-023 | لازم النظام ينفّذ price-confirm call على Amadeus Flight Offers Price قبل عرض صفحة الـ checkout.                                       | MUST     |
+| FR-024 | لو السعر اتغيّر بأكتر من 0.5%، لازم النظام يعرض dialog تأكيد قبل ما يسمح بالـ checkout.                                                | MUST     |
+| FR-025 | لازم النظام يجمع بيانات الركاب (title، الاسم الأول/العائلة، تاريخ الميلاد، نوع/رقم/تاريخ انتهاء/بلد إصدار الوثيقة) عند الـ checkout.   | MUST     |
+| FR-026 | لازم النظام يتحقق إن صلاحية جواز السفر ≥ 6 شهور بعد تاريخ العودة.                                                                      | MUST     |
+| FR-027 | لازم النظام يصدر PNR عن طريق Amadeus Flight Create Orders بعد ما الـ payment authorization ينجح.                                       | MUST     |
+| FR-028 | لازم النظام يعيد محاولة إنشاء PNR حتى 3 مرات بـ exponential backoff على 5xx، مع إلغاء الـ charge لو كل المحاولات فشلت.                  | MUST     |
+| FR-029 | لازم النظام يدعم cabin classes: ECONOMY, PREMIUM_ECONOMY, BUSINESS, FIRST.                                                              | MUST     |
+| FR-030 | لازم النظام يدعم fare filters: عدد الـ stops، أقصى مدة، الناقلين، نافذة المغادرة.                                                       | MUST     |
+| FR-031 | لازم النظام يبعت e-ticket PDF كمرفق email خلال 60 ثانية من الـ ticketing.                                                              | MUST     |
+| FR-032 | ممكن النظام يعرض ملخص لـ baggage allowance لما الناقل يوفّره؛ غيابه مش بيمنع الحجز.                                                    | MAY      |
 
 ### Module: Hotels (FR-033 — FR-044)
 
-| ID     | Requirement                                                                                                                   | Priority |
+| ID     | المتطلب                                                                                                                       | Priority |
 | ------ | ----------------------------------------------------------------------------------------------------------------------------- | -------- |
-| FR-033 | The system MUST allow hotel search by city (IATA city code), check-in/out dates, adults, children with ages.                   | MUST     |
-| FR-034 | The system MUST display hotels with name, rating, location, image, headline price (per night, currency).                       | MUST     |
-| FR-035 | The system MUST paginate results with 20 per page and support sort by price, rating, distance.                                 | MUST     |
-| FR-036 | The system MUST fetch room offers per hotel on detail-page load with a fresh availability call.                                | MUST     |
-| FR-037 | The system MUST display the cancellation policy (refundable / non-refundable / deadline) before checkout.                      | MUST     |
-| FR-038 | The system MUST collect guest details (lead guest full name, contact) and optional special requests.                           | MUST     |
-| FR-039 | The system MUST confirm price via Amadeus Hotel Offer Search by `offerId` immediately before payment.                          | MUST     |
-| FR-040 | The system MUST create a hotel booking via Amadeus Hotel Bookings v2 after payment authorization.                              | MUST     |
-| FR-041 | The system MUST email a hotel voucher with confirmation number, hotel contact, dates, and policy summary.                      | MUST     |
-| FR-042 | The system MUST handle Amadeus rebook errors by voiding the payment and surfacing a clear retry prompt.                        | MUST     |
-| FR-043 | The system MUST honor the provider's currency and convert display only (no FX risk taken in Basic).                            | MUST     |
-| FR-044 | The system MUST persist the canonical Amadeus confirmation number on the booking record.                                       | MUST     |
+| FR-033 | لازم النظام يسمح بالبحث عن hotels بـ city (IATA city code)، تواريخ check-in/out، عدد الـ adults والـ children مع أعمارهم.       | MUST     |
+| FR-034 | لازم النظام يعرض الـ hotels مع الاسم، التقييم، الموقع، صورة، السعر الرئيسي (لكل ليلة، بالعملة).                                  | MUST     |
+| FR-035 | لازم النظام يقسم النتائج 20 لكل صفحة ويدعم الفرز بالسعر والتقييم والمسافة.                                                       | MUST     |
+| FR-036 | لازم النظام يجيب عروض الغرف لكل hotel عند فتح صفحة التفاصيل عن طريق availability call جديد.                                      | MUST     |
+| FR-037 | لازم النظام يعرض cancellation policy (refundable / non-refundable / الـ deadline) قبل الـ checkout.                              | MUST     |
+| FR-038 | لازم النظام يجمع بيانات الضيف (الاسم الكامل للضيف الأساسي، التواصل) وطلبات خاصة اختيارية.                                        | MUST     |
+| FR-039 | لازم النظام يأكّد السعر عن طريق Amadeus Hotel Offer Search بـ `offerId` قبل الدفع مباشرة.                                        | MUST     |
+| FR-040 | لازم النظام ينشئ hotel booking عن طريق Amadeus Hotel Bookings v2 بعد payment authorization.                                     | MUST     |
+| FR-041 | لازم النظام يبعت email voucher للـ hotel فيه رقم التأكيد، تواصل الفندق، التواريخ، وملخص الـ policy.                              | MUST     |
+| FR-042 | لازم النظام يتعامل مع أخطاء rebook في Amadeus بإلغاء الدفع وعرض رسالة retry واضحة.                                                | MUST     |
+| FR-043 | لازم النظام يحترم عملة المزوّد ويعمل تحويل للعرض فقط (مفيش FX risk في Basic).                                                    | MUST     |
+| FR-044 | لازم النظام يحتفظ برقم التأكيد الـ canonical من Amadeus على الـ booking record.                                                  | MUST     |
 
 ### Module: Booking (FR-045 — FR-055)
 
-| ID     | Requirement                                                                                              | Priority |
+| ID     | المتطلب                                                                                                  | Priority |
 | ------ | -------------------------------------------------------------------------------------------------------- | -------- |
-| FR-045 | The system MUST issue a server-side `bookingId` (UUIDv7) before payment is initiated.                     | MUST     |
-| FR-046 | The system MUST persist booking with status: `DRAFT`, `PENDING_PAYMENT`, `CONFIRMED`, `FAILED`, `CANCELLED`, `REFUNDED`. | MUST     |
-| FR-047 | The system MUST treat the booking endpoint as idempotent using an `Idempotency-Key` header.               | MUST     |
-| FR-048 | The system MUST expire `DRAFT` bookings after 15 minutes.                                                 | MUST     |
-| FR-049 | The system MUST expire `PENDING_PAYMENT` bookings after 30 minutes (Stripe PI auto-cancel aligns).        | MUST     |
-| FR-050 | The system MUST allow a user to view all of their bookings paginated by date desc.                        | MUST     |
-| FR-051 | The system MUST allow a user to cancel a refundable booking before the supplier's deadline.               | MUST     |
-| FR-052 | The system MUST attach an immutable audit-log row per status transition.                                  | MUST     |
-| FR-053 | The system MUST rollback supplier reservation if final ticket/voucher issuance fails.                     | MUST     |
-| FR-054 | The system MUST produce a `bookingReference` (8-char alphanumeric, Crockford base32) shown to the user.   | MUST     |
-| FR-055 | The system MUST emit domain events (`BookingConfirmed`, `BookingCancelled`) onto BullMQ for downstreams.  | MUST     |
+| FR-045 | لازم النظام يصدر `bookingId` من السيرفر (UUIDv7) قبل بدء الدفع.                                          | MUST     |
+| FR-046 | لازم النظام يحتفظ بالحجز بـ status: `DRAFT`، `PENDING_PAYMENT`، `CONFIRMED`، `FAILED`، `CANCELLED`، `REFUNDED`. | MUST     |
+| FR-047 | لازم النظام يعتبر endpoint الحجز idempotent باستخدام `Idempotency-Key` header.                            | MUST     |
+| FR-048 | لازم النظام ينهي الـ bookings اللي بحالة `DRAFT` بعد 15 دقيقة.                                            | MUST     |
+| FR-049 | لازم النظام ينهي الـ bookings اللي بحالة `PENDING_PAYMENT` بعد 30 دقيقة (Stripe PI auto-cancel متوافق).   | MUST     |
+| FR-050 | لازم النظام يسمح للمستخدم يشوف كل حجوزاته مقسّمة على صفحات بترتيب تنازلي بالتاريخ.                         | MUST     |
+| FR-051 | لازم النظام يسمح للمستخدم بإلغاء حجز refundable قبل deadline المزوّد.                                     | MUST     |
+| FR-052 | لازم النظام يضيف audit-log row غير قابل للتعديل لكل تغيير في الـ status.                                   | MUST     |
+| FR-053 | لازم النظام يعمل rollback لحجز المزوّد لو إصدار الـ ticket/voucher النهائي فشل.                            | MUST     |
+| FR-054 | لازم النظام ينتج `bookingReference` (8 خانات alphanumeric، Crockford base32) معروض للمستخدم.              | MUST     |
+| FR-055 | لازم النظام يصدر domain events (`BookingConfirmed`, `BookingCancelled`) على BullMQ للمستهلكين.            | MUST     |
 
 ### Module: Payment (FR-056 — FR-064)
 
-| ID     | Requirement                                                                                                          | Priority |
+| ID     | المتطلب                                                                                                              | Priority |
 | ------ | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| FR-056 | The system MUST create a Stripe PaymentIntent in `manual` capture mode at checkout.                                   | MUST     |
-| FR-057 | The system MUST require 3DS2 challenge (request_three_d_secure=`automatic`).                                          | MUST     |
-| FR-058 | The system MUST capture the PaymentIntent only after the supplier ticket/voucher issuance succeeds.                   | MUST     |
-| FR-059 | The system MUST reconcile via Stripe webhooks (`payment_intent.succeeded`, `.payment_failed`, `charge.refunded`).     | MUST     |
-| FR-060 | The system MUST verify Stripe webhook signatures with the shared secret.                                              | MUST     |
-| FR-061 | The system MUST be tolerant to webhook duplicates (idempotent on `event.id`).                                          | MUST     |
-| FR-062 | The system MUST surface a payment-error code mapping to user-friendly localized message.                              | MUST     |
-| FR-063 | In Basic, refunds MAY be issued manually by ops via Stripe dashboard; the system MUST reconcile via webhook.           | MAY      |
-| FR-064 | The system MUST never store PAN, CVV, or full track data — Stripe Elements tokenization only.                          | MUST     |
+| FR-056 | لازم النظام ينشئ Stripe PaymentIntent بـ `manual` capture mode عند الـ checkout.                                       | MUST     |
+| FR-057 | لازم النظام يفرض 3DS2 challenge (request_three_d_secure=`automatic`).                                                   | MUST     |
+| FR-058 | لازم النظام يعمل capture للـ PaymentIntent بعد ما إصدار الـ ticket/voucher من المزوّد ينجح.                            | MUST     |
+| FR-059 | لازم النظام يعمل reconcile عن طريق Stripe webhooks (`payment_intent.succeeded`, `.payment_failed`, `charge.refunded`). | MUST     |
+| FR-060 | لازم النظام يتحقق من signatures الـ Stripe webhooks بالـ shared secret.                                                | MUST     |
+| FR-061 | لازم النظام يتحمل تكرار الـ webhook (idempotent على `event.id`).                                                       | MUST     |
+| FR-062 | لازم النظام يعرض payment-error code mapping يتحوّل لرسالة user-friendly localized.                                     | MUST     |
+| FR-063 | في Basic، ممكن الـ refunds تتعمل يدوي من Ops عن طريق Stripe dashboard؛ والنظام لازم يعمل reconcile عبر webhook.        | MAY      |
+| FR-064 | لازم النظام **مايخزّنش** PAN أو CVV أو بيانات الـ track كاملة — Stripe Elements tokenization بس.                       | MUST     |
 
 ### Module: Notifications (FR-065 — FR-070)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                      | Priority |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-065 | The system MUST send a transactional email on: booking confirmed, payment failed, cancellation, refund.       | MUST     |
-| FR-066 | The system MUST queue all outbound notifications on BullMQ (`notifications.email` queue).                    | MUST     |
-| FR-067 | The system MUST retry email sends up to 5× with exponential backoff (base 30 s, factor 2).                   | MUST     |
-| FR-068 | The system MUST localize emails into AR (default for Egypt), EN, FR (locale resolved from user profile).      | MUST     |
-| FR-069 | The system MUST suppress duplicate notifications (de-dup key = `${eventId}:${userId}:${template}`).          | MUST     |
-| FR-070 | The system MUST honor user notification preferences (transactional emails cannot be opted out).               | MUST     |
+| FR-065 | لازم النظام يبعت email transactional عند: تأكيد الحجز، فشل الدفع، الإلغاء، الـ refund.                        | MUST     |
+| FR-066 | لازم النظام يحط كل الإشعارات الخارجة في طابور على BullMQ (`notifications.email` queue).                       | MUST     |
+| FR-067 | لازم النظام يعيد محاولة إرسال الـ email حتى 5 مرات بـ exponential backoff (base 30 ثانية، factor 2).         | MUST     |
+| FR-068 | لازم النظام يـ localize الـ emails لـ AR (الافتراضي لمصر)، EN، FR (الـ locale يتحدد من profile المستخدم).      | MUST     |
+| FR-069 | لازم النظام يمنع الإشعارات المكررة (de-dup key = `${eventId}:${userId}:${template}`).                          | MUST     |
+| FR-070 | لازم النظام يحترم تفضيلات الإشعارات للمستخدم (الـ transactional emails مش ممكن يعمل opt-out منها).             | MUST     |
 
 ### Module: Admin (FR-071 — FR-078)
 
-| ID     | Requirement                                                                                                 | Priority |
+| ID     | المتطلب                                                                                                     | Priority |
 | ------ | ----------------------------------------------------------------------------------------------------------- | -------- |
-| FR-071 | The admin console MUST allow searching bookings by reference, customer email, supplier ref, status, date.    | MUST     |
-| FR-072 | The admin console MUST allow viewing booking detail with full audit log.                                     | MUST     |
-| FR-073 | The admin console MUST allow staff to trigger a notification resend.                                         | MUST     |
-| FR-074 | The admin console MUST allow staff to mark a booking as refunded after manual Stripe refund (reconciliation). | MUST     |
-| FR-075 | The admin console MUST allow staff to view users (search by email, see basic profile, last login).           | MUST     |
-| FR-076 | The admin console MUST be protected by role `admin` and require re-authentication every 12 h.                | MUST     |
-| FR-077 | The admin console MUST log every staff action with actor, target, before/after diff.                         | MUST     |
-| FR-078 | The admin console SHOULD provide a daily KPI tile (bookings today, GMV today, failure rate).                 | SHOULD   |
+| FR-071 | لازم الـ admin console يسمح بالبحث في الـ bookings بـ reference، email العميل، supplier ref، status، التاريخ. | MUST     |
+| FR-072 | لازم الـ admin console يسمح بعرض تفاصيل الحجز كاملة مع الـ audit log.                                         | MUST     |
+| FR-073 | لازم الـ admin console يسمح للموظفين بإعادة إرسال notification.                                              | MUST     |
+| FR-074 | لازم الـ admin console يسمح للموظفين بتعليم الحجز كـ refunded بعد refund يدوي من Stripe (reconciliation).     | MUST     |
+| FR-075 | لازم الـ admin console يسمح للموظفين بعرض المستخدمين (بحث بالـ email، عرض profile أساسي، آخر login).         | MUST     |
+| FR-076 | لازم الـ admin console يكون محمي بـ role `admin` ويطلب re-authentication كل 12 ساعة.                          | MUST     |
+| FR-077 | لازم الـ admin console يـ log كل فعل من الموظف بالـ actor والـ target والفرق before/after.                    | MUST     |
+| FR-078 | المفروض الـ admin console يعرض tile KPIs يومي (الحجوزات النهارده، GMV النهارده، نسبة الفشل).                  | SHOULD   |
 
 ---
 
-## Non-functional Requirements
+## المتطلبات الـ Non-functional
 
-### Performance
+### الأداء (Performance)
 
-| ID      | Requirement                                                                                              |
+| ID      | المتطلب                                                                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- |
-| NFR-001 | Flight search endpoint p95 latency ≤ 2.5 s (Amadeus call inclusive), p99 ≤ 4 s.                          |
-| NFR-002 | Hotel search endpoint p95 latency ≤ 2.0 s.                                                               |
-| NFR-003 | All non-supplier-bound endpoints p95 ≤ 250 ms.                                                           |
-| NFR-004 | Largest Contentful Paint (LCP) of home page ≤ 2.0 s on 4G profile.                                       |
-| NFR-005 | Time-to-Interactive (TTI) of search results page ≤ 3.5 s.                                                 |
-| NFR-006 | Search cache hit ratio target ≥ 35% during business hours.                                                |
+| NFR-001 | endpoint البحث عن flights لازم يكون p95 latency ≤ 2.5 ثانية (شامل call الـ Amadeus)، p99 ≤ 4 ثواني.       |
+| NFR-002 | endpoint البحث عن hotels لازم يكون p95 latency ≤ 2.0 ثانية.                                              |
+| NFR-003 | كل الـ endpoints اللي مش بتاعت مزوّد لازم تكون p95 ≤ 250 ميلي ثانية.                                     |
+| NFR-004 | Largest Contentful Paint (LCP) لصفحة الـ home ≤ 2.0 ثانية على 4G profile.                                 |
+| NFR-005 | Time-to-Interactive (TTI) لصفحة نتائج البحث ≤ 3.5 ثانية.                                                  |
+| NFR-006 | هدف نسبة الـ search cache hit ≥ 35% خلال ساعات الشغل.                                                     |
 
-### Scalability
+### القابلية للتوسع (Scalability)
 
-| ID      | Requirement                                                                                              |
+| ID      | المتطلب                                                                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- |
-| NFR-007 | The system MUST sustain 50 RPS booking-funnel sessions sustained for 1 h.                                |
-| NFR-008 | The system MUST sustain 300 RPS read-only catalog endpoints with horizontal scale.                       |
-| NFR-009 | BullMQ workers MUST scale horizontally to 4 replicas without code change.                                |
-| NFR-010 | Database connections MUST be pooled via PgBouncer (transaction mode, max 200 client conns).              |
+| NFR-007 | لازم النظام يتحمّل 50 RPS booking-funnel sessions مستمرة لمدة ساعة.                                       |
+| NFR-008 | لازم النظام يتحمّل 300 RPS على endpoints الـ catalog للقراءة فقط مع horizontal scale.                     |
+| NFR-009 | لازم الـ BullMQ workers تتقدر تتوسع أفقياً لـ 4 replicas من غير تعديل في الكود.                            |
+| NFR-010 | لازم اتصالات الـ Database تكون pooled عن طريق PgBouncer (transaction mode، حد أقصى 200 client conns).     |
 
-### Availability
+### التوافر (Availability)
 
-| ID      | Requirement                                                                                              |
+| ID      | المتطلب                                                                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- |
-| NFR-011 | Target monthly uptime 99.5% (≤ 3 h 39 min downtime).                                                     |
-| NFR-012 | RPO ≤ 15 min, RTO ≤ 4 h for full DR in primary region.                                                   |
-| NFR-013 | Postgres MUST be deployed with one synchronous standby replica.                                          |
-| NFR-014 | Redis MUST be deployed with one replica + Sentinel.                                                       |
-| NFR-015 | Planned-maintenance windows MUST be announced ≥ 72 h in advance.                                          |
+| NFR-011 | الـ uptime الشهري المستهدف 99.5% (downtime ≤ 3 ساعات و39 دقيقة).                                          |
+| NFR-012 | RPO ≤ 15 دقيقة، RTO ≤ 4 ساعات للـ DR الكامل في الـ primary region.                                        |
+| NFR-013 | لازم Postgres ينشر مع synchronous standby replica واحد.                                                   |
+| NFR-014 | لازم Redis ينشر مع replica واحد + Sentinel.                                                                |
+| NFR-015 | لازم نوافذ الصيانة المخططة تتعلن قبلها بـ 72 ساعة على الأقل.                                              |
 
-### Security
+### الأمان (Security)
 
-| ID      | Requirement                                                                                              |
+| ID      | المتطلب                                                                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- |
-| NFR-016 | TLS 1.2+ mandatory on all ingress; HSTS `max-age=63072000; includeSubDomains; preload`.                  |
-| NFR-017 | Data at rest encrypted with AES-256 (Postgres TDE, Redis disk encryption).                               |
-| NFR-018 | Secrets MUST live in Vercel Encrypted Env (FE) and AWS Secrets Manager (BE).                             |
-| NFR-019 | Vulnerabilities of severity ≥ High MUST be patched within 7 days; Critical within 24 h.                  |
-| NFR-020 | An external pentest MUST be performed at least annually.                                                  |
+| NFR-016 | TLS 1.2+ إلزامي على كل ingress؛ HSTS `max-age=63072000; includeSubDomains; preload`.                     |
+| NFR-017 | البيانات at rest مشفّرة بـ AES-256 (Postgres TDE، Redis disk encryption).                                |
+| NFR-018 | لازم الـ secrets تكون في Vercel Encrypted Env (FE) وAWS Secrets Manager (BE).                            |
+| NFR-019 | الثغرات بـ severity ≥ High لازم تتصلّح خلال 7 أيام؛ Critical خلال 24 ساعة.                                | 
+| NFR-020 | لازم يتعمل pentest خارجي على الأقل مرة في السنة.                                                          |
 
-### Internationalization
+### التدويل (Internationalization)
 
-| ID      | Requirement                                                                                              |
+| ID      | المتطلب                                                                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- |
-| NFR-021 | The system MUST support AR (RTL), EN, FR for all user-facing surfaces.                                   |
-| NFR-022 | All dates MUST be rendered in user-selected timezone; storage MUST be UTC.                               |
-| NFR-023 | All monetary values MUST include explicit ISO 4217 currency codes.                                       |
+| NFR-021 | لازم النظام يدعم AR (RTL)، EN، FR لكل الواجهات المعروضة للمستخدم.                                         |
+| NFR-022 | لازم كل التواريخ تتعرض بـ timezone اللي المستخدم اختاره؛ والتخزين لازم يكون UTC.                          |
+| NFR-023 | لازم كل القيم المالية تتضمن صراحة ISO 4217 currency codes.                                                |
 
-### Accessibility
+### إمكانية الوصول (Accessibility)
 
-| ID      | Requirement                                                                                              |
+| ID      | المتطلب                                                                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- |
-| NFR-024 | The site MUST conform to WCAG 2.1 AA (semantic landmarks, focus order, color contrast ≥ 4.5:1).          |
-| NFR-025 | All interactive elements MUST be keyboard operable; visible focus indicators required.                   |
-| NFR-026 | Forms MUST expose error messages programmatically with `aria-describedby`.                               |
+| NFR-024 | لازم الموقع يتوافق مع WCAG 2.1 AA (semantic landmarks، focus order، color contrast ≥ 4.5:1).             |
+| NFR-025 | لازم كل العناصر التفاعلية تكون قابلة للتشغيل بالكيبورد؛ ومؤشرات focus ظاهرة مطلوبة.                       |
+| NFR-026 | لازم الـ forms تعرض رسايل الخطأ بطريقة programmatic عن طريق `aria-describedby`.                          |
 
-### Compliance
+### الامتثال (Compliance)
 
-| ID      | Requirement                                                                                              |
+| ID      | المتطلب                                                                                                  |
 | ------- | -------------------------------------------------------------------------------------------------------- |
-| NFR-027 | PCI scope: SAQ A-EP. No PAN ever touches our servers.                                                    |
-| NFR-028 | GDPR: data-export and data-deletion paths MUST be available within 30 days of request.                   |
-| NFR-029 | Cookie consent: explicit opt-in for non-essential cookies; granular controls.                            |
+| NFR-027 | PCI scope: SAQ A-EP. مفيش PAN يلمس السيرفرات بتاعتنا.                                                    |
+| NFR-028 | GDPR: مسارات data-export وdata-deletion لازم تكون متاحة خلال 30 يوم من الطلب.                            |
+| NFR-029 | Cookie consent: opt-in صريح للكوكيز اللي مش أساسية؛ مع تحكم granular.                                    |
 
 ---
 
-## System Architecture
+## معمارية النظام (System Architecture)
 
-The Basic Tier deploys a single primary region with a CDN-fronted Next.js layer in
-front of a containerized NestJS API, backed by Postgres + Redis + BullMQ.
+الـ Basic Tier بينشر في region أساسي واحد فيه طبقة Next.js قدامها CDN، وقدام
+NestJS API في containers، مدعومة بـ Postgres + Redis + BullMQ.
 
 ```
 ┌──────────┐       ┌────────────┐       ┌─────────────────────┐      ┌──────────────────────┐
@@ -344,51 +396,50 @@ front of a containerized NestJS API, backed by Postgres + Redis + BullMQ.
                                                                                 └──────────────────────┘
 ```
 
-### Component Responsibilities
+### مسؤوليات الـ Components
 
-| Component        | Responsibility                                                                                   |
+| الـ Component    | المسؤولية                                                                                          |
 | ---------------- | ------------------------------------------------------------------------------------------------ |
-| Next.js (Vercel) | SSR/ISR for marketing, RSC + Server Actions for booking flow, hosts Stripe Elements iframe.      |
-| NestJS API       | Domain logic, supplier orchestration, idempotency, persistence, queue dispatch.                  |
-| PostgreSQL 16    | System of record for users, bookings, payments, audit log, supplier responses (jsonb).           |
-| Redis 7          | Session token blacklist, search cache, rate-limit counters, BullMQ broker.                       |
-| BullMQ workers   | Async work: email send, supplier rollback, booking-cleanup sweep, webhook replay.                |
-| Amadeus          | Flight + hotel inventory, ticketing, hotel booking.                                              |
-| Stripe           | Card vaulting, PaymentIntent lifecycle, 3DS, refunds.                                            |
-| Cloudflare       | DDoS protection in front of Vercel for the apex; bot fight mode.                                 |
+| Next.js (Vercel) | SSR/ISR للصفحات التسويقية، RSC + Server Actions لمسار الحجز، يحتضن Stripe Elements iframe.        |
+| NestJS API       | منطق الـ domain، تنسيق المزوّدين، idempotency، التخزين، إرسال الـ jobs للطابور.                    |
+| PostgreSQL 16    | المصدر الأساسي للبيانات: users، bookings، payments، audit log، ردود المزوّدين (jsonb).             |
+| Redis 7          | blacklist لتوكنات الجلسات، search cache، عدادات rate-limit، broker لـ BullMQ.                      |
+| BullMQ workers   | الشغل الـ async: إرسال email، rollback للمزوّد، تنظيف الـ bookings، إعادة تشغيل webhook.           |
+| Amadeus          | inventory للـ flights والـ hotels، ticketing، حجز الفنادق.                                         |
+| Stripe           | حفظ الكروت، lifecycle الـ PaymentIntent، 3DS، refunds.                                            |
+| Cloudflare       | حماية DDoS قدام Vercel للـ apex domain؛ bot fight mode.                                            |
 
 ---
 
-## Database Design
+## تصميم قاعدة البيانات (Database Design)
 
-PostgreSQL 16 with `uuid-ossp` and `pgcrypto` extensions. Money is stored as `bigint`
-minor-units with a separate `currency` column (ISO 4217). All tables include
-`created_at`, `updated_at` (`timestamptz` default `now()`). Soft deletes via
-`deleted_at`.
+PostgreSQL 16 مع الـ extensions `uuid-ossp` و`pgcrypto`. الفلوس بتتخزن كـ `bigint`
+بالـ minor-units مع column `currency` منفصل (ISO 4217). كل الجداول فيها
+`created_at`, `updated_at` (`timestamptz` default `now()`). الحذف soft عن طريق `deleted_at`.
 
-### Tables Overview
+### نظرة عامة على الجداول
 
-| Table                     | Purpose                                                              | Key Relationships                               |
+| الجدول                    | الغرض                                                                | العلاقات الأساسية                                |
 | ------------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
-| `users`                   | Customer + staff identities                                          | 1—N → `bookings`, `audit_events`                |
-| `user_credentials`        | Password hash + reset state                                          | 1—1 → `users`                                   |
-| `refresh_tokens`          | Active refresh-token family + replay detection                       | N—1 → `users`                                   |
-| `airports`                | IATA airport reference data                                          | —                                               |
-| `airlines`                | IATA airline reference data                                          | —                                               |
-| `cities`                  | IATA city reference data                                             | —                                               |
-| `bookings`                | Booking aggregate root                                               | N—1 → `users`; 1—N → `booking_items`, `payments` |
-| `booking_items`           | Per-product items (flight, hotel)                                    | N—1 → `bookings`                                |
-| `flight_segments`         | One segment per leg of a flight item                                 | N—1 → `booking_items`                           |
-| `hotel_stays`             | Hotel item details                                                   | N—1 → `booking_items`                           |
-| `passengers`              | Passenger / guest detail bound to a booking                          | N—1 → `bookings`                                |
-| `payments`                | PaymentIntent lifecycle records                                      | N—1 → `bookings`                                |
-| `payment_webhook_events`  | De-duplication store for Stripe events                               | —                                               |
-| `supplier_calls`          | Outbound supplier call log (request + response, jsonb)               | N—1 → `bookings`                                |
-| `notifications`           | Queued / sent notifications + delivery status                        | N—1 → `users`, `bookings`                       |
-| `audit_events`            | Immutable audit log                                                  | N—1 → `users`                                   |
-| `idempotency_keys`        | Idempotency-Key → response hash mapping                              | —                                               |
+| `users`                   | هويات العملاء + الموظفين                                              | 1—N → `bookings`, `audit_events`                |
+| `user_credentials`        | hash كلمة المرور + حالة الـ reset                                    | 1—1 → `users`                                   |
+| `refresh_tokens`          | عائلة الـ refresh-token النشطة + كشف الـ replay                       | N—1 → `users`                                   |
+| `airports`                | بيانات مرجعية لمطارات IATA                                            | —                                               |
+| `airlines`                | بيانات مرجعية لشركات الطيران IATA                                     | —                                               |
+| `cities`                  | بيانات مرجعية لمدن IATA                                               | —                                               |
+| `bookings`                | الجذر الأساسي للحجز (aggregate root)                                  | N—1 → `users`; 1—N → `booking_items`, `payments` |
+| `booking_items`           | عناصر لكل منتج (flight, hotel)                                        | N—1 → `bookings`                                |
+| `flight_segments`         | segment لكل leg من رحلة flight item                                   | N—1 → `booking_items`                           |
+| `hotel_stays`             | تفاصيل عنصر الفندق                                                    | N—1 → `booking_items`                           |
+| `passengers`              | تفاصيل الراكب/الضيف المرتبطة بالحجز                                   | N—1 → `bookings`                                |
+| `payments`                | سجلات lifecycle الـ PaymentIntent                                     | N—1 → `bookings`                                |
+| `payment_webhook_events`  | مخزن de-duplication لـ events الـ Stripe                              | —                                               |
+| `supplier_calls`          | log calls المزوّدين الخارجية (request + response, jsonb)              | N—1 → `bookings`                                |
+| `notifications`           | الإشعارات في الطابور / المُرسَلة + حالة التسليم                       | N—1 → `users`, `bookings`                       |
+| `audit_events`            | audit log غير قابل للتعديل                                            | N—1 → `users`                                   |
+| `idempotency_keys`        | mapping الـ Idempotency-Key → response hash                          | —                                               |
 
-### SQL DDL Excerpts
+### مقتطفات SQL DDL
 
 ```sql
 CREATE TABLE users (
@@ -590,18 +641,18 @@ CREATE TABLE idempotency_keys (
 );
 ```
 
-### Indexing Strategy
+### استراتيجية الـ Indexing
 
-- B-tree on every FK column (Postgres does NOT auto-create these).
-- Partial indexes on hot status enum subsets (`bookings.status IN ('DRAFT','PENDING_PAYMENT')`).
-- GIN index on `booking_items.offer_payload` for support lookups: `CREATE INDEX ON booking_items USING gin (offer_payload jsonb_path_ops)`.
+- B-tree على كل column من نوع FK (Postgres مش بيعملهم تلقائي).
+- Partial indexes على الـ subsets الساخنة من enum الـ status (`bookings.status IN ('DRAFT','PENDING_PAYMENT')`).
+- GIN index على `booking_items.offer_payload` للبحث من فريق الدعم: `CREATE INDEX ON booking_items USING gin (offer_payload jsonb_path_ops)`.
 
 ---
 
-## API Design
+## تصميم الـ API
 
-Base URL: `https://api.jawla.travel/v1`. All requests/responses are JSON UTF-8.
-Auth header: `Authorization: Bearer <access_token>`. Errors follow RFC 7807
+Base URL: `https://api.jawla.travel/v1`. كل الـ requests والـ responses JSON UTF-8.
+Auth header: `Authorization: Bearer <access_token>`. الأخطاء بتتبع RFC 7807
 `application/problem+json`.
 
 | #  | METHOD | PATH                                       | Auth        | Request                                              | Response                              | Status codes        |
@@ -631,7 +682,7 @@ Auth header: `Authorization: Bearer <access_token>`. Errors follow RFC 7807
 | 23 | POST   | `/admin/bookings/{id}/refund-reconcile`    | admin       | `{stripeRefundId,amount}`                            | `{status:'REFUNDED'}`                 | 200,403,409         |
 | 24 | POST   | `/admin/notifications/{id}/resend`         | admin       | —                                                    | `{queued:true}`                       | 202,403,404         |
 
-### Sample Request: `POST /flights/search`
+### مثال Request: `POST /flights/search`
 
 ```json
 {
@@ -647,7 +698,7 @@ Auth header: `Authorization: Bearer <access_token>`. Errors follow RFC 7807
 }
 ```
 
-### Sample Response
+### مثال Response
 
 ```json
 {
@@ -676,7 +727,7 @@ Auth header: `Authorization: Bearer <access_token>`. Errors follow RFC 7807
 }
 ```
 
-### Error Envelope (RFC 7807)
+### مظروف الخطأ Error Envelope (RFC 7807)
 
 ```json
 {
@@ -690,120 +741,121 @@ Auth header: `Authorization: Bearer <access_token>`. Errors follow RFC 7807
 }
 ```
 
-### Rate Limits
+### حدود الـ Rate Limits
 
-| Endpoint group   | Limit                    | Bucket key       |
-| ---------------- | ------------------------ | ---------------- |
-| auth/*           | 10 req / IP / min        | IP               |
-| flights/search   | 30 req / IP / min        | IP + user        |
-| hotels/search    | 30 req / IP / min        | IP + user        |
-| bookings (POST)  | 5 req / user / 10 min    | user             |
-| admin/*          | 60 req / staff / min     | user             |
+| مجموعة الـ Endpoint | الحد                     | الـ Bucket key   |
+| ------------------- | ------------------------ | ---------------- |
+| auth/*              | 10 req / IP / دقيقة      | IP               |
+| flights/search      | 30 req / IP / دقيقة      | IP + user        |
+| hotels/search       | 30 req / IP / دقيقة      | IP + user        |
+| bookings (POST)     | 5 req / user / 10 دقايق  | user             |
+| admin/*             | 60 req / staff / دقيقة   | user             |
 
 ---
 
-## Authentication & Authorization
+## الـ Authentication والـ Authorization
 
-### Token Model
+### نموذج التوكنات
 
-- **Access token** — RS256 JWT, 15 min TTL, claims: `sub`, `email`, `role`, `perms[]`,
+- **Access token** — RS256 JWT، TTL 15 دقيقة، الـ claims: `sub`, `email`, `role`, `perms[]`,
   `iss=https://api.jawla.travel`, `aud=jawla-web`, `iat`, `exp`, `jti`.
-- **Refresh token** — opaque random 256-bit, hashed (SHA-256) at rest, 30 d TTL,
-  rotated on each use; reuse triggers family invalidation (`refresh_tokens.family_id`).
+- **Refresh token** — opaque random 256-bit، مـ hashed (SHA-256) at rest، TTL 30 يوم،
+  بيتعمله rotation كل استخدام؛ إعادة الاستخدام بتعمل invalidation للـ family كلها
+  (`refresh_tokens.family_id`).
 
-### Roles & Permissions (RBAC)
+### الأدوار والصلاحيات (RBAC)
 
-| Role      | Description                                | Default Permissions                                |
+| الـ Role  | الوصف                                       | الصلاحيات الافتراضية                                |
 | --------- | ------------------------------------------ | -------------------------------------------------- |
-| customer  | End user                                   | `booking:read:self`, `booking:create`, `me:write`  |
-| support   | First-line support                         | `booking:read:any`, `notification:resend`          |
-| admin     | Full admin                                 | `*`                                                |
+| customer  | مستخدم نهائي                                 | `booking:read:self`, `booking:create`, `me:write`  |
+| support   | دعم الخط الأول                              | `booking:read:any`, `notification:resend`          |
+| admin     | admin كامل                                  | `*`                                                |
 
-Permission strings are matched as glob expressions (e.g. `booking:*` ⊆ `*`).
-Authorization is enforced in NestJS via a `@RequirePerms(...)` decorator + global
-`PermissionGuard` which reads `request.user.perms`.
+نصوص الصلاحيات بتتطابق كـ glob expressions (مثلاً `booking:*` ⊆ `*`).
+الـ Authorization بيتفرض في NestJS عن طريق decorator `@RequirePerms(...)` + global
+`PermissionGuard` بيقرا `request.user.perms`.
 
-### Password Policy
+### سياسة كلمة المرور
 
-| Rule                                              | Value           |
+| القاعدة                                            | القيمة          |
 | ------------------------------------------------- | --------------- |
-| Minimum length                                    | 10              |
-| Min zxcvbn score                                  | 3               |
-| Hash algorithm                                    | Argon2id        |
-| Memory cost                                       | 64 MiB          |
-| Iterations / parallelism                          | 3 / 2           |
-| Pepper                                            | env-bound (HSM) |
-| History (Basic)                                   | not enforced    |
+| الحد الأدنى للطول                                  | 10              |
+| الحد الأدنى لـ zxcvbn score                        | 3               |
+| algorithm الـ Hash                                 | Argon2id        |
+| تكلفة الذاكرة                                      | 64 MiB          |
+| التكرارات / التوازي                                | 3 / 2           |
+| الـ Pepper                                         | env-bound (HSM) |
+| الـ History (في Basic)                             | غير مفعّل       |
 
-### OTP for Sensitive Operations
+### OTP للعمليات الحساسة
 
-- 6-digit numeric code via email, 10 min TTL, single-use.
-- Required for: customer-initiated cancellation/refund, account deletion, email change.
-- Rate-limited: max 3 OTP requests per user per 10 min.
+- كود رقمي 6 خانات عبر email، TTL 10 دقايق، استخدام واحد.
+- مطلوب لـ: إلغاء/refund العميل، حذف الحساب، تغيير الـ email.
+- محدود بـ rate-limit: حد أقصى 3 طلبات OTP لكل user كل 10 دقايق.
 
 ---
 
-## Security
+## الأمان (Security)
 
-### OWASP Top 10:2021 Mitigation Map
+### خريطة معالجة OWASP Top 10:2021
 
-| Risk                              | Mitigation                                                                                       |
+| الخطر                              | المعالجة                                                                                          |
 | --------------------------------- | ------------------------------------------------------------------------------------------------ |
-| A01 Broken Access Control         | RBAC via guards, deny-by-default, `userId` scope check on every read.                            |
-| A02 Cryptographic Failures        | TLS 1.2+, Argon2id, AES-256 at rest, RS256 JWT, no PAN handling.                                 |
-| A03 Injection                     | Parameterized queries (Prisma), Zod input validation, no string-built SQL.                       |
-| A04 Insecure Design               | Threat model in DESIGN.md, abuse cases reviewed per epic.                                        |
-| A05 Security Misconfiguration     | Hardened Helmet defaults, CSP report-only first, no debug in prod, IaC-only changes.             |
-| A06 Vulnerable Components         | `npm audit`, Dependabot, Snyk, fortnightly patch window.                                         |
-| A07 Identification/AuthN Failures | Argon2id, login throttling, MFA via OTP, refresh-token rotation + family invalidation.           |
-| A08 Software/Data Integrity       | CI signs build artifacts, image digests pinned, package-lock committed.                          |
-| A09 Logging & Monitoring          | Pino JSON logs, correlation IDs, Sentry, alerting on auth anomalies.                             |
-| A10 SSRF                          | Outbound allow-list for Amadeus/Stripe; DNS rebinding mitigations; no user-supplied URLs fetched. |
+| A01 Broken Access Control         | RBAC عن طريق guards، deny-by-default، فحص `userId` scope على كل read.                            |
+| A02 Cryptographic Failures        | TLS 1.2+، Argon2id، AES-256 at rest، RS256 JWT، مفيش تعامل مع PAN.                               |
+| A03 Injection                     | parameterized queries (Prisma)، Zod input validation، مفيش SQL مبني بالـ string.                 |
+| A04 Insecure Design               | threat model في DESIGN.md، مراجعة abuse cases لكل epic.                                          |
+| A05 Security Misconfiguration     | Helmet defaults متشددة، CSP report-only في الأول، مفيش debug في prod، تغييرات عن طريق IaC بس.    |
+| A06 Vulnerable Components         | `npm audit`، Dependabot، Snyk، نافذة patching كل أسبوعين.                                        |
+| A07 Identification/AuthN Failures | Argon2id، throttling للـ login، MFA عن طريق OTP، rotation للـ refresh-token + family invalidation.|
+| A08 Software/Data Integrity       | الـ CI بيوقّع الـ build artifacts، image digests مثبتة، package-lock معمول له commit.             |
+| A09 Logging & Monitoring          | Pino JSON logs، correlation IDs، Sentry، alerting على شذوذ الـ auth.                             |
+| A10 SSRF                          | outbound allow-list لـ Amadeus/Stripe؛ مع mitigation لـ DNS rebinding؛ مفيش URLs من المستخدم.    |
 
-### Encryption
+### التشفير
 
-- **In transit:** TLS 1.2/1.3 only, ECDHE ciphers, HSTS preload.
-- **At rest:** EBS volume encryption (AES-256-XTS), Postgres TDE for backups,
-  Redis snapshots encrypted, S3 buckets SSE-S3 minimum.
-- **Field-level:** PII (DOB, document number) in `passengers` encrypted with AES-256-GCM
-  using AWS KMS DEK + envelope encryption.
+- **In transit:** TLS 1.2/1.3 بس، ECDHE ciphers، HSTS preload.
+- **At rest:** تشفير EBS volume (AES-256-XTS)، Postgres TDE للـ backups،
+  Redis snapshots مشفّرة، S3 buckets بـ SSE-S3 كحد أدنى.
+- **Field-level:** الـ PII (DOB، رقم الوثيقة) في `passengers` مشفّر بـ AES-256-GCM
+  باستخدام AWS KMS DEK + envelope encryption.
 
-### PCI DSS Scope
+### نطاق PCI DSS
 
-- SAQ **A-EP** — payment fields rendered by Stripe Elements iframe; backend never sees
-  PAN/CVV. Required controls: TLS, vendor due diligence, log retention 1 year,
-  quarterly ASV scan.
+- SAQ **A-EP** — حقول الدفع بتترندر بواسطة Stripe Elements iframe؛ الـ backend
+  ماشافش PAN/CVV أبداً. الـ controls المطلوبة: TLS، vendor due diligence،
+  log retention سنة، quarterly ASV scan.
 
 ### Rate Limiting
 
-- Redis token-bucket per `(routeKey, principalKey)`; principal = `userId` if
-  authenticated else hashed IP.
-- 429 returned with `Retry-After` header.
+- Redis token-bucket لكل `(routeKey, principalKey)`؛ الـ principal = `userId` لو
+  المستخدم مسجّل، غير كده الـ IP بعد hashing.
+- بيرجع 429 مع `Retry-After` header.
 
 ### CSRF
 
-- Authenticated state-changing endpoints accept JWT in `Authorization` header (not
-  cookies) → CSRF not exploitable in classic sense. Server Actions in Next.js use
-  `same-origin` + Origin check.
+- الـ endpoints المسجّلة اللي بتغيّر state بتقبل الـ JWT في `Authorization` header
+  (مش في cookies) → فالـ CSRF مش قابل للاستغلال بالطريقة الكلاسيكية. الـ Server Actions
+  في Next.js بتستخدم `same-origin` + فحص Origin.
 
-### Secrets Management
+### إدارة الـ Secrets
 
-- FE: Vercel Encrypted Env (per-env).
-- BE: AWS Secrets Manager, rotated; injected at boot via IAM role.
-- No secret EVER committed to git; pre-commit secret-scan hook enforced.
+- FE: Vercel Encrypted Env (لكل environment).
+- BE: AWS Secrets Manager، بيتعملها rotation؛ بتتحقن عند الـ boot عن طريق IAM role.
+- مفيش secret بيتعمل له commit في git أبداً؛ pre-commit secret-scan hook مفروض.
 
-### Backup & Retention
+### النسخ الاحتياطي والاحتفاظ بالبيانات
 
-| Data                  | Retention       | Method                            |
+| البيانات              | فترة الاحتفاظ   | الطريقة                            |
 | --------------------- | --------------- | --------------------------------- |
-| Postgres PITR         | 7 days          | Continuous archive to S3          |
-| Postgres logical dump | 30 days         | Nightly `pg_dump` → S3 (encrypted) |
-| Application logs      | 30 days (hot) + 1 year (cold) | CloudWatch + S3 Glacier |
-| Audit log             | 7 years         | Append-only, S3 Object Lock       |
+| Postgres PITR         | 7 أيام          | continuous archive لـ S3          |
+| Postgres logical dump | 30 يوم          | `pg_dump` يومي لـ S3 (مشفّر)       |
+| Application logs      | 30 يوم (hot) + سنة (cold) | CloudWatch + S3 Glacier |
+| Audit log             | 7 سنين          | Append-only، S3 Object Lock       |
 
 ---
 
-## Booking Workflow
+## مسار الحجز (Booking Workflow)
 
 ### State Diagram
 
@@ -822,39 +874,39 @@ Authorization is enforced in NestJS via a `@RequirePerms(...)` decorator + globa
                                                                                                     └──────────┘
 ```
 
-### Step-by-step
+### الخطوات تفصيلياً
 
-1. Client posts `POST /bookings` with `Idempotency-Key`.
-2. Server validates offer (`flights/price-check` or `hotels/offers/confirm`).
-3. Server inserts row in `bookings` (`status=DRAFT`, `expires_at=now()+15m`).
-4. Client calls `POST /payments/intents` → Stripe PaymentIntent created
-   (capture=`manual`), booking → `PENDING_PAYMENT`, `expires_at=now()+30m`.
-5. Client confirms PaymentIntent (3DS) in browser via Stripe Elements.
-6. Stripe webhook `payment_intent.requires_capture` arrives.
-7. Worker `booking.fulfill` runs: calls Amadeus to issue PNR / hotel booking.
-8. On success, Stripe `capture` called → booking → `CONFIRMED`,
-   notification queued.
-9. On supplier failure: Stripe `cancel` (void uncaptured), booking → `FAILED`,
-   customer email "couldn't confirm with the airline, no charge".
+1. الـ Client بيعمل `POST /bookings` مع `Idempotency-Key`.
+2. السيرفر بيتحقق من الـ offer (`flights/price-check` أو `hotels/offers/confirm`).
+3. السيرفر بيدخل row في `bookings` (`status=DRAFT`، `expires_at=now()+15m`).
+4. الـ Client بينادي `POST /payments/intents` → بيتنشئ Stripe PaymentIntent
+   (capture=`manual`)، الحجز يبقى → `PENDING_PAYMENT`، `expires_at=now()+30m`.
+5. الـ Client بيأكد الـ PaymentIntent (3DS) في الـ browser عن طريق Stripe Elements.
+6. Stripe webhook `payment_intent.requires_capture` بيوصل.
+7. الـ Worker `booking.fulfill` بيشتغل: بينادي Amadeus لإصدار PNR / حجز الفندق.
+8. لو نجح، بيتنادى Stripe `capture` → الحجز → `CONFIRMED`،
+   ويتعمل enqueue للـ notification.
+9. لو فشل المزوّد: Stripe `cancel` (void uncaptured)، الحجز → `FAILED`،
+   ويتبعت email للعميل "ماقدرناش نأكد مع الطيران، مفيش خصم".
 
-### Timeouts & Rollback Matrix
+### مصفوفة الـ Timeouts والـ Rollback
 
-| Step                          | Timeout | Failure action                                                                |
-| ----------------------------- | ------- | ----------------------------------------------------------------------------- |
-| Amadeus price-check           | 8 s     | Surface 409 PRICE_CHANGED, allow re-search.                                   |
-| Stripe PaymentIntent create   | 6 s     | Retry once, then 503.                                                         |
-| Stripe confirm (client)       | 30 min  | Booking auto-FAILED, intent canceled.                                         |
-| Amadeus PNR / hotel booking   | 30 s    | Up to 3 retries; on final failure, void intent, FAIL booking.                 |
-| Stripe capture                | 10 s    | Retry up to 5×; on final failure, page on-call, supplier rollback initiated.  |
+| الخطوة                        | الـ Timeout | فعل الفشل                                                                     |
+| ----------------------------- | ----------- | ----------------------------------------------------------------------------- |
+| Amadeus price-check           | 8 ثواني     | يعرض 409 PRICE_CHANGED، ويسمح بإعادة البحث.                                   |
+| Stripe PaymentIntent create   | 6 ثواني     | retry مرة واحدة، بعدها 503.                                                    |
+| Stripe confirm (client)       | 30 دقيقة    | الحجز يتعمل له FAIL تلقائي، والـ intent يتلغي.                                |
+| Amadeus PNR / hotel booking   | 30 ثانية    | حتى 3 retries؛ في النهاية لو فشل يعمل void للـ intent ويـ FAIL الحجز.         |
+| Stripe capture                | 10 ثواني    | retry حتى 5 مرات؛ في النهاية لو فشل يـ page on-call، ويبدأ supplier rollback. |
 
 ### Idempotency
 
-- `Idempotency-Key` UUID per booking attempt; stored in `idempotency_keys` for 24 h.
-- Repeated POST with same key returns the original response without side effects.
+- `Idempotency-Key` UUID لكل محاولة حجز؛ مخزّن في `idempotency_keys` لمدة 24 ساعة.
+- POST مكرر بنفس الـ key بيرجع الـ response الأصلي من غير side effects.
 
 ---
 
-## Flight Flow (Amadeus)
+## مسار الـ Flight (Amadeus)
 
 ```
 Client                       Next.js                   NestJS               Redis           Amadeus
@@ -886,25 +938,25 @@ Client                       Next.js                   NestJS               Redi
   │ confirmation email       │                           │ enqueue email job   │              │
 ```
 
-### Caching
+### الـ Caching
 
-| Key shape                                                | TTL    | Notes                          |
+| شكل الـ Key                                              | TTL    | ملاحظات                       |
 | -------------------------------------------------------- | ------ | ------------------------------ |
-| `flt:search:{origin}:{dest}:{out}:{ret}:{pax}:{cabin}`   | 10 min | search results envelope        |
-| `flt:offer:{offerId}`                                    | 15 min | full offer for price-check     |
-| `flt:airport:{iata}`                                     | 24 h   | reference data                 |
+| `flt:search:{origin}:{dest}:{out}:{ret}:{pax}:{cabin}`   | 10 دقايق | مظروف نتائج البحث            |
+| `flt:offer:{offerId}`                                    | 15 دقيقة | الـ offer الكامل لـ price-check |
+| `flt:airport:{iata}`                                     | 24 ساعة  | بيانات مرجعية                  |
 
-### Failure Handling
+### معالجة الفشل
 
-- `PRICE_CHANGED`: returned 409 from price-check; client must re-display.
-- `OFFER_EXPIRED`: re-run search with same filters; show banner.
-- `PNR_CREATION_TIMEOUT`: retry, then mark FAILED + alert.
-- `TICKETING_FAILED`: void Stripe (uncaptured); compensating supplier call if PNR
-  was created before failure (Flight Order Management `DELETE`).
+- `PRICE_CHANGED`: بيرجع 409 من price-check؛ الـ client لازم يعيد العرض.
+- `OFFER_EXPIRED`: أعد البحث بنفس الـ filters؛ اعرض banner.
+- `PNR_CREATION_TIMEOUT`: retry، بعدها علّمه FAILED + alert.
+- `TICKETING_FAILED`: void Stripe (uncaptured)؛ compensating call للمزوّد لو الـ PNR
+  اتعمل قبل الفشل (Flight Order Management `DELETE`).
 
 ---
 
-## Hotel Flow
+## مسار الـ Hotel
 
 ```
 search  ──▶ Amadeus Hotel Search → hotels[]   (cached 10m)
@@ -916,13 +968,13 @@ booking ──▶ Stripe PaymentIntent (manual capture)
         ──▶ email voucher
 ```
 
-- Voucher generated as PDF via Puppeteer worker (`voucher.generate` queue).
-- Cancellation policy stored on `hotel_stays.cancellation_deadline`,
-  `hotel_stays.refundable` for downstream logic.
+- الـ Voucher بيتولّد كـ PDF عن طريق Puppeteer worker (`voucher.generate` queue).
+- سياسة الإلغاء مخزّنة في `hotel_stays.cancellation_deadline`،
+  `hotel_stays.refundable` للمنطق اللاحق.
 
 ---
 
-## Payment Flow
+## مسار الدفع (Payment Flow)
 
 ```
 ┌─────────────┐  create PI (manual)  ┌─────────────┐
@@ -954,54 +1006,54 @@ booking ──▶ Stripe PaymentIntent (manual capture)
                                                     booking CONFIRMED + email
 ```
 
-### Refunds (Basic)
+### الـ Refunds (في Basic)
 
-1. Customer requests refund via `POST /bookings/{id}/cancel` (requires OTP).
-2. System checks supplier policy → if refundable + within deadline, set
-   `status=CANCELLED` and queue `payment.refund.manual` task.
-3. Ops team is notified; refund is performed in Stripe dashboard.
-4. Stripe `charge.refunded` webhook arrives → `payments.refunded_amount_minor` updated,
-   `bookings.status=REFUNDED` if fully refunded.
-5. Customer email sent.
+1. العميل بيطلب refund عن طريق `POST /bookings/{id}/cancel` (بيتطلب OTP).
+2. النظام بيفحص سياسة المزوّد → لو refundable وفي خلال الـ deadline، يحط
+   `status=CANCELLED` ويحط task `payment.refund.manual` في الطابور.
+3. فريق الـ Ops بيتنبه؛ الـ refund بيتعمل من Stripe dashboard.
+4. webhook `charge.refunded` من Stripe بيوصل → بيتحدّث `payments.refunded_amount_minor`،
+   و`bookings.status=REFUNDED` لو الـ refund كان كامل.
+5. بيتبعت email للعميل.
 
 ---
 
-## Admin Modules
+## Modules الـ Admin
 
-| Page                       | Capabilities                                                                       |
+| الصفحة                     | الإمكانيات                                                                          |
 | -------------------------- | ---------------------------------------------------------------------------------- |
-| Dashboard                  | Today's KPIs: bookings, GMV, failure rate, top supplier errors.                    |
-| Bookings list              | Search by ref/email/status, filter by date/supplier, export CSV (admin only).      |
-| Booking detail             | Full item breakdown, audit log, payment timeline, resend notification, mark refunded. |
-| Users list                 | Search by email, view profile, last login, lockout state.                          |
-| Notifications log          | Last 30 days, status, resend button, delivery error.                               |
-| Supplier call inspector    | Inspect `supplier_calls` rows for a booking; redacted secrets.                     |
-| Audit log                  | Read-only timeline of staff actions; CSV export for compliance.                    |
-| Feature flags              | Read-only in Basic; surface current values from config service.                    |
-| Settings                   | Admin profile + change password.                                                   |
+| Dashboard                  | KPIs النهارده: bookings، GMV، نسبة الفشل، أكتر أخطاء من المزوّدين.                  |
+| Bookings list              | بحث بـ ref/email/status، filter بالتاريخ/المزوّد، export CSV (للـ admin فقط).      |
+| Booking detail             | تفصيل كامل للعناصر، audit log، timeline الدفع، إعادة إرسال notification، علامة refunded. |
+| Users list                 | بحث بالـ email، عرض الـ profile، آخر login، حالة القفل.                            |
+| Notifications log          | آخر 30 يوم، الحالة، زر إعادة الإرسال، خطأ التسليم.                                  |
+| Supplier call inspector    | فحص rows الـ `supplier_calls` للحجز؛ مع إخفاء الـ secrets.                          |
+| Audit log                  | timeline للقراءة فقط لأفعال الموظفين؛ export CSV للـ compliance.                   |
+| Feature flags              | للقراءة فقط في Basic؛ بتعرض القيم الحالية من config service.                       |
+| Settings                   | profile الـ admin + تغيير كلمة المرور.                                              |
 
 ---
 
-## Deployment
+## الـ Deployment
 
-### Topology
+### الطوبولوجي (Topology)
 
-- **Frontend** (Next.js): Vercel, single primary region (`fra1` for EU/MENA).
-- **Backend** (NestJS): Fly.io org `jawla`, single region `fra`, 2 app instances + 2
+- **Frontend** (Next.js): Vercel، region أساسي واحد (`fra1` لـ EU/MENA).
+- **Backend** (NestJS): Fly.io org `jawla`، region واحد `fra`، 2 app instances + 2
   worker instances.
-- **Postgres**: Fly Postgres (or Neon prod), 1 primary + 1 standby in same region.
-- **Redis**: Upstash dedicated, multi-AZ within region.
-- **Static assets**: Vercel CDN with `s-maxage=86400, stale-while-revalidate=604800`.
-- **Object storage**: AWS S3 (`jawla-prod-{vouchers,backups,logs}`), region `eu-central-1`.
+- **Postgres**: Fly Postgres (أو Neon prod)، 1 primary + 1 standby في نفس الـ region.
+- **Redis**: Upstash dedicated، multi-AZ داخل الـ region.
+- **Static assets**: Vercel CDN بـ `s-maxage=86400, stale-while-revalidate=604800`.
+- **Object storage**: AWS S3 (`jawla-prod-{vouchers,backups,logs}`)، region `eu-central-1`.
 
-### Environment Variables (excerpt)
+### Environment Variables (مقتطف)
 
-| Var                       | Where        | Notes                                          |
+| المتغير                    | المكان       | ملاحظات                                         |
 | ------------------------- | ------------ | ---------------------------------------------- |
 | `DATABASE_URL`            | API + worker | PgBouncer pool URL                             |
-| `DIRECT_URL`              | API (migrations) | Direct primary URL                          |
+| `DIRECT_URL`              | API (migrations) | URL الـ primary المباشر                     |
 | `REDIS_URL`               | API + worker | Upstash TLS URL                                |
-| `JWT_PRIVATE_KEY`         | API          | RS256 private, PEM, rotated 90d                |
+| `JWT_PRIVATE_KEY`         | API          | RS256 private، PEM، rotation كل 90 يوم          |
 | `JWT_PUBLIC_KEY`          | API + FE     | RS256 public                                   |
 | `AMADEUS_CLIENT_ID`/`SECRET` | API       | Self-Service prod                              |
 | `STRIPE_SECRET_KEY`       | API          | `sk_live_...`                                  |
@@ -1012,128 +1064,128 @@ booking ──▶ Stripe PaymentIntent (manual capture)
 
 ### CI/CD Pipeline (GitHub Actions)
 
-| Stage           | Steps                                                                                                |
+| المرحلة         | الخطوات                                                                                              |
 | --------------- | ---------------------------------------------------------------------------------------------------- |
 | `lint`          | `pnpm lint` (eslint, prettier), `tsc --noEmit`                                                       |
 | `test:unit`     | `jest --maxWorkers=2 --coverage` (FE + BE)                                                           |
-| `test:integration` | spin up Postgres + Redis via service containers; run NestJS integration suite                     |
-| `build`         | `pnpm build` (FE), `pnpm build && docker build` (BE), SBOM + image scan with Trivy                   |
-| `e2e`           | Playwright on staging URL after preview deploy                                                       |
-| `deploy:preview` | Vercel preview for FE on every PR; Fly deploy to `staging` app on `main`                            |
-| `deploy:prod`   | Manual approval gate → Vercel `--prod`, Fly `deploy --strategy=bluegreen`                            |
-| `smoke`         | Synthetic `/healthz` + booking dry-run after prod deploy                                             |
+| `test:integration` | تشغيل Postgres + Redis عن طريق service containers؛ تشغيل integration suite الـ NestJS              |
+| `build`         | `pnpm build` (FE), `pnpm build && docker build` (BE), SBOM + image scan بـ Trivy                     |
+| `e2e`           | Playwright على staging URL بعد الـ preview deploy                                                    |
+| `deploy:preview` | Vercel preview للـ FE لكل PR؛ Fly deploy لـ `staging` app على `main`                                 |
+| `deploy:prod`   | بوابة موافقة يدوية → Vercel `--prod`، Fly `deploy --strategy=bluegreen`                              |
+| `smoke`         | synthetic `/healthz` + booking dry-run بعد الـ deploy للـ prod                                       |
 
 ---
 
-## Logging
+## الـ Logging
 
-- Library: **pino** (BE) and Next.js built-in + `pino-http` for SSR routes.
-- Format: JSON, single line per event.
-- Required fields: `ts`, `level`, `service`, `env`, `traceId`, `spanId`,
+- المكتبة: **pino** (BE) و Next.js الـ built-in + `pino-http` لمسارات الـ SSR.
+- التنسيق: JSON، سطر واحد لكل event.
+- الحقول المطلوبة: `ts`, `level`, `service`, `env`, `traceId`, `spanId`,
   `userId?`, `bookingId?`, `route`, `msg`.
-- Levels: `trace`, `debug`, `info`, `warn`, `error`, `fatal`. Default `info` in prod.
-- Sensitive fields redacted via pino redact list: `password`, `token`, `secret`,
+- الـ Levels: `trace`, `debug`, `info`, `warn`, `error`, `fatal`. الافتراضي في prod هو `info`.
+- الحقول الحساسة بيتعملها redact عن طريق pino redact list: `password`, `token`, `secret`,
   `authorization`, `card`, `pan`, `cvv`, `doc_number`.
-- Retention: 30 days hot (CloudWatch), 365 days cold (S3 Glacier).
-- Correlation: `X-Request-Id` header propagated end-to-end; if absent, generated server-side
-  as ULID.
+- الـ Retention: 30 يوم hot (CloudWatch)، 365 يوم cold (S3 Glacier).
+- الـ Correlation: `X-Request-Id` header بيتمرر من البداية للنهاية؛ لو غير موجود،
+  بيتولّد من السيرفر كـ ULID.
 
 ---
 
-## Monitoring
+## المراقبة (Monitoring)
 
-- **Sentry** for FE + BE error tracking and release health.
-- **OpenTelemetry** SDK → Grafana Tempo for traces.
-- **Prometheus** scrape of NestJS `prom-client` metrics; Grafana dashboards.
+- **Sentry** لتتبع أخطاء FE + BE وصحة الـ releases.
+- **OpenTelemetry** SDK → Grafana Tempo للـ traces.
+- **Prometheus** بيـ scrape metrics الـ `prom-client` من NestJS؛ Grafana dashboards.
 
-### Metrics (essential)
+### الـ Metrics الأساسية
 
-| Metric                                | Type      | Notes                                  |
+| الـ Metric                            | النوع     | ملاحظات                                |
 | ------------------------------------- | --------- | -------------------------------------- |
-| `http_server_duration_ms`             | histogram | by route, method, status               |
-| `http_server_inflight`                | gauge     | per route                              |
-| `supplier_call_duration_ms`           | histogram | by supplier, op                        |
-| `supplier_call_errors_total`          | counter   | by supplier, op, code                  |
+| `http_server_duration_ms`             | histogram | حسب route, method, status              |
+| `http_server_inflight`                | gauge     | لكل route                              |
+| `supplier_call_duration_ms`           | histogram | حسب supplier, op                       |
+| `supplier_call_errors_total`          | counter   | حسب supplier, op, code                 |
 | `booking_state_transitions_total`     | counter   | from → to                              |
-| `payment_intent_status_total`         | counter   | by status                              |
-| `queue_jobs_total`                    | counter   | by queue, state                        |
-| `queue_job_duration_ms`               | histogram | by queue                               |
+| `payment_intent_status_total`         | counter   | حسب الـ status                         |
+| `queue_jobs_total`                    | counter   | حسب queue, state                       |
+| `queue_job_duration_ms`               | histogram | حسب queue                              |
 | `pg_pool_in_use`                      | gauge     |                                        |
 | `redis_command_duration_ms`           | histogram |                                        |
 
-### Alert Thresholds
+### حدود الـ Alerts
 
-| Condition                                                          | Severity | Route        |
+| الشرط                                                              | الخطورة  | الوجهة       |
 | ------------------------------------------------------------------ | -------- | ------------ |
-| API p95 > 1 s for 5 min                                            | warn     | #ops-alerts  |
-| Booking failure rate > 5% over 15 min                              | page     | PagerDuty    |
-| Supplier error rate (Amadeus) > 10% over 10 min                    | page     | PagerDuty    |
-| Stripe webhook lag > 5 min                                         | page     | PagerDuty    |
-| Postgres replication lag > 30 s                                    | warn     | #ops-alerts  |
-| Disk usage > 80%                                                   | warn     |              |
-| 5xx error rate > 1% over 5 min                                     | page     | PagerDuty    |
+| API p95 > 1 ثانية لمدة 5 دقايق                                     | warn     | #ops-alerts  |
+| نسبة فشل الـ booking > 5% خلال 15 دقيقة                            | page     | PagerDuty    |
+| نسبة أخطاء المزوّد (Amadeus) > 10% خلال 10 دقايق                    | page     | PagerDuty    |
+| تأخر Stripe webhook > 5 دقايق                                       | page     | PagerDuty    |
+| Postgres replication lag > 30 ثانية                                | warn     | #ops-alerts  |
+| استخدام الـ Disk > 80%                                              | warn     |              |
+| نسبة 5xx > 1% خلال 5 دقايق                                          | page     | PagerDuty    |
 
 ---
 
-## Testing Strategy
+## استراتيجية الاختبار (Testing Strategy)
 
-| Layer        | Tools                                  | Coverage Target          |
+| الطبقة        | الأدوات                                | هدف التغطية              |
 | ------------ | -------------------------------------- | ------------------------ |
-| Unit (BE)    | Jest, ts-jest                          | ≥ 80% lines, ≥ 70% branches |
+| Unit (BE)    | Jest, ts-jest                          | ≥ 80% lines، ≥ 70% branches |
 | Unit (FE)    | Jest, React Testing Library            | ≥ 75% lines              |
-| Integration  | Jest + testcontainers (PG, Redis)      | All public services + repos covered |
-| Contract     | Pact (Amadeus, Stripe stubs)           | All supplier integrations |
-| E2E          | Playwright                             | Smoke + critical-path (search, book, pay, cancel) |
-| Performance  | k6                                     | Baseline scripts in repo |
-| Accessibility | axe-core in Playwright                | Zero serious violations  |
-| Security     | OWASP ZAP baseline                     | CI gate weekly           |
+| Integration  | Jest + testcontainers (PG, Redis)      | كل الـ public services + repos مغطاة |
+| Contract     | Pact (Amadeus, Stripe stubs)           | كل تكاملات المزوّدين      |
+| E2E          | Playwright                             | Smoke + المسارات الحرجة (search, book, pay, cancel) |
+| Performance  | k6                                     | baseline scripts في الـ repo |
+| Accessibility | axe-core في Playwright                | صفر مخالفات serious      |
+| Security     | OWASP ZAP baseline                     | بوابة في الـ CI أسبوعياً  |
 
-- All PRs must keep coverage at or above baseline; degraded coverage fails CI.
-- Flake budget: > 1% flake rate blocks merge to `main`.
+- كل الـ PRs لازم تحافظ على التغطية فوق الـ baseline؛ تقليلها بيفشل الـ CI.
+- ميزانية الـ Flake: > 1% flake rate بتمنع الـ merge على `main`.
 
 ---
 
-## Acceptance Tests
+## اختبارات القبول (Acceptance Tests)
 
-> Format: Given / When / Then
+> الصيغة: Given / When / Then
 
-| ID      | Title                                | Given                                                              | When                                              | Then                                                                                  |
+| ID      | العنوان                              | Given                                                              | When                                              | Then                                                                                  |
 | ------- | ------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| AT-001  | Register with valid email            | I am a new visitor                                                 | I submit register with valid email + strong password | Account is created in `pending_verification`; verification email sent.                |
-| AT-002  | Reject weak password                 | I am on register form                                              | I submit password "12345678" (zxcvbn 1)           | 400 with `code=WEAK_PASSWORD`; no row inserted.                                       |
-| AT-003  | Verify email                         | I have a verification token                                        | I POST `/auth/verify-email` with valid token      | `users.email_verified=true`; 200.                                                     |
-| AT-004  | Login throttle                       | I have failed login 5×                                              | I try a 6th time within 10 min                    | 423 Locked; account locked 15 min.                                                    |
-| AT-005  | Refresh token rotation               | I have a valid refresh token                                       | I call `/auth/refresh`                            | I receive a NEW refresh token; old token is revoked.                                  |
-| AT-006  | Refresh token reuse detection        | I previously rotated my refresh token                              | I present the OLD refresh token                   | Entire family revoked; 401.                                                            |
-| AT-007  | Flight search caches                 | Cache MISS for (CAI,DXB,...)                                       | I call `/flights/search`                          | Amadeus is called once; subsequent call within 10 min returns cached.                 |
-| AT-008  | Flight price-check unchanged         | Offer price still valid                                            | I call `/flights/price-check`                     | 200 with `delta=0`.                                                                   |
-| AT-009  | Flight price-check changed > 0.5%    | Amadeus returns +2.4% price                                        | I call `/flights/price-check`                     | 409 `PRICE_CHANGED`; offer updated to new price for re-confirm.                       |
-| AT-010  | Passport-expiry guard                | Passport expires < 6 months after return                           | I submit booking                                  | 422 `PASSPORT_TOO_SHORT`.                                                              |
-| AT-011  | Booking idempotency                  | I POST `/bookings` with key K and succeed                          | I POST `/bookings` again with key K               | Original 201 response returned; no new row created.                                   |
-| AT-012  | Draft expiry                         | A DRAFT booking is > 15 min old                                    | Cleanup worker runs                               | Status → FAILED with reason `DRAFT_EXPIRED`.                                          |
-| AT-013  | Hotel voucher email                  | A hotel booking is CONFIRMED                                       | Worker `notification.send` runs                   | Email with PDF voucher sent; `notifications.status=sent`.                              |
-| AT-014  | Payment 3DS required                 | Test card requires 3DS2                                            | I confirm intent                                  | Issuer challenge surfaces; on success, PI moves to `requires_capture`.                |
-| AT-015  | Webhook signature                    | A request with invalid Stripe-Signature arrives                    | NestJS verifies                                   | 400 `INVALID_SIGNATURE`; no state changes.                                            |
-| AT-016  | Supplier ticketing failure rollback  | Amadeus PNR creation returns 5xx 3×                                | Worker exhausts retries                           | PaymentIntent canceled; booking FAILED; customer "no charge" email sent.              |
-| AT-017  | Manual refund reconciliation        | Ops issues refund in Stripe dashboard                              | `charge.refunded` webhook arrives                 | `payments.refunded_amount_minor` updated; booking REFUNDED if full.                    |
-| AT-018  | Cancellation requires OTP            | I am the booking owner                                             | I call `/bookings/{id}/cancel` without OTP        | 401 `OTP_REQUIRED`.                                                                    |
-| AT-019  | Cross-tenant booking read denied     | I am user A                                                        | I GET `/bookings/{idOfUserB}`                     | 403 Forbidden.                                                                         |
-| AT-020  | Admin audit log                      | I am an admin and resend a notification                            | Action completes                                  | `audit_events` row inserted with actor, target, before/after.                          |
-| AT-021  | Rate limit auth                      | I issue 11 login attempts in 60 s from one IP                      | 11th attempt                                      | 429 with `Retry-After`.                                                                |
-| AT-022  | Localization (AR)                    | My profile locale is `ar`                                          | I receive a booking-confirmed email               | Email rendered RTL with AR copy.                                                       |
-| AT-023  | WCAG focus order                     | I tab through the search form                                      | I observe focus                                   | Focus visits inputs in DOM order; visible focus ring meets contrast 3:1.              |
-| AT-024  | Backup PITR                         | I am DBA                                                            | I trigger PITR to 30 min ago                      | Restore completes < 4 h (RTO); data loss ≤ 15 min (RPO).                              |
+| AT-001  | تسجيل بـ email صالح                  | أنا زائر جديد                                                       | بقدم register بـ email صالح + password قوية      | الحساب اتعمل بـ `pending_verification`؛ email التحقق اتبعت.                          |
+| AT-002  | رفض كلمة مرور ضعيفة                  | أنا في form الـ register                                            | بقدم password "12345678" (zxcvbn 1)              | 400 مع `code=WEAK_PASSWORD`؛ مفيش row اتدخّل.                                         |
+| AT-003  | التحقق من الـ email                  | عندي verification token                                             | بعمل POST `/auth/verify-email` بـ token صالح     | `users.email_verified=true`؛ 200.                                                     |
+| AT-004  | throttle للـ login                   | فشلت في الـ login 5 مرات                                            | بحاول المرة السادسة خلال 10 دقايق                | 423 Locked؛ الحساب اتقفل 15 دقيقة.                                                    |
+| AT-005  | rotation للـ refresh token           | عندي refresh token صالح                                             | بنادي `/auth/refresh`                            | بستلم refresh token جديد؛ القديم اتلغى.                                              |
+| AT-006  | كشف إعادة استخدام الـ refresh token  | عملت rotation للـ refresh token من قبل                              | قدّمت الـ refresh token القديم                   | الـ family كلها اتلغت؛ 401.                                                            |
+| AT-007  | الـ caching للبحث عن flights         | Cache MISS لـ (CAI,DXB,...)                                         | بنادي `/flights/search`                          | Amadeus بتتنادى مرة واحدة؛ النداء التاني خلال 10 دقايق بيرجع من الـ cache.            |
+| AT-008  | flight price-check من غير تغيير      | السعر للـ offer لسه صالح                                            | بنادي `/flights/price-check`                     | 200 مع `delta=0`.                                                                     |
+| AT-009  | flight price-check اتغيّر > 0.5%     | Amadeus رجّعت سعر زائد 2.4%                                         | بنادي `/flights/price-check`                     | 409 `PRICE_CHANGED`؛ الـ offer اتحدّث بالسعر الجديد لإعادة التأكيد.                   |
+| AT-010  | حارس صلاحية جواز السفر               | جواز السفر بيخلص قبل 6 شهور من تاريخ العودة                         | بقدم booking                                      | 422 `PASSPORT_TOO_SHORT`.                                                              |
+| AT-011  | idempotency الحجز                    | عملت POST `/bookings` بـ key K ونجح                                 | عملت POST `/bookings` تاني بنفس الـ key K        | الـ response الأصلي 201 رجع؛ مفيش row جديد اتعمل.                                     |
+| AT-012  | انتهاء الـ Draft                     | حجز DRAFT عمره > 15 دقيقة                                            | الـ cleanup worker شغّال                          | Status → FAILED بـ reason `DRAFT_EXPIRED`.                                            |
+| AT-013  | email الـ hotel voucher              | حجز فندق وصل CONFIRMED                                              | الـ Worker `notification.send` شغّال              | Email مع PDF voucher اتبعت؛ `notifications.status=sent`.                              |
+| AT-014  | دفع بـ 3DS مطلوب                     | كارت اختبار بيطلب 3DS2                                              | بأكد الـ intent                                  | challenge المُصدر بيظهر؛ لو نجح، الـ PI بيتحول لـ `requires_capture`.                 |
+| AT-015  | signature الـ webhook                | request بـ Stripe-Signature غير صالح وصل                            | NestJS بيتحقق                                    | 400 `INVALID_SIGNATURE`؛ مفيش تغيير في الـ state.                                     |
+| AT-016  | rollback فشل ticketing من المزوّد    | إنشاء PNR في Amadeus بيرجع 5xx 3 مرات                              | الـ Worker استنفذ الـ retries                    | PaymentIntent اتلغى؛ الحجز FAILED؛ email "مفيش خصم" اتبعت للعميل.                     |
+| AT-017  | reconcile للـ refund اليدوي          | فريق Ops عمل refund من Stripe dashboard                             | webhook `charge.refunded` وصل                     | `payments.refunded_amount_minor` اتحدّث؛ الحجز REFUNDED لو كان كامل.                  |
+| AT-018  | الإلغاء بيطلب OTP                    | أنا صاحب الحجز                                                       | بنادي `/bookings/{id}/cancel` من غير OTP         | 401 `OTP_REQUIRED`.                                                                    |
+| AT-019  | منع قراءة حجز عبر الـ tenants        | أنا user A                                                          | بعمل GET `/bookings/{idOfUserB}`                 | 403 Forbidden.                                                                         |
+| AT-020  | audit log للـ admin                  | أنا admin وبعمل إعادة إرسال notification                            | الفعل اكتمل                                       | row في `audit_events` اتدخل بـ actor، target، before/after.                            |
+| AT-021  | rate limit للـ auth                  | أصدرت 11 محاولة login في 60 ثانية من IP واحد                        | المحاولة الـ 11                                  | 429 مع `Retry-After`.                                                                  |
+| AT-022  | التعريب (AR)                         | الـ locale في profile = `ar`                                        | بستلم email تأكيد حجز                            | الـ Email بيظهر RTL بنص AR.                                                            |
+| AT-023  | WCAG focus order                     | بعمل tab في form البحث                                              | بلاحظ الـ focus                                  | الـ Focus بيزور الـ inputs بترتيب DOM؛ مع focus ring ظاهر يحقق contrast 3:1.          |
+| AT-024  | Backup PITR                          | أنا DBA                                                              | شغّلت PITR لـ 30 دقيقة فاتت                       | الـ Restore بيكتمل في < 4 ساعات (RTO)؛ فقد البيانات ≤ 15 دقيقة (RPO).                  |
 
 ---
 
-## Appendix A — Open Issues / Risks
+## ملحق A — مخاطر / مسائل مفتوحة
 
-| ID   | Risk                                                        | Likelihood | Impact | Mitigation                                                |
+| ID   | الخطر                                                       | الاحتمالية | التأثير | المعالجة                                                  |
 | ---- | ----------------------------------------------------------- | ---------- | ------ | --------------------------------------------------------- |
-| R-01 | Amadeus rate limits in promo windows                        | Medium     | High   | Aggressive caching, request queueing, alternate creds.    |
-| R-02 | Stripe 3DS challenge UX drop-off                            | Medium     | Medium | Pre-3DS price reminder, "save card" copy A/B.             |
-| R-03 | Manual refund SLA breach                                    | Low        | Medium | Daily ops digest; alert on > 24 h pending.                |
-| R-04 | Single-region outage                                        | Low        | High   | Documented runbook to spin up DR in `iad`.                |
-| R-05 | Pre-launch pentest delays                                   | Medium     | Medium | Schedule pentest 4 weeks pre-GA.                          |
+| R-01 | حدود rate الـ Amadeus في فترات العروض                       | متوسط      | عالي   | caching قوي، queueing للطلبات، credentials بديلة.         |
+| R-02 | تساقط المستخدمين عند 3DS challenge في Stripe                | متوسط      | متوسط  | تذكير بالسعر قبل 3DS، نص "save card" بـ A/B.              |
+| R-03 | تجاوز SLA للـ refund اليدوي                                 | منخفض      | متوسط  | تقرير يومي لـ Ops؛ alert على > 24 ساعة معلّق.             |
+| R-04 | عطل في الـ region الواحد                                    | منخفض      | عالي   | runbook موثّق لتشغيل DR في `iad`.                          |
+| R-05 | تأخر pentest ما قبل الإطلاق                                 | متوسط      | متوسط  | جدولة الـ pentest قبل GA بـ 4 أسابيع.                     |
 
-— *End of document — Jawla SRS Basic v1.0* —
+— *نهاية الوثيقة — Jawla SRS Basic v1.0* —

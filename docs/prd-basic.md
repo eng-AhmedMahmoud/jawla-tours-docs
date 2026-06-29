@@ -1,588 +1,639 @@
-# Jawla Tours OTA - Basic Package PRD
+## 🎯 ملخص لمجلس الإدارة
 
-## Document Control
+نقوم ببناء موقع حجوزات سفر متكامل لشركة جولة تورز يتيح للعملاء حجز رحلات الطيران والفنادق وباقات السفر بشكل مباشر عبر الإنترنت. يستهدف هذا الموقع المسافرين في مصر والمنطقة العربية الباحثين عن تجربة حجز سهلة وآمنة باللغة العربية. الهدف هو تحويل جولة تورز من شركة سياحة تقليدية إلى منصة بيع رقمية تعمل على مدار الساعة وتزيد المبيعات دون الحاجة لزيادة عدد الموظفين.
 
-| Field | Value |
+### ماذا يحصل عليه العميل في هذه الباقة؟
+
+- بحث وحجز رحلات الطيران من أكثر من 400 شركة طيران حول العالم
+- حجز الفنادق في جميع دول العالم بأسعار تنافسية
+- باقات سياحية جاهزة (طيران + فندق) بأسعار موفرة
+- الدفع الإلكتروني الآمن داخل الموقع بالبطاقات البنكية والمحافظ الإلكترونية
+- استلام تذاكر الطيران وقسائم الحجز فوراً عبر البريد الإلكتروني
+- موقع باللغتين العربية والإنجليزية يعمل على الموبايل والكمبيوتر
+- حساب شخصي لكل عميل لمتابعة حجوزاته السابقة والقادمة
+
+### الأرقام الرئيسية
+
+| البند | القيمة |
+|------|--------|
+| السعر الإجمالي | 600,000 جنيه مصري |
+| العملة المعادلة بالدولار | ما يعادل 12,000 دولار أمريكي |
+| مدة التنفيذ | 3 أشهر |
+| تاريخ التسليم المتوقع | 29 سبتمبر 2026 |
+| الصيانة الشهرية | 10,000 جنيه مصري شهرياً |
+| ساعات الاستشارة الخارجية لـ Amadeus | 40 ساعة استشارية |
+| عدد الموظفين المطلوبين | 4 موظفين متفرغين |
+| نسبة المخاطر التقنية | متوسطة (حوالي 25%) |
+
+### القيمة التجارية المتوقعة
+
+- قناة بيع تعمل 24/7 بدون الحاجة لموظفين إضافيين أو مكاتب فرعية
+- تقليل الاعتماد على الوسطاء الخارجيين وتوفير عمولاتهم
+- بيانات العملاء وسجل حجوزاتهم تصبح ملكاً للشركة وتُستخدم في التسويق المستقبلي
+- توسيع نطاق العملاء ليشمل المسافرين خارج القاهرة والمحافظات الكبرى
+- بناء علامة تجارية رقمية قوية تنافس المواقع العالمية في السوق المحلي
+
+### المخاطر الرئيسية وكيف نعالجها
+
+| المخاطرة | المعالجة |
+|----------|----------|
+| تأخر استلام بيانات الربط من شركة Amadeus | بدء إجراءات التعاقد والربط من اليوم الأول وتخصيص مستشار متخصص |
+| تذبذب أسعار صرف العملة الأجنبية | تثبيت السعر بعقد واضح وجدولة الدفعات على ثلاث مراحل |
+| تعقيد التكامل التقني مع أنظمة الحجز العالمية | الاستعانة باستشاري Amadeus لمدة 40 ساعة لضمان جودة التنفيذ |
+| تغيير المتطلبات من جانب العميل أثناء التنفيذ | توثيق المتطلبات بشكل تفصيلي في بداية المشروع واعتمادها رسمياً |
+| تأخر استلام بيانات بوابة الدفع من البنك | البدء في إجراءات التعاقد مع البنك بالتوازي مع بداية التطوير |
+
+### القرار المطلوب من المجلس
+
+الموافقة على اعتماد ميزانية 600,000 جنيه مصري للباقة الأساسية مع 10,000 جنيه شهرياً للصيانة، والبدء الفوري في تنفيذ المشروع لمدة 3 أشهر.
+
+---
+
+# جولة تورز OTA - وثيقة متطلبات المنتج للباقة الأساسية
+
+## بيانات الوثيقة
+
+| الحقل | القيمة |
 |-------|-------|
-| Document Title | Jawla Tours OTA - Basic Package Product Requirements Document |
-| Version | 1.0.0 |
-| Date | 2026-06-29 |
-| Status | Approved for Development |
-| Document Owner | Ahmed Mahmoud (Technical Product Lead) |
-| Business Sponsor | Jawla Tours Executive Team |
-| Engineering Lead | TBD - Backend Lead (NestJS) |
-| Design Lead | TBD - Senior Product Designer |
-| Amadeus Integration Consultant | External Specialist (~40 hours allocated) |
-| Classification | Internal - Confidential |
-| Distribution | Engineering, Product, QA, Finance, Operations |
-| Next Review Date | 2026-09-29 |
+| اسم الوثيقة | جولة تورز OTA - وثيقة متطلبات المنتج للباقة الأساسية |
+| الإصدار | 1.0.0 |
+| التاريخ | 2026-06-29 |
+| الحالة | معتمدة للتطوير |
+| مسؤول الوثيقة | أحمد محمود (قائد المنتج التقني) |
+| الراعي من جهة العمل | الإدارة التنفيذية لـ جولة تورز |
+| قائد الهندسة | يتم تحديده لاحقًا - قائد الـ Backend (NestJS) |
+| قائد التصميم | يتم تحديده لاحقًا - مصمم منتج أول |
+| مستشار تكامل Amadeus | متخصص خارجي (~40 ساعة عمل مخصصة) |
+| التصنيف | داخلي - سري |
+| التوزيع | الهندسة، المنتج، الجودة (QA)، المالية، العمليات |
+| تاريخ المراجعة القادمة | 2026-09-29 |
 
-### Revision History
+### سجل المراجعات
 
-| Version | Date | Author | Change Summary |
+| الإصدار | التاريخ | الكاتب | ملخص التغيير |
 |---------|------|--------|----------------|
-| 0.1.0 | 2026-05-15 | A. Mahmoud | Initial draft after discovery workshop |
-| 0.5.0 | 2026-06-02 | A. Mahmoud | Added Amadeus scope, personas refined |
-| 0.8.0 | 2026-06-18 | A. Mahmoud | KPIs locked, payment matrix added |
-| 1.0.0 | 2026-06-29 | A. Mahmoud | Final approved baseline |
+| 0.1.0 | 2026-05-15 | أ. محمود | المسودة الأولى بعد ورشة الاستكشاف |
+| 0.5.0 | 2026-06-02 | أ. محمود | إضافة نطاق Amadeus وتنقيح شخصيات المستخدمين |
+| 0.8.0 | 2026-06-18 | أ. محمود | تثبيت مؤشرات الأداء وإضافة مصفوفة الدفع |
+| 1.0.0 | 2026-06-29 | أ. محمود | النسخة النهائية المعتمدة |
 
-### Related Documents
+### وثائق ذات صلة
 
-- Jawla Tours Master Statement of Work (SOW-2026-001)
-- Amadeus Self-Service API Agreement (pending signature)
-- Stripe Egypt Merchant Account Application
-- Paymob Integration Contract (signed 2026-06-10)
-- Brand Guidelines v2.1
-
----
-
-## Vision
-
-Jawla Tours will launch a production-grade Online Travel Agency (OTA) platform that allows Egyptian travelers to discover, book, and pay for flights and hotel rooms in a single bilingual (Arabic/English) experience. The Basic package establishes the operational and technical foundation: a live booking engine connected to Amadeus for flight inventory, a single hotel supplier for accommodation inventory, locally-relevant payments (Paymob and Stripe), and an internal admin tool that allows the operations team to monitor and intervene on bookings.
-
-The Basic package is intentionally narrow in scope. It is not a feature-complete OTA - it is the minimum viable platform required to take real money from real customers, fulfil bookings via real GDS and supplier APIs, and reconcile financials. Everything beyond this baseline (loyalty, multi-supplier orchestration, customer self-service refunds, packages, B2B, mobile apps) is deliberately deferred to subsequent packages so that we can validate unit economics, supplier relationships, payment success rates, and operational throughput before scaling complexity.
-
-The product must be live, transacting, and producing reconcilable revenue within 8-10 weeks of contract start. We optimize for time-to-revenue, not feature breadth. Every decision documented in this PRD prioritizes shipping a small, reliable surface area over shipping a large, fragile one.
+- بيان العمل الرئيسي لـ جولة تورز (SOW-2026-001)
+- اتفاقية Amadeus Self-Service API (في انتظار التوقيع)
+- طلب حساب تاجر Stripe في مصر
+- عقد تكامل Paymob (تم توقيعه في 2026-06-10)
+- دليل العلامة التجارية الإصدار 2.1
 
 ---
 
-## Goals & Success Metrics
+## الرؤية
 
-### Strategic Goals
+ستطلق جولة تورز منصة Online Travel Agency (OTA) جاهزة للإنتاج، تتيح للمسافرين المصريين البحث والحجز والدفع لتذاكر الطيران وغرف الفنادق في تجربة واحدة ثنائية اللغة (عربي/إنجليزي). الباقة الأساسية ترسي الأساس التشغيلي والتقني: محرك حجز حي متصل بـ Amadeus لمخزون الطيران، ومورد فنادق واحد لمخزون الإقامة، ووسائل دفع محلية مناسبة (Paymob و Stripe)، وأداة إدارة داخلية تسمح لفريق العمليات بمتابعة الحجوزات والتدخل عند الحاجة.
 
-1. **Establish a transacting OTA**: Process at least 100 real, paid bookings in the first 60 days of live operation.
-2. **Prove Amadeus integration economics**: Maintain Amadeus look-to-book ratio under contractually permitted thresholds (target <300:1) to avoid penalty fees.
-3. **Validate the bilingual market**: Achieve at least 35% of bookings via the Arabic interface to confirm bilingual UX is not theatrical.
-4. **De-risk payments**: Hit >85% payment success rate across Paymob and Stripe combined before considering additional gateways.
-5. **Build internal operational muscle**: Train an in-house ops team of 3-5 agents to handle 100% of post-booking exceptions without engineering escalation by week 12.
+الباقة الأساسية محدودة النطاق عن قصد. هي ليست منصة OTA متكاملة الميزات - بل هي الحد الأدنى من المنصة المطلوبة لاستقبال أموال حقيقية من عملاء حقيقيين، وإتمام الحجوزات عبر GDS وموردين حقيقيين، وتسوية الحسابات المالية. أي شيء خارج هذا الأساس (برامج الولاء، تنسيق متعدد الموردين، استرداد ذاتي للعملاء، الباقات السياحية، خدمات B2B، تطبيقات الموبايل) مؤجل عن قصد للباقات القادمة حتى نقدر نتحقق من اقتصاديات الوحدة، والعلاقات مع الموردين، ونسب نجاح الدفع، والكفاءة التشغيلية قبل ما نزود التعقيد.
 
-### Success Metrics (90 days post-launch)
+المنتج لازم يكون شغال ومتعامل عليه ومنتج إيرادات قابلة للتسوية في خلال 8-10 أسابيع من بداية العقد. هدفنا الأساسي هو سرعة الوصول للإيرادات، مش كثرة الميزات. كل قرار موثق في هذه الوثيقة بيعطي الأولوية لإطلاق سطح صغير وموثوق بدل سطح كبير وهش.
 
-| Metric | Target | Rationale |
+---
+
+## الأهداف ومقاييس النجاح
+
+### الأهداف الاستراتيجية
+
+1. **تأسيس OTA منتج للإيرادات**: معالجة 100 حجز حقيقي مدفوع على الأقل في أول 60 يوم من التشغيل الحي.
+2. **إثبات اقتصاديات تكامل Amadeus**: الحفاظ على نسبة look-to-book مع Amadeus تحت الحدود المسموح بها تعاقديًا (المستهدف <300:1) لتجنب رسوم العقوبات.
+3. **التحقق من السوق ثنائي اللغة**: تحقيق نسبة 35% على الأقل من الحجوزات عبر الواجهة العربية للتأكد إن دعم اللغتين فعلي وليس شكلي.
+4. **تقليل مخاطر الدفع**: تحقيق نسبة نجاح دفع أعلى من 85% عبر Paymob و Stripe مجتمعين قبل التفكير في بوابات إضافية.
+5. **بناء قدرة تشغيلية داخلية**: تدريب فريق عمليات داخلي من 3-5 موظفين على التعامل مع 100% من استثناءات ما بعد الحجز بدون تصعيد للهندسة بحلول الأسبوع 12.
+
+### مقاييس النجاح (بعد 90 يوم من الإطلاق)
+
+| المقياس | المستهدف | المبرر |
 |--------|--------|-----------|
-| Total Gross Bookings Value (GBV) | EGP 4.5M | Covers ~3x project burn |
-| Confirmed Bookings | 350+ | Validates demand |
-| Payment Success Rate | >85% | Industry benchmark for ME OTAs |
-| Search-to-Book Conversion | >1.2% | Realistic for new OTA brand |
-| Average Order Value (Flights) | EGP 8,500 | Domestic + short-haul mix |
-| Average Order Value (Hotels) | EGP 4,200 | 2-3 night avg stay |
-| Refund/Cancellation Rate | <12% | Anything above signals UX or pricing issues |
-| Customer Support Ticket Rate | <8% of bookings | Indicates clarity of confirmations |
-| Site Uptime | 99.5% | Excludes scheduled maintenance |
-| Time-to-First-Result (Flight Search) | <4.5s p95 | Critical conversion factor |
+| إجمالي قيمة الحجوزات (GBV) | EGP 4.5M | تغطي ~3 أضعاف تكلفة المشروع |
+| الحجوزات المؤكدة | 350+ | تثبت وجود طلب |
+| نسبة نجاح الدفع | >85% | المعيار القياسي لـ OTAs الشرق الأوسط |
+| نسبة التحويل من البحث للحجز | >1.2% | واقعية لعلامة OTA جديدة |
+| متوسط قيمة الطلب (طيران) | EGP 8,500 | خليط من الرحلات المحلية وقصيرة المدى |
+| متوسط قيمة الطلب (فنادق) | EGP 4,200 | متوسط إقامة 2-3 ليالي |
+| نسبة الاسترداد/الإلغاء | <12% | أي شيء فوق ذلك يشير لمشكلة في UX أو التسعير |
+| نسبة تذاكر دعم العملاء | <8% من الحجوزات | تشير لوضوح التأكيدات |
+| وقت تشغيل الموقع | 99.5% | باستثناء الصيانة المجدولة |
+| وقت ظهور أول نتيجة (بحث الطيران) | <4.5s p95 | عامل حاسم في التحويل |
 
 ---
 
-## Personas
+## شخصيات المستخدمين
 
-| Persona | Name | Age | Location | Goals | Pain Points |
+| الشخصية | الاسم | العمر | المكان | الأهداف | نقاط الألم |
 |---------|------|-----|----------|-------|-------------|
-| Domestic Leisure Traveler | Mariam El-Sayed | 32 | Cairo, Egypt | Book affordable Cairo-Hurghada weekend flights; find budget beach hotels; pay with local Mada card or installments | International OTAs reject her card; English-only sites confuse her parents; unclear cancellation policies; hidden fees revealed at checkout |
-| Outbound Family Planner | Khaled Hussein | 45 | Alexandria, Egypt | Plan annual family Umrah or summer Europe trip for 4-6 people; needs predictable EGP pricing; trusts established brands | Currency fluctuations between search and payment; struggles to book multiple passengers in one PNR; needs Arabic-speaking support |
-| Diaspora Returner | Nour Abdellah | 28 | Dubai, UAE | Books flights back to Cairo to visit family; pays with international Visa; needs WhatsApp confirmations | Foreign OTAs charge FX surcharges; local OTAs reject non-Egyptian cards; email confirmations get lost |
-| Jawla Operations Agent | Yara Mostafa | 26 | Cairo HQ | Monitor incoming bookings; intervene on failed PNR creation; issue manual refunds; export daily revenue reports | No unified view of bookings across providers; PNR sync failures invisible until customer calls; manual Excel reconciliation |
-| Jawla Finance Controller | Tarek Fahmy | 41 | Cairo HQ | Reconcile Paymob/Stripe settlements against Amadeus tickets and hotel vouchers; close monthly books; chase chargebacks | Multi-currency settlement gaps; no single source of truth for revenue recognition; ad-hoc reporting from engineers |
+| مسافر داخلي للترفيه | مريم السيد | 32 | القاهرة، مصر | حجز رحلات اقتصادية القاهرة-الغردقة لإجازة الأسبوع؛ إيجاد فنادق شاطئية اقتصادية؛ الدفع ببطاقة Mada المحلية أو الأقساط | مواقع OTA الدولية ترفض بطاقتها؛ المواقع الإنجليزية فقط تربك والديها؛ سياسات الإلغاء غير واضحة؛ رسوم خفية تظهر عند الدفع |
+| مخطط رحلة عائلية للخارج | خالد حسين | 45 | الإسكندرية، مصر | تخطيط رحلة العمرة السنوية أو رحلة صيف أوروبا لعائلة من 4-6 أشخاص؛ يحتاج تسعير متوقع بالجنيه؛ يثق بالعلامات المعروفة | تقلبات العملة بين البحث والدفع؛ صعوبة حجز مسافرين متعددين في نفس PNR؛ يحتاج دعم باللغة العربية |
+| مغترب عائد | نور عبد الله | 28 | دبي، الإمارات | حجز رحلات للقاهرة لزيارة الأهل؛ الدفع ببطاقة Visa دولية؛ يحتاج تأكيدات WhatsApp | OTAs الأجنبية تفرض رسوم تحويل عملة؛ OTAs المحلية ترفض البطاقات غير المصرية؛ تأكيدات الإيميل تضيع |
+| موظف عمليات في جولة | يارا مصطفى | 26 | مقر القاهرة | مراقبة الحجوزات الواردة؛ التدخل عند فشل إنشاء PNR؛ إصدار استرداد يدوي؛ تصدير تقارير الإيرادات اليومية | لا توجد رؤية موحدة للحجوزات عبر المزودين؛ فشل مزامنة PNR لا يظهر إلا عندما يتصل العميل؛ تسوية يدوية على Excel |
+| مراقب مالي في جولة | طارق فهمي | 41 | مقر القاهرة | تسوية تسويات Paymob/Stripe مقابل تذاكر Amadeus وقسائم الفنادق؛ إقفال الحسابات الشهرية؛ متابعة استردادات chargebacks | فجوات في التسويات متعددة العملات؛ لا يوجد مصدر واحد للحقيقة للاعتراف بالإيراد؛ تقارير عشوائية من المهندسين |
 
-### Persona Coverage Matrix
+### مصفوفة تغطية الشخصيات
 
-| Feature Area | Mariam | Khaled | Nour | Yara | Tarek |
+| منطقة الميزة | مريم | خالد | نور | يارا | طارق |
 |--------------|--------|--------|------|------|-------|
-| Flight Search | Primary | Primary | Primary | - | - |
-| Hotel Search | Primary | Primary | Secondary | - | - |
-| Paymob Payment | Primary | Primary | - | - | Reconciles |
-| Stripe Payment | Secondary | Secondary | Primary | - | Reconciles |
-| Arabic UI | Primary | Primary | Secondary | Required | Required |
-| Email Confirmation | Required | Required | Required | Observes | - |
-| Admin Booking View | - | - | - | Primary | Secondary |
-| Refund Issuance | Recipient | Recipient | Recipient | Primary | Approves |
-| Revenue Reports | - | - | - | Views | Primary |
+| بحث الطيران | أساسي | أساسي | أساسي | - | - |
+| بحث الفنادق | أساسي | أساسي | ثانوي | - | - |
+| الدفع بـ Paymob | أساسي | أساسي | - | - | يسوي |
+| الدفع بـ Stripe | ثانوي | ثانوي | أساسي | - | يسوي |
+| الواجهة العربية | أساسي | أساسي | ثانوي | مطلوب | مطلوب |
+| تأكيد الإيميل | مطلوب | مطلوب | مطلوب | يلاحظ | - |
+| عرض الحجوزات للإدارة | - | - | - | أساسي | ثانوي |
+| إصدار الاسترداد | يتلقى | يتلقى | يتلقى | أساسي | يوافق |
+| تقارير الإيرادات | - | - | - | يشاهد | أساسي |
 
 ---
 
-## User Stories
+## قصص المستخدمين
 
-### Search & Discovery
+### البحث والاكتشاف
 
-**US-001: Bilingual Flight Search**
+**US-001: بحث طيران ثنائي اللغة**
 
-As a traveler, I want to search for flights in Arabic or English so that I can plan my trip in my preferred language.
+كمسافر، أريد البحث عن رحلات بالعربية أو الإنجليزية حتى أقدر أخطط لرحلتي باللغة المفضلة عندي.
 
-- AC-001.1: Given I am on the homepage, When I toggle the language switcher to Arabic, Then the entire UI including form labels, error messages, and date pickers must render in Arabic with RTL layout within 200ms.
-- AC-001.2: Given I have selected Arabic, When I type airport names in Arabic (e.g., "القاهرة"), Then the autocomplete must return matching IATA codes (CAI) ranked by popularity.
-- AC-001.3: Given I have selected English, When I type "Cai", Then autocomplete must return Cairo (CAI), Cairns (CNS), and other matches ranked by booking volume.
-- AC-001.4: Given I have entered origin, destination, departure date, and passenger count, When I submit the search, Then the system must call Amadeus Flight Offers Search v2 and return results within 4.5 seconds p95.
-- AC-001.5: Given Amadeus returns zero results, When the result page renders, Then the user must see a localized empty state with suggestions for nearby dates (+/- 3 days).
+- AC-001.1: لما أكون على الصفحة الرئيسية وأبدل اللغة للعربية، لازم الواجهة كلها بما فيها تسميات النماذج ورسائل الخطأ ومنتقي التواريخ تظهر بالعربية مع تخطيط RTL في خلال 200ms.
+- AC-001.2: لما أختار العربية وأكتب أسماء المطارات بالعربية (مثل "القاهرة")، لازم الـ autocomplete يرجع رموز IATA المطابقة (CAI) مرتبة حسب الشعبية.
+- AC-001.3: لما أختار الإنجليزية وأكتب "Cai"، لازم الـ autocomplete يرجع Cairo (CAI) و Cairns (CNS) ونتائج أخرى مرتبة حسب حجم الحجوزات.
+- AC-001.4: لما أدخل نقطة الانطلاق والوجهة وتاريخ السفر وعدد المسافرين وأضغط بحث، لازم النظام يستدعي Amadeus Flight Offers Search v2 ويرجع النتائج في خلال 4.5 ثواني p95.
+- AC-001.5: لما يرجع Amadeus صفر نتائج، لازم المستخدم يشوف حالة فارغة مترجمة مع اقتراحات لتواريخ قريبة (+/- 3 أيام).
 
-**US-002: Flight Result Filtering**
+**US-002: تصفية نتائج الطيران**
 
-As a traveler, I want to filter flight results by stops, airlines, price, and departure time so that I can find the option that matches my constraints.
+كمسافر، أريد تصفية نتائج الطيران حسب التوقفات وشركات الطيران والسعر ووقت الإقلاع حتى أقدر ألاقي الخيار المناسب لي.
 
-- AC-002.1: Filters must be applied client-side against the cached Amadeus response (no re-call to Amadeus on filter change) to preserve look-to-book ratio.
-- AC-002.2: Selecting "Non-stop only" must instantly hide multi-stop results and update the displayed count.
-- AC-002.3: Price slider must respect the user's currency selection (EGP, USD).
-- AC-002.4: When a filter combination yields zero results, a "Clear filters" CTA must be prominent.
+- AC-002.1: التصفيات لازم تتطبق client-side على استجابة Amadeus المخزنة (بدون استدعاء جديد لـ Amadeus عند تغيير التصفية) للحفاظ على نسبة look-to-book.
+- AC-002.2: اختيار "بدون توقفات فقط" لازم يخفي فورًا النتائج متعددة التوقفات ويحدث العداد المعروض.
+- AC-002.3: شريط السعر لازم يحترم اختيار العميل للعملة (EGP, USD).
+- AC-002.4: لما تجميعة تصفيات ترجع صفر نتائج، لازم CTA "مسح التصفيات" يكون بارز.
 
-**US-003: Hotel Search by Destination**
+**US-003: بحث الفنادق حسب الوجهة**
 
-As a traveler, I want to search for hotels by city, check-in/check-out dates, and guest count so that I can find available accommodation.
+كمسافر، أريد البحث عن فنادق حسب المدينة وتواريخ الدخول/الخروج وعدد الضيوف حتى أقدر ألاقي إقامة متوفرة.
 
-- AC-003.1: Destination input must accept city names in Arabic and English and resolve to the supplier's destination ID.
-- AC-003.2: Date picker must enforce check-out > check-in, max 30 nights.
-- AC-003.3: Search must return at least 20 results when available, paginated 20 per page.
-- AC-003.4: Each hotel card must display: name, star rating, primary image, price per night (lead-in rate), total stay price, and refundability badge.
+- AC-003.1: مدخل الوجهة لازم يقبل أسماء المدن بالعربية والإنجليزية ويحلها لـ destination ID الخاص بالمورد.
+- AC-003.2: منتقي التواريخ لازم يفرض إن check-out > check-in، بحد أقصى 30 ليلة.
+- AC-003.3: البحث لازم يرجع 20 نتيجة على الأقل لما يكون متاح، مقسمة 20 لكل صفحة.
+- AC-003.4: كل بطاقة فندق لازم تعرض: الاسم، تقييم النجوم، الصورة الرئيسية، السعر لكل ليلة (السعر التمهيدي)، إجمالي سعر الإقامة، وشارة قابلية الاسترداد.
 
-### Booking & Checkout
+### الحجز والدفع
 
-**US-004: Flight Booking with Passenger Details**
+**US-004: حجز طيران مع بيانات المسافرين**
 
-As a traveler, I want to enter passenger details and book a selected flight so that I receive a confirmed ticket.
+كمسافر، أريد إدخال بيانات المسافرين وحجز رحلة محددة حتى أستلم تذكرة مؤكدة.
 
-- AC-004.1: Passenger form must collect: title, first name, last name, date of birth, nationality, passport number (international flights only), passport expiry, gender.
-- AC-004.2: Names must be validated against IATA character set (Latin only, no diacritics) with a helpful Arabic explanation for Arabic users.
-- AC-004.3: Given a user is logged in, When they reach checkout, Then their saved profile data must pre-fill the lead passenger fields.
-- AC-004.4: Given the user submits the booking, When Amadeus Flight Create Orders fails, Then the user must see a clear error and not be charged.
-- AC-004.5: Given Amadeus PNR is created, When the payment succeeds, Then the booking must be marked CONFIRMED and the ticket must be issued via Amadeus Flight Order Management.
+- AC-004.1: نموذج المسافر لازم يجمع: اللقب، الاسم الأول، اسم العائلة، تاريخ الميلاد، الجنسية، رقم جواز السفر (للرحلات الدولية فقط)، تاريخ انتهاء الجواز، النوع.
+- AC-004.2: الأسماء لازم تتحقق ضد مجموعة أحرف IATA (لاتيني فقط، بدون علامات تشكيل) مع شرح مفيد بالعربية للمستخدمين العرب.
+- AC-004.3: لما المستخدم يكون مسجل دخول ويوصل لمرحلة الدفع، لازم بيانات حسابه المحفوظة تملا حقول المسافر الرئيسي تلقائيًا.
+- AC-004.4: لما المستخدم يرسل الحجز ويفشل Amadeus Flight Create Orders، لازم المستخدم يشوف خطأ واضح ولا يتم خصم منه.
+- AC-004.5: لما يتم إنشاء PNR على Amadeus وينجح الدفع، لازم الحجز يتعلم CONFIRMED والتذكرة تصدر عبر Amadeus Flight Order Management.
 
-**US-005: Hotel Booking**
+**US-005: حجز فندق**
 
-As a traveler, I want to book a hotel room with guest details so that I receive a confirmed reservation voucher.
+كمسافر، أريد حجز غرفة فندق مع بيانات الضيف حتى أستلم قسيمة حجز مؤكدة.
 
-- AC-005.1: Room selection must show cancellation policy in plain language before payment.
-- AC-005.2: Guest form must collect lead guest only (other guests are name-only).
-- AC-005.3: Special requests free-text field (max 500 chars) must be passed to the supplier.
-- AC-005.4: Given the supplier confirms the booking, When the response is received, Then a voucher PDF must be generated and emailed within 2 minutes.
+- AC-005.1: اختيار الغرفة لازم يعرض سياسة الإلغاء بلغة بسيطة قبل الدفع.
+- AC-005.2: نموذج الضيف لازم يجمع بيانات الضيف الرئيسي فقط (الضيوف الآخرين بالاسم فقط).
+- AC-005.3: حقل نص حر للطلبات الخاصة (بحد أقصى 500 حرف) لازم يتم تمريره للمورد.
+- AC-005.4: لما المورد يؤكد الحجز ويتم استلام الاستجابة، لازم يتم توليد voucher PDF وإرساله بالإيميل في خلال دقيقتين.
 
-**US-006: Multi-Gateway Payment**
+**US-006: دفع متعدد البوابات**
 
-As a traveler, I want to pay using Paymob (for local cards/wallets) or Stripe (for international cards) so that I can complete my booking.
+كمسافر، أريد الدفع باستخدام Paymob (للبطاقات/المحافظ المحلية) أو Stripe (للبطاقات الدولية) حتى أكمل حجزي.
 
-- AC-006.1: System must auto-detect card BIN and recommend the appropriate gateway, but allow user override.
-- AC-006.2: Paymob flow must support Visa, Mastercard, Meeza, and mobile wallet (Vodafone Cash, Orange Money).
-- AC-006.3: Stripe flow must support 3DS2 challenges and SCA.
-- AC-006.4: A 15-minute booking timer must lock the price and inventory; on expiry, the user is redirected back to search.
-- AC-006.5: On payment failure, the user must see the gateway's reason code translated to plain Arabic/English.
+- AC-006.1: النظام لازم يكتشف BIN البطاقة تلقائيًا ويوصي بالبوابة المناسبة، مع السماح للمستخدم بتغيير الاختيار.
+- AC-006.2: مسار Paymob لازم يدعم Visa و Mastercard و Meeza والمحفظة الإلكترونية (Vodafone Cash, Orange Money).
+- AC-006.3: مسار Stripe لازم يدعم تحديات 3DS2 و SCA.
+- AC-006.4: مؤقت حجز 15 دقيقة لازم يثبت السعر والمخزون؛ عند انتهاء الوقت، يتم إعادة المستخدم لصفحة البحث.
+- AC-006.5: عند فشل الدفع، لازم المستخدم يشوف رمز السبب من البوابة مترجم لعربي/إنجليزي بسيط.
 
-### Account Management
+### إدارة الحساب
 
-**US-007: Account Creation**
+**US-007: إنشاء حساب**
 
-As a traveler, I want to create an account using email/password or phone OTP so that I can save my bookings and traveler profiles.
+كمسافر، أريد إنشاء حساب باستخدام إيميل/كلمة مرور أو OTP بالهاتف حتى أحفظ حجوزاتي وبيانات المسافرين.
 
-- AC-007.1: Email signup must require email verification before booking is permitted.
-- AC-007.2: Phone OTP must use a local SMS provider (Vonage or Twilio with Egypt-routed gateway) and expire in 5 minutes.
-- AC-007.3: Password policy: minimum 10 characters, one uppercase, one digit, one symbol.
-- AC-007.4: Account must store: name, email, phone, preferred language, preferred currency, saved traveler profiles (up to 6).
+- AC-007.1: التسجيل بالإيميل لازم يستلزم تحقق الإيميل قبل السماح بالحجز.
+- AC-007.2: OTP بالهاتف لازم يستخدم مزود SMS محلي (Vonage أو Twilio مع gateway موجه لمصر) وينتهي في 5 دقائق.
+- AC-007.3: سياسة كلمة المرور: 10 أحرف كحد أدنى، حرف كبير واحد، رقم واحد، رمز واحد.
+- AC-007.4: الحساب لازم يخزن: الاسم، الإيميل، الهاتف، اللغة المفضلة، العملة المفضلة، بيانات مسافرين محفوظة (حتى 6).
 
-**US-008: My Bookings View**
+**US-008: عرض حجوزاتي**
 
-As a registered traveler, I want to see all my past and upcoming bookings in one list so that I can reference confirmations and travel dates.
+كمسافر مسجل، أريد رؤية كل حجوزاتي السابقة والقادمة في قائمة واحدة حتى أرجع للتأكيدات وتواريخ السفر.
 
-- AC-008.1: List must show booking reference, type (flight/hotel), status, travel dates, total amount, and action buttons (View, Download voucher).
-- AC-008.2: Bookings must be sorted upcoming-first, then past descending.
-- AC-008.3: Each booking detail page must show all passenger/guest names, itinerary, and payment receipt.
+- AC-008.1: القائمة لازم تعرض: مرجع الحجز، النوع (طيران/فندق)، الحالة، تواريخ السفر، المبلغ الإجمالي، وأزرار الإجراءات (عرض، تحميل القسيمة).
+- AC-008.2: الحجوزات لازم تترتب القادمة أولًا، ثم السابقة تنازليًا.
+- AC-008.3: صفحة تفاصيل كل حجز لازم تعرض كل أسماء المسافرين/الضيوف، خط السير، وإيصال الدفع.
 
-### Admin
+### الإدارة
 
-**US-009: Admin Booking Dashboard**
+**US-009: لوحة تحكم الإدارة للحجوزات**
 
-As Yara (ops agent), I want to see all bookings across the platform with filters by status, date, and customer so that I can monitor operations and intervene on failures.
+كيارا (موظفة عمليات)، أريد رؤية كل الحجوزات على المنصة مع تصفيات حسب الحالة والتاريخ والعميل حتى أراقب العمليات وأتدخل عند الفشل.
 
-- AC-009.1: Dashboard must show real-time counts: today's bookings, pending PNR, failed payments, refund requests.
-- AC-009.2: Bookings table must support filters: status (Pending, Confirmed, Cancelled, Refunded), date range, customer email/phone, booking reference.
-- AC-009.3: Clicking a booking must reveal the full audit trail: search params, supplier response, payment events, email send log.
-- AC-009.4: Agent must be able to add internal notes visible only to staff.
+- AC-009.1: اللوحة لازم تعرض عدادات فورية: حجوزات اليوم، PNR قيد الانتظار، مدفوعات فاشلة، طلبات استرداد.
+- AC-009.2: جدول الحجوزات لازم يدعم تصفيات: الحالة (قيد الانتظار، مؤكد، ملغي، مسترد)، نطاق التاريخ، إيميل/هاتف العميل، مرجع الحجز.
+- AC-009.3: الضغط على حجز لازم يكشف سجل التدقيق الكامل: بارامترات البحث، استجابة المورد، أحداث الدفع، سجل إرسال الإيميل.
+- AC-009.4: الموظف لازم يقدر يضيف ملاحظات داخلية تظهر للموظفين فقط.
 
-**US-010: Manual Refund Initiation**
+**US-010: بدء استرداد يدوي**
 
-As Yara, I want to initiate a manual refund from the admin panel so that I can resolve customer issues without engineering involvement.
+كيارا، أريد بدء استرداد يدوي من لوحة الإدارة حتى أحل مشاكل العملاء بدون تدخل من الهندسة.
 
-- AC-010.1: Refund button must be visible only on Confirmed or Failed-Fulfilment bookings.
-- AC-010.2: Agent must enter a reason code and free-text justification.
-- AC-010.3: Refund must call the original payment gateway's refund API (Paymob or Stripe) and update booking status to Refund-Pending.
-- AC-010.4: Refunds over EGP 10,000 must require a second-agent approval (4-eyes).
-- AC-010.5: Customer must receive a localized email confirming the refund is in progress.
+- AC-010.1: زر الاسترداد لازم يظهر فقط على الحجوزات المؤكدة (Confirmed) أو فاشلة الإتمام (Failed-Fulfilment).
+- AC-010.2: الموظف لازم يدخل رمز سبب ومبرر نصي حر.
+- AC-010.3: الاسترداد لازم يستدعي refund API لبوابة الدفع الأصلية (Paymob أو Stripe) ويحدث حالة الحجز لـ Refund-Pending.
+- AC-010.4: الاستردادات فوق EGP 10,000 لازم تستلزم موافقة موظف ثاني (4-eyes).
+- AC-010.5: العميل لازم يستلم إيميل مترجم يأكد إن الاسترداد قيد التنفيذ.
 
-### Confirmations & Communications
+### التأكيدات والتواصل
 
-**US-011: Booking Confirmation Email**
+**US-011: إيميل تأكيد الحجز**
 
-As a traveler, I want to receive an email confirmation with all booking details so that I have a record of my purchase.
+كمسافر، أريد استلام إيميل تأكيد بكل تفاصيل الحجز حتى يكون عندي سجل بشرائي.
 
-- AC-011.1: Email must be sent within 60 seconds of booking confirmation.
-- AC-011.2: Email language must match the user's UI language at time of booking.
-- AC-011.3: Flight emails must include: PNR, ticket numbers, full itinerary, fare rules summary, and a calendar attachment (.ics).
-- AC-011.4: Hotel emails must include: confirmation number, hotel address, check-in/out times, voucher PDF attachment.
-- AC-011.5: Emails must render correctly in Gmail, Outlook, Apple Mail, and Yahoo - tested via Litmus before launch.
+- AC-011.1: الإيميل لازم يتم إرساله في خلال 60 ثانية من تأكيد الحجز.
+- AC-011.2: لغة الإيميل لازم تطابق لغة الواجهة وقت الحجز.
+- AC-011.3: إيميلات الطيران لازم تشمل: PNR، أرقام التذاكر، خط السير الكامل، ملخص قواعد التعرفة، ومرفق تقويم (.ics).
+- AC-011.4: إيميلات الفنادق لازم تشمل: رقم التأكيد، عنوان الفندق، أوقات الدخول/الخروج، مرفق voucher PDF.
+- AC-011.5: الإيميلات لازم تظهر بشكل صحيح في Gmail و Outlook و Apple Mail و Yahoo - تم اختبارها عبر Litmus قبل الإطلاق.
 
 ---
 
-## Business Requirements
+## متطلبات العمل
 
-| ID | Requirement | Priority | Source |
+| ID | المتطلب | الأولوية | المصدر |
 |----|-------------|----------|--------|
-| BR-001 | Platform must be fully bilingual (Arabic/English) with complete RTL support including currency formatting, date formatting, and form direction. | Must | Market |
-| BR-002 | Platform must accept payments in EGP via Paymob (cards, wallets, Meeza). | Must | Finance |
-| BR-003 | Platform must accept payments in USD/EUR via Stripe for international cardholders. | Must | Finance |
-| BR-004 | Flight inventory must be sourced exclusively from Amadeus Self-Service APIs for the Basic package. | Must | Procurement |
-| BR-005 | Hotel inventory must be sourced from one supplier (Hotelbeds OR Expedia EAN OR TBO) - selection finalized in Week 1. | Must | Procurement |
-| BR-006 | All bookings must be reconcilable end-to-end: search params -> supplier offer -> PNR/voucher -> payment intent -> settlement -> ticket/voucher issuance. | Must | Finance |
-| BR-007 | Admin panel must be accessible to internal staff via SSO (Google Workspace) with role-based access (Agent, Supervisor, Finance, Admin). | Must | Security |
-| BR-008 | All personally identifiable information (PII) must be encrypted at rest (AES-256) and in transit (TLS 1.3). | Must | Compliance |
-| BR-009 | Payment card data must NEVER touch Jawla servers - tokenization via Paymob/Stripe hosted fields or iframes only. | Must | PCI |
-| BR-010 | System must comply with PCI DSS SAQ-A scope (hosted payment fields). | Must | Compliance |
-| BR-011 | Booking confirmations must be sent via transactional email provider (SendGrid or AWS SES) with >98% deliverability. | Must | Operations |
-| BR-012 | Look-to-book ratio with Amadeus must be monitored daily and remain under 300:1 to avoid penalty fees. | Must | Procurement |
-| BR-013 | Platform must support a maximum of 100 concurrent users without degradation in Basic package. | Should | Engineering |
-| BR-014 | All written content (terms, privacy, cancellation policies) must be reviewed by an Egyptian travel-law attorney before launch. | Must | Legal |
-| BR-015 | Platform must log all booking events to an immutable audit log retained for 7 years. | Must | Compliance |
-| BR-016 | Admin actions on bookings (refund, cancel, note) must be attributable to the acting user and reversible only via supervisor override. | Must | Security |
-| BR-017 | Currency conversion (display only) must use a daily refreshed rate from a reputable source (e.g., XE.com or central bank API) with a 2% spread. | Must | Finance |
-| BR-018 | Booking timer (15 min) must lock inventory where supplier APIs support it and must clearly warn users at 12 min, 14 min. | Should | Product |
-| BR-019 | Platform must capture marketing attribution (UTM, referrer) on every booking for ROAS analysis. | Should | Marketing |
-| BR-020 | Platform must be hostable on a single VPS or small cloud footprint to keep operating costs under EGP 25,000/month in Basic. | Must | Finance |
-| BR-021 | All forms must include Arabic-aware input validation (Arabic names accepted in profile, Latin enforced for ticketing). | Must | Product |
-| BR-022 | The Terms of Service must explicitly disclose Jawla's role as an OTA agent and the supplier's terms governing fare rules. | Must | Legal |
-| BR-023 | Failed bookings (payment success, fulfillment failure) must trigger automatic refund + immediate ops alert. | Must | Operations |
-| BR-024 | The platform must not store CVV, full PAN, or magnetic stripe data under any circumstance. | Must | PCI |
-| BR-025 | The development team must deliver source code via private GitHub repository owned by Jawla with full IP transfer on final payment. | Must | Contract |
+| BR-001 | المنصة لازم تكون ثنائية اللغة بالكامل (عربي/إنجليزي) مع دعم RTL كامل بما فيه تنسيق العملة وتنسيق التاريخ واتجاه النماذج. | Must | السوق |
+| BR-002 | المنصة لازم تقبل المدفوعات بالجنيه المصري (EGP) عبر Paymob (بطاقات، محافظ، Meeza). | Must | المالية |
+| BR-003 | المنصة لازم تقبل المدفوعات بالدولار/اليورو عبر Stripe لحاملي البطاقات الدولية. | Must | المالية |
+| BR-004 | مخزون الطيران لازم يكون مصدره حصريًا Amadeus Self-Service APIs للباقة الأساسية. | Must | المشتريات |
+| BR-005 | مخزون الفنادق لازم يكون من مورد واحد (Hotelbeds أو Expedia EAN أو TBO) - يتم اختياره في الأسبوع 1. | Must | المشتريات |
+| BR-006 | كل الحجوزات لازم تكون قابلة للتسوية من البداية للنهاية: بارامترات البحث -> عرض المورد -> PNR/قسيمة -> نية الدفع -> التسوية -> إصدار التذكرة/القسيمة. | Must | المالية |
+| BR-007 | لوحة الإدارة لازم تكون متاحة للموظفين الداخليين عبر SSO (Google Workspace) مع وصول قائم على الأدوار (موظف، مشرف، مالية، مدير). | Must | الأمان |
+| BR-008 | كل المعلومات التي تحدد الهوية الشخصية (PII) لازم تكون مشفرة في مكان التخزين (AES-256) وفي النقل (TLS 1.3). | Must | الامتثال |
+| BR-009 | بيانات بطاقات الدفع لازم لا تلمس أبدًا سيرفرات جولة - tokenization عبر hosted fields أو iframes من Paymob/Stripe فقط. | Must | PCI |
+| BR-010 | النظام لازم يمتثل لنطاق PCI DSS SAQ-A (حقول دفع مستضافة). | Must | الامتثال |
+| BR-011 | تأكيدات الحجز لازم تتم عبر مزود إيميل المعاملات (SendGrid أو AWS SES) مع نسبة وصول >98%. | Must | العمليات |
+| BR-012 | نسبة look-to-book مع Amadeus لازم تتم مراقبتها يوميًا وتفضل تحت 300:1 لتجنب رسوم العقوبات. | Must | المشتريات |
+| BR-013 | المنصة لازم تدعم حد أقصى 100 مستخدم متزامن بدون تدهور في الباقة الأساسية. | Should | الهندسة |
+| BR-014 | كل المحتوى المكتوب (الشروط، الخصوصية، سياسات الإلغاء) لازم يتم مراجعته بواسطة محامي قانون السفر المصري قبل الإطلاق. | Must | القانوني |
+| BR-015 | المنصة لازم تسجل كل أحداث الحجز في سجل تدقيق غير قابل للتعديل يتم الاحتفاظ به لمدة 7 سنوات. | Must | الامتثال |
+| BR-016 | إجراءات الإدارة على الحجوزات (استرداد، إلغاء، ملاحظة) لازم تكون منسوبة للمستخدم المتصرف وقابلة للتراجع فقط عبر تجاوز المشرف. | Must | الأمان |
+| BR-017 | تحويل العملة (للعرض فقط) لازم يستخدم سعر يتم تحديثه يوميًا من مصدر موثوق (مثل XE.com أو API البنك المركزي) مع فارق 2%. | Must | المالية |
+| BR-018 | مؤقت الحجز (15 دقيقة) لازم يثبت المخزون حيث APIs المورد تدعم ذلك ولازم يحذر المستخدمين بوضوح عند 12 دقيقة و 14 دقيقة. | Should | المنتج |
+| BR-019 | المنصة لازم تلتقط بيانات التسويق المنسوبة (UTM، المرجع) على كل حجز لتحليل ROAS. | Should | التسويق |
+| BR-020 | المنصة لازم تكون قابلة للاستضافة على VPS واحد أو بصمة سحابية صغيرة لإبقاء تكاليف التشغيل تحت EGP 25,000/شهر في الباقة الأساسية. | Must | المالية |
+| BR-021 | كل النماذج لازم تشمل تحقق إدخال يدرك العربية (الأسماء العربية مقبولة في الملف الشخصي، اللاتيني مفروض للتذاكر). | Must | المنتج |
+| BR-022 | شروط الخدمة لازم تفصح بوضوح عن دور جولة كوكيل OTA وعن شروط المورد الحاكمة لقواعد التعرفة. | Must | القانوني |
+| BR-023 | الحجوزات الفاشلة (نجاح الدفع، فشل الإتمام) لازم تطلق استرداد تلقائي + تنبيه فوري للعمليات. | Must | العمليات |
+| BR-024 | المنصة لازم لا تخزن CVV أو PAN الكامل أو بيانات الشريط المغناطيسي تحت أي ظرف. | Must | PCI |
+| BR-025 | فريق التطوير لازم يسلم الكود المصدري عبر مستودع GitHub خاص ومملوك لـ جولة مع نقل كامل لحقوق الملكية الفكرية عند الدفعة النهائية. | Must | العقد |
 
 ---
 
-## Functional Acceptance Criteria
+## معايير القبول الوظيفية
 
-### FAC-1: Flight Booking End-to-End
+### FAC-1: حجز طيران من البداية للنهاية
 
-A booking is considered functionally complete only when ALL of the following are true:
-1. User has searched flights via the UI.
-2. User has selected an offer and progressed to passenger details.
-3. Amadeus Flight Offers Price has been called to confirm the price is still valid.
-4. User has submitted passenger details with all required fields validated.
-5. Payment has been captured via Paymob or Stripe.
-6. Amadeus Flight Create Orders has returned a confirmed PNR.
-7. Amadeus Flight Order Management has issued ticket numbers.
-8. The booking record in Jawla's database has status = CONFIRMED.
-9. The customer has received the confirmation email.
-10. The admin dashboard reflects the booking with full audit trail.
+الحجز يعتبر مكتمل وظيفيًا فقط لما كل التالي يكون صحيح:
+1. المستخدم بحث عن الرحلات عبر الواجهة.
+2. المستخدم اختار عرض وانتقل لبيانات المسافرين.
+3. تم استدعاء Amadeus Flight Offers Price للتأكيد إن السعر لا يزال صالحًا.
+4. المستخدم قدم بيانات المسافرين مع تحقق كل الحقول المطلوبة.
+5. تم استلام الدفع عبر Paymob أو Stripe.
+6. أرجع Amadeus Flight Create Orders PNR مؤكد.
+7. أصدر Amadeus Flight Order Management أرقام التذاكر.
+8. سجل الحجز في قاعدة بيانات جولة بحالة = CONFIRMED.
+9. العميل استلم إيميل التأكيد.
+10. لوحة تحكم الإدارة تعكس الحجز مع سجل التدقيق الكامل.
 
-If any step 5-9 fails after step 5, the system must automatically rollback (refund + alert).
+لو أي خطوة 5-9 فشلت بعد الخطوة 5، النظام لازم يتراجع تلقائيًا (استرداد + تنبيه).
 
-### FAC-2: Hotel Booking End-to-End
+### FAC-2: حجز فندق من البداية للنهاية
 
-1. User has searched hotels and selected a property and room.
-2. Supplier's pre-booking check (rate availability) has succeeded.
-3. Guest details captured and validated.
-4. Payment captured.
-5. Supplier's booking confirmation API has returned a confirmation number.
-6. Voucher PDF generated and stored.
-7. Email sent.
-8. Admin record created.
+1. المستخدم بحث عن فنادق واختار عقار وغرفة.
+2. فحص ما قبل الحجز من المورد (توفر السعر) نجح.
+3. تم التقاط بيانات الضيف والتحقق منها.
+4. تم استلام الدفع.
+5. أرجع API تأكيد حجز المورد رقم تأكيد.
+6. تم توليد voucher PDF وتخزينه.
+7. تم إرسال الإيميل.
+8. تم إنشاء سجل الإدارة.
 
-### FAC-3: Refund Functional Criteria
+### FAC-3: معايير الاسترداد الوظيفية
 
-1. Refund initiated by authorized agent via admin panel.
-2. Reason code captured.
-3. If amount > EGP 10K, second approval recorded.
-4. Gateway refund API called with original payment reference.
-5. Gateway response logged.
-6. Booking status updated.
-7. Customer notified.
-8. Finance dashboard updated.
+1. الاسترداد تم بدؤه بواسطة موظف مفوض عبر لوحة الإدارة.
+2. تم التقاط رمز السبب.
+3. لو المبلغ > EGP 10K، تم تسجيل موافقة ثانية.
+4. تم استدعاء refund API للبوابة بمرجع الدفع الأصلي.
+5. تم تسجيل استجابة البوابة.
+6. تم تحديث حالة الحجز.
+7. تم إخطار العميل.
+8. تم تحديث لوحة تحكم المالية.
 
-### FAC-4: Bilingual Switching
+### FAC-4: التبديل بين اللغات
 
-1. Language toggle is available on every page.
-2. Switching language preserves the user's current state (search params, form data).
-3. All UI text, including dynamically loaded supplier content where possible, switches.
-4. URL pattern updates: /en/... or /ar/... for SEO.
-5. HTML `lang` and `dir` attributes update.
-6. Date and currency formats localize.
+1. زر تبديل اللغة متاح على كل صفحة.
+2. تبديل اللغة يحفظ الحالة الحالية للمستخدم (بارامترات البحث، بيانات النموذج).
+3. كل نصوص الواجهة، بما فيها محتوى المورد المحمل ديناميكيًا حيث ممكن، تتبدل.
+4. نمط الـ URL يتحدث: /en/... أو /ar/... لـ SEO.
+5. خصائص HTML `lang` و `dir` تتحدث.
+6. تنسيقات التاريخ والعملة تتلاءم محليًا.
 
-### FAC-5: Admin Authentication
+### FAC-5: مصادقة الإدارة
 
-1. Admin login via Google Workspace OAuth only (no password-based admin accounts).
-2. Role assigned via Google Workspace group membership.
-3. Session timeout after 30 minutes of inactivity.
-4. All admin actions logged with actor, timestamp, IP.
+1. تسجيل دخول الإدارة عبر Google Workspace OAuth فقط (لا توجد حسابات إدارة بكلمة مرور).
+2. الدور يتم تعيينه عبر عضوية مجموعة Google Workspace.
+3. انتهاء صلاحية الجلسة بعد 30 دقيقة من عدم النشاط.
+4. كل إجراءات الإدارة تتسجل مع المتصرف والطابع الزمني وعنوان IP.
 
-### FAC-6: Email Deliverability
+### FAC-6: وصول الإيميل
 
-1. SPF, DKIM, DMARC configured on the sending domain.
-2. Bounce/complaint webhooks processed automatically.
-3. Critical emails (booking confirmation) retry on transient failure (3 attempts over 10 min).
-4. Failed-to-send emails generate an ops alert with the booking reference.
+1. SPF و DKIM و DMARC مكونة على دومين الإرسال.
+2. webhooks الارتدادات/الشكاوى تتم معالجتها تلقائيًا.
+3. الإيميلات الحرجة (تأكيد الحجز) تعيد المحاولة عند الفشل العابر (3 محاولات على مدى 10 دقائق).
+4. الإيميلات الفاشلة الإرسال تولد تنبيه عمليات مع مرجع الحجز.
 
 ---
 
-## KPIs
+## مؤشرات الأداء الرئيسية (KPIs)
 
-| KPI | Target | Measurement Method | Owner | Review Cadence |
+| KPI | المستهدف | طريقة القياس | المسؤول | تكرار المراجعة |
 |-----|--------|---------------------|-------|----------------|
-| Time to First Search Result (p95) | < 4.5 seconds | APM (Datadog/New Relic) timing on /api/flights/search | Engineering | Weekly |
-| Flight Booking Success Rate | > 92% | (Confirmed bookings / Payment attempts that passed validation) | Product | Weekly |
-| Hotel Booking Success Rate | > 90% | (Confirmed bookings / Payment attempts) | Product | Weekly |
-| Payment Success Rate (Paymob) | > 85% | Paymob dashboard + internal logs | Finance | Daily first 30 days, then weekly |
-| Payment Success Rate (Stripe) | > 88% | Stripe dashboard | Finance | Weekly |
-| Look-to-Book Ratio (Amadeus) | < 300:1 | (Search API calls / Confirmed orders) per calendar month | Engineering + Procurement | Daily for first 60 days |
-| Search-to-Book Conversion | > 1.2% | (Confirmed bookings / Unique search sessions) | Product | Weekly |
-| Average Order Value - Flights | > EGP 8,500 | Sum(flight order totals) / count(flight orders) | Finance | Monthly |
-| Average Order Value - Hotels | > EGP 4,200 | Sum(hotel order totals) / count(hotel orders) | Finance | Monthly |
-| Refund Rate | < 12% | (Refunded bookings / Total confirmed bookings) | Operations | Monthly |
-| Chargeback Rate | < 0.6% | Gateway reports | Finance | Monthly |
-| Email Open Rate (Confirmations) | > 65% | SendGrid analytics | Marketing | Weekly |
-| Customer Support Ticket Rate | < 8% of bookings | Helpdesk system (Freshdesk/Zendesk) | Operations | Weekly |
-| First-Response Time (Support) | < 4 hours | Helpdesk SLA | Operations | Weekly |
-| Site Uptime | > 99.5% | Uptime monitoring (Better Uptime / Pingdom) | Engineering | Monthly |
-| Mean Time to Recovery (MTTR) | < 45 minutes | Incident post-mortems | Engineering | Per incident |
-| Arabic UI Session Share | > 35% | Analytics (language attribute) | Product | Monthly |
-| Mobile Traffic Share | > 60% | Analytics | Product | Monthly |
-| Critical Bug Backlog | < 5 open | GitHub Issues labeled `severity:critical` | Engineering | Weekly |
+| وقت ظهور أول نتيجة بحث (p95) | < 4.5 ثواني | توقيت APM (Datadog/New Relic) على /api/flights/search | الهندسة | أسبوعيًا |
+| نسبة نجاح حجز الطيران | > 92% | (الحجوزات المؤكدة / محاولات الدفع التي اجتازت التحقق) | المنتج | أسبوعيًا |
+| نسبة نجاح حجز الفنادق | > 90% | (الحجوزات المؤكدة / محاولات الدفع) | المنتج | أسبوعيًا |
+| نسبة نجاح الدفع (Paymob) | > 85% | لوحة تحكم Paymob + السجلات الداخلية | المالية | يوميًا أول 30 يوم، ثم أسبوعيًا |
+| نسبة نجاح الدفع (Stripe) | > 88% | لوحة تحكم Stripe | المالية | أسبوعيًا |
+| نسبة Look-to-Book (Amadeus) | < 300:1 | (استدعاءات Search API / الطلبات المؤكدة) لكل شهر تقويمي | الهندسة + المشتريات | يوميًا أول 60 يوم |
+| التحويل من البحث للحجز | > 1.2% | (الحجوزات المؤكدة / جلسات البحث الفريدة) | المنتج | أسبوعيًا |
+| متوسط قيمة الطلب - طيران | > EGP 8,500 | Sum(إجمالي طلبات الطيران) / count(طلبات الطيران) | المالية | شهريًا |
+| متوسط قيمة الطلب - فنادق | > EGP 4,200 | Sum(إجمالي طلبات الفنادق) / count(طلبات الفنادق) | المالية | شهريًا |
+| نسبة الاسترداد | < 12% | (الحجوزات المستردة / إجمالي الحجوزات المؤكدة) | العمليات | شهريًا |
+| نسبة Chargeback | < 0.6% | تقارير البوابة | المالية | شهريًا |
+| نسبة فتح الإيميل (التأكيدات) | > 65% | تحليلات SendGrid | التسويق | أسبوعيًا |
+| نسبة تذاكر دعم العملاء | < 8% من الحجوزات | نظام Helpdesk (Freshdesk/Zendesk) | العمليات | أسبوعيًا |
+| وقت أول استجابة (الدعم) | < 4 ساعات | SLA الـ Helpdesk | العمليات | أسبوعيًا |
+| وقت تشغيل الموقع | > 99.5% | مراقبة Uptime (Better Uptime / Pingdom) | الهندسة | شهريًا |
+| متوسط وقت التعافي (MTTR) | < 45 دقيقة | تحقيقات ما بعد الحوادث | الهندسة | لكل حادث |
+| نسبة جلسات الواجهة العربية | > 35% | التحليلات (خاصية اللغة) | المنتج | شهريًا |
+| نسبة الحركة من الموبايل | > 60% | التحليلات | المنتج | شهريًا |
+| رصيد الأخطاء الحرجة | < 5 مفتوحة | GitHub Issues موسومة بـ `severity:critical` | الهندسة | أسبوعيًا |
 
 ---
 
-## Milestones
+## مراحل التنفيذ
 
-| Phase | Deliverables | Duration | Payment Trigger | Payment % | Amount (EGP) |
+| المرحلة | المخرجات | المدة | محفز الدفع | نسبة الدفع | المبلغ (EGP) |
 |-------|--------------|----------|-----------------|-----------|---------------|
-| M0 - Contract Signing | Signed SOW, kickoff meeting, environment access provisioning, Amadeus consultant onboarded | Day 0 | Contract executed | 25% | 148,750 |
-| M1 - Discovery & Architecture | Finalized tech stack doc, infrastructure diagram, API contracts draft, hotel supplier selection memo, design system foundation, Figma high-fidelity for 10 core screens | Weeks 1-2 | M1 acceptance sign-off | 15% | 89,250 |
-| M2 - Core Build: Search | Flight search UI + Amadeus integration live in staging; hotel search UI + supplier integration live in staging; bilingual switch functional | Weeks 3-5 | Staging demo of search flows | 15% | 89,250 |
-| M3 - Core Build: Booking & Payments | Flight booking flow end-to-end in staging (PNR creation); hotel booking flow end-to-end; Paymob + Stripe integrated; booking confirmation emails | Weeks 5-7 | Staging demo of booking + payment, test transactions reconciled | 20% | 119,000 |
-| M4 - Admin & Accounts | Admin panel (bookings dashboard, manual refund, agent notes); user accounts (signup, profile, bookings history); SSO for admins | Weeks 7-8 | Admin demo + UAT script pass | 10% | 59,500 |
-| M5 - UAT & Hardening | Full UAT cycle with Jawla ops team; bug fixes; security review; load test (100 concurrent); deliverability test | Weeks 8-9 | UAT sign-off with <5 critical bugs open | 10% | 59,500 |
-| M6 - Launch & Handover | Production deploy; first live transaction; ops runbook handover; 2-week hypercare; source code transfer | Weeks 9-10 | First 50 live bookings processed successfully | 5% | 29,750 |
-| **TOTAL** | | **8-10 weeks** | | **100%** | **595,000** |
+| M0 - توقيع العقد | SOW موقع، اجتماع البدء، توفير الوصول للبيئات، إدخال مستشار Amadeus | اليوم 0 | تنفيذ العقد | 25% | 148,750 |
+| M1 - الاستكشاف والمعمارية | وثيقة tech stack نهائية، مخطط البنية التحتية، مسودة عقود الـ API، مذكرة اختيار مورد الفنادق، أساس نظام التصميم، Figma high-fidelity لـ 10 شاشات أساسية | الأسابيع 1-2 | قبول M1 | 15% | 89,250 |
+| M2 - البناء الأساسي: البحث | واجهة بحث الطيران + تكامل Amadeus حي على staging؛ واجهة بحث الفنادق + تكامل المورد حي على staging؛ تبديل اللغة شغال | الأسابيع 3-5 | عرض staging لمسارات البحث | 15% | 89,250 |
+| M3 - البناء الأساسي: الحجز والمدفوعات | مسار حجز طيران كامل على staging (إنشاء PNR)؛ مسار حجز فنادق كامل؛ Paymob + Stripe متكاملين؛ إيميلات تأكيد الحجز | الأسابيع 5-7 | عرض staging للحجز + الدفع، معاملات اختبار مسواة | 20% | 119,000 |
+| M4 - الإدارة والحسابات | لوحة الإدارة (لوحة الحجوزات، استرداد يدوي، ملاحظات الموظفين)؛ حسابات المستخدمين (تسجيل، ملف شخصي، تاريخ الحجوزات)؛ SSO للإدارة | الأسابيع 7-8 | عرض الإدارة + نجاح نص UAT | 10% | 59,500 |
+| M5 - UAT والتقوية | دورة UAT كاملة مع فريق عمليات جولة؛ إصلاح الأخطاء؛ مراجعة الأمان؛ اختبار الحمل (100 متزامن)؛ اختبار الوصول | الأسابيع 8-9 | قبول UAT مع <5 أخطاء حرجة مفتوحة | 10% | 59,500 |
+| M6 - الإطلاق والتسليم | نشر الإنتاج؛ أول معاملة حية؛ تسليم runbook العمليات؛ أسبوعين hypercare؛ نقل الكود المصدري | الأسابيع 9-10 | معالجة أول 50 حجز حي بنجاح | 5% | 29,750 |
+| **الإجمالي** | | **8-10 أسابيع** | | **100%** | **595,000** |
 
-### Detailed Milestone Acceptance Criteria
+### معايير قبول تفصيلية للمراحل
 
-**M1 Acceptance**
-- Architecture document covers: hosting, CI/CD, secrets management, monitoring, backup strategy.
-- Hotel supplier contract initiated (LOI or first call completed).
-- All 10 designed screens have Arabic and English variants.
-- Amadeus sandbox credentials active and first test call documented.
+**قبول M1**
+- وثيقة المعمارية تغطي: الاستضافة، CI/CD، إدارة الأسرار، المراقبة، استراتيجية النسخ الاحتياطي.
+- عقد مورد الفنادق تم البدء فيه (LOI أو أول مكالمة تمت).
+- كل 10 شاشات مصممة لها نسخ عربية وإنجليزية.
+- بيانات اعتماد Amadeus sandbox فعالة وأول استدعاء اختبار موثق.
 
-**M2 Acceptance**
-- Live Amadeus search returns real results in staging.
-- Hotel supplier search returns real results in staging.
-- Both UIs are bilingual.
-- Lighthouse score >= 80 on search pages.
+**قبول M2**
+- بحث Amadeus الحي يرجع نتائج حقيقية على staging.
+- بحث مورد الفنادق يرجع نتائج حقيقية على staging.
+- الواجهتين ثنائيتي اللغة.
+- درجة Lighthouse >= 80 على صفحات البحث.
 
-**M3 Acceptance**
-- At least 10 staging test bookings completed for flights (PNR generated, ticketed).
-- At least 10 staging test bookings completed for hotels (voucher generated).
-- Test payments succeed for: Paymob Visa, Paymob Mastercard, Paymob Meeza, Paymob Vodafone Cash, Stripe Visa, Stripe 3DS challenge.
-- Confirmation emails render in 4 major email clients.
+**قبول M3**
+- على الأقل 10 حجوزات اختبار على staging مكتملة للطيران (PNR مولد، تذاكر مصدرة).
+- على الأقل 10 حجوزات اختبار على staging مكتملة للفنادق (voucher مولد).
+- مدفوعات الاختبار تنجح لـ: Paymob Visa, Paymob Mastercard, Paymob Meeza, Paymob Vodafone Cash, Stripe Visa, تحدي Stripe 3DS.
+- إيميلات التأكيد تظهر بشكل صحيح في 4 عملاء إيميل رئيسيين.
 
-**M4 Acceptance**
-- Admin can view, filter, search bookings.
-- Manual refund tested against staging Paymob and Stripe.
-- Agent notes persist and are audit-logged.
-- User accounts created, profiles edited, bookings list visible.
+**قبول M4**
+- الإدارة تقدر تعرض وتصفي وتبحث عن الحجوزات.
+- الاسترداد اليدوي تم اختباره ضد staging Paymob و Stripe.
+- ملاحظات الموظفين تستمر وتسجل في سجل التدقيق.
+- حسابات المستخدمين تم إنشاؤها، الملفات الشخصية تم تعديلها، قائمة الحجوزات مرئية.
 
-**M5 Acceptance**
-- UAT script (200+ test cases) executed by Jawla team with >95% pass rate.
-- Security review: no Critical or High findings open.
-- Load test sustains 100 concurrent users with p95 < 6s on key endpoints.
+**قبول M5**
+- نص UAT (200+ حالة اختبار) تم تنفيذه بواسطة فريق جولة بنسبة نجاح >95%.
+- مراجعة الأمان: لا توجد نتائج حرجة أو عالية مفتوحة.
+- اختبار الحمل يصمد لـ 100 مستخدم متزامن مع p95 < 6s على الـ endpoints الرئيسية.
 
-**M6 Acceptance**
-- Production environment live with monitoring, alerting, backups configured.
-- Operations runbook delivered (24+ documented procedures).
-- First 50 real customer bookings processed without engineering escalation.
+**قبول M6**
+- بيئة الإنتاج حية مع المراقبة والتنبيهات والنسخ الاحتياطي مكونة.
+- runbook العمليات تم تسليمه (24+ إجراء موثق).
+- أول 50 حجز عميل حقيقي تمت معالجتها بدون تصعيد للهندسة.
 
 ---
 
-## Feature Prioritization (MoSCoW)
+## ترتيب أولويات الميزات (MoSCoW)
 
 ### Must Have
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Flight search via Amadeus | Core revenue driver |
-| Flight booking via Amadeus (PNR + ticketing) | Core revenue driver |
-| Hotel search (1 supplier) | Core revenue driver |
-| Hotel booking (1 supplier) | Core revenue driver |
-| Paymob payment integration | Local payment requirement |
-| Stripe payment integration | International cards |
-| Arabic UI with RTL | Market requirement |
-| English UI | Diaspora + tourists |
-| Basic user accounts (email/password) | Booking history, repeat purchase |
-| Email confirmations | Operational requirement |
-| Admin booking dashboard | Operations cannot function without it |
-| Manual refunds (admin) | Customer service requirement |
-| PCI-compliant payment handling | Legal requirement |
-| Transactional emails with templating | Confirmations, password reset |
-| Audit logging | Compliance |
-| Booking reconciliation reports | Finance requirement |
-| Mobile-responsive web | 60%+ traffic |
-| Currency display (EGP, USD) | Market requirement |
-| Cancellation policy display pre-payment | Consumer protection |
+| بحث الطيران عبر Amadeus | محرك الإيرادات الأساسي |
+| حجز الطيران عبر Amadeus (PNR + إصدار التذاكر) | محرك الإيرادات الأساسي |
+| بحث الفنادق (مورد واحد) | محرك الإيرادات الأساسي |
+| حجز الفنادق (مورد واحد) | محرك الإيرادات الأساسي |
+| تكامل الدفع Paymob | متطلب دفع محلي |
+| تكامل الدفع Stripe | بطاقات دولية |
+| الواجهة العربية مع RTL | متطلب السوق |
+| الواجهة الإنجليزية | المغتربين + السياح |
+| حسابات المستخدمين الأساسية (إيميل/كلمة مرور) | تاريخ الحجوزات، الشراء المتكرر |
+| تأكيدات الإيميل | متطلب تشغيلي |
+| لوحة تحكم الإدارة للحجوزات | العمليات لا تقدر تشتغل بدونها |
+| الاستردادات اليدوية (الإدارة) | متطلب خدمة العملاء |
+| معالجة الدفع المتوافقة مع PCI | متطلب قانوني |
+| إيميلات المعاملات مع templating | التأكيدات، إعادة تعيين كلمة المرور |
+| سجل التدقيق | الامتثال |
+| تقارير تسوية الحجوزات | متطلب المالية |
+| ويب متجاوب مع الموبايل | 60%+ من الحركة |
+| عرض العملة (EGP, USD) | متطلب السوق |
+| عرض سياسة الإلغاء قبل الدفع | حماية المستهلك |
 
 ### Should Have
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Phone OTP signup | Reduces friction vs email-only |
-| Saved traveler profiles | Repeat-booking convenience |
-| Calendar attachment (.ics) in emails | UX polish |
-| Voucher PDF generation | Hotel industry standard |
-| Search result filters (stops, airlines, price) | Conversion |
-| Marketing attribution capture | ROAS measurement |
-| Booking timer with warnings | Conversion |
-| Lighthouse-optimized SEO basics | Organic acquisition |
+| تسجيل بـ OTP الهاتف | يقلل الاحتكاك مقارنة بالإيميل فقط |
+| ملفات مسافرين محفوظة | راحة الحجز المتكرر |
+| مرفق التقويم (.ics) في الإيميلات | تحسين UX |
+| توليد voucher PDF | معيار صناعة الفنادق |
+| تصفيات نتائج البحث (التوقفات، شركات الطيران، السعر) | التحويل |
+| التقاط بيانات التسويق المنسوبة | قياس ROAS |
+| مؤقت الحجز مع تحذيرات | التحويل |
+| أساسيات SEO المحسنة لـ Lighthouse | الاكتساب العضوي |
 
 ### Could Have
 
-| Feature | Justification |
+| الميزة | المبرر |
 |---------|---------------|
-| Social login (Google, Apple) | Nice-to-have, deferred |
-| Wishlist / favorites | Engagement, not core |
-| Multi-leg flights beyond round-trip | Niche use case |
-| Hotel map view | Polish |
-| Live chat widget | Could be plug-and-play (Tawk.to) but support team needs training |
+| تسجيل دخول اجتماعي (Google, Apple) | لطيف، مؤجل |
+| قائمة الأمنيات / المفضلة | تفاعل، مش أساسي |
+| رحلات متعددة المراحل أبعد من الذهاب والعودة | حالة استخدام محدودة |
+| عرض الخريطة للفنادق | تحسين |
+| ودجت دردشة مباشرة | ممكن plug-and-play (Tawk.to) لكن فريق الدعم يحتاج تدريب |
 
-### Won't Have (in Basic - reserved for later packages)
+### Won't Have (في الأساسية - محجوزة للباقات اللاحقة)
 
-| Feature | Package |
+| الميزة | الباقة |
 |---------|---------|
-| Loyalty program / wallet | Professional |
-| Multi-hotel supplier orchestration | Professional |
-| WhatsApp notifications | Professional |
-| Self-service cancellation/refund | Professional |
-| Advanced reports & BI dashboards | Professional |
-| Tour packages, bundled deals | Enterprise |
-| B2B agent portal | Enterprise |
-| Mobile apps (iOS/Android) | Enterprise |
-| Dynamic pricing engine | Enterprise |
+| برنامج الولاء / المحفظة | Professional |
+| تنسيق متعدد الموردين للفنادق | Professional |
+| إشعارات WhatsApp | Professional |
+| الإلغاء/الاسترداد الذاتي | Professional |
+| تقارير متقدمة ولوحات BI | Professional |
+| الباقات السياحية والعروض المجمعة | Enterprise |
+| بوابة وكلاء B2B | Enterprise |
+| تطبيقات الموبايل (iOS/Android) | Enterprise |
+| محرك تسعير ديناميكي | Enterprise |
 | White-label / multi-tenant | Enterprise |
-| Fraud detection ML | Enterprise |
-| Multi-branch / multi-currency settlement | Professional/Enterprise |
+| كشف الاحتيال بـ ML | Enterprise |
+| تسوية متعددة الفروع / متعددة العملات | Professional/Enterprise |
 
 ---
 
-## Out of Scope
+## خارج النطاق
 
-The following are explicitly NOT delivered in the Basic package. Any inclusion requires a Change Request with separate pricing and timeline:
+التالي صراحة غير مسلم في الباقة الأساسية. أي تضمين يتطلب طلب تغيير (Change Request) بسعر وجدول زمني منفصل:
 
-1. **Tour Packages and Bundled Deals**: Flight + hotel bundles, dynamic packaging, pre-built itineraries.
-2. **Multi-Supplier Hotel Orchestration**: Only one supplier integration is included. Adding a second supplier (Hotelbeds + EAN, for example) requires the Professional package or a Change Request.
-3. **Loyalty/Rewards System**: No points, tiers, wallet, or referral mechanics.
-4. **WhatsApp Notifications**: Email only.
-5. **Customer Self-Service Cancellation/Refund**: All cancellations and refunds must be requested via support and handled by an agent.
-6. **Mobile Applications**: No iOS or Android native apps. The web UI is responsive but is not a PWA with installability or push notifications.
-7. **B2B / Agent Portal**: No travel-agent login, no markup management, no agent commission accounting.
-8. **White-Label / Multi-Tenant**: The platform serves the Jawla Tours brand only.
-9. **Dynamic Pricing / Markup Engine**: Pricing is the supplier's net rate plus a single configurable percentage markup. No demand-based or rule-based pricing.
-10. **Fraud Detection (ML-based)**: Gateway-level fraud filters (3DS, Stripe Radar basic) only; no in-house ML or velocity rules.
-11. **Group Bookings (>9 passengers)**: Amadeus group bookings require offline workflows not supported.
-12. **Corporate Booking Tools**: No travel-policy enforcement, no corporate billing, no GDS profiles.
-13. **Advanced BI / Analytics Dashboards**: Only basic exports and admin counts; no Metabase/Tableau integration.
-14. **Multi-Branch Accounting**: Single legal entity, single bank account, single revenue stream.
-15. **Inventory Cache / Pre-Search Indexing**: Searches are real-time against suppliers; no static inventory or caching layer beyond per-session.
-16. **SEO Content / Programmatic Pages**: No city pages, no destination guides, no blog CMS. Marketing site lives separately.
-17. **A/B Testing Infrastructure**: No experimentation platform.
-18. **Push Notifications**: Web push or mobile push.
-19. **Calls / Click-to-Call / IVR Integration**.
-20. **Multi-Language Beyond Arabic and English**: No French, no German, no Russian.
-21. **Crypto Payments, BNPL, Installments Beyond Paymob's Default**.
-22. **Internationalization Tax/VAT Engine**: Egyptian VAT only, hardcoded.
-23. **Migration of Legacy Data**: If Jawla has existing customer/booking data, migration is a separate engagement.
-24. **Hardware POS Integration**: For walk-in branch sales.
-25. **Salesforce / HubSpot / CRM Integration**: Limited to a single CSV export endpoint for Marketing's manual use.
+1. **الباقات السياحية والعروض المجمعة**: حزم طيران + فندق، تجميع ديناميكي، خط سير جاهز.
+2. **تنسيق متعدد الموردين للفنادق**: تكامل مورد واحد فقط مدرج. إضافة مورد ثاني (Hotelbeds + EAN مثلًا) يتطلب باقة Professional أو طلب تغيير.
+3. **نظام الولاء/المكافآت**: لا نقاط، لا مستويات، لا محفظة، لا آليات إحالة.
+4. **إشعارات WhatsApp**: إيميل فقط.
+5. **الإلغاء/الاسترداد الذاتي للعميل**: كل الإلغاءات والاستردادات لازم تطلب عبر الدعم ويتعامل معها موظف.
+6. **تطبيقات الموبايل**: لا توجد تطبيقات iOS أو Android أصلية. واجهة الويب متجاوبة لكنها ليست PWA قابلة للتثبيت أو لها إشعارات push.
+7. **بوابة B2B / الوكلاء**: لا تسجيل دخول لوكيل سفر، لا إدارة هامش ربح، لا حسابات عمولة وكلاء.
+8. **White-Label / Multi-Tenant**: المنصة تخدم علامة جولة تورز فقط.
+9. **محرك التسعير الديناميكي / الهامش**: التسعير هو السعر الصافي للمورد + نسبة هامش واحدة قابلة للتكوين. لا توجد تسعيرات قائمة على الطلب أو القواعد.
+10. **كشف الاحتيال (قائم على ML)**: مرشحات احتيال على مستوى البوابة (3DS, Stripe Radar الأساسي) فقط؛ لا ML داخلي ولا قواعد سرعة.
+11. **الحجوزات الجماعية (>9 مسافرين)**: حجوزات Amadeus الجماعية تتطلب workflows خارج الإنترنت غير مدعومة.
+12. **أدوات حجز الشركات**: لا فرض سياسة سفر، لا فوترة شركات، لا ملفات GDS.
+13. **لوحات BI / تحليلات متقدمة**: فقط exports أساسية وعدادات الإدارة؛ لا تكامل Metabase/Tableau.
+14. **محاسبة متعددة الفروع**: كيان قانوني واحد، حساب بنكي واحد، مصدر إيراد واحد.
+15. **تخزين المخزون مؤقتًا / فهرسة قبل البحث**: البحث في الوقت الفعلي ضد الموردين؛ لا مخزون ثابت أو طبقة تخزين مؤقت بعيدًا عن الجلسة الواحدة.
+16. **محتوى SEO / صفحات Programmatic**: لا صفحات مدن، لا أدلة وجهات، لا blog CMS. الموقع التسويقي يعيش بشكل منفصل.
+17. **بنية اختبار A/B**: لا منصة تجريب.
+18. **إشعارات Push**: ويب push أو موبايل push.
+19. **مكالمات / Click-to-Call / تكامل IVR**.
+20. **لغات متعددة بعد العربية والإنجليزية**: لا فرنسية، لا ألمانية، لا روسية.
+21. **مدفوعات Crypto, BNPL, أقساط بعد الافتراضي لـ Paymob**.
+22. **محرك ضريبة دولي/VAT**: VAT المصري فقط، مكتوب صراحة.
+23. **هجرة بيانات قديمة**: لو جولة عندها بيانات عملاء/حجوزات موجودة، الهجرة هي مشاركة منفصلة.
+24. **تكامل أجهزة POS**: لمبيعات الفروع المباشرة.
+25. **تكامل Salesforce / HubSpot / CRM**: محدود لنقطة تصدير CSV واحدة لاستخدام التسويق اليدوي.
 
 ---
 
-## Risks & Mitigation
+## المخاطر والتخفيف
 
-| ID | Risk | Likelihood | Impact | Mitigation | Owner |
+| ID | المخاطرة | الاحتمال | الأثر | التخفيف | المسؤول |
 |----|------|------------|--------|------------|-------|
-| R-001 | Amadeus contract delays push integration timeline | High | High | Initiate Amadeus paperwork before contract signing; use sandbox for parallel development; have consultant on retainer | Procurement |
-| R-002 | Hotel supplier selection takes longer than 1 week | Medium | High | Pre-shortlist 3 suppliers (Hotelbeds, EAN, TBO) with parallel calls in week 1 | Product |
-| R-003 | Paymob integration rejected (merchant onboarding) | Medium | Critical | Submit Paymob application immediately on signing; secondary path via Fawry as backup | Finance |
-| R-004 | Look-to-book ratio exceeds Amadeus thresholds, incurring fees | High | Medium | Implement strict caching, debouncing, no-bot detection; daily LTB report from day 1; throttle anonymous searches if needed | Engineering |
-| R-005 | Arabic RTL bugs in shared components delay UAT | Medium | Medium | Build RTL-first component library; manual QA pass per component; bidi text test cases in QA suite | Engineering |
-| R-006 | Email deliverability poor due to new sending domain | Medium | High | Warm up SendGrid domain over 2 weeks; configure SPF/DKIM/DMARC; pre-launch deliverability test via Litmus + Mail Tester | Engineering |
-| R-007 | First live bookings fail silently due to monitoring gaps | Medium | Critical | Synthetic transaction monitor running every 30 minutes in production from day 1; pager rotation for first 2 weeks | Engineering |
-| R-008 | Chargebacks spike in first 60 days due to unclear refund policy | Medium | High | Clear cancellation policy at checkout; 4-eyes refund process; daily chargeback review | Finance |
-| R-009 | Ops team not ready to handle volume at launch | Medium | High | 2-week ops training before launch; runbook covering top 20 scenarios; phased launch (soft launch to 100 users first) | Operations |
-| R-010 | Single-server architecture fails under traffic spike | Low | High | Load test at 3x expected peak; have horizontal scaling plan documented even if not implemented | Engineering |
-| R-011 | Currency rate API outage causes display errors | Low | Medium | Cache last known rate for 24h; show neutral message if rates stale beyond 24h | Engineering |
-| R-012 | Legal review of T&Cs delays launch | Medium | Medium | Engage attorney week 1; provide draft from comparable OTA T&Cs as starting point | Legal |
-| R-013 | Amadeus consultant unavailable when needed | Medium | High | Reserve calendar blocks weekly; have all integration questions queued; record sessions for asynchronous reference | Engineering |
-| R-014 | Stripe declines to onboard Egyptian merchant | Medium | High | Apply early; have a Stripe Atlas LLC fallback path; alternative: 2Checkout | Finance |
-| R-015 | Bilingual content quality is poor (machine-translated) | High | Medium | Hire native Arabic copywriter for all customer-facing strings; review by Jawla brand team | Product |
-| R-016 | UAT scope creep adds 4+ weeks | High | High | Lock UAT script in M4; change requests after lock incur fees and schedule slip | Product |
-| R-017 | Source code IP dispute at handover | Low | High | IP transfer clause in contract; weekly code pushes to Jawla-owned repo from day 1 | Legal |
-| R-018 | PCI scope creep (cardholder data accidentally logged) | Medium | Critical | Code review checklist includes PII/PAN scan; automated secrets scanner in CI | Engineering |
-| R-019 | DNS / SSL misconfiguration on launch day | Low | High | DNS + SSL dry run 1 week before launch; cutover runbook | Engineering |
-| R-020 | Mobile UX issues discovered late | Medium | Medium | Mobile-first design; device lab testing in M2 and M4 | Design |
+| R-001 | تأخيرات عقد Amadeus تؤجل جدول التكامل | عالي | عالي | بدء أوراق Amadeus قبل توقيع العقد؛ استخدام sandbox للتطوير المتوازي؛ وجود مستشار على retainer | المشتريات |
+| R-002 | اختيار مورد الفنادق يأخذ أكثر من أسبوع | متوسط | عالي | اختيار مسبق لـ 3 موردين (Hotelbeds, EAN, TBO) مع مكالمات متوازية في الأسبوع 1 | المنتج |
+| R-003 | رفض تكامل Paymob (إدخال التاجر) | متوسط | حرج | تقديم طلب Paymob فورًا عند التوقيع؛ مسار ثانوي عبر Fawry كنسخة احتياطية | المالية |
+| R-004 | نسبة look-to-book تتجاوز حدود Amadeus وتسبب رسوم | عالي | متوسط | تطبيق caching صارم وإلغاء الارتداد وكشف الـ bots؛ تقرير LTB يومي من اليوم الأول؛ throttle البحث المجهول لو لزم | الهندسة |
+| R-005 | أخطاء RTL العربية في المكونات المشتركة تؤخر UAT | متوسط | متوسط | بناء مكتبة مكونات RTL-first؛ مرور QA يدوي لكل مكون؛ حالات اختبار نصوص bidi في جناح QA | الهندسة |
+| R-006 | وصول الإيميل ضعيف بسبب دومين إرسال جديد | متوسط | عالي | إحماء دومين SendGrid على مدى أسبوعين؛ تكوين SPF/DKIM/DMARC؛ اختبار وصول قبل الإطلاق عبر Litmus + Mail Tester | الهندسة |
+| R-007 | أول حجوزات حية تفشل بصمت بسبب فجوات المراقبة | متوسط | حرج | مراقب معاملات تركيبي يشتغل كل 30 دقيقة في الإنتاج من اليوم الأول؛ تناوب pager لأول أسبوعين | الهندسة |
+| R-008 | ارتفاع chargebacks في أول 60 يوم بسبب سياسة استرداد غير واضحة | متوسط | عالي | سياسة إلغاء واضحة عند الدفع؛ عملية استرداد 4-eyes؛ مراجعة chargeback يومية | المالية |
+| R-009 | فريق العمليات مش جاهز للحجم عند الإطلاق | متوسط | عالي | تدريب عمليات أسبوعين قبل الإطلاق؛ runbook يغطي أعلى 20 سيناريو؛ إطلاق مرحلي (إطلاق ناعم لـ 100 مستخدم أولًا) | العمليات |
+| R-010 | معمارية سيرفر واحد تفشل تحت ارتفاع حركة | منخفض | عالي | اختبار حمل عند 3x الذروة المتوقعة؛ خطة تكبير أفقي موثقة حتى لو غير منفذة | الهندسة |
+| R-011 | انقطاع API أسعار العملة يسبب أخطاء عرض | منخفض | متوسط | تخزين آخر سعر معروف لمدة 24 ساعة؛ عرض رسالة محايدة لو الأسعار قديمة بعد 24 ساعة | الهندسة |
+| R-012 | المراجعة القانونية للشروط والأحكام تؤخر الإطلاق | متوسط | متوسط | إشراك المحامي في الأسبوع 1؛ تقديم مسودة من شروط OTAs مشابهة كنقطة بداية | القانوني |
+| R-013 | مستشار Amadeus غير متاح وقت الحاجة | متوسط | عالي | حجز كتل تقويم أسبوعيًا؛ وجود كل أسئلة التكامل في قائمة انتظار؛ تسجيل الجلسات للرجوع اللامتزامن | الهندسة |
+| R-014 | Stripe يرفض إدخال تاجر مصري | متوسط | عالي | التقديم مبكرًا؛ وجود مسار احتياطي Stripe Atlas LLC؛ البديل: 2Checkout | المالية |
+| R-015 | جودة المحتوى ثنائي اللغة ضعيفة (مترجم آليًا) | عالي | متوسط | توظيف كاتب عربي أصلي لكل النصوص الموجهة للعميل؛ مراجعة من فريق العلامة في جولة | المنتج |
+| R-016 | تضخم نطاق UAT يضيف 4+ أسابيع | عالي | عالي | تثبيت نص UAT في M4؛ طلبات التغيير بعد التثبيت تتحمل رسوم وانزلاق جدول | المنتج |
+| R-017 | نزاع IP على الكود المصدري عند التسليم | منخفض | عالي | بند نقل IP في العقد؛ pushes كود أسبوعية لمستودع مملوك لـ جولة من اليوم الأول | القانوني |
+| R-018 | تضخم نطاق PCI (بيانات حامل البطاقة مسجلة بالخطأ) | متوسط | حرج | قائمة مراجعة الكود تشمل فحص PII/PAN؛ ماسح أسرار تلقائي في CI | الهندسة |
+| R-019 | تكوين DNS / SSL خاطئ يوم الإطلاق | منخفض | عالي | تجربة جافة لـ DNS + SSL قبل الإطلاق بأسبوع؛ runbook للتحويل | الهندسة |
+| R-020 | اكتشاف مشاكل UX على الموبايل متأخرًا | متوسط | متوسط | تصميم mobile-first؛ اختبار مختبر أجهزة في M2 و M4 | التصميم |
 
 ---
 
-## Open Questions
+## أسئلة مفتوحة
 
-| ID | Question | Owner | Required By |
+| ID | السؤال | المسؤول | مطلوب بحلول |
 |----|----------|-------|-------------|
-| OQ-001 | Which hotel supplier will we contract with for Basic - Hotelbeds, Expedia EAN, or TBO? Each has different commercial terms, technical complexity, and inventory coverage. | Product + Finance | End of Week 1 |
-| OQ-002 | What is the markup model? Flat % per category, fixed per booking, or tiered by route? | Finance | M1 |
-| OQ-003 | Will Jawla Tours act as Merchant of Record (MoR) or pass-through to supplier MoR? This affects PCI scope, refunds, and accounting. | Legal + Finance | M1 |
-| OQ-004 | What is the supported customer support channel mix at launch - email only, email + phone, email + WhatsApp (manual)? | Operations | M2 |
-| OQ-005 | What is the cancellation policy override matrix - can ops override supplier rules and absorb cost? Up to what amount? | Finance + Ops | M3 |
-| OQ-006 | Will we offer travel insurance at checkout? (Insured-by upsell from a third party.) | Product | Out of scope for Basic, decide for Professional |
-| OQ-007 | What is the data residency requirement? Egyptian customers' PII - can it sit on AWS Frankfurt / Bahrain / or does it need a local DC? | Legal + Engineering | M1 |
-| OQ-008 | Will Jawla provide its own SMS provider account, or do we procure on their behalf? | Operations | M2 |
-| OQ-009 | What is the brand voice in Arabic - Modern Standard Arabic, Egyptian Colloquial, or hybrid? | Marketing | M1 |
-| OQ-010 | What is the post-launch support model - extended hypercare (paid), retainer, or fully transitioned to internal team after 2 weeks? | Contract | M5 |
-| OQ-011 | Are we required to integrate with the Egyptian Tax Authority's e-invoicing system for B2C transactions immediately, or is grace period in effect? | Finance + Legal | M2 |
-| OQ-012 | What is the password recovery flow if the user has no access to their email? Is phone-based recovery permitted given the OTP cost? | Product | M3 |
-| OQ-013 | Should the admin panel be in English only or also bilingual? Internal users are Arabic native but the operations vocabulary is English. | Product | M2 |
-| OQ-014 | What is our policy on PNR holds (book now, pay within 24h)? Some Amadeus carriers allow it; this changes the booking flow. | Product | M3 |
-| OQ-015 | What is the rollback plan if Paymob settlement reconciliation finds material gaps in the first month? | Finance | M5 |
-| OQ-016 | Will Jawla provide the staff Google Workspace tenant for admin SSO, or do we set one up? | Operations | M1 |
-| OQ-017 | Are there any seasonal blackouts (Ramadan, Hajj) where we should plan launch around or feature-freeze around? | Operations | M1 |
-| OQ-018 | What is the legal entity that signs the Amadeus contract - Jawla Tours LLC, holding company, or a subsidiary? Affects creditworthiness review. | Legal | Week 1 |
-| OQ-019 | Are we contractually allowed to display competitor pricing (price comparison) in the future, or is this off-limits? | Legal | Out of scope for Basic |
-| OQ-020 | What is the brand approach to negative reviews / cancellations - automated apology email, agent outreach, compensation tokens? | Operations | M4 |
+| OQ-001 | أي مورد فنادق هنتعاقد معه للأساسية - Hotelbeds, Expedia EAN, أو TBO؟ كل واحد له شروط تجارية وتعقيد تقني وتغطية مخزون مختلفة. | المنتج + المالية | نهاية الأسبوع 1 |
+| OQ-002 | إيه نموذج الهامش؟ نسبة ثابتة لكل فئة، ثابت لكل حجز، أو متدرج حسب الطريق؟ | المالية | M1 |
+| OQ-003 | جولة تورز هتعمل كـ Merchant of Record (MoR) أو pass-through لـ MoR المورد؟ ده بيأثر على نطاق PCI والاستردادات والمحاسبة. | القانوني + المالية | M1 |
+| OQ-004 | إيه مزيج قنوات دعم العملاء المدعومة عند الإطلاق - إيميل فقط، إيميل + هاتف، إيميل + WhatsApp (يدوي)؟ | العمليات | M2 |
+| OQ-005 | إيه مصفوفة تجاوز سياسة الإلغاء - هل العمليات تقدر تتجاوز قواعد المورد وتمتص التكلفة؟ حتى أي مبلغ؟ | المالية + العمليات | M3 |
+| OQ-006 | هنقدم تأمين سفر عند الدفع؟ (Upsell من طرف ثالث.) | المنتج | خارج النطاق للأساسية، يقرر للـ Professional |
+| OQ-007 | إيه متطلب data residency؟ PII العملاء المصريين - هل ممكن يقعد على AWS Frankfurt / Bahrain / أو محتاج مركز بيانات محلي؟ | القانوني + الهندسة | M1 |
+| OQ-008 | جولة هتوفر حساب مزود SMS بتاعها، أو هنشتريه نيابة عنها؟ | العمليات | M2 |
+| OQ-009 | إيه صوت العلامة بالعربية - عربية فصحى حديثة، عامية مصرية، أو هجين؟ | التسويق | M1 |
+| OQ-010 | إيه نموذج دعم ما بعد الإطلاق - hypercare ممتد (مدفوع)، retainer، أو انتقال كامل للفريق الداخلي بعد أسبوعين؟ | العقد | M5 |
+| OQ-011 | هل مطلوب نتكامل مع نظام الفوترة الإلكترونية لمصلحة الضرائب المصرية لمعاملات B2C فورًا، أو هناك فترة سماح سارية؟ | المالية + القانوني | M2 |
+| OQ-012 | إيه مسار استرداد كلمة المرور لو المستخدم مش عنده وصول لإيميله؟ هل الاسترداد عبر الهاتف مسموح بناء على تكلفة الـ OTP؟ | المنتج | M3 |
+| OQ-013 | لوحة الإدارة لازم تكون إنجليزي فقط أو ثنائية اللغة كمان؟ المستخدمون الداخليون عرب أصليين لكن مفردات العمليات إنجليزية. | المنتج | M2 |
+| OQ-014 | إيه سياستنا على PNR holds (احجز الآن، ادفع في 24 ساعة)؟ بعض شركات Amadeus بتسمح بذلك؛ ده بيغير مسار الحجز. | المنتج | M3 |
+| OQ-015 | إيه خطة التراجع لو تسوية Paymob لاقت فجوات مادية في أول شهر؟ | المالية | M5 |
+| OQ-016 | جولة هتوفر مستأجر Google Workspace للموظفين لـ admin SSO، أو هنعمل واحد؟ | العمليات | M1 |
+| OQ-017 | هل هناك أوقات حظر موسمية (رمضان، الحج) لازم نخطط الإطلاق حواليها أو نجمد الميزات حواليها؟ | العمليات | M1 |
+| OQ-018 | إيه الكيان القانوني اللي بيوقع عقد Amadeus - جولة تورز LLC، الشركة القابضة، أو شركة فرعية؟ بيأثر على مراجعة الجدارة الائتمانية. | القانوني | الأسبوع 1 |
+| OQ-019 | هل مسموح لنا تعاقديًا نعرض أسعار المنافسين (مقارنة أسعار) في المستقبل، أو ده ممنوع؟ | القانوني | خارج النطاق للأساسية |
+| OQ-020 | إيه نهج العلامة على المراجعات السلبية / الإلغاءات - إيميل اعتذار تلقائي، تواصل من موظف، رموز تعويض؟ | العمليات | M4 |
 
 ---
 
-## Appendix A: Technology Stack (Reference)
+## الملحق A: حزمة التكنولوجيا (للمرجع)
 
-| Layer | Choice | Rationale |
+| الطبقة | الاختيار | المبرر |
 |-------|--------|-----------|
-| Frontend | Next.js 15 (App Router), TypeScript, Tailwind, shadcn/ui | Team familiarity; SSR for SEO; RTL support |
-| Backend | NestJS, TypeScript, PostgreSQL, Redis | Team familiarity; modular structure for OTA domain |
-| Hosting | Vercel (frontend), Hetzner/Contabo VPS (backend) | Cost-controlled for Basic scale |
-| Payments | Paymob, Stripe | Market requirement |
-| Email | SendGrid | Deliverability, EG IP routing options |
-| Monitoring | Better Uptime, Sentry, basic CloudWatch/Grafana | Cost-controlled |
-| Repo | Private GitHub | Standard |
-| Auth (Customer) | Custom (NestJS) with bcrypt, JWT in httpOnly cookies | No third-party costs |
-| Auth (Admin) | Google Workspace OAuth | Already in use by Jawla |
-| File Storage | Cloudflare R2 | Voucher PDFs |
+| Frontend | Next.js 15 (App Router), TypeScript, Tailwind, shadcn/ui | إلمام الفريق؛ SSR للـ SEO؛ دعم RTL |
+| Backend | NestJS, TypeScript, PostgreSQL, Redis | إلمام الفريق؛ بنية modular لمجال OTA |
+| الاستضافة | Vercel (الـ frontend), Hetzner/Contabo VPS (الـ backend) | تكلفة محكومة لحجم الأساسية |
+| المدفوعات | Paymob, Stripe | متطلب السوق |
+| الإيميل | SendGrid | الوصول، خيارات توجيه IP لمصر |
+| المراقبة | Better Uptime, Sentry, CloudWatch/Grafana أساسي | تكلفة محكومة |
+| المستودع | Private GitHub | معياري |
+| المصادقة (العميل) | مخصص (NestJS) مع bcrypt و JWT في httpOnly cookies | لا تكاليف طرف ثالث |
+| المصادقة (الإدارة) | Google Workspace OAuth | مستخدم بالفعل في جولة |
+| تخزين الملفات | Cloudflare R2 | voucher PDFs |
 
-## Appendix B: Glossary
+## الملحق B: قاموس المصطلحات
 
-| Term | Definition |
+| المصطلح | التعريف |
 |------|------------|
 | OTA | Online Travel Agency |
 | GDS | Global Distribution System (Amadeus, Sabre, Travelport) |
-| PNR | Passenger Name Record - airline booking reference |
-| LTB | Look-to-Book ratio |
+| PNR | Passenger Name Record - مرجع حجز شركة الطيران |
+| LTB | نسبة Look-to-Book |
 | MoR | Merchant of Record |
 | SCA | Strong Customer Authentication |
-| 3DS | 3D Secure (card authentication) |
+| 3DS | 3D Secure (مصادقة البطاقة) |
 | PCI DSS | Payment Card Industry Data Security Standard |
-| SAQ-A | Self-Assessment Questionnaire A (lightest PCI scope) |
+| SAQ-A | Self-Assessment Questionnaire A (أخف نطاق PCI) |
 | UAT | User Acceptance Testing |
 | GBV | Gross Booking Value |
 | AOV | Average Order Value |
 | MTTR | Mean Time To Recovery |
 
-## Appendix C: Sign-off
+## الملحق C: التوقيع
 
-| Role | Name | Signature | Date |
+| الدور | الاسم | التوقيع | التاريخ |
 |------|------|-----------|------|
-| Business Sponsor | _________________ | _________________ | _________ |
-| Product Lead | Ahmed Mahmoud | _________________ | 2026-06-29 |
-| Engineering Lead | _________________ | _________________ | _________ |
-| Finance Approver | _________________ | _________________ | _________ |
-| Legal Reviewer | _________________ | _________________ | _________ |
+| الراعي من جهة العمل | _________________ | _________________ | _________ |
+| قائد المنتج | أحمد محمود | _________________ | 2026-06-29 |
+| قائد الهندسة | _________________ | _________________ | _________ |
+| المعتمد المالي | _________________ | _________________ | _________ |
+| المراجع القانوني | _________________ | _________________ | _________ |

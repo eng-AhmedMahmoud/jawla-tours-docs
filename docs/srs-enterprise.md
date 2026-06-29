@@ -1,401 +1,477 @@
-# Software Requirements Specification — Jawla Tours OTA (Enterprise Tier)
+## 🎯 ملخص فني لمجلس الإدارة (بلغة الأعمال)
 
-## Document Control
+هذه الوثيقة هي المخطط الهندسي الكامل للنظام في الباقة المؤسسية، وهي بنية تحتية متعددة القنوات: موقع ويب + تطبيق iOS + تطبيق Android + بوابة B2B لوكلاء السفر + محرك White-Label لإنشاء علامات تجارية فرعية. الملخص التالي يلخّص الاستثمار المطلوب والعائد المتوقع بلغة الأعمال.
 
-| Field             | Value                                                          |
-| ----------------- | -------------------------------------------------------------- |
-| Document Title    | Jawla Tours OTA — SRS (Enterprise Tier)                        |
-| Document ID       | JAWLA-SRS-ENT                                                  |
-| Version           | 1.0                                                            |
-| Issue Date        | 2026-06-29                                                     |
-| Status            | Approved — Baseline                                            |
-| Classification    | Confidential — Engineering / Product / Finance / Compliance    |
-| Owner             | Jawla Platform Engineering                                     |
-| Prepared By       | Platform Architecture Group                                    |
-| Reviewed By       | CTO, COO, Head of Product, Head of Finance, QA Lead, Security Lead, DPO |
-| Approved By       | CTO + COO                                                      |
-| Distribution      | All engineering, Product, QA, DevOps, Security, Finance, Support, BizDev, B2B Partners |
+### ماذا يبنيه فريق الهندسة؟ (الباقة الكاملة)
 
-### Revision History
+- تطبيق هاتف محمول كامل لنظامي iOS و Android بنفس قدرات الموقع
+- بوابة B2B لوكلاء السفر لحجز التذاكر بأسعار الجملة وتتبع العمولات تلقائياً
+- محرك White-Label لإنشاء علامات تجارية فرعية بسهولة (شركاء، فروع، امتيازات)
+- محرك تسعير ديناميكي يعدّل الأسعار حسب الطلب والوقت لرفع هامش الربح
+- نظام حجز جماعي للرحلات المدرسية والمؤتمرات والوفود الكبيرة
+- حسابات الشركات (Corporate Accounts) بفواتير شهرية وحدود ائتمان
+- لوحة إدارة متعددة الفروع تفصل بيانات كل فرع مع تقارير موحدة
+- محرك ذكاء اصطناعي لكشف الاحتيال وحماية المعاملات الكبيرة
+- منشئ الباقات السياحية (Package Builder): دمج طيران + فندق + نشاطات + تأشيرة في باقة واحدة
+- لوحة تحليلات متقدمة (BI Dashboard) لقرارات استراتيجية مبنية على البيانات
+- نظام مكافآت متدرجة لكبار المسافرين (Tier-based VIP)
+- تكامل مع برامج Frequent Flyer لشركات الطيران الرئيسية
 
-| Version | Date       | Author              | Section(s)                       | Change Summary                                                                  |
-| ------- | ---------- | ------------------- | -------------------------------- | ------------------------------------------------------------------------------- |
-| 0.1     | 2026-03-09 | Platform Arch Group | All                              | Initial draft (extends Pro Tier)                                                |
-| 0.2     | 2026-04-02 | Mobile Lead         | Mobile, Auth, Notifications      | Native iOS/Android scope; push notifications via APNs/FCM                       |
-| 0.3     | 2026-04-21 | Product (B2B)       | Agent Portal, RBAC               | B2B agent portal, agency accounts, credit limits, IATA tariffs                  |
-| 0.4     | 2026-05-09 | ML Lead             | Fraud ML, Pricing                | Fraud scoring model + dynamic pricing engine                                    |
-| 0.5     | 2026-05-21 | Brand               | White-label, Theming             | White-label tenancy + theming pipeline                                          |
-| 0.6     | 2026-06-04 | DevOps              | Architecture, Deployment         | Multi-region active-active; global anycast; CRR                                 |
-| 0.7     | 2026-06-15 | Security            | Security, Compliance             | SOC 2 Type II controls; PCI scope refresh; KMS hierarchy                        |
-| 0.8     | 2026-06-22 | QA Lead             | Acceptance                       | AT-047..AT-085                                                                  |
-| 1.0     | 2026-06-29 | CTO + COO           | All                              | Baseline approval                                                               |
+### كيف نضمن أن النظام آمن وموثوق؟
 
-### Glossary (Enterprise additions)
+| الضمان                                       | الطريقة بلغة الأعمال                                                                       |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| الموقع متاح دائماً                            | استضافة بضمان 99.9% Uptime (توقف لا يتجاوز 45 دقيقة شهرياً) مع استرداد فوري عند الأعطال         |
+| الانتشار الجغرافي متعدد المناطق              | الخوادم موزّعة على أكثر من منطقة جغرافية، وفشل منطقة كاملة لا يوقف الخدمة                   |
+| كشف الاحتيال بالذكاء الاصطناعي               | نموذج تعلّم آلي يحلل سلوك الدفع لحظياً ويوقف المعاملات المشبوهة قبل تنفيذها                 |
+| فصل بيانات كل فرع                            | كل فرع لا يرى بيانات الفروع الأخرى، مع تقارير موحدة للإدارة العامة فقط                       |
+| سجل تدقيق كامل لوكلاء B2B                    | كل عملية يقوم بها وكيل خارجي مسجّلة بالكامل لأي تحقيق مالي مستقبلي                         |
+| تشفير بيانات العملاء الحساسة (PII)           | تشفير قوي بمفاتيح مختلفة لكل فرع وعلامة تجارية فرعية                                       |
+| تجارب استرداد الكوارث الدورية                | تدريبات ربع سنوية على استعادة النظام من نسخة احتياطية كاملة خلال 4 ساعات                   |
+| مراقبة Capacity Planning                     | تنبؤ مسبق بالحاجة لزيادة الموارد قبل الذروات الموسمية (رمضان، الصيف، الأعياد)              |
+| الامتثال لمعايير PCI-DSS Level 1            | المستوى الأعلى من الامتثال لمعايير صناعة بطاقات الدفع                                       |
+| تدقيق أمني خارجي ربع سنوي                    | شركة أمن سيبراني خارجية تختبر النظام كل 3 شهور وتقدّم تقريراً للإدارة                       |
 
-| Term         | Meaning                                                                   |
-| ------------ | ------------------------------------------------------------------------- |
-| Tenant       | A logically isolated brand/account (white-label customer or B2B agency)   |
-| RU           | Region Unit (one homogeneous region cluster)                              |
-| CRDT         | Conflict-free Replicated Data Type                                        |
-| EDA          | Event-Driven Architecture                                                 |
-| Saga         | Long-running transaction with compensations                               |
-| KEK / DEK    | Key Encryption Key / Data Encryption Key (envelope encryption)            |
-| FCM / APNs   | Firebase Cloud Messaging / Apple Push Notification service                |
-| RBAC / ABAC  | Role-Based / Attribute-Based Access Control                               |
-| OPA          | Open Policy Agent (policy-as-code authorization)                          |
-| ML-FRAUD     | The fraud-scoring service                                                 |
-| DYN-PRICE    | The dynamic-pricing engine                                                |
-| TMC          | Travel Management Company (a B2B partner type)                            |
-| BSP          | Bank Settlement Plan (IATA)                                               |
+### الأرقام المهمة لاتخاذ القرار
+
+| المتغير                                            | القيمة                                                  |
+| -------------------------------------------------- | ------------------------------------------------------- |
+| عدد المستخدمين المتوقع (السنة الأولى)               | 150,000 – 300,000 مستخدم نشط عبر جميع القنوات             |
+| متوسط زمن استجابة الصفحة                            | أقل من 1.2 ثانية                                       |
+| نسبة وقت تشغيل النظام (Uptime SLA)                  | 99.9%                                                    |
+| عدد المعاملات اليومية المتوقعة                       | 1,500 – 5,000 معاملة                                    |
+| عدد قنوات البيع                                     | 4 قنوات (Web + iOS App + Android App + B2B Portal)      |
+| عدد الفروع المدعومة                                 | حتى 25 فرع/علامة تجارية فرعية                          |
+| عدد العملات المدعومة                                | 10+ عملات رئيسية                                       |
+| التكاليف الشهرية للبنية التحتية                    | حوالي 2,500 – 4,000 USD شهرياً                          |
+| عدد المهندسين العاملين                              | 9 (Backend + Frontend + iOS + Android + DevOps + Data + QA + Security) |
+| العائد المتوقع على الاستثمار خلال 18 شهر           | 3.5x – 5x من الاستثمار الأصلي                            |
+
+### اعتمادنا على الموردين الخارجيين
+
+| المورد                              | لماذا نحتاجه بلغة الأعمال                                                           |
+| ----------------------------------- | ----------------------------------------------------------------------------------- |
+| Amadeus                             | المصدر العالمي للرحلات والباقات والأسعار مع عقد Enterprise بصلاحيات أوسع              |
+| Stripe                              | بوابة دفع دولية بمستوى Enterprise لقبول جميع البطاقات والمحافظ                       |
+| Paymob                              | بوابة الدفع المصرية الرئيسية للسوق المحلي                                            |
+| Adyen                               | بوابة دفع ثانوية للأسواق الأوروبية والآسيوية كبديل عن Stripe                          |
+| WhatsApp Business API               | قناة التواصل الرئيسية للعملاء والوكلاء B2B                                            |
+| Apple App Store                     | منصة توزيع تطبيق iOS — رسوم سنوية 99 USD ونسبة 15-30% من المبيعات داخل التطبيق        |
+| Google Play                         | منصة توزيع تطبيق Android — رسوم لمرة واحدة 25 USD ونسبة مماثلة                       |
+| Mailgun                             | البريد الإلكتروني التجاري لإرسال ملايين الرسائل شهرياً بأسعار منخفضة                  |
+| استضافة متعددة المناطق (AWS/GCP)    | بنية تحتية موزّعة على 3 مناطق جغرافية لضمان الانتشار العالمي                          |
+| CDN عالمي (Cloudflare)              | تسريع الموقع للعملاء في كل دول العالم وحماية من هجمات DDoS                            |
+| خدمة Fraud Detection (Sift/Stripe Radar) | محرك خارجي متخصص في كشف الاحتيال يكمل نظامنا الداخلي                                |
+
+### ما الذي يحتاج المجلس أن يعرفه؟
+
+- مقارنة مع Professional: زيادة في القدرات بنسبة 100% (مضاعفة) مقابل زيادة في السعر 65%
+- نحتاج تأسيس فريق DevOps داخلي دائم (مهندسان) لإدارة البنية التحتية المعقدة
+- تكاليف رخص متاجر التطبيقات (Apple/Google) وعمولاتها يجب إدراجها في خطة التسعير
+- النظام يحتاج تدقيق أمني مستقل (Security Audit) من شركة معتمدة قبل الإطلاق
+- محرك White-Label يفتح مصدر دخل جديد: ترخيص النظام لشركات سفر أخرى بإيراد متكرر شهري
+- بوابة B2B تتطلب فريق Sales/Account Manager لاكتساب الوكلاء وتفعيلهم
 
 ---
 
-## Introduction
+# مواصفات متطلبات البرمجيات — Jawla Tours OTA (الباقة Enterprise)
 
-### Purpose
+## ضبط الوثيقة
 
-This document defines the **Enterprise Tier** software requirements for *Jawla Tours*.
-The Enterprise Tier delivers a multi-region, multi-tenant, B2B+B2C platform with
-native mobile apps, white-labelling, fraud machine learning, dynamic pricing, and a
-queue-heavy package-deal engine. It is the contract for the third major release
-(target GA Q2 2027).
+| الحقل             | القيمة                                                          |
+| ----------------- | -------------------------------------------------------------- |
+| عنوان الوثيقة     | Jawla Tours OTA — SRS (الباقة Enterprise)                       |
+| رقم الوثيقة       | JAWLA-SRS-ENT                                                  |
+| الإصدار           | 1.0                                                            |
+| تاريخ الإصدار     | 2026-06-29                                                     |
+| الحالة            | معتمدة — Baseline                                               |
+| التصنيف           | سرية — الهندسة / المنتج / المالية / الالتزام                    |
+| المالك            | Jawla Platform Engineering                                     |
+| إعداد             | Platform Architecture Group                                    |
+| مراجعة            | CTO, COO, رئيس المنتج، رئيس المالية، قائد QA، قائد الأمان، DPO |
+| اعتماد            | CTO + COO                                                      |
+| التوزيع           | كل الهندسة، المنتج، QA، DevOps، الأمان، المالية، الدعم، BizDev، شركاء B2B |
 
-The audience for this document is: all engineering, Product, QA, DevOps, Security,
-DPO, Finance, BizDev/B2B partner ops, and external auditors (SOC 2 Type II, PCI DSS,
-GDPR, Saudi PDPL, Egyptian DP Law).
+### سجل المراجعات
 
-### Scope
+| الإصدار | التاريخ    | الكاتب              | الأقسام                          | ملخص التغيير                                                                    |
+| ------- | ---------- | ------------------- | -------------------------------- | ------------------------------------------------------------------------------- |
+| 0.1     | 2026-03-09 | Platform Arch Group | الكل                             | مسودة أولى (تمتد من الباقة Pro)                                                  |
+| 0.2     | 2026-04-02 | Mobile Lead         | Mobile، Auth، Notifications      | نطاق iOS/Android الأصلي؛ push notifications عبر APNs/FCM                         |
+| 0.3     | 2026-04-21 | Product (B2B)       | Agent Portal، RBAC               | بوابة وكلاء B2B، حسابات الوكالات، حدود ائتمان، تعريفات IATA                      |
+| 0.4     | 2026-05-09 | ML Lead             | Fraud ML، Pricing                | نموذج تقييم الاحتيال + محرك التسعير الديناميكي                                    |
+| 0.5     | 2026-05-21 | Brand               | White-label، Theming             | تأجير White-label + خط أنابيب الـ theming                                        |
+| 0.6     | 2026-06-04 | DevOps              | Architecture، Deployment         | متعدد المناطق active-active؛ global anycast؛ CRR                                |
+| 0.7     | 2026-06-15 | Security            | Security، Compliance             | ضوابط SOC 2 Type II؛ تحديث نطاق PCI؛ KMS hierarchy                              |
+| 0.8     | 2026-06-22 | QA Lead             | Acceptance                       | AT-047..AT-085                                                                  |
+| 1.0     | 2026-06-29 | CTO + COO           | الكل                             | اعتماد Baseline                                                                  |
 
-In scope:
+### قاموس المصطلحات (إضافات الباقة Enterprise)
 
-- All Basic + Professional Tier functionality (assumed; new and changed only stated).
-- **Multi-region active-active** (eu-central-1 + me-central-1 + ap-south-1)
-  with read-local / write-aware routing.
-- **Native mobile apps** (iOS + Android, React Native 0.76 + Expo), parity with web.
-- **B2B Agent Portal** for TMCs and travel agencies with credit lines, mark-ups,
-  itinerary builder, bulk passenger imports, BSP-CASS reporting.
-- **White-label theming** — tenant-scoped branding (colors, typography, logo, domain),
-  custom emails/templates, custom payment routing.
-- **Fraud ML** — real-time scoring on every booking attempt + step-up enforcement.
-- **Dynamic pricing engine** — markup/discount rules engine with elasticity hooks.
-- **Package deals** (flight + hotel + transfer + activity) with queue-heavy
-  parallelized assembly and atomic confirmation.
-- **~70 REST endpoints** + gRPC internal contracts + GraphQL gateway for B2B.
+| المصطلح      | المعنى                                                                    |
+| ------------ | ------------------------------------------------------------------------- |
+| Tenant       | علامة تجارية أو حساب معزول منطقياً (عميل white-label أو وكالة B2B)         |
+| RU           | Region Unit (مجموعة منطقة متجانسة واحدة)                                   |
+| CRDT         | Conflict-free Replicated Data Type                                        |
+| EDA          | Event-Driven Architecture                                                 |
+| Saga         | معاملة طويلة الأمد مع تعويضات                                              |
+| KEK / DEK    | Key Encryption Key / Data Encryption Key (تشفير بأسلوب envelope)          |
+| FCM / APNs   | Firebase Cloud Messaging / Apple Push Notification service                |
+| RBAC / ABAC  | تحكم في الوصول بناءً على الدور / السمات                                    |
+| OPA          | Open Policy Agent (تصريح كـ policy-as-code)                                |
+| ML-FRAUD     | خدمة تقييم الاحتيال                                                         |
+| DYN-PRICE    | محرك التسعير الديناميكي                                                    |
+| TMC          | Travel Management Company (نوع من شركاء B2B)                              |
+| BSP          | Bank Settlement Plan (IATA)                                                |
 
-### References
+---
 
-| Ref ID | Reference                                                                       |
+## المقدمة
+
+### الهدف
+
+هذه الوثيقة تحدد متطلبات البرمجيات لـ **الباقة Enterprise** من *Jawla Tours*.
+الباقة Enterprise توفر منصة متعددة المناطق، متعددة الـ tenants، B2B+B2C، مع
+تطبيقات native للموبايل، و white-labelling، و machine learning للاحتيال، وتسعير
+ديناميكي، ومحرك ثقيل للـ queue لإدارة الـ package deals. هذه الوثيقة هي العقد
+للإصدار الكبير الثالث (هدف GA هو Q2 2027).
+
+الجمهور المستهدف من هذه الوثيقة: كل الهندسة، المنتج، QA، DevOps، الأمان،
+DPO، المالية، BizDev/B2B partner ops، والمدققين الخارجيين (SOC 2 Type II، PCI DSS،
+GDPR، PDPL السعودي، قانون حماية البيانات المصري).
+
+### النطاق
+
+ضمن النطاق:
+
+- كل وظائف الباقة Basic + Professional (مفترضة؛ سيتم ذكر الجديد والمتغير فقط).
+- **متعدد المناطق active-active** (eu-central-1 + me-central-1 + ap-south-1)
+  مع توجيه read-local / write-aware.
+- **تطبيقات موبايل native** (iOS + Android، React Native 0.76 + Expo)، بنفس مميزات الويب.
+- **بوابة وكلاء B2B** لشركات TMCs ووكالات السفر مع خطوط ائتمان، markups،
+  منشئ مسارات، استيراد جماعي للركاب، تقارير BSP-CASS.
+- **theming بنظام White-label** — branding مرتبط بكل tenant (ألوان، خطوط، شعار، domain)،
+  إيميلات/قوالب مخصصة، توجيه دفع مخصص.
+- **Fraud ML** — تقييم real-time لكل محاولة حجز + فرض step-up.
+- **محرك تسعير ديناميكي** — محرك قواعد markup/discount مع hooks للمرونة.
+- **Package deals** (flight + hotel + transfer + activity) مع تجميع متوازي ثقيل
+  على الـ queue وتأكيد atomic.
+- **حوالي 70 endpoint REST** + عقود gRPC داخلية + GraphQL gateway لـ B2B.
+
+### المراجع
+
+| Ref ID | المرجع                                                                          |
 | ------ | ------------------------------------------------------------------------------- |
 | R-01   | JAWLA-SRS-PRO v1.0                                                              |
 | R-02   | Amadeus Enterprise (Production NDC + Master Pricer)                             |
-| R-03   | HotelBeds + Booking Affiliate + Expedia Rapid + Hotelston (4 providers)         |
+| R-03   | HotelBeds + Booking Affiliate + Expedia Rapid + Hotelston (4 موردين)            |
 | R-04   | Stripe + Paymob + Adyen + Tap (KSA/UAE alt MPMs)                                |
 | R-05   | WhatsApp Business Cloud API, APNs (Apple), FCM (Google), Mailgun                |
 | R-06   | OWASP Top 10:2021 + ASVS 4.0.3 L3 + MASVS L2 (mobile)                            |
 | R-07   | SOC 2 Type II (Security, Availability, Confidentiality)                          |
-| R-08   | PCI DSS v4.0 — SAQ A-EP + scoped SAQ D for payouts                              |
-| R-09   | GDPR, Saudi PDPL, Egyptian DP Law 151/2020, UAE PDPL                            |
-| R-10   | IATA Resolution 890; BSP Manual for Agents                                      |
-| R-11   | WCAG 2.1 AA + EN 301 549; iOS/Android accessibility guidelines                   |
-| R-12   | RFC 9457 (Problem Details), RFC 9421 (HTTP Message Signatures, where applicable) |
+| R-08   | PCI DSS v4.0 — SAQ A-EP + SAQ D مخصص للـ payouts                                 |
+| R-09   | GDPR، PDPL السعودي، قانون حماية البيانات المصري 151/2020، PDPL الإماراتي         |
+| R-10   | IATA Resolution 890؛ BSP Manual for Agents                                       |
+| R-11   | WCAG 2.1 AA + EN 301 549؛ إرشادات إمكانية الوصول لـ iOS/Android                  |
+| R-12   | RFC 9457 (Problem Details)، RFC 9421 (HTTP Message Signatures، حيثما ينطبق)      |
 
 ---
 
-## Functional Requirements
+## المتطلبات الوظيفية
 
-> Tier-additive. Where requirements are listed without "*extends*", they are new.
+> إضافية للباقة. حيث لا يُذكر "*يمتد*" فالمتطلب جديد.
 
 ### Module: Authentication & Identity (FR-001 — FR-028)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-001 | *Extends Pro FR-001..022.*                                                                                    | MUST     |
-| FR-023 | The system MUST support **enterprise SSO** via SAML 2.0 and OIDC for B2B tenant users.                        | MUST     |
-| FR-024 | The system MUST support **SCIM 2.0** provisioning for B2B tenants (create/update/deactivate users).           | MUST     |
-| FR-025 | The system MUST support WebAuthn passkeys (FIDO2) for both customer + staff.                                  | MUST     |
-| FR-026 | The system MUST support per-tenant identity provider configuration (one IdP per tenant; JIT provisioning).    | MUST     |
-| FR-027 | The system MUST support mobile biometric re-auth (Face ID / Touch ID / Android BiometricPrompt).              | MUST     |
-| FR-028 | The system MUST issue device-bound refresh tokens for mobile (DPoP, RFC 9449).                                | MUST     |
+| FR-001 | *يمتد من Pro FR-001..022.*                                                                                    | MUST     |
+| FR-023 | يجب أن يدعم النظام **enterprise SSO** عبر SAML 2.0 و OIDC لمستخدمي tenants من نوع B2B.                       | MUST     |
+| FR-024 | يجب أن يدعم النظام provisioning عبر **SCIM 2.0** لـ tenants من نوع B2B (إنشاء/تحديث/تعطيل المستخدمين).        | MUST     |
+| FR-025 | يجب أن يدعم النظام passkeys بـ WebAuthn (FIDO2) للعملاء والموظفين معاً.                                       | MUST     |
+| FR-026 | يجب أن يدعم النظام إعدادات identity provider لكل tenant (IdP واحد لكل tenant؛ JIT provisioning).               | MUST     |
+| FR-027 | يجب أن يدعم النظام إعادة المصادقة البيومترية على الموبايل (Face ID / Touch ID / Android BiometricPrompt).     | MUST     |
+| FR-028 | يجب أن يصدر النظام refresh tokens مرتبطة بالجهاز للموبايل (DPoP، RFC 9449).                                   | MUST     |
 
 ### Module: Flights (FR-029 — FR-046)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-029 | *Extends Pro FR-023..038.*                                                                                    | MUST     |
-| FR-030 | The system MUST support NDC offers when available (Amadeus NDC-X + airline direct connects).                  | MUST     |
-| FR-031 | The system MUST support FareLogix/ATPCO content if Amadeus does not surface a relevant fare.                  | SHOULD   |
-| FR-032 | The system MUST support split-PNR ticketing for >9 pax via chunked PNR creation per IATA.                     | MUST     |
-| FR-033 | The system MUST support corporate fares unlock for B2B accounts with airline ID.                              | MUST     |
-| FR-034 | The system MUST support unused-ticket residual-value tracking per pax per carrier.                            | SHOULD   |
-| FR-035 | The system MUST support exchanges (date change) end-to-end with NDC where supported.                           | MUST     |
-| FR-036 | The system MUST integrate Sabre / Travelport as secondary GDS for inventory diversity (failover).             | SHOULD   |
-| FR-037 | The system MUST support voluntary refund quotation per fare-rules in real time.                               | MUST     |
-| FR-038 | The system MUST support involuntary schedule-change notifications and re-protect flow.                        | MUST     |
-| FR-039 | The system MUST support disruption auto-rebook with customer consent within carrier policy.                   | SHOULD   |
-| FR-040 | The system MUST honor IATA `OFRD` (offer-response data) standards for NDC offers.                              | MUST     |
-| FR-041 | The system MUST support frequent-flyer auto-attach by carrier for stored profile.                              | MUST     |
-| FR-042 | The system MUST flag visa-required pairs to user (advisory only, sourced from IATA TIM where available).     | SHOULD   |
-| FR-043 | The system MUST support traveller groups (8+) routed through bulk-fares group desk queue.                    | SHOULD   |
-| FR-044 | The system MUST support direct-EDI ticketing with selected carriers (e.g., EgyptAir direct).                  | MAY      |
-| FR-045 | The system MUST run the **dynamic pricing engine (DYN-PRICE)** on every flight offer in real time.            | MUST     |
-| FR-046 | The system MUST log every DYN-PRICE decision (input features, output adjustment, model version).             | MUST     |
+| FR-029 | *يمتد من Pro FR-023..038.*                                                                                    | MUST     |
+| FR-030 | يجب أن يدعم النظام عروض NDC عند توفرها (Amadeus NDC-X + direct connects للطيران).                              | MUST     |
+| FR-031 | يجب أن يدعم النظام محتوى FareLogix/ATPCO إذا لم يُظهر Amadeus سعر مناسب.                                       | SHOULD   |
+| FR-032 | يجب أن يدعم النظام split-PNR ticketing لأكثر من 9 ركاب عبر تقسيم إنشاء الـ PNR طبقاً لقواعد IATA.              | MUST     |
+| FR-033 | يجب أن يدعم النظام فتح corporate fares لحسابات B2B مع airline ID.                                              | MUST     |
+| FR-034 | يجب أن يدعم النظام تتبع unused-ticket residual-value لكل راكب لكل شركة طيران.                                  | SHOULD   |
+| FR-035 | يجب أن يدعم النظام عمليات exchanges (تغيير التاريخ) من البداية للنهاية باستخدام NDC حيث مدعوم.                  | MUST     |
+| FR-036 | يجب أن يتكامل النظام مع Sabre / Travelport كـ GDS ثانوي لتنويع الـ inventory (failover).                       | SHOULD   |
+| FR-037 | يجب أن يدعم النظام تسعير refund اختياري حسب fare-rules في real time.                                            | MUST     |
+| FR-038 | يجب أن يدعم النظام إشعارات schedule-change اللاإرادية وفلو re-protect.                                          | MUST     |
+| FR-039 | يجب أن يدعم النظام rebook تلقائي عند الاضطرابات بموافقة العميل في حدود سياسة شركة الطيران.                      | SHOULD   |
+| FR-040 | يجب أن يلتزم النظام بمعايير IATA `OFRD` (offer-response data) لعروض NDC.                                       | MUST     |
+| FR-041 | يجب أن يدعم النظام ربط frequent-flyer تلقائياً حسب شركة الطيران من الـ profile المحفوظ.                          | MUST     |
+| FR-042 | يجب أن يُظهر النظام للمستخدم الأزواج التي تحتاج visa (إرشادي فقط، مصدره IATA TIM حيث متاح).                     | SHOULD   |
+| FR-043 | يجب أن يدعم النظام مجموعات المسافرين (8+) عبر توجيهها لـ queue الـ bulk-fares group desk.                       | SHOULD   |
+| FR-044 | يجب أن يدعم النظام ticketing مباشر EDI مع شركات طيران مختارة (مثل EgyptAir المباشر).                            | MAY      |
+| FR-045 | يجب أن يشغّل النظام **محرك التسعير الديناميكي (DYN-PRICE)** على كل عرض طيران في real time.                      | MUST     |
+| FR-046 | يجب أن يسجل النظام كل قرار من DYN-PRICE (features الإدخال، تعديل المخرجات، إصدار النموذج).                      | MUST     |
 
 ### Module: Hotels (FR-047 — FR-064)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-047 | *Extends Pro FR-039..058.*                                                                                    | MUST     |
-| FR-048 | The aggregator MUST fan out across **at least 4 suppliers** (Amadeus, HotelBeds, Booking Aff, Expedia Rapid). | MUST     |
-| FR-049 | The aggregator MUST support negotiated rates (B2B contracted) routed through a "Direct Contracts" pseudo-supplier. | MUST     |
-| FR-050 | The aggregator MUST compute and apply DYN-PRICE per supplier per offer.                                       | MUST     |
-| FR-051 | The system MUST support meta-aggregation (TripAdvisor / Trivago via outbound feed) for marketing.             | SHOULD   |
-| FR-052 | The aggregator MUST surface negotiated rate-codes only to authorized B2B tenants/users.                       | MUST     |
-| FR-053 | The system MUST support stop-sell propagation across regions within 30 s.                                      | MUST     |
-| FR-054 | The system MUST support hotel content normalization for amenities, room types, board basis (multilingual).    | MUST     |
-| FR-055 | The system MUST detect duplicate hotels via canonical mapping + ML similarity model (fallback).               | MUST     |
-| FR-056 | The system MUST cache hot search responses regionally with cross-region invalidation.                          | MUST     |
-| FR-057 | The system MUST support hotel-room bidding for opaque inventory (B2C only, off by default).                    | MAY      |
-| FR-058 | The system MUST support multi-room bookings (up to 9 rooms per booking).                                      | MUST     |
-| FR-059 | The system MUST support board basis filters: RO, BB, HB, FB, AI, UAI.                                          | MUST     |
-| FR-060 | The system MUST support amenity filters: pool, gym, spa, parking, family, pets, etc.                          | MUST     |
-| FR-061 | The system MUST support refundable / non-refundable / partial-refundable filters.                              | MUST     |
-| FR-062 | The system MUST support guest-review summaries from supplier; AI-generated multilingual summary optional.     | SHOULD   |
-| FR-063 | The system MUST honor supplier overbooking guarantees and surface alternates if confirmed-failure occurs.     | MUST     |
-| FR-064 | The system MUST emit hotel availability webhooks for B2B integrations (signed payload).                       | MUST     |
+| FR-047 | *يمتد من Pro FR-039..058.*                                                                                    | MUST     |
+| FR-048 | يجب أن يقوم الـ aggregator بعمل fan out عبر **4 موردين على الأقل** (Amadeus, HotelBeds, Booking Aff, Expedia Rapid). | MUST |
+| FR-049 | يجب أن يدعم الـ aggregator أسعار متفاوض عليها (B2B contracted) موجهة عبر pseudo-supplier اسمه "Direct Contracts". | MUST |
+| FR-050 | يجب أن يحسب الـ aggregator ويطبق DYN-PRICE لكل مورد لكل عرض.                                                   | MUST     |
+| FR-051 | يجب أن يدعم النظام meta-aggregation (TripAdvisor / Trivago عبر feed خارجي) للتسويق.                            | SHOULD   |
+| FR-052 | يجب أن يُظهر الـ aggregator أكواد الأسعار المتفاوض عليها فقط لـ tenants/مستخدمين B2B مصرح لهم.                 | MUST     |
+| FR-053 | يجب أن يدعم النظام نشر stop-sell عبر المناطق خلال 30 ثانية.                                                     | MUST     |
+| FR-054 | يجب أن يدعم النظام تطبيع محتوى الفنادق للـ amenities و room types و board basis (متعدد اللغات).                | MUST     |
+| FR-055 | يجب أن يكتشف النظام الفنادق المكررة عبر canonical mapping + نموذج ML للتشابه (كـ fallback).                    | MUST     |
+| FR-056 | يجب أن يقوم النظام بـ cache لاستجابات البحث الحارة إقليمياً مع invalidation عبر المناطق.                       | MUST     |
+| FR-057 | يجب أن يدعم النظام مزايدة على غرف الفنادق للـ opaque inventory (B2C فقط، معطل افتراضياً).                       | MAY      |
+| FR-058 | يجب أن يدعم النظام حجوزات متعددة الغرف (حتى 9 غرف لكل حجز).                                                    | MUST     |
+| FR-059 | يجب أن يدعم النظام filters للـ board basis: RO, BB, HB, FB, AI, UAI.                                            | MUST     |
+| FR-060 | يجب أن يدعم النظام filters للـ amenities: pool, gym, spa, parking, family, pets، إلخ.                          | MUST     |
+| FR-061 | يجب أن يدعم النظام filters للـ refundable / non-refundable / partial-refundable.                                | MUST     |
+| FR-062 | يجب أن يدعم النظام ملخصات guest-review من المورد؛ ملخص متعدد اللغات بـ AI اختياري.                             | SHOULD   |
+| FR-063 | يجب أن يحترم النظام ضمانات overbooking للمورد ويعرض بدائل عند فشل التأكيد.                                       | MUST     |
+| FR-064 | يجب أن يصدر النظام webhooks لتوفر الفنادق لتكاملات B2B (payload موقّع).                                          | MUST     |
 
 ### Module: Packages (FR-065 — FR-076)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-065 | The system MUST allow defining a package template: flight pattern + hotel pattern + optional transfer + optional activity. | MUST |
-| FR-066 | The system MUST allow ad-hoc dynamic packages: user-composed flight + hotel (+ transfer/activity) in a single cart.      | MUST |
-| FR-067 | The package assembly MUST run as a parallelized BullMQ flow (flight search, hotel search, transfer search) joined by saga. | MUST |
-| FR-068 | The package MUST be priced atomically with package-level discount engine (DYN-PRICE).                                   | MUST |
-| FR-069 | The package MUST be booked with a single payment intent; component-level fulfillment via saga.                          | MUST |
-| FR-070 | The package MUST roll back ALL components on any single component failure.                                              | MUST |
-| FR-071 | The package MUST present a unified voucher PDF aggregating all components.                                              | MUST |
-| FR-072 | The package MUST schedule pre-trip reminders for each component (flight, hotel check-in, transfer pickup).              | MUST |
-| FR-073 | The package MUST allow saved package templates per user/tenant.                                                          | SHOULD |
-| FR-074 | The package MUST support promotional bundles (e.g., "+1 free transfer when booked together") via promo rules.            | MUST |
-| FR-075 | The package MUST support cross-supplier sourcing transparently to the user.                                              | MUST |
-| FR-076 | The package MUST support partial cancellation per component subject to per-supplier policy.                              | MUST |
+| FR-065 | يجب أن يسمح النظام بتعريف قالب package: نمط flight + نمط hotel + transfer اختياري + activity اختياري.         | MUST     |
+| FR-066 | يجب أن يسمح النظام بإنشاء packages ديناميكية ad-hoc: flight + hotel (+ transfer/activity) من تأليف المستخدم في cart واحد. | MUST |
+| FR-067 | يجب أن يعمل تجميع الـ package كـ BullMQ flow متوازي (flight search, hotel search, transfer search) متصل بـ saga. | MUST  |
+| FR-068 | يجب أن يُسعّر الـ package atomically مع محرك خصومات على مستوى الـ package (DYN-PRICE).                          | MUST     |
+| FR-069 | يجب أن يُحجز الـ package بـ payment intent واحد؛ تنفيذ على مستوى المكون عبر saga.                                | MUST     |
+| FR-070 | يجب أن يقوم الـ package بـ rollback لكل المكونات عند فشل أي مكون واحد.                                          | MUST     |
+| FR-071 | يجب أن يُقدم الـ package voucher PDF موحد يجمع كل المكونات.                                                     | MUST     |
+| FR-072 | يجب أن يجدول الـ package تذكيرات pre-trip لكل مكون (flight, hotel check-in, transfer pickup).                  | MUST     |
+| FR-073 | يجب أن يسمح الـ package بحفظ قوالب لكل مستخدم/tenant.                                                           | SHOULD   |
+| FR-074 | يجب أن يدعم الـ package الحزم الترويجية (مثلاً "+1 transfer مجاني عند الحجز المشترك") عبر قواعد promo.          | MUST     |
+| FR-075 | يجب أن يدعم الـ package مصادر cross-supplier بشكل شفاف للمستخدم.                                                | MUST     |
+| FR-076 | يجب أن يدعم الـ package إلغاء جزئي لكل مكون حسب سياسة كل مورد.                                                  | MUST     |
 
 ### Module: Payment (FR-077 — FR-094)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-077 | *Extends Pro FR-073..088.*                                                                                    | MUST     |
-| FR-078 | The system MUST integrate **Tap Payments** for KSA/UAE alt-MPM coverage (Apple Pay, mada, KNET).             | MUST     |
-| FR-079 | The system MUST support 3DS exemptions (TRA, low-value, fixed amount) per PSD2 RTS.                          | MUST     |
-| FR-080 | The system MUST support B2B postpaid (credit-line) settlement with monthly invoice + statement.              | MUST     |
-| FR-081 | The system MUST support multi-leg refunds (per component) with audit trail per leg.                          | MUST     |
-| FR-082 | The system MUST support chargeback ingestion via PSP webhooks + ops triage queue.                            | MUST     |
-| FR-083 | The system MUST integrate **ML-FRAUD** score into PSP route decision (high-risk → step-up + 3DS forced).     | MUST     |
-| FR-084 | The system MUST integrate Stripe Radar / Adyen RevenueProtect rules as a secondary fraud signal.             | MUST     |
-| FR-085 | The system MUST support tokenized network tokens for cards (where PSP supports) to improve auth rates.       | SHOULD   |
-| FR-086 | The system MUST support payment intent split-refund (per booking-item) automatically.                         | MUST     |
-| FR-087 | The system MUST support credit-note generation for B2B refunds.                                              | MUST     |
-| FR-088 | The system MUST support cash booking (B2B agent collects cash from end-customer); reconciled to BSP.         | MUST     |
-| FR-089 | The system MUST support BSP-CASS export per IATA settlement period.                                          | MUST     |
-| FR-090 | The system MUST reconcile PSP payouts to PSP fee schedules nightly with auto-discrepancy alerts.             | MUST     |
-| FR-091 | The system MUST hold weighted FX risk reports for finance daily.                                              | SHOULD   |
-| FR-092 | The system MUST support refunds to alternate methods only with finance approval (4-eye).                     | MUST     |
-| FR-093 | The system MUST trigger chargeback-rebuttal pack auto-assembly for ops.                                       | SHOULD   |
-| FR-094 | The system MUST allow customer-driven dispute path in dashboard with attached evidence upload.                | MUST     |
+| FR-077 | *يمتد من Pro FR-073..088.*                                                                                    | MUST     |
+| FR-078 | يجب أن يتكامل النظام مع **Tap Payments** لتغطية alt-MPM في KSA/UAE (Apple Pay، mada، KNET).                  | MUST     |
+| FR-079 | يجب أن يدعم النظام إعفاءات 3DS (TRA، low-value، fixed amount) طبقاً لـ PSD2 RTS.                              | MUST     |
+| FR-080 | يجب أن يدعم النظام تسوية B2B postpaid (credit-line) مع فاتورة وكشف حساب شهري.                                  | MUST     |
+| FR-081 | يجب أن يدعم النظام refunds متعددة الأرجل (لكل مكون) مع audit trail لكل ساق.                                    | MUST     |
+| FR-082 | يجب أن يدعم النظام استقبال chargeback عبر PSP webhooks + queue للـ ops triage.                                  | MUST     |
+| FR-083 | يجب أن يدمج النظام نتيجة **ML-FRAUD** في قرار توجيه الـ PSP (high-risk → step-up + 3DS مفروض).                 | MUST     |
+| FR-084 | يجب أن يدمج النظام قواعد Stripe Radar / Adyen RevenueProtect كإشارة احتيال ثانوية.                              | MUST     |
+| FR-085 | يجب أن يدعم النظام network tokens للبطاقات (حيث يدعم الـ PSP) لتحسين معدلات الـ auth.                          | SHOULD   |
+| FR-086 | يجب أن يدعم النظام split-refund للـ payment intent (لكل booking-item) تلقائياً.                                 | MUST     |
+| FR-087 | يجب أن يدعم النظام توليد credit-note لـ refunds الـ B2B.                                                        | MUST     |
+| FR-088 | يجب أن يدعم النظام حجز نقدي (وكيل B2B يجمع نقد من العميل النهائي)؛ يتم تسويته مع BSP.                          | MUST     |
+| FR-089 | يجب أن يدعم النظام تصدير BSP-CASS لكل فترة تسوية IATA.                                                          | MUST     |
+| FR-090 | يجب أن يقوم النظام بمطابقة payouts الـ PSP مع جداول رسوم الـ PSP يومياً مع تنبيهات auto-discrepancy.            | MUST     |
+| FR-091 | يجب أن يحتفظ النظام بتقارير FX risk مرجحة للمالية يومياً.                                                       | SHOULD   |
+| FR-092 | يجب أن يدعم النظام refunds لطرق دفع بديلة فقط بموافقة المالية (4-eye).                                          | MUST     |
+| FR-093 | يجب أن يشغّل النظام تجميع تلقائي لحزمة chargeback-rebuttal للـ ops.                                              | SHOULD   |
+| FR-094 | يجب أن يسمح النظام بمسار dispute يقوده العميل في الـ dashboard مع رفع أدلة مرفقة.                                | MUST     |
 
 ### Module: Notifications (FR-095 — FR-108)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-095 | The system MUST send **push** notifications via APNs + FCM to mobile apps with topic routing.                | MUST     |
-| FR-096 | The system MUST send WhatsApp via Cloud API (Pro inherited).                                                  | MUST     |
-| FR-097 | The system MUST send transactional email via primary provider + automatic failover provider.                  | MUST     |
-| FR-098 | The system MUST support in-app inbox (real-time SSE / WS) per user.                                          | MUST     |
-| FR-099 | The system MUST allow per-tenant template overrides with HTML + locale variants.                              | MUST     |
-| FR-100 | The system MUST allow channel preference per event type per user.                                            | MUST     |
-| FR-101 | The system MUST detect quiet hours per user timezone and defer non-critical channels.                         | MUST     |
-| FR-102 | The system MUST throttle marketing notifications separately from transactional.                              | MUST     |
-| FR-103 | The system MUST track engagement (open, click, ack) and store per notification.                              | MUST     |
-| FR-104 | The system MUST support broadcast notifications (admin-only) with audience filters.                          | SHOULD   |
-| FR-105 | The system MUST support segmented promo notifications keyed off cohort tags.                                  | MUST     |
-| FR-106 | The system MUST gracefully degrade if any single provider fails (multi-provider failover).                    | MUST     |
-| FR-107 | The system MUST localize push payloads using device locale; fallback EN.                                      | MUST     |
-| FR-108 | The system MUST honor unsubscribe headers / List-Unsubscribe-Post in transactional + marketing emails.       | MUST     |
+| FR-095 | يجب أن يرسل النظام إشعارات **push** عبر APNs + FCM لتطبيقات الموبايل مع topic routing.                        | MUST     |
+| FR-096 | يجب أن يرسل النظام WhatsApp عبر Cloud API (مكتسبة من Pro).                                                     | MUST     |
+| FR-097 | يجب أن يرسل النظام إيميل transactional عبر مزود رئيسي + مزود failover تلقائي.                                  | MUST     |
+| FR-098 | يجب أن يدعم النظام in-app inbox (SSE / WS في real-time) لكل مستخدم.                                            | MUST     |
+| FR-099 | يجب أن يسمح النظام بـ overrides للقوالب لكل tenant مع HTML + variants للغات.                                   | MUST     |
+| FR-100 | يجب أن يسمح النظام بتفضيل القناة لكل نوع حدث لكل مستخدم.                                                       | MUST     |
+| FR-101 | يجب أن يكتشف النظام quiet hours حسب timezone المستخدم ويؤجل القنوات غير الحرجة.                                | MUST     |
+| FR-102 | يجب أن يقوم النظام بـ throttle لإشعارات التسويق بشكل منفصل عن الـ transactional.                                | MUST     |
+| FR-103 | يجب أن يتتبع النظام التفاعل (open, click, ack) ويخزنه لكل إشعار.                                                | MUST     |
+| FR-104 | يجب أن يدعم النظام إشعارات broadcast (للأدمن فقط) مع filters للجمهور.                                          | SHOULD   |
+| FR-105 | يجب أن يدعم النظام إشعارات promo مقسمة بناءً على cohort tags.                                                  | MUST     |
+| FR-106 | يجب أن يتدهور النظام بأناقة إذا فشل أي مزود واحد (multi-provider failover).                                    | MUST     |
+| FR-107 | يجب أن يقوم النظام بـ localize الـ push payloads حسب لغة الجهاز؛ fallback EN.                                  | MUST     |
+| FR-108 | يجب أن يحترم النظام unsubscribe headers / List-Unsubscribe-Post في إيميلات الـ transactional والتسويق.        | MUST     |
 
 ### Module: Admin & Operations (FR-109 — FR-126)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-109 | *Extends Pro FR-101..114.*                                                                                    | MUST     |
-| FR-110 | The admin MUST provide tenant-management console for white-label tenants.                                    | MUST     |
-| FR-111 | The admin MUST provide DYN-PRICE rule console (priority, conditions, markup/discount, effective dates).      | MUST     |
-| FR-112 | The admin MUST provide ML-FRAUD model console (feature importance, score distribution, threshold tuning).    | MUST     |
-| FR-113 | The admin MUST provide region health dashboard (per region: error rate, replication lag, edge latency).      | MUST     |
-| FR-114 | The admin MUST provide queue dashboards (BullMQ per-queue depth, oldest job, failure rate).                   | MUST     |
-| FR-115 | The admin MUST provide a chargeback workbench with evidence upload + auto-rebuttal.                          | MUST     |
-| FR-116 | The admin MUST provide a dispute workbench for customer disputes (separate from chargebacks).                | MUST     |
-| FR-117 | The admin MUST provide schedule-change console with mass re-protect actions.                                 | MUST     |
-| FR-118 | The admin MUST provide BSP-CASS reporting console.                                                            | MUST     |
-| FR-119 | The admin MUST provide a content-CMS with per-tenant overrides.                                              | MUST     |
-| FR-120 | The admin MUST provide promo-rule engine console with simulator (A/B against history).                        | MUST     |
-| FR-121 | The admin MUST provide an audit search across all audit events (full-text + faceted).                         | MUST     |
-| FR-122 | The admin MUST provide a data-subject-request console (export, delete, restrict).                            | MUST     |
-| FR-123 | The admin MUST provide an incident-response console linking Sentry / PagerDuty / runbooks.                   | MUST     |
-| FR-124 | The admin MUST provide release management console with feature-flag rollout per tenant + region.             | MUST     |
-| FR-125 | The admin MUST support agent-portal management for B2B tenants (users, credit, mark-up).                     | MUST     |
-| FR-126 | The admin MUST support contracted-rate ingestion for direct-contract hotels.                                  | MUST     |
+| FR-109 | *يمتد من Pro FR-101..114.*                                                                                    | MUST     |
+| FR-110 | يجب أن توفر admin console لإدارة tenants من نوع white-label.                                                  | MUST     |
+| FR-111 | يجب أن توفر admin console لقواعد DYN-PRICE (priority، شروط، markup/discount، تواريخ سريان).                   | MUST     |
+| FR-112 | يجب أن توفر admin console لنموذج ML-FRAUD (feature importance، توزيع النتائج، ضبط الـ threshold).             | MUST     |
+| FR-113 | يجب أن توفر admin dashboard لصحة المناطق (لكل منطقة: معدل الخطأ، replication lag، edge latency).               | MUST     |
+| FR-114 | يجب أن توفر admin dashboards للـ queues (عمق BullMQ لكل queue، أقدم job، معدل الفشل).                          | MUST     |
+| FR-115 | يجب أن توفر admin workbench للـ chargebacks مع رفع أدلة + auto-rebuttal.                                       | MUST     |
+| FR-116 | يجب أن توفر admin workbench للـ disputes من العملاء (منفصل عن الـ chargebacks).                                | MUST     |
+| FR-117 | يجب أن توفر admin console لـ schedule-change مع إجراءات re-protect جماعية.                                     | MUST     |
+| FR-118 | يجب أن توفر admin console لتقارير BSP-CASS.                                                                    | MUST     |
+| FR-119 | يجب أن توفر admin CMS للمحتوى مع overrides لكل tenant.                                                          | MUST     |
+| FR-120 | يجب أن توفر admin console لمحرك قواعد promo مع simulator (A/B على التاريخ).                                    | MUST     |
+| FR-121 | يجب أن توفر admin بحث audit في كل أحداث الـ audit (full-text + faceted).                                       | MUST     |
+| FR-122 | يجب أن توفر admin console لـ data-subject-request (export، delete، restrict).                                  | MUST     |
+| FR-123 | يجب أن توفر admin console للاستجابة للحوادث تربط Sentry / PagerDuty / runbooks.                                | MUST     |
+| FR-124 | يجب أن توفر admin console لإدارة الإصدارات مع feature-flag rollout لكل tenant + منطقة.                         | MUST     |
+| FR-125 | يجب أن تدعم admin إدارة agent-portal لـ tenants من نوع B2B (مستخدمين، credit، mark-up).                       | MUST     |
+| FR-126 | يجب أن تدعم admin استقبال الأسعار المتعاقد عليها لفنادق direct-contract.                                        | MUST     |
 
 ### Module: B2B Agent Portal (FR-127 — FR-140)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-127 | The agent portal MUST allow agency admin to invite agents (SCIM + manual).                                   | MUST     |
-| FR-128 | The agent portal MUST allow searching, quoting, and booking flights/hotels/packages on behalf of customers.   | MUST     |
-| FR-129 | The agent portal MUST allow per-agency credit limit with utilization + payment terms.                        | MUST     |
-| FR-130 | The agent portal MUST allow per-agency mark-up rules (flat / percentage / tiered) appliable per offer.       | MUST     |
-| FR-131 | The agent portal MUST support quote generation with PDF, link sharing, and conversion to booking.            | MUST     |
-| FR-132 | The agent portal MUST support bulk passenger import (CSV/XLSX) with validation.                              | MUST     |
-| FR-133 | The agent portal MUST support per-agent commission tracking with monthly statements.                         | MUST     |
-| FR-134 | The agent portal MUST support multi-passenger group bookings up to 50 pax.                                   | MUST     |
-| FR-135 | The agent portal MUST support corporate-fare unlock via airline ID per booking.                              | MUST     |
-| FR-136 | The agent portal MUST allow customer profile management per agency (PII isolated per tenant).                | MUST     |
-| FR-137 | The agent portal MUST provide BSP/CASS reporting + IATA standard exports.                                    | MUST     |
-| FR-138 | The agent portal MUST allow "split-pay" — agent pays via credit, customer adds card top-up.                  | SHOULD   |
-| FR-139 | The agent portal MUST expose a GraphQL API for agency mid-office integrations.                               | MUST     |
-| FR-140 | The agent portal MUST enforce data segregation: agency A cannot see agency B's customers/bookings.           | MUST     |
+| FR-127 | يجب أن تسمح بوابة الوكلاء لـ agency admin بدعوة وكلاء (SCIM + يدوي).                                          | MUST     |
+| FR-128 | يجب أن تسمح بوابة الوكلاء بالبحث والتسعير والحجز لـ flights/hotels/packages نيابةً عن العملاء.                | MUST     |
+| FR-129 | يجب أن تسمح بوابة الوكلاء بحد ائتمان لكل وكالة مع utilization + شروط دفع.                                      | MUST     |
+| FR-130 | يجب أن تسمح بوابة الوكلاء بقواعد mark-up لكل وكالة (flat / percentage / tiered) قابلة للتطبيق لكل عرض.         | MUST     |
+| FR-131 | يجب أن تدعم بوابة الوكلاء توليد quote مع PDF، مشاركة رابط، وتحويل إلى حجز.                                     | MUST     |
+| FR-132 | يجب أن تدعم بوابة الوكلاء استيراد جماعي للركاب (CSV/XLSX) مع validation.                                       | MUST     |
+| FR-133 | يجب أن تدعم بوابة الوكلاء تتبع commission لكل وكيل مع كشوف شهرية.                                              | MUST     |
+| FR-134 | يجب أن تدعم بوابة الوكلاء حجوزات جماعية متعددة الركاب حتى 50 راكب.                                             | MUST     |
+| FR-135 | يجب أن تدعم بوابة الوكلاء فتح corporate-fare عبر airline ID لكل حجز.                                            | MUST     |
+| FR-136 | يجب أن تسمح بوابة الوكلاء بإدارة profiles العملاء لكل وكالة (PII معزولة لكل tenant).                          | MUST     |
+| FR-137 | يجب أن توفر بوابة الوكلاء تقارير BSP/CASS + IATA standard exports.                                            | MUST     |
+| FR-138 | يجب أن تسمح بوابة الوكلاء بـ "split-pay" — الوكيل يدفع عبر credit، والعميل يضيف card top-up.                  | SHOULD   |
+| FR-139 | يجب أن تكشف بوابة الوكلاء عن GraphQL API لتكاملات mid-office للوكالات.                                          | MUST     |
+| FR-140 | يجب أن تفرض بوابة الوكلاء فصل البيانات: وكالة A لا تستطيع رؤية عملاء/حجوزات وكالة B.                          | MUST     |
 
 ### Module: White-Label & Tenancy (FR-141 — FR-150)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-141 | The system MUST support tenant-scoped branding: logo, color tokens, font, favicon, custom domain.            | MUST     |
-| FR-142 | The system MUST allow per-tenant override of legal pages (T&C, privacy, refund policy).                       | MUST     |
-| FR-143 | The system MUST allow per-tenant payment routing (PSP + merchant account).                                   | MUST     |
-| FR-144 | The system MUST allow per-tenant email "from" identity + DKIM/DMARC per tenant domain.                       | MUST     |
-| FR-145 | The system MUST allow per-tenant pricing/markup config (independent of agency markup).                       | MUST     |
-| FR-146 | The system MUST allow per-tenant feature-flag overrides.                                                      | MUST     |
-| FR-147 | The system MUST provide a theming pipeline: token JSON → generated CSS variables + Tailwind theme.            | MUST     |
-| FR-148 | The system MUST support tenant-specific subdomains AND custom apex domains (DNS + TLS auto-managed).         | MUST     |
-| FR-149 | The system MUST isolate tenant data via row-level security in Postgres (tenant_id on every table).           | MUST     |
-| FR-150 | The system MUST support per-tenant currency defaults and supported markets.                                  | MUST     |
+| FR-141 | يجب أن يدعم النظام branding مرتبط بكل tenant: logo، tokens ألوان، خط، favicon، custom domain.                | MUST     |
+| FR-142 | يجب أن يسمح النظام بـ override للصفحات القانونية لكل tenant (T&C، privacy، refund policy).                   | MUST     |
+| FR-143 | يجب أن يسمح النظام بتوجيه دفع مخصص لكل tenant (PSP + merchant account).                                       | MUST     |
+| FR-144 | يجب أن يسمح النظام بهوية إيميل "from" مخصصة لكل tenant + DKIM/DMARC لكل tenant domain.                       | MUST     |
+| FR-145 | يجب أن يسمح النظام بإعداد pricing/markup مخصص لكل tenant (مستقل عن markup الوكالة).                          | MUST     |
+| FR-146 | يجب أن يسمح النظام بـ overrides لـ feature-flag لكل tenant.                                                    | MUST     |
+| FR-147 | يجب أن يوفر النظام theming pipeline: token JSON → CSS variables مولّدة + Tailwind theme.                      | MUST     |
+| FR-148 | يجب أن يدعم النظام subdomains خاصة لكل tenant و custom apex domains أيضاً (DNS + TLS مُدار تلقائياً).         | MUST     |
+| FR-149 | يجب أن يعزل النظام بيانات الـ tenant عبر row-level security في Postgres (tenant_id في كل جدول).               | MUST     |
+| FR-150 | يجب أن يدعم النظام عملات افتراضية وأسواق مدعومة لكل tenant.                                                    | MUST     |
 
 ### Module: Fraud ML (FR-151 — FR-160)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-151 | ML-FRAUD MUST score every booking attempt in real time (p95 < 80 ms).                                        | MUST     |
-| FR-152 | ML-FRAUD MUST emit a score 0–100 plus reason codes (e.g., `VELOCITY`, `GEO_MISMATCH`, `BIN_AAVS_FAIL`).      | MUST     |
-| FR-153 | ML-FRAUD MUST cause: < 30 → frictionless; 30–70 → step-up MFA + force 3DS; > 70 → block + ops review.        | MUST     |
-| FR-154 | ML-FRAUD MUST persist score + features + decision per booking for explainability.                            | MUST     |
-| FR-155 | ML-FRAUD MUST support shadow mode (predict but do not enforce) per cohort for A/B.                           | MUST     |
-| FR-156 | ML-FRAUD MUST allow rule-based overrides (allow-list per email/IP/BIN) maintained by ops.                    | MUST     |
-| FR-157 | ML-FRAUD MUST be retrained monthly with labelled chargeback outcomes (offline pipeline).                    | MUST     |
-| FR-158 | ML-FRAUD MUST drift-monitor PSI on key features; alert on PSI > 0.2.                                         | MUST     |
-| FR-159 | ML-FRAUD MUST version models (semver) and allow rollback via flag.                                          | MUST     |
-| FR-160 | ML-FRAUD MUST be SOC-auditable; decisions surfaced in admin and support tools.                              | MUST     |
+| FR-151 | يجب أن يقيّم ML-FRAUD كل محاولة حجز في real time (p95 < 80 ms).                                                | MUST     |
+| FR-152 | يجب أن يصدر ML-FRAUD نتيجة 0–100 بالإضافة إلى reason codes (مثل `VELOCITY`، `GEO_MISMATCH`، `BIN_AAVS_FAIL`). | MUST     |
+| FR-153 | يجب أن يتسبب ML-FRAUD في: < 30 → frictionless؛ 30–70 → step-up MFA + 3DS مفروض؛ > 70 → block + مراجعة ops.   | MUST     |
+| FR-154 | يجب أن يحفظ ML-FRAUD النتيجة + features + القرار لكل حجز للقابلية للتفسير.                                    | MUST     |
+| FR-155 | يجب أن يدعم ML-FRAUD وضع shadow (يتنبأ لكن لا ينفذ) لكل cohort للـ A/B.                                       | MUST     |
+| FR-156 | يجب أن يسمح ML-FRAUD بـ overrides بناءً على قواعد (allow-list لكل email/IP/BIN) يدير الـ ops.                  | MUST     |
+| FR-157 | يجب أن يُعاد تدريب ML-FRAUD شهرياً بنتائج الـ chargeback المُصنّفة (offline pipeline).                          | MUST     |
+| FR-158 | يجب أن يراقب ML-FRAUD الـ drift عبر PSI على features رئيسية؛ تنبيه عند PSI > 0.2.                              | MUST     |
+| FR-159 | يجب أن يكون لـ ML-FRAUD إصدارات نماذج (semver) ويسمح بـ rollback عبر flag.                                    | MUST     |
+| FR-160 | يجب أن يكون ML-FRAUD قابل للتدقيق من SOC؛ القرارات ظاهرة في الـ admin وأدوات الدعم.                            | MUST     |
 
 ### Module: Dynamic Pricing (FR-161 — FR-170)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-161 | DYN-PRICE MUST apply rules in priority order: tenant override → market → channel → cohort.                   | MUST     |
-| FR-162 | DYN-PRICE MUST support markups (positive) and discounts (negative) with cap rules per supplier.              | MUST     |
-| FR-163 | DYN-PRICE MUST support elasticity hooks (A/B over conversion uplift); decision logged.                       | MUST     |
-| FR-164 | DYN-PRICE MUST allow scheduled rules (e.g., "Black Friday + 10% off intl flights").                         | MUST     |
-| FR-165 | DYN-PRICE MUST respect supplier-contract floor prices (no selling below).                                    | MUST     |
-| FR-166 | DYN-PRICE MUST display final price only (no markup leakage); audit retained.                                  | MUST     |
-| FR-167 | DYN-PRICE MUST support promo-code resolution (per code: discount, eligibility, single-use, expiry).         | MUST     |
-| FR-168 | DYN-PRICE MUST simulate rule impact against last 30 days of bookings before activation.                     | MUST     |
-| FR-169 | DYN-PRICE MUST emit pricing decision events to BI for performance reporting.                                | MUST     |
-| FR-170 | DYN-PRICE MUST allow per-tenant override (white-label) without cross-tenant impact.                          | MUST     |
+| FR-161 | يجب أن يطبق DYN-PRICE القواعد حسب أولوية: tenant override → market → channel → cohort.                       | MUST     |
+| FR-162 | يجب أن يدعم DYN-PRICE markups (موجبة) و discounts (سالبة) مع قواعد cap لكل مورد.                              | MUST     |
+| FR-163 | يجب أن يدعم DYN-PRICE elasticity hooks (A/B على ارتفاع التحويل)؛ مع تسجيل القرار.                              | MUST     |
+| FR-164 | يجب أن يسمح DYN-PRICE بقواعد مجدولة (مثل "Black Friday + 10% خصم على الرحلات الدولية").                       | MUST     |
+| FR-165 | يجب أن يحترم DYN-PRICE أسعار الـ floor المتعاقد عليها مع المورد (لا بيع تحتها).                                | MUST     |
+| FR-166 | يجب أن يعرض DYN-PRICE السعر النهائي فقط (بدون تسريب markup)؛ مع الاحتفاظ بـ audit.                            | MUST     |
+| FR-167 | يجب أن يدعم DYN-PRICE حل promo-code (لكل كود: خصم، الأهلية، استخدام واحد، انتهاء).                            | MUST     |
+| FR-168 | يجب أن يحاكي DYN-PRICE تأثير القاعدة على آخر 30 يوم من الحجوزات قبل التفعيل.                                  | MUST     |
+| FR-169 | يجب أن يصدر DYN-PRICE أحداث قرارات التسعير لـ BI لتقارير الأداء.                                              | MUST     |
+| FR-170 | يجب أن يسمح DYN-PRICE بـ override لكل tenant (white-label) بدون تأثير عبر الـ tenants.                        | MUST     |
 
 ### Module: Mobile Apps (FR-171 — FR-180)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-171 | Mobile apps MUST achieve feature parity for: search, book, pay, manage trips, profile, MFA.                  | MUST     |
-| FR-172 | Mobile apps MUST support biometric re-auth (Face ID / Touch ID / BiometricPrompt).                            | MUST     |
-| FR-173 | Mobile apps MUST support push notifications + deep links (universal links / app links).                       | MUST     |
-| FR-174 | Mobile apps MUST support offline view of upcoming bookings (cached securely).                                | MUST     |
-| FR-175 | Mobile apps MUST integrate Apple Pay (iOS) and Google Pay (Android) natively.                                | MUST     |
-| FR-176 | Mobile apps MUST integrate Wallet (PassKit / Google Wallet) for boarding-pass + voucher.                     | SHOULD   |
-| FR-177 | Mobile apps MUST support biometric step-up for refunds + payment-method ops.                                 | MUST     |
-| FR-178 | Mobile apps MUST support deep-link to schedule-change re-protect actions.                                    | MUST     |
-| FR-179 | Mobile apps MUST be released via OTA (EAS Update) for non-native bug fixes.                                  | MUST     |
-| FR-180 | Mobile apps MUST be MASVS L2 compliant (no secrets in binary, TLS pinning, jailbreak detection).             | MUST     |
+| FR-171 | يجب أن تحقق تطبيقات الموبايل تكافؤ المميزات لـ: search، book، pay، manage trips، profile، MFA.                | MUST     |
+| FR-172 | يجب أن تدعم تطبيقات الموبايل إعادة المصادقة البيومترية (Face ID / Touch ID / BiometricPrompt).                | MUST     |
+| FR-173 | يجب أن تدعم تطبيقات الموبايل push notifications + deep links (universal links / app links).                   | MUST     |
+| FR-174 | يجب أن تدعم تطبيقات الموبايل عرض offline للحجوزات القادمة (cached بأمان).                                      | MUST     |
+| FR-175 | يجب أن تتكامل تطبيقات الموبايل مع Apple Pay (iOS) و Google Pay (Android) بشكل native.                         | MUST     |
+| FR-176 | يجب أن تتكامل تطبيقات الموبايل مع Wallet (PassKit / Google Wallet) لـ boarding-pass + voucher.                | SHOULD   |
+| FR-177 | يجب أن تدعم تطبيقات الموبايل step-up بيومتري للـ refunds + عمليات payment-method.                              | MUST     |
+| FR-178 | يجب أن تدعم تطبيقات الموبايل deep-link لإجراءات schedule-change re-protect.                                    | MUST     |
+| FR-179 | يجب أن تُطلق تطبيقات الموبايل عبر OTA (EAS Update) لإصلاحات الأخطاء غير الـ native.                            | MUST     |
+| FR-180 | يجب أن تكون تطبيقات الموبايل متوافقة مع MASVS L2 (بدون secrets في الـ binary، TLS pinning، جلب جذور jailbreak). | MUST    |
 
 ---
 
-## Non-functional Requirements
+## المتطلبات غير الوظيفية
 
 ### Performance
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-001 | Flight search p95 ≤ 1.8 s region-local (cache-cold), ≤ 500 ms cache-hot.                     |
-| NFR-002 | Hotel aggregated search p95 ≤ 2.2 s (4-supplier fanout, 1.5 s per supplier budget).          |
-| NFR-003 | Non-supplier-bound API p95 ≤ 150 ms.                                                          |
-| NFR-004 | Mobile cold-start to home screen ≤ 1.8 s p95 on iPhone 12 / Pixel 6.                          |
-| NFR-005 | ML-FRAUD score p95 ≤ 80 ms; p99 ≤ 150 ms.                                                     |
-| NFR-006 | DYN-PRICE rule evaluation p95 ≤ 10 ms per offer.                                              |
-| NFR-007 | Webhook ingestion p95 ≤ 100 ms ack.                                                           |
-| NFR-008 | LCP ≤ 1.6 s, INP ≤ 150 ms, CLS ≤ 0.05.                                                        |
+| NFR-001 | flight search p95 ≤ 1.8 s محلي للمنطقة (cache-cold)، ≤ 500 ms cache-hot.                     |
+| NFR-002 | hotel aggregated search p95 ≤ 2.2 s (fanout على 4 موردين، 1.5 s budget لكل مورد).            |
+| NFR-003 | API غير المرتبط بالموردين p95 ≤ 150 ms.                                                       |
+| NFR-004 | mobile cold-start حتى home screen ≤ 1.8 s p95 على iPhone 12 / Pixel 6.                       |
+| NFR-005 | ML-FRAUD score p95 ≤ 80 ms؛ p99 ≤ 150 ms.                                                     |
+| NFR-006 | تقييم قاعدة DYN-PRICE p95 ≤ 10 ms لكل عرض.                                                    |
+| NFR-007 | webhook ingestion p95 ≤ 100 ms ack.                                                           |
+| NFR-008 | LCP ≤ 1.6 s، INP ≤ 150 ms، CLS ≤ 0.05.                                                        |
 
 ### Scalability
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-009 | Booking funnel sustains 800 RPS; peak 2000 RPS for 15 min.                                    |
-| NFR-010 | Catalog/search sustains 5000 RPS.                                                              |
-| NFR-011 | BullMQ workers MUST scale to 40 replicas; packages queue auto-scales independently.            |
-| NFR-012 | Postgres MUST run a primary + 2 sync replicas + 2 async read replicas per region.              |
-| NFR-013 | Mobile apps MUST handle 500K MAU concurrent push without backpressure.                        |
+| NFR-009 | booking funnel يحتمل 800 RPS؛ peak 2000 RPS لمدة 15 دقيقة.                                    |
+| NFR-010 | catalog/search يحتمل 5000 RPS.                                                                |
+| NFR-011 | BullMQ workers يجب أن تتوسع حتى 40 replicas؛ packages queue يتوسع تلقائياً بشكل مستقل.        |
+| NFR-012 | Postgres يجب أن يعمل primary + 2 sync replicas + 2 async read replicas لكل منطقة.             |
+| NFR-013 | تطبيقات الموبايل يجب أن تتعامل مع 500K MAU push متزامن بدون backpressure.                     |
 
 ### Availability
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-014 | Target monthly uptime 99.95% (≤ 21.6 min downtime).                                            |
-| NFR-015 | RPO ≤ 1 min (cross-region async replication), RTO ≤ 15 min for full region loss.              |
-| NFR-016 | Multi-region active-active with anycast DNS + region-aware routing (latency).                  |
-| NFR-017 | Auto-failover on region health degradation (composite health check failing 3× in 60 s).        |
-| NFR-018 | Read-after-write consistency within region; eventual cross-region (≤ 5 s for reads).           |
-| NFR-019 | Zero-downtime deploys via blue/green; mobile OTA channel for FE-only rollback.                  |
+| NFR-014 | هدف uptime شهري 99.95% (≤ 21.6 دقيقة downtime).                                                |
+| NFR-015 | RPO ≤ 1 دقيقة (cross-region async replication)، RTO ≤ 15 دقيقة لفقدان منطقة كاملة.            |
+| NFR-016 | multi-region active-active مع anycast DNS + توجيه واعي بالمنطقة (latency).                    |
+| NFR-017 | auto-failover عند تدهور صحة المنطقة (composite health check يفشل 3× في 60 ثانية).             |
+| NFR-018 | read-after-write consistency داخل المنطقة؛ eventual بين المناطق (≤ 5 s للقراءات).             |
+| NFR-019 | deploys بدون downtime عبر blue/green؛ قناة OTA للموبايل لـ rollback لتغييرات FE فقط.           |
 
 ### Security
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-020 | TLS 1.3 preferred; HSTS preload; OCSP stapling; PFS-only cipher suites.                       |
-| NFR-021 | Data at rest AES-256 with KMS-rooted KEK; per-tenant DEK rotation monthly.                    |
-| NFR-022 | Secrets in Vault (B2B-grade); short-lived dynamic credentials for DB access.                   |
-| NFR-023 | SOC 2 Type II — Security, Availability, Confidentiality — annual audit.                       |
-| NFR-024 | PCI DSS v4.0 — SAQ A-EP for B2C; scoped SAQ D-SP for payouts to suppliers.                    |
-| NFR-025 | Quarterly external pentest; monthly internal; OPA policy gates in CI.                          |
-| NFR-026 | Mobile MASVS L2; certificate pinning; secure storage of refresh tokens (Keychain/Keystore).   |
+| NFR-020 | TLS 1.3 مفضل؛ HSTS preload؛ OCSP stapling؛ مجموعات cipher بـ PFS فقط.                         |
+| NFR-021 | البيانات في الـ rest بـ AES-256 مع KEK جذر من KMS؛ DEK لكل tenant يتم rotation شهرياً.        |
+| NFR-022 | secrets في Vault (B2B-grade)؛ credentials ديناميكية قصيرة العمر لوصول الـ DB.                  |
+| NFR-023 | SOC 2 Type II — Security، Availability، Confidentiality — تدقيق سنوي.                         |
+| NFR-024 | PCI DSS v4.0 — SAQ A-EP لـ B2C؛ SAQ D-SP محدد النطاق لـ payouts للموردين.                     |
+| NFR-025 | pentest خارجي ربع سنوي؛ داخلي شهري؛ بوابات OPA policy في CI.                                  |
+| NFR-026 | mobile MASVS L2؛ certificate pinning؛ تخزين آمن لـ refresh tokens (Keychain/Keystore).        |
 
 ### Compliance & Privacy
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-027 | GDPR, Saudi PDPL, Egyptian DP Law 151/2020, UAE PDPL all honored with regional data residency. |
-| NFR-028 | DSR (export/delete/restrict) SLA: 30 days; tracked in admin.                                  |
-| NFR-029 | Data residency: KSA bookings stored in me-central-1; EU stored in eu-central-1; default eu.   |
-| NFR-030 | Right-to-be-forgotten honored within 30 d unless legal-hold flag set.                         |
-| NFR-031 | Cookie consent per region with granular controls; consent ledger.                              |
+| NFR-027 | GDPR، PDPL السعودي، قانون حماية البيانات المصري 151/2020، PDPL الإماراتي محترمة جميعها مع data residency إقليمية. |
+| NFR-028 | DSR (export/delete/restrict) SLA: 30 يوم؛ متتبع في الـ admin.                                  |
+| NFR-029 | data residency: حجوزات KSA مخزنة في me-central-1؛ EU في eu-central-1؛ الافتراضي eu.           |
+| NFR-030 | right-to-be-forgotten محترم خلال 30 يوم إلا إذا كان flag legal-hold مفعل.                      |
+| NFR-031 | cookie consent لكل منطقة مع تحكم granular؛ consent ledger.                                     |
 
 ### I18N / A11Y
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-032 | AR (RTL), EN, FR, ES — full support including emails, PDFs, mobile.                          |
-| NFR-033 | WCAG 2.1 AA + mobile platform accessibility (VoiceOver, TalkBack).                            |
-| NFR-034 | All money displayed with explicit ISO 4217 codes; locale-aware grouping/decimal separators.   |
-| NFR-035 | Locale-specific date/time formatting via ICU.                                                  |
+| NFR-032 | AR (RTL)، EN، FR، ES — دعم كامل شامل الإيميلات، PDFs، والموبايل.                              |
+| NFR-033 | WCAG 2.1 AA + إمكانية الوصول لمنصات الموبايل (VoiceOver، TalkBack).                            |
+| NFR-034 | كل المبالغ تُعرض بأكواد ISO 4217 صريحة؛ فواصل تجميع/عشرية واعية باللغة.                        |
+| NFR-035 | تنسيق تاريخ/وقت خاص باللغة عبر ICU.                                                            |
 
 ---
 
-## System Architecture
+## معمارية النظام
 
 ```
                                           GLOBAL ANYCAST / LATENCY-BASED ROUTING
@@ -453,59 +529,59 @@ In scope:
    └───────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Multi-Region Strategy
+### استراتيجية Multi-Region
 
-- DNS via Cloudflare; latency-based routing pinned to the user's nearest healthy region.
-- Writes go to the local region's primary; cross-region eventual replication (logical
-  replication, < 5 s typical).
-- Read-after-write within region (sticky session header `X-Jawla-Region`).
-- Bookings + payments routed to "source-region" sticky for the duration of a saga.
-- Tenants tagged with a **home region** for compliance (data residency).
+- DNS عبر Cloudflare؛ توجيه latency-based مثبت على أقرب منطقة سليمة للمستخدم.
+- writes تذهب للـ primary في المنطقة المحلية؛ cross-region eventual replication (logical
+  replication، عادة < 5 ثانية).
+- read-after-write داخل المنطقة (sticky session header `X-Jawla-Region`).
+- bookings + payments موجهة إلى "source-region" sticky طوال مدة الـ saga.
+- الـ tenants موسومين بـ **home region** للالتزام (data residency).
 
 ### Internal Communication
 
-- North-south: REST + GraphQL (for B2B agent portal).
-- East-west: gRPC + NATS JetStream (events).
-- Service mesh: Linkerd (mTLS).
+- north-south: REST + GraphQL (لبوابة وكلاء B2B).
+- east-west: gRPC + NATS JetStream (events).
+- service mesh: Linkerd (mTLS).
 
 ---
 
-## Database Design
+## تصميم قاعدة البيانات
 
-PostgreSQL 16 with row-level security and per-region sharding. Each table includes
-`tenant_id UUID NOT NULL`; default RLS policy `USING (tenant_id = current_setting('app.tenant_id')::uuid)`.
+PostgreSQL 16 مع row-level security و per-region sharding. كل جدول يحتوي
+`tenant_id UUID NOT NULL`؛ سياسة RLS الافتراضية `USING (tenant_id = current_setting('app.tenant_id')::uuid)`.
 
-### Enterprise tables (delta over Pro)
+### جداول Enterprise (الزيادة على Pro)
 
-| Table                  | Purpose                                                                       |
+| الجدول                 | الهدف                                                                          |
 | ---------------------- | ----------------------------------------------------------------------------- |
-| `tenants`              | Tenant registry (white-label + B2B)                                            |
-| `tenant_branding`      | Theme tokens, logos, fonts                                                     |
-| `tenant_legal`         | Legal pages overrides                                                          |
-| `tenant_psp_routes`    | Tenant-specific PSP routing                                                    |
-| `tenant_markups`       | Tenant DYN-PRICE markup rules                                                  |
-| `agencies`             | B2B agency profile (legal name, IATA, BSP)                                     |
-| `agency_users`         | Agents within an agency                                                        |
-| `agency_credit`        | Credit limits + utilization + statements                                       |
-| `agency_markups`       | Agency-level markup config                                                     |
-| `quotes`               | Saved quotes per agent / customer                                              |
-| `packages`             | Saved package templates                                                        |
-| `package_components`   | Components per package                                                         |
-| `dynpricing_rules`     | DYN-PRICE rule engine rules                                                    |
-| `dynpricing_logs`      | Decisions logged                                                               |
-| `mlfraud_scores`       | Per-booking fraud scores + features                                            |
-| `chargebacks`          | Chargeback ledger                                                              |
-| `disputes`             | Customer-initiated disputes                                                    |
-| `schedule_changes`     | Carrier schedule-change events + re-protect actions                            |
-| `data_subject_requests`| GDPR/PDPL DSR tickets                                                          |
-| `device_tokens`        | APNs/FCM tokens per user/device                                                |
-| `push_messages`        | Push log + delivery state                                                      |
-| `webhooks_outbound`    | Outbound webhook registrations + delivery retries (for B2B)                    |
-| `feature_flags`        | Flags per env / per tenant / per cohort                                        |
-| `bsp_reports`          | IATA BSP-CASS export ledger                                                    |
-| `direct_contracts`     | Negotiated hotel contracts                                                     |
+| `tenants`              | سجل الـ tenants (white-label + B2B)                                            |
+| `tenant_branding`      | tokens الـ theme، الشعارات، الخطوط                                              |
+| `tenant_legal`         | overrides للصفحات القانونية                                                     |
+| `tenant_psp_routes`    | توجيه PSP خاص بالـ tenant                                                       |
+| `tenant_markups`       | قواعد markup الـ DYN-PRICE الخاصة بالـ tenant                                  |
+| `agencies`             | profile وكالة B2B (الاسم القانوني، IATA، BSP)                                  |
+| `agency_users`         | الوكلاء داخل الوكالة                                                            |
+| `agency_credit`        | حدود الائتمان + الاستخدام + الكشوف                                              |
+| `agency_markups`       | إعداد markup على مستوى الوكالة                                                  |
+| `quotes`               | quotes محفوظة لكل agent / عميل                                                 |
+| `packages`             | قوالب packages محفوظة                                                          |
+| `package_components`   | المكونات لكل package                                                           |
+| `dynpricing_rules`     | قواعد محرك DYN-PRICE                                                           |
+| `dynpricing_logs`      | القرارات المسجلة                                                                |
+| `mlfraud_scores`       | نتائج الاحتيال + features لكل حجز                                              |
+| `chargebacks`          | سجل الـ chargeback                                                              |
+| `disputes`             | disputes يبدأها العميل                                                          |
+| `schedule_changes`     | أحداث schedule-change من الناقل + إجراءات re-protect                            |
+| `data_subject_requests`| تذاكر DSR لـ GDPR/PDPL                                                          |
+| `device_tokens`        | tokens الـ APNs/FCM لكل user/device                                            |
+| `push_messages`        | سجل الـ push + حالة التسليم                                                     |
+| `webhooks_outbound`    | تسجيلات webhook خارجية + retries للتسليم (لـ B2B)                              |
+| `feature_flags`        | flags لكل env / لكل tenant / لكل cohort                                        |
+| `bsp_reports`          | سجل تصدير IATA BSP-CASS                                                        |
+| `direct_contracts`     | عقود فنادق متفاوض عليها                                                         |
 
-### DDL Excerpts
+### مقتطفات DDL
 
 ```sql
 CREATE TABLE tenants (
@@ -691,20 +767,20 @@ CREATE TABLE bsp_reports (
 );
 ```
 
-### Indexes
+### الـ Indexes
 
-- All `tenant_id` columns indexed; multi-column indexes for tenant-scoped hot queries.
-- `bookings(tenant_id, status, created_at DESC)` for tenant timelines.
-- GIN on JSONB columns for ad-hoc filtering.
-- BRIN indexes for time-series tables (`audit_events`, `dynpricing_logs`,
+- كل أعمدة `tenant_id` بها index؛ multi-column indexes للاستعلامات الحارة المرتبطة بـ tenant.
+- `bookings(tenant_id, status, created_at DESC)` لجداول زمنية للـ tenant.
+- GIN على أعمدة JSONB للـ filtering الـ ad-hoc.
+- BRIN indexes للجداول الزمنية (`audit_events`، `dynpricing_logs`،
   `mlfraud_scores`).
 
 ---
 
-## API Design
+## تصميم الـ API
 
-70 endpoints. Inherits Pro tier endpoints. Auth via JWT or per-tenant API key
-(B2B). All endpoints multi-tenant by header `X-Jawla-Tenant: <slug>` (resolved at
+70 endpoint. يرث endpoints الباقة Pro. المصادقة عبر JWT أو API key لكل tenant
+(B2B). كل الـ endpoints multi-tenant عبر header `X-Jawla-Tenant: <slug>` (يُحل في الـ
 gateway).
 
 | #  | METHOD | PATH                                             | Auth        | Status   |
@@ -782,42 +858,42 @@ gateway).
 
 ### Outbound Webhooks (B2B)
 
-`POST {tenant.webhook_url}` signed with HMAC-SHA256 over body + timestamp using
-tenant-specific secret. Events:
+`POST {tenant.webhook_url}` موقع بـ HMAC-SHA256 على body + timestamp باستخدام
+secret خاص بالـ tenant. الأحداث:
 
-- `booking.created`, `booking.confirmed`, `booking.cancelled`, `booking.refunded`,
-  `payment.refunded`, `payment.chargeback`, `schedule.change.detected`,
+- `booking.created`، `booking.confirmed`، `booking.cancelled`، `booking.refunded`،
+  `payment.refunded`، `payment.chargeback`، `schedule.change.detected`،
   `supplier.health.degraded`.
 
-Delivery: at-least-once with exponential backoff (1s, 8s, 64s, 5m, 30m, 2h, 12h);
-max 7 attempts, then dead-letter.
+التسليم: at-least-once مع exponential backoff (1s، 8s، 64s، 5m، 30m، 2h، 12h)؛
+حد أقصى 7 محاولات، ثم dead-letter.
 
 ---
 
-## Authentication & Authorization
+## المصادقة والتصريح
 
-### Token Model
+### نموذج Tokens
 
-- Access JWT 10 min, refresh 30 d (rotated, family-aware). Mobile uses DPoP-bound
-  refresh tokens.
-- New claims: `tenant_id`, `agency_id?`, `mfa: bool`, `step_up_until: <epoch>`,
-  `region`, `risk: 0..100`.
-- Refresh tokens stored hashed; rotation revokes prior; reuse → entire family
-  invalidated.
+- access JWT 10 دقائق، refresh 30 يوم (rotated، family-aware). الموبايل يستخدم
+  refresh tokens مرتبطة بـ DPoP.
+- claims جديدة: `tenant_id`، `agency_id?`، `mfa: bool`، `step_up_until: <epoch>`،
+  `region`، `risk: 0..100`.
+- refresh tokens مخزنة بـ hash؛ الـ rotation يلغي السابق؛ إعادة الاستخدام →
+  العائلة كلها تُبطل.
 
 ### Identity Providers
 
-- B2C: email/password, Google, Apple, WebAuthn passkey.
-- B2B: SAML 2.0 + OIDC per tenant; SCIM 2.0 user lifecycle; mandatory MFA for
-  finance/admin roles.
-- Mobile: device-bound refresh with WebAuthn or biometric re-auth.
+- B2C: email/password، Google، Apple، WebAuthn passkey.
+- B2B: SAML 2.0 + OIDC لكل tenant؛ دورة حياة المستخدم بـ SCIM 2.0؛ MFA إجباري لأدوار
+  finance/admin.
+- Mobile: refresh مرتبط بالجهاز مع WebAuthn أو إعادة مصادقة بيومترية.
 
-### Authorization Model
+### نموذج التصريح
 
-- **RBAC** for role coarse-grain + **ABAC via OPA** for fine-grain decisions
-  (tenant scope, agency scope, region scope).
-- OPA policy bundles signed; loaded at startup; hot-reload on bundle update.
-- Sample policy:
+- **RBAC** للدور على مستوى عام + **ABAC عبر OPA** للقرارات الدقيقة
+  (نطاق الـ tenant، نطاق الـ agency، نطاق المنطقة).
+- bundles من OPA policies موقعة؛ تُحمل عند البدء؛ hot-reload عند تحديث الـ bundle.
+- policy نموذجية:
 
 ```rego
 package jawla.authz
@@ -844,66 +920,66 @@ role_can_read_booking["support"]
 
 ### MFA
 
-- TOTP (RFC 6238), WebAuthn (FIDO2), backup codes.
-- Step-up required for: refunds, payment-method ops, MFA disable, role assignment,
-  white-label theming changes.
+- TOTP (RFC 6238)، WebAuthn (FIDO2)، backup codes.
+- step-up مطلوب لـ: refunds، عمليات payment-method، تعطيل MFA، تعيين الأدوار،
+  تغييرات theming الـ white-label.
 
 ---
 
-## Security
+## الأمان
 
-### OWASP / ASVS L3 Mitigations (delta)
+### تخفيفات OWASP / ASVS L3 (الزيادة)
 
-| Area                         | Control                                                                                                  |
+| المجال                       | التحكم                                                                                                    |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Authentication               | WebAuthn, DPoP, refresh families, anomaly detection (impossible travel)                                  |
-| Authorization                | OPA policy bundles, RLS in Postgres, deny-by-default                                                     |
-| Cryptography                 | KMS hierarchy, monthly DEK rotation, AES-256-GCM with AAD, RSA-OAEP for envelope                         |
-| Input Validation             | Zod everywhere; gateway-level schema enforcement; JSON-Schema for outbound webhooks                      |
-| Logging/Monitoring           | SIEM (Vector → Sumo/ELK), centralized audit; access reviewed quarterly                                   |
-| Mobile                       | MASVS L2; cert pinning; jailbreak/root detection (informational); secure storage                        |
-| SSRF / Egress                | Egress gateway with allow-list, DNS pinning, signed-URL requirements for vendor pulls                    |
-| Supply Chain                 | Cosign signed images, SBOMs (CycloneDX), Snyk in CI, GitHub branch protection                            |
-| Insider                      | Just-in-time DB credentials via Vault; PAM (Teleport) for prod shell; session recording                   |
+| Authentication               | WebAuthn، DPoP، عائلات refresh، كشف الشذوذ (impossible travel)                                            |
+| Authorization                | bundles OPA policy، RLS في Postgres، deny-by-default                                                      |
+| Cryptography                 | KMS hierarchy، rotation شهري للـ DEK، AES-256-GCM مع AAD، RSA-OAEP للـ envelope                          |
+| Input Validation             | Zod في كل مكان؛ فرض schema على مستوى الـ gateway؛ JSON-Schema للـ webhooks الخارجية                       |
+| Logging/Monitoring           | SIEM (Vector → Sumo/ELK)، audit مركزي؛ الوصول مراجع ربع سنوياً                                            |
+| Mobile                       | MASVS L2؛ cert pinning؛ كشف jailbreak/root (إعلامي)؛ تخزين آمن                                            |
+| SSRF / Egress                | egress gateway مع allow-list، DNS pinning، شروط signed-URL لسحب البائعين                                  |
+| Supply Chain                 | صور موقعة بـ Cosign، SBOMs (CycloneDX)، Snyk في CI، حماية branch في GitHub                                |
+| Insider                      | credentials DB just-in-time عبر Vault؛ PAM (Teleport) لـ prod shell؛ تسجيل الجلسات                        |
 
-### Encryption
+### التشفير
 
-- KMS hierarchy: AWS KMS root → per-region KEK → per-tenant DEK → per-record DEK.
-- Field-level encryption (AES-256-GCM) for: travel-doc numbers, B2B credit-card BIN
-  details, customer addresses, agent commission rates.
-- Object storage SSE-KMS; lifecycle to Glacier Deep Archive after 1 y.
+- KMS hierarchy: AWS KMS root → KEK لكل منطقة → DEK لكل tenant → DEK لكل سجل.
+- تشفير على مستوى الحقل (AES-256-GCM) لـ: أرقام مستندات السفر، تفاصيل BIN لبطاقات
+  B2B، عناوين العملاء، نسب commission الوكلاء.
+- تخزين الكائنات SSE-KMS؛ lifecycle إلى Glacier Deep Archive بعد سنة.
 
 ### PCI DSS
 
-- SAQ A-EP for B2C (PSP-hosted fields).
-- SAQ D-SP scope for supplier payouts (because we instruct funds movement); annual
-  on-site audit + quarterly ASV scan; segmentation tested annually.
+- SAQ A-EP لـ B2C (حقول مستضافة من PSP).
+- نطاق SAQ D-SP لـ payouts الموردين (لأننا نوجه حركة الأموال)؛ تدقيق سنوي
+  في الموقع + ASV scan ربع سنوي؛ التقسيم مختبر سنوياً.
 
-### Compliance Programs
+### برامج الالتزام
 
-- SOC 2 Type II — Security, Availability, Confidentiality. Controls catalog in
-  Vanta/Drata; annual audit.
-- GDPR DPIA per new processing activity; DPO sign-off; record-of-processing.
-- Tenant-specific DPAs available; sub-processor list public.
+- SOC 2 Type II — Security، Availability، Confidentiality. كتالوج التحكم في
+  Vanta/Drata؛ تدقيق سنوي.
+- DPIA GDPR لكل نشاط معالجة جديد؛ موافقة DPO؛ record-of-processing.
+- DPAs خاصة بالـ tenant متاحة؛ قائمة sub-processors عامة.
 
 ### Rate Limiting
 
 - Edge (Cloudflare): DDoS + bot fight.
-- App (NestJS): token-bucket per (route, principal) — principal can be user, agency,
-  tenant, or IP.
-- Adaptive: ML-FRAUD high score → tighter limits.
+- App (NestJS): token-bucket لكل (route، principal) — الـ principal ممكن يكون user،
+  agency، tenant، أو IP.
+- تكيفي: ML-FRAUD high score → حدود أضيق.
 
 ### Secrets
 
-- HashiCorp Vault (HA cluster, auto-unseal via KMS).
-- Dynamic credentials for Postgres (15 min TTL) per service.
-- Static secrets (3rd-party API keys) rotated quarterly with runbooks.
+- HashiCorp Vault (HA cluster، auto-unseal عبر KMS).
+- credentials ديناميكية لـ Postgres (TTL 15 دقيقة) لكل خدمة.
+- secrets ثابتة (3rd-party API keys) rotation ربع سنوي مع runbooks.
 
 ---
 
-## Booking Workflow
+## Workflow الحجز
 
-### Saga (Enterprise, package-aware)
+### Saga (Enterprise، يدرك الـ packages)
 
 ```
             cart.checkout
@@ -939,33 +1015,32 @@ role_can_read_booking["support"]
                                        CONFIRMED
 ```
 
-### Compensation Rules
+### قواعد التعويض
 
-- For each confirmed supplier action, a typed compensator exists (cancel PNR,
-  cancel hotel booking, cancel transfer, cancel activity).
-- If compensation fails, the booking is parked in `MANUAL_OPS_REQUIRED` with an
-  alert and a runbook link in the admin.
+- لكل إجراء مورد مؤكد، يوجد compensator مكتوب بنوع (إلغاء PNR،
+  إلغاء حجز فندق، إلغاء transfer، إلغاء activity).
+- إذا فشل التعويض، الحجز يُوقف في `MANUAL_OPS_REQUIRED` مع تنبيه ورابط runbook في الـ admin.
 
-### Timeouts (Enterprise)
+### المهل (Enterprise)
 
-| Step             | Hard timeout | Retry                                 |
-| ---------------- | ------------ | ------------------------------------- |
-| Pre-fraud check  | 80 ms        | none (fallthrough = ALLOW on timeout) |
-| Price confirm    | 6 s          | 1 retry                                |
-| Supplier book    | 25 s each    | 3 retries exp                          |
-| Payment capture  | 8 s          | 5 retries exp                          |
-| Notify           | 5 min queued | 5 retries                              |
-| Invoice          | 60 s         | 3 retries                              |
+| الخطوة            | hard timeout | إعادة المحاولة                          |
+| ----------------- | ------------ | --------------------------------------- |
+| pre-fraud check   | 80 ms        | لا شيء (fallthrough = ALLOW عند timeout) |
+| price confirm     | 6 s          | 1 retry                                  |
+| supplier book     | 25 s لكل واحد | 3 retries exp                            |
+| payment capture   | 8 s          | 5 retries exp                            |
+| notify            | 5 min queued | 5 retries                                |
+| invoice           | 60 s         | 3 retries                                |
 
 ### Idempotency
 
-- `Idempotency-Key` UUIDv7 required on all POST that mutate state.
-- Stored 24 h with response hash + status; replays return original response.
-- Per-tenant scoped (key namespace = tenant).
+- `Idempotency-Key` UUIDv7 مطلوب على كل POST يغير الحالة.
+- مخزن 24 ساعة مع hash للاستجابة + status؛ الـ replays ترجع الاستجابة الأصلية.
+- محدد النطاق لكل tenant (key namespace = tenant).
 
 ---
 
-## Flight Flow (Enterprise)
+## Flow الطيران (Enterprise)
 
 ```
 search ──▶ multi-source fanout (Amadeus + Sabre/NDC + direct connects + corporate fares)
@@ -990,7 +1065,7 @@ exchange flow ──▶ NDC change endpoints where supported; otherwise cancel+r
 
 ---
 
-## Hotel Flow (4-supplier fanout, contracted rates)
+## Flow الفنادق (fanout على 4 موردين، أسعار متعاقد عليها)
 
 ```
 search                ──▶ aggregator.search(canonicalCity, dates, guests)
@@ -1007,7 +1082,7 @@ schedule_changes      ──▶ supplier event → re-protect workflow + custome
 
 ---
 
-## Payment Flow (multi-PSP + fraud + B2B credit)
+## Flow الدفع (multi-PSP + fraud + B2B credit)
 
 ### B2C
 
@@ -1039,7 +1114,7 @@ trigger (customer | ops | rule) ──▶ refund saga
    - notify
 ```
 
-### Chargeback Lifecycle
+### دورة حياة Chargeback
 
 ```
 PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
@@ -1058,236 +1133,236 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 
 ## Admin Modules
 
-See FR-109..126 for the list. In addition to Pro:
+راجع FR-109..126 للقائمة. بالإضافة لما في Pro:
 
-| Page                            | Capabilities                                                              |
+| الصفحة                          | الإمكانيات                                                                  |
 | ------------------------------- | ------------------------------------------------------------------------- |
-| Tenants                         | Create, suspend, branding, domains, legal pages, PSP routes               |
-| DYN-PRICE                       | Rule CRUD, priority editor, simulator, A/B history                        |
-| ML-FRAUD                        | Score histograms, decision audit, override allow-list, model rollback     |
-| Region health                   | Per-region traffic, error rate, replication lag, edge cache hit ratio    |
-| Queues                          | BullMQ per-queue depth, oldest job age, failure rate, requeue button     |
-| Chargebacks                     | Open cases, evidence pack auto-assemble, submission workflow              |
-| Disputes                        | Customer disputes, evidence upload, status pipeline                       |
-| Schedule changes                | Mass re-protect, customer comms templates per change                      |
-| BSP / CASS                      | Periodic reports, exports, IATA submissions                                |
-| Content CMS                     | Marketing, blog, deals, banners with per-tenant variants                  |
-| Promo / Coupon engine           | Code CRUD, eligibility rules, redemption, fraud guard                     |
-| Audit                           | Faceted search, CSV export, retention browser                              |
-| DSR Console                     | DSR cases, regulatory clock, legal hold                                   |
-| Incident Response               | Status board, runbooks, postmortems                                       |
-| Release Mgmt                    | Feature-flag editor, cohort targeting, kill-switches                     |
-| Agency Mgmt                     | Onboarding, credit, mark-ups, BSP reports, commission                     |
-| Direct Contracts                | Hotel direct-contract ingestion, validity windows, monitoring            |
+| Tenants                         | إنشاء، تعليق، branding، domains، صفحات قانونية، PSP routes                |
+| DYN-PRICE                       | CRUD للقواعد، محرر priority، simulator، تاريخ A/B                          |
+| ML-FRAUD                        | histograms للنتائج، audit للقرارات، override allow-list، rollback النموذج |
+| Region health                   | حركة لكل منطقة، معدل الخطأ، replication lag، نسبة edge cache hit          |
+| Queues                          | عمق BullMQ لكل queue، عمر أقدم job، معدل الفشل، زر requeue                |
+| Chargebacks                     | الحالات المفتوحة، تجميع تلقائي لحزمة الأدلة، workflow الإرسال              |
+| Disputes                        | disputes العملاء، رفع أدلة، pipeline الحالة                                |
+| Schedule changes                | re-protect جماعي، قوالب comms للعملاء لكل تغيير                            |
+| BSP / CASS                      | تقارير دورية، exports، إرسالات IATA                                        |
+| Content CMS                     | تسويق، مدونة، عروض، banners مع variants لكل tenant                        |
+| Promo / Coupon engine           | CRUD للأكواد، قواعد الأهلية، الاسترداد، حماية احتيال                       |
+| Audit                           | بحث faceted، CSV export، browser للاحتفاظ                                  |
+| DSR Console                     | حالات DSR، الساعة التنظيمية، legal hold                                    |
+| Incident Response               | لوحة الحالة، runbooks، postmortems                                         |
+| Release Mgmt                    | محرر feature-flag، استهداف cohort، kill-switches                          |
+| Agency Mgmt                     | onboarding، credit، mark-ups، تقارير BSP، commission                      |
+| Direct Contracts                | استقبال عقود فنادق مباشرة، نوافذ صلاحية، مراقبة                            |
 
 ---
 
-## Deployment
+## النشر
 
-### Topology
+### الـ Topology
 
-- **Frontend (Next.js)**: Vercel with multi-region deployment + edge functions in
-  3 regions; mobile builds via EAS with separate `production` + `staging` channels.
-- **Backend**: Kubernetes (EKS/GKE) per region; ArgoCD GitOps; Helm charts;
+- **Frontend (Next.js)**: Vercel مع deployment متعدد المناطق + edge functions في
+  3 مناطق؛ builds الموبايل عبر EAS مع قنوات `production` + `staging` منفصلة.
+- **Backend**: Kubernetes (EKS/GKE) لكل منطقة؛ ArgoCD GitOps؛ Helm charts؛
   Linkerd mTLS mesh.
-- **Database**: managed Postgres per region with logical replication; pgvector
-  extension for hotel-similarity model lookups.
-- **Cache/Queue**: ElastiCache for Redis Cluster per region + cross-region replication
-  for queues; NATS JetStream for events.
-- **Object storage**: S3 with cross-region replication; Glacier Deep Archive.
+- **Database**: Postgres مُدار لكل منطقة مع logical replication؛ pgvector
+  extension لعمليات بحث نموذج تشابه الفنادق.
+- **Cache/Queue**: ElastiCache for Redis Cluster لكل منطقة + cross-region replication
+  للـ queues؛ NATS JetStream للأحداث.
+- **Object storage**: S3 مع cross-region replication؛ Glacier Deep Archive.
 - **CDN/WAF**: Cloudflare global anycast + WAF + bot management.
 
 ### CI/CD
 
-| Stage              | Steps                                                                                |
+| المرحلة            | الخطوات                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------ |
-| lint               | eslint, prettier, tsc                                                                |
-| test:unit          | Jest, RTL, ≥ 85% lines                                                               |
+| lint               | eslint، prettier، tsc                                                                |
+| test:unit          | Jest، RTL، ≥ 85% lines                                                               |
 | test:integration   | testcontainers + WireMock                                                            |
-| test:contract      | Pact verify all supplier + PSP                                                       |
-| test:e2e           | Playwright per region per locale                                                     |
-| test:mobile        | Detox on simulator + EAS Build smoke                                                 |
-| build              | docker buildx multi-arch; Cosign sign; SBOM CycloneDX; Snyk + Trivy                  |
+| test:contract      | Pact verify لكل supplier + PSP                                                       |
+| test:e2e           | Playwright لكل منطقة لكل لغة                                                          |
+| test:mobile        | Detox على simulator + EAS Build smoke                                                |
+| build              | docker buildx multi-arch؛ Cosign sign؛ SBOM CycloneDX؛ Snyk + Trivy                 |
 | deploy:preview     | Vercel preview + per-PR k8s namespace                                                |
-| deploy:staging     | ArgoCD sync on merge to `main`                                                       |
-| smoke:staging      | Synthetic flight+hotel+package booking                                                |
-| deploy:prod        | Manual approval → progressive (per-region canary)                                    |
-| post-deploy        | OTel synthetic check; auto-rollback on SLO regression                                |
-| mobile:OTA         | EAS Update channel deploy for FE-only fixes                                          |
+| deploy:staging     | ArgoCD sync عند merge إلى `main`                                                     |
+| smoke:staging      | حجز اصطناعي flight+hotel+package                                                      |
+| deploy:prod        | موافقة يدوية → تدريجي (canary لكل منطقة)                                              |
+| post-deploy        | OTel synthetic check؛ auto-rollback عند تراجع SLO                                    |
+| mobile:OTA         | EAS Update channel deploy لإصلاحات FE فقط                                            |
 
-### Environment Variables (additions over Pro)
+### متغيرات البيئة (إضافات على Pro)
 
-| Var                              | Purpose                                                |
+| المتغير                          | الهدف                                                  |
 | -------------------------------- | ------------------------------------------------------ |
 | `EXPEDIA_RAPID_KEY`/`_SECRET`    | Expedia Rapid                                          |
 | `TAP_API_KEY`/`_SECRET`          | Tap Payments                                           |
 | `APNS_KEY_ID`/`_TEAM_ID`/`_P8`   | APNs auth                                              |
 | `FCM_SERVICE_ACCOUNT`            | FCM v1                                                 |
-| `SAML_IDP_METADATA_<tenant>`     | Per-tenant SAML metadata                               |
-| `OPA_BUNDLE_URL`                 | OPA policy bundle                                      |
-| `MLFRAUD_API_URL`/`_TOKEN`       | ML-FRAUD service                                       |
-| `DYN_PRICE_API_URL`              | DYN-PRICE service                                       |
-| `NATS_URL`                       | Event bus                                              |
+| `SAML_IDP_METADATA_<tenant>`     | metadata SAML لكل tenant                               |
+| `OPA_BUNDLE_URL`                 | bundle policy لـ OPA                                   |
+| `MLFRAUD_API_URL`/`_TOKEN`       | خدمة ML-FRAUD                                          |
+| `DYN_PRICE_API_URL`              | خدمة DYN-PRICE                                          |
+| `NATS_URL`                       | event bus                                              |
 | `VAULT_ADDR`/`VAULT_ROLE`        | Vault                                                  |
-| `KMS_KEY_ARN_<region>`           | KMS per region                                         |
+| `KMS_KEY_ARN_<region>`           | KMS لكل منطقة                                          |
 
 ---
 
 ## Logging
 
-- Pino (Node) + structlog (Python ML services).
-- Required fields: `ts`, `level`, `service`, `region`, `tenant_id`, `actor_id`,
-  `correlation_id`, `trace_id`, `span_id`, `route`, `msg`.
-- Routing: stdout → Vector → ClickHouse (analytics) + S3 cold + SIEM (Splunk/Sumo).
-- Sensitive redaction expanded: card_*, doc_*, otp, password, secret, ssn,
-  tax_id, agency_credit_details, mlfraud_features (PII-scrubbed only).
-- Retention: 30 d hot; 2 y warm; 7 y audit (S3 Object Lock + WORM).
+- Pino (Node) + structlog (خدمات Python ML).
+- الحقول المطلوبة: `ts`، `level`، `service`، `region`، `tenant_id`، `actor_id`،
+  `correlation_id`، `trace_id`، `span_id`، `route`، `msg`.
+- التوجيه: stdout → Vector → ClickHouse (analytics) + S3 cold + SIEM (Splunk/Sumo).
+- redaction الحساس موسع: card_*، doc_*، otp، password، secret، ssn،
+  tax_id، agency_credit_details، mlfraud_features (مع PII منزوع فقط).
+- الاحتفاظ: 30 يوم hot؛ 2 سنة warm؛ 7 سنوات audit (S3 Object Lock + WORM).
 
 ---
 
-## Monitoring
+## المراقبة
 
-- Stack: Sentry, Grafana Cloud, Datadog APM (mobile), PagerDuty, StatusPage.
-- OpenTelemetry SDK end-to-end (web, mobile, API, workers, ML services).
+- الـ stack: Sentry، Grafana Cloud، Datadog APM (موبايل)، PagerDuty، StatusPage.
+- OpenTelemetry SDK من البداية للنهاية (web، mobile، API، workers، خدمات ML).
 
 ### Metrics
 
-| Metric                                       | Notes                                          |
+| Metric                                       | ملاحظات                                          |
 | -------------------------------------------- | ---------------------------------------------- |
-| `http_server_duration_ms`                    | by route, status, region                       |
-| `supplier_call_duration_ms`                  | per supplier, op                               |
-| `aggregator_partial_results_total`           | per supplier-fail breakdown                    |
-| `saga_step_duration_ms`                      | per step                                       |
-| `saga_compensation_total`                    | per step                                       |
-| `package_assembly_duration_ms`               | end-to-end                                     |
-| `mlfraud_score_latency_ms`                   | service histogram                              |
-| `mlfraud_decision_total`                     | by decision                                    |
-| `dynpricing_eval_duration_ms`                | rule eval                                      |
-| `dynpricing_decision_total`                  | by rule                                        |
-| `chargeback_opened_total`                    | by PSP, reason                                 |
-| `payment_route_choice_total`                 | by PSP                                         |
-| `notification_delivery_total`                | by channel + status                             |
-| `pg_pool_in_use`                             | per region                                     |
+| `http_server_duration_ms`                    | حسب route، status، region                       |
+| `supplier_call_duration_ms`                  | لكل supplier، op                                |
+| `aggregator_partial_results_total`           | تفصيل لكل supplier-fail                         |
+| `saga_step_duration_ms`                      | لكل step                                        |
+| `saga_compensation_total`                    | لكل step                                        |
+| `package_assembly_duration_ms`               | من البداية للنهاية                              |
+| `mlfraud_score_latency_ms`                   | histogram للخدمة                                |
+| `mlfraud_decision_total`                     | حسب القرار                                      |
+| `dynpricing_eval_duration_ms`                | تقييم القاعدة                                    |
+| `dynpricing_decision_total`                  | حسب القاعدة                                     |
+| `chargeback_opened_total`                    | حسب PSP، السبب                                  |
+| `payment_route_choice_total`                 | حسب PSP                                         |
+| `notification_delivery_total`                | حسب القناة + الحالة                              |
+| `pg_pool_in_use`                             | لكل منطقة                                        |
 | `redis_command_duration_ms`                  |                                                |
-| `nats_messages_processed_total`              | by subject                                     |
-| `mobile_app_crash_free_users`                | per platform                                   |
+| `nats_messages_processed_total`              | حسب subject                                     |
+| `mobile_app_crash_free_users`                | لكل منصة                                        |
 | `mobile_app_cold_start_ms`                   | p95                                            |
 
-### Alerts (Enterprise)
+### التنبيهات (Enterprise)
 
-| Condition                                                       | Severity | Routing            |
+| الشرط                                                           | الخطورة  | التوجيه            |
 | --------------------------------------------------------------- | -------- | ------------------ |
-| API p95 > 400 ms for 5 min                                      | page     | PagerDuty          |
-| Region availability degraded (composite check 3× in 60s)        | page     | PagerDuty + COO    |
-| Saga compensation rate > 1.5% for 15 min                        | page     | PagerDuty          |
-| Aggregator partial-results > 15% for 15 min                     | warn     | #ops               |
-| ML-FRAUD score skew (PSI > 0.2)                                 | warn     | ML on-call         |
-| ML-FRAUD service latency p95 > 80 ms                            | page     | ML on-call         |
-| DYN-PRICE rule simulator misfire (post-deploy delta > 10%)      | page     | product on-call    |
-| Chargeback rate > 0.5% trailing 7 d                             | page     | finance on-call    |
-| WA delivery failure > 10% over 15 min                           | warn     | #ops               |
-| Push delivery failure > 5% over 15 min                          | warn     | #ops               |
+| API p95 > 400 ms لمدة 5 دقائق                                   | page     | PagerDuty          |
+| توفر منطقة متدهور (composite check 3× في 60s)                  | page     | PagerDuty + COO    |
+| معدل تعويض الـ saga > 1.5% لمدة 15 دقيقة                       | page     | PagerDuty          |
+| نتائج جزئية من الـ aggregator > 15% لمدة 15 دقيقة              | warn     | #ops               |
+| انحراف نتائج ML-FRAUD (PSI > 0.2)                              | warn     | ML on-call         |
+| latency خدمة ML-FRAUD p95 > 80 ms                              | page     | ML on-call         |
+| إخفاق simulator قواعد DYN-PRICE (delta بعد deploy > 10%)       | page     | product on-call    |
+| معدل chargeback > 0.5% خلال 7 أيام                             | page     | finance on-call    |
+| فشل تسليم WA > 10% خلال 15 دقيقة                                | warn     | #ops               |
+| فشل تسليم Push > 5% خلال 15 دقيقة                               | warn     | #ops               |
 | Postgres replication lag > 10 s                                 | warn     | DBA                |
-| KMS error rate > 0% over 5 min                                  | page     | sec on-call        |
-| 5xx > 0.3% for 5 min                                            | page     | PagerDuty          |
-| Mobile crash-free users < 99.5% (rolling 24h)                   | page     | mobile on-call     |
+| معدل أخطاء KMS > 0% خلال 5 دقائق                                | page     | sec on-call        |
+| 5xx > 0.3% لمدة 5 دقائق                                         | page     | PagerDuty          |
+| crash-free users للموبايل < 99.5% (rolling 24h)                | page     | mobile on-call     |
 
 ---
 
-## Testing Strategy
+## استراتيجية الاختبار
 
-| Layer            | Tooling                                | Target                              |
+| الطبقة           | الأدوات                                | الهدف                               |
 | ---------------- | -------------------------------------- | ----------------------------------- |
-| Unit (BE)        | Jest                                   | ≥ 90% lines, ≥ 80% branches         |
+| Unit (BE)        | Jest                                   | ≥ 90% lines، ≥ 80% branches         |
 | Unit (FE)        | Jest + RTL                             | ≥ 85% lines                         |
 | Unit (mobile)    | Jest                                   | ≥ 80% lines                         |
-| Integration      | testcontainers + WireMock              | All services                        |
-| Contract         | Pact for every supplier + PSP          | 100% adapters                       |
-| Property-based   | fast-check (aggregator, pricing)       | Critical invariants                 |
-| ML model         | Offline holdout + A/B in shadow        | AUC > 0.85; FPR < 1%                |
-| E2E web          | Playwright; multi-locale RTL           | Critical paths                      |
-| E2E mobile       | Detox + Maestro                        | Critical paths per platform         |
-| Performance      | k6 + Argo Workflows                    | NFR-009/010 sustained               |
-| Chaos            | Toxiproxy + ChaosMesh                  | Survive 1 supplier + 1 region degradation |
-| Accessibility    | axe + manual quarterly audit + mobile  | Zero serious                        |
-| Security         | OWASP ZAP, Burp (quarterly manual)     | Zero unmitigated highs              |
-| Pen-test         | External quarterly                     | All highs remediated <30d           |
+| Integration      | testcontainers + WireMock              | كل الخدمات                          |
+| Contract         | Pact لكل supplier + PSP                | 100% adapters                       |
+| Property-based   | fast-check (aggregator، pricing)       | الثوابت الحرجة                       |
+| ML model         | offline holdout + A/B في shadow         | AUC > 0.85؛ FPR < 1%                |
+| E2E web          | Playwright؛ multi-locale RTL            | المسارات الحرجة                      |
+| E2E mobile       | Detox + Maestro                        | المسارات الحرجة لكل منصة            |
+| Performance      | k6 + Argo Workflows                    | NFR-009/010 مستدام                   |
+| Chaos            | Toxiproxy + ChaosMesh                  | يصمد ضد تعطل supplier واحد + منطقة واحدة |
+| Accessibility    | axe + تدقيق يدوي ربع سنوي + الموبايل   | صفر مشكلات خطيرة                    |
+| Security         | OWASP ZAP، Burp (يدوي ربع سنوي)        | صفر highs غير معالجة                |
+| Pen-test         | خارجي ربع سنوي                          | كل الـ highs مُعالجة < 30 يوم        |
 
 ---
 
-## Acceptance Tests
+## اختبارات القبول
 
-> Pro + Basic ATs remain. Enterprise adds AT-047..085.
+> ATs الـ Pro والـ Basic تبقى. الـ Enterprise يضيف AT-047..085.
 
-| ID      | Title                                            | Given                                                       | When                                          | Then                                                                                  |
+| ID      | العنوان                                          | Given                                                       | When                                          | Then                                                                                  |
 | ------- | ------------------------------------------------ | ----------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------- |
-| AT-047  | Tenant-scoped data isolation                    | Two tenants A and B with one user each                       | Tenant A user calls list bookings              | No bookings of tenant B are returned.                                                  |
-| AT-048  | RLS row policy guard                            | Background job runs without setting `app.tenant_id`         | Query bookings                                | Postgres returns zero rows; query logged.                                              |
-| AT-049  | SAML SSO B2B                                    | Agency tenant configured Okta SAML                          | Agent navigates to /auth/saml/{tenant}/sso     | Redirect to Okta; on ACS, agent logged in with role and agency claims.                |
-| AT-050  | SCIM provisioning                               | Okta sends SCIM create-user                                  | API receives request                          | User created, role mapped, agency linked.                                              |
-| AT-051  | WebAuthn passkey enroll                         | Authenticated user with platform authenticator              | Enroll passkey                                | Credential stored; subsequent login succeeds without password.                        |
-| AT-052  | DPoP-bound refresh on mobile                    | Mobile app uses DPoP-bound refresh                          | Attacker steals refresh token                 | Use without proof → 401 invalid_dpop_proof.                                            |
-| AT-053  | ML-FRAUD allow                                  | Score 12                                                     | Booking attempted                              | Frictionless flow; 3DS challenge per RTS rule only.                                   |
-| AT-054  | ML-FRAUD challenge                              | Score 55                                                     | Booking attempted                              | Step-up MFA required; PSP intent created with 3DS forced.                              |
-| AT-055  | ML-FRAUD block                                  | Score 88                                                     | Booking attempted                              | Booking rejected; ops review queue row created; user told to contact support.         |
-| AT-056  | DYN-PRICE markup                                | Rule: +5% on EU outbound flights                            | EU outbound flight searched                   | Offer total shown is supplier_price * 1.05; markup logged.                            |
-| AT-057  | DYN-PRICE floor enforcement                     | Rule wants -10% but supplier floor is -5%                   | Search                                        | Discount capped to -5%; audit row notes cap.                                          |
-| AT-058  | Promo code single-use                           | Code applies to first booking only                          | User redeems twice                            | Second redemption rejected `PROMO_ALREADY_USED`.                                       |
-| AT-059  | Package atomic confirm                          | Flight + hotel + transfer package                            | Transfer fails after flight + hotel booked    | Flight + hotel cancelled; payment voided; FAILED state with explanation.              |
-| AT-060  | Package voucher                                 | Confirmed package                                            | Voucher generated                              | Single PDF with all components, ICS calendar attached.                                 |
-| AT-061  | Multi-region read-after-write                   | Booking confirmed in eu-central-1                            | User next request lands on me-central-1        | Booking is visible within 5 s (with optional stickiness header).                       |
-| AT-062  | Region failover                                 | eu-central-1 marked unhealthy                                | DNS resolution                                 | Traffic shifts to me-central-1; sagas in-flight resumed via NATS mirror.              |
-| AT-063  | Active-active write divergence guard            | Same booking ref drafted in both regions                    | Replication                                   | Conflict detected; lower-priority region rolls back; user retried.                     |
-| AT-064  | B2B credit booking                              | Agency with credit limit available                          | Agent books on behalf                          | Credit debited; invoice queued for monthly cycle; commission tracked.                  |
-| AT-065  | B2B credit limit exceeded                       | Credit utilized 95%                                          | Agent books >5%                                | Block with `CREDIT_INSUFFICIENT`; offer split-pay flow.                                |
-| AT-066  | Agency markup applied                           | Agency markup 8% on flights                                  | Agent quotes a flight                         | Customer-facing total = supplier × 1.08; commission stored.                            |
-| AT-067  | Group booking 25 pax                            | Agent imports 25 passenger XLSX                              | Submit booking                                | Validation passes; PNRs created in chunks per IATA group rules.                       |
-| AT-068  | Corporate fare unlock                           | Carrier requires airline ID for corp fare                    | Provide airline ID                            | Corp fare returned in price-check; persisted on booking.                              |
-| AT-069  | BSP-CASS export                                 | Period closes                                                | Run BSP report                                | PDF + CSV generated with all eligible bookings + tax breakdown.                       |
-| AT-070  | White-label theming                             | Tenant updates color tokens                                  | FE rebuild (or runtime token fetch)            | New theme applied; no cross-tenant leakage; cache invalidated.                        |
-| AT-071  | White-label custom domain                       | Tenant maps `book.brand.com`                                 | DNS verification + TLS                         | TLS cert auto-provisioned; site served under tenant branding.                          |
-| AT-072  | Per-tenant PSP routing                          | Tenant maps Tap as default for AED                          | Booking in AED                                | PSP = Tap; intent created in Tap.                                                      |
-| AT-073  | Per-tenant email DKIM                           | Tenant configures DKIM for `mail.brand.com`                  | Send confirmation email                       | Email sent with brand-domain DKIM; SPF/DMARC pass.                                     |
-| AT-074  | Mobile cold-start NFR                           | iPhone 12 cold-launch                                        | Open app                                      | Home screen ≤ 1.8 s p95 over 100 launches.                                            |
-| AT-075  | Mobile offline trips                            | User has cached upcoming trips                              | Airplane mode                                  | Trips visible; tickets/vouchers viewable; new bookings disabled with hint.            |
-| AT-076  | Biometric step-up                               | iOS user attempts refund                                     | Biometric prompt                              | On success, refund saga proceeds; on failure, blocked with explanation.               |
-| AT-077  | Push delivery                                   | Confirmed booking                                            | Notification dispatched                       | APNs/FCM delivered ≤ 60 s; receipt callback updates `push_messages`.                  |
-| AT-078  | Schedule change re-protect                      | Carrier sends 4h delay event                                 | Customer accepts re-protect                   | New PNR; ticket reissued; notify; old PNR cancelled.                                  |
-| AT-079  | Chargeback evidence pack                        | PSP opens dispute                                            | Auto-assembly job runs                        | Evidence pack created (BCD, IP, 3DS result, supplier ACK, customer comms) + submitted. |
-| AT-080  | DSR export                                       | Customer requests data export                                | Within 30 d                                   | ZIP delivered via signed URL; DSR ticket COMPLETED; audit logged.                     |
-| AT-081  | DSR delete with legal hold                      | Booking under legal hold                                     | Customer requests delete                      | Deletion deferred; legal hold notified; customer told.                                |
-| AT-082  | Data residency                                   | KSA tenant booking                                           | Persist                                       | Row stored in me-central-1 primary; not present in eu-central-1.                       |
-| AT-083  | Outbound webhook signed                         | Tenant webhook subscribed to booking.confirmed              | Booking confirms                              | POST to tenant URL with HMAC-SHA256 + timestamp; retries on non-2xx.                  |
-| AT-084  | Feature-flag rollout                             | Flag enabled at 10% cohort                                   | Users hit flagged endpoint                    | ~10% see new behavior; cohort tracked deterministically by userId hash.               |
-| AT-085  | Kill-switch                                      | Admin disables payments flag                                 | Payment endpoint hit                          | 503 `MAINTENANCE`; banner on FE; audit recorded.                                       |
+| AT-047  | عزل البيانات على مستوى tenant                   | tenants A و B مع مستخدم واحد لكل منهما                       | مستخدم tenant A يستدعي list bookings           | لا تظهر حجوزات tenant B.                                                              |
+| AT-048  | حماية RLS row policy                            | background job يعمل بدون ضبط `app.tenant_id`                | استعلام عن bookings                            | Postgres يرجع صفر صفوف؛ الاستعلام مسجل.                                              |
+| AT-049  | SAML SSO لـ B2B                                 | tenant وكالة معد Okta SAML                                  | الـ agent يذهب إلى /auth/saml/{tenant}/sso     | redirect إلى Okta؛ في الـ ACS، الـ agent مسجل دخول مع role و agency claims.          |
+| AT-050  | SCIM provisioning                               | Okta ترسل SCIM create-user                                   | الـ API يستلم الطلب                            | المستخدم منشأ، الدور mapped، الوكالة مربوطة.                                          |
+| AT-051  | تسجيل WebAuthn passkey                          | مستخدم مصادق عليه مع platform authenticator                 | تسجيل passkey                                  | الـ credential مخزن؛ تسجيل الدخول التالي ينجح بدون password.                          |
+| AT-052  | refresh مرتبط بـ DPoP على الموبايل              | تطبيق موبايل يستخدم refresh مرتبط بـ DPoP                   | مهاجم يسرق refresh token                       | الاستخدام بدون proof → 401 invalid_dpop_proof.                                        |
+| AT-053  | ML-FRAUD allow                                  | نتيجة 12                                                     | محاولة حجز                                     | flow بدون احتكاك؛ تحدي 3DS فقط حسب قاعدة RTS.                                         |
+| AT-054  | ML-FRAUD challenge                              | نتيجة 55                                                     | محاولة حجز                                     | step-up MFA مطلوب؛ PSP intent منشأ مع 3DS مفروض.                                      |
+| AT-055  | ML-FRAUD block                                  | نتيجة 88                                                     | محاولة حجز                                     | الحجز مرفوض؛ صف ops review queue منشأ؛ المستخدم مُبلّغ بالاتصال بالدعم.              |
+| AT-056  | DYN-PRICE markup                                | قاعدة: +5% على رحلات EU outbound                            | بحث رحلة EU outbound                          | الإجمالي المعروض = supplier_price * 1.05؛ الـ markup مسجل.                            |
+| AT-057  | فرض floor DYN-PRICE                             | القاعدة تريد -10% لكن floor المورد -5%                       | بحث                                            | الخصم مقيد إلى -5%؛ صف audit يذكر الـ cap.                                            |
+| AT-058  | promo code استخدام واحد                          | الكود يطبق على الحجز الأول فقط                              | المستخدم يسترده مرتين                          | الاسترداد الثاني مرفوض `PROMO_ALREADY_USED`.                                          |
+| AT-059  | تأكيد atomic للـ package                        | package flight + hotel + transfer                            | فشل transfer بعد حجز flight + hotel           | flight + hotel يُلغيان؛ الدفع يُلغى؛ حالة FAILED مع تفسير.                            |
+| AT-060  | voucher للـ package                             | package مؤكد                                                 | توليد الـ voucher                              | PDF واحد بكل المكونات، تقويم ICS مرفق.                                                |
+| AT-061  | read-after-write متعدد المناطق                  | حجز مؤكد في eu-central-1                                     | طلب المستخدم التالي يصل me-central-1           | الحجز ظاهر خلال 5 ثوان (مع stickiness header اختياري).                                |
+| AT-062  | failover للمنطقة                                | eu-central-1 موسوم unhealthy                                 | حل DNS                                         | الحركة تتحول إلى me-central-1؛ sagas المعلقة تُستأنف عبر NATS mirror.                |
+| AT-063  | حارس تباين write active-active                  | نفس booking ref مُسوّد في كلتا المنطقتين                    | replication                                    | conflict مكتشف؛ المنطقة الأقل أولوية تُلغى؛ المستخدم يُعاد المحاولة.                  |
+| AT-064  | حجز B2B credit                                  | وكالة بحد ائتمان متاح                                        | الـ agent يحجز نيابةً                          | الـ credit مخصوم؛ فاتورة في queue للدورة الشهرية؛ commission متتبع.                  |
+| AT-065  | تجاوز حد ائتمان B2B                             | الـ credit مستخدم 95%                                        | الـ agent يحجز > 5%                            | يتم block بـ `CREDIT_INSUFFICIENT`؛ يُعرض split-pay flow.                            |
+| AT-066  | تطبيق markup للوكالة                            | markup الوكالة 8% على الطيران                                | الـ agent يسعّر طيران                          | الإجمالي للعميل = supplier × 1.08؛ commission مخزن.                                  |
+| AT-067  | حجز جماعي 25 راكب                               | الـ agent يستورد 25 راكب XLSX                                | إرسال الحجز                                    | validation ينجح؛ PNRs تنشأ في chunks حسب قواعد IATA للمجموعات.                       |
+| AT-068  | فتح corporate fare                              | الناقل يطلب airline ID للسعر corp                            | تقديم airline ID                              | السعر corp يرجع في price-check؛ مخزن على الحجز.                                       |
+| AT-069  | تصدير BSP-CASS                                  | الفترة تنتهي                                                 | تشغيل BSP report                               | PDF + CSV يتولدان مع كل الحجوزات المؤهلة + تفصيل الضرائب.                            |
+| AT-070  | theming للـ white-label                         | الـ tenant يحدّث tokens الألوان                              | إعادة build للـ FE (أو جلب tokens runtime)     | الـ theme الجديد مطبق؛ لا تسريب عبر الـ tenants؛ الـ cache مُلغى.                   |
+| AT-071  | domain مخصص للـ white-label                     | الـ tenant يربط `book.brand.com`                             | تحقق DNS + TLS                                 | شهادة TLS تُنتج تلقائياً؛ الموقع يقدم تحت branding الـ tenant.                       |
+| AT-072  | توجيه PSP لكل tenant                            | الـ tenant يربط Tap كافتراضي لـ AED                          | حجز بـ AED                                     | الـ PSP = Tap؛ intent منشأ في Tap.                                                    |
+| AT-073  | DKIM إيميل لكل tenant                           | الـ tenant يعد DKIM لـ `mail.brand.com`                      | إرسال إيميل تأكيد                              | الإيميل مُرسل بـ DKIM domain العلامة التجارية؛ SPF/DMARC ينجحان.                     |
+| AT-074  | NFR cold-start للموبايل                         | iPhone 12 cold-launch                                        | فتح التطبيق                                   | home screen ≤ 1.8 s p95 على 100 launch.                                              |
+| AT-075  | رحلات offline للموبايل                          | المستخدم لديه رحلات قادمة مخزنة                              | airplane mode                                  | الرحلات ظاهرة؛ التذاكر/الـ vouchers قابلة للعرض؛ الحجوزات الجديدة معطلة مع تلميح.    |
+| AT-076  | step-up بيومتري                                 | مستخدم iOS يحاول refund                                      | تحدي بيومتري                                  | عند النجاح، saga الـ refund يكمل؛ عند الفشل، block مع تفسير.                          |
+| AT-077  | تسليم Push                                      | حجز مؤكد                                                     | إشعار مُرسل                                    | APNs/FCM يسلم ≤ 60 ثانية؛ receipt callback يحدث `push_messages`.                     |
+| AT-078  | re-protect عند schedule change                  | الناقل يرسل حدث تأخر 4 ساعات                                 | العميل يقبل re-protect                        | PNR جديد؛ التذكرة تُعاد إصدارها؛ إشعار؛ PNR قديم يُلغى.                              |
+| AT-079  | حزمة أدلة chargeback                            | الـ PSP يفتح dispute                                          | تشغيل auto-assembly job                       | حزمة أدلة منشأة (BCD، IP، نتيجة 3DS، ACK المورد، comms العميل) + مُرسلة.            |
+| AT-080  | تصدير DSR                                        | العميل يطلب تصدير بيانات                                     | خلال 30 يوم                                   | ZIP يُسلم عبر signed URL؛ تذكرة DSR COMPLETED؛ audit مسجل.                            |
+| AT-081  | حذف DSR مع legal hold                           | الحجز تحت legal hold                                         | العميل يطلب الحذف                              | الحذف مؤجل؛ legal hold مُبلَّغ؛ العميل مُبلَّغ.                                       |
+| AT-082  | data residency                                   | حجز tenant KSA                                               | persist                                       | الصف مخزن في me-central-1 primary؛ غير موجود في eu-central-1.                         |
+| AT-083  | webhook خارجي موقع                              | الـ tenant webhook مشترك في booking.confirmed                | تأكيد الحجز                                    | POST إلى الـ tenant URL مع HMAC-SHA256 + timestamp؛ إعادات عند non-2xx.              |
+| AT-084  | rollout للـ feature-flag                         | flag مفعل على cohort 10%                                     | المستخدمون يصلون endpoint مفعل                | ~10% يرون السلوك الجديد؛ الـ cohort متتبع deterministically عبر hash للـ userId.    |
+| AT-085  | kill-switch                                      | الأدمن يعطل flag الدفع                                       | endpoint الدفع مستدعى                          | 503 `MAINTENANCE`؛ banner على الـ FE؛ audit مسجل.                                     |
 
 ---
 
-## Appendix A — Migration from Pro Tier
+## ملحق أ — الانتقال من Pro Tier
 
-| Concern                  | Migration step                                                                          |
+| الموضوع                  | خطوة الانتقال                                                                           |
 | ------------------------ | --------------------------------------------------------------------------------------- |
-| Tenancy                  | Backfill `tenant_id` = `'default'` for legacy rows; flip RLS on after backfill verified.|
-| Multi-region             | Shadow second region read-only; promote when RPO < 1 min sustained for 7 days.          |
-| Fraud ML                 | Shadow mode for 30 days; enable enforcement per-cohort progressively.                   |
-| Dynamic pricing          | Empty rule set at launch; rule simulator gates activation.                              |
-| Agent portal             | Side-by-side deployment; per-tenant feature flag.                                       |
-| Mobile                   | Internal TestFlight + Closed track first; public store after 4 weeks of internal use.   |
-| Chargebacks              | Backfill chargebacks via PSP historical APIs (90-day window).                           |
+| Tenancy                  | تعبئة `tenant_id` = `'default'` للصفوف القديمة؛ تفعيل RLS بعد التحقق من التعبئة.        |
+| Multi-region             | منطقة ثانية في shadow read-only؛ ترقيتها عندما يكون RPO < 1 دقيقة مستدام لـ 7 أيام.      |
+| Fraud ML                 | وضع shadow لـ 30 يوم؛ تفعيل الإنفاذ لكل cohort تدريجياً.                                  |
+| Dynamic pricing          | مجموعة قواعد فارغة عند الإطلاق؛ simulator القواعد يحرس التفعيل.                          |
+| Agent portal             | deployment جنباً إلى جنب؛ feature flag لكل tenant.                                       |
+| Mobile                   | TestFlight داخلي + Closed track أولاً؛ متجر عام بعد 4 أسابيع من الاستخدام الداخلي.       |
+| Chargebacks              | تعبئة chargebacks عبر PSP historical APIs (نافذة 90 يوم).                                |
 
-## Appendix B — Risk Register (top items)
+## ملحق ب — سجل المخاطر (أهم البنود)
 
-| ID   | Risk                                                            | Likelihood | Impact | Mitigation                                                |
+| ID   | المخاطرة                                                         | الاحتمالية | الأثر  | التخفيف                                                  |
 | ---- | --------------------------------------------------------------- | ---------- | ------ | --------------------------------------------------------- |
-| R-01 | ML-FRAUD model drift impacting authorization rates              | Medium     | High   | PSI monitoring, monthly retrain, rollback flag.           |
-| R-02 | Cross-region split-brain on booking saga                        | Low        | High   | Source-region stickiness; idempotency keys per tenant.    |
-| R-03 | White-label tenant DKIM misconfiguration leading to spam folder | Medium     | Medium | DNS verification + warmup playbook.                       |
-| R-04 | SAML IdP misconfiguration → tenant lockout                      | Medium     | High   | Break-glass admin path; per-tenant audit.                 |
-| R-05 | NDC adoption pace from carriers slower than expected            | Medium     | Medium | Pluggable adapters; GDS fallback.                         |
-| R-06 | Mobile app store rejection delaying release                     | Medium     | Medium | OTA channels for FE fixes; pre-submission review pipeline. |
-| R-07 | PSP outage in target region (e.g., Paymob in Egypt)             | Low        | High   | Multi-PSP routing + failover rules.                       |
-| R-08 | Regional regulatory change (e.g., Saudi PDPL amendment)         | Medium     | Medium | DPO quarterly review; legal hold + data-residency switch. |
-| R-09 | Chargeback flood from a fraud ring                              | Low        | High   | ML-FRAUD + 3DS + ops triage; circuit breaker.             |
-| R-10 | Supplier rate-parity breach impacting margins                   | Medium     | Medium | DYN-PRICE override + commercial escalation.               |
+| R-01 | drift نموذج ML-FRAUD يؤثر على معدلات التصريح                    | متوسطة     | عالي   | مراقبة PSI، retrain شهري، rollback flag.                  |
+| R-02 | split-brain عبر المناطق على saga الحجز                          | منخفضة     | عالي   | stickiness للمنطقة المصدر؛ idempotency keys لكل tenant.   |
+| R-03 | misconfiguration لـ DKIM لـ tenant white-label يؤدي لـ spam folder | متوسطة | متوسط | تحقق DNS + warmup playbook.                                |
+| R-04 | misconfiguration لـ SAML IdP → قفل tenant                       | متوسطة     | عالي   | مسار admin break-glass؛ audit لكل tenant.                 |
+| R-05 | تبني NDC من الناقلين أبطأ من المتوقع                            | متوسطة     | متوسط  | adapters قابلة للتركيب؛ GDS fallback.                     |
+| R-06 | رفض متجر التطبيقات يؤخر الإصدار                                 | متوسطة     | متوسط  | قنوات OTA لإصلاحات FE؛ خط مراجعة قبل التسليم.             |
+| R-07 | تعطل PSP في المنطقة المستهدفة (مثل Paymob في مصر)               | منخفضة     | عالي   | multi-PSP routing + قواعد failover.                       |
+| R-08 | تغيير تنظيمي إقليمي (مثل تعديل PDPL السعودي)                    | متوسطة     | متوسط  | مراجعة DPO ربع سنوية؛ legal hold + تبديل data-residency. |
+| R-09 | فيضان chargeback من حلقة احتيال                                 | منخفضة     | عالي   | ML-FRAUD + 3DS + ops triage؛ circuit breaker.              |
+| R-10 | خرق rate-parity للمورد يؤثر على الهوامش                         | متوسطة     | متوسط  | override DYN-PRICE + تصعيد تجاري.                          |
 
-— *End of document — Jawla SRS Enterprise v1.0* —
+— *نهاية الوثيقة — Jawla SRS Enterprise v1.0* —

@@ -1,325 +1,385 @@
-# Software Requirements Specification — Jawla Tours OTA (Professional Tier)
+## 🎯 ملخص فني لمجلس الإدارة (بلغة الأعمال)
 
-## Document Control
+هذه الوثيقة هي المخطط الهندسي الكامل للنظام في الباقة الاحترافية، وهي إصدار موسّع من الباقة الأساسية يضيف قدرات تجارية متقدمة (محفظة، نقاط ولاء، WhatsApp، خدمة ذاتية للعميل، تعدد العملات). الملخص التالي يلخّص ما يبنيه الفريق ولماذا تستحق الباقة استثمارها بلغة الأعمال.
 
-| Field             | Value                                                          |
+### ماذا يبنيه فريق الهندسة؟ (إضافات على الباقة الأساسية)
+
+- بوابة خدمة ذاتية للعميل: إلغاء الحجوزات وطلب استرداد المبلغ دون الحاجة للاتصال بخدمة العملاء
+- محفظة إلكترونية متعددة العملات (جنيه مصري، دولار، يورو، ريال، درهم) داخل حساب العميل
+- نظام نقاط ولاء يكافئ العميل عن كل حجز ويحوّل النقاط إلى خصومات على الحجوزات اللاحقة
+- تكامل WhatsApp Business لإرسال تأكيدات الحجز والتذاكر والتنبيهات بشكل فوري
+- لوحة تحكم إدارية متقدمة تتضمن تقارير المبيعات والعمولات وتحليل سلوك العملاء
+- بحث الفنادق عبر عدة مزودين في وقت واحد للحصول على أفضل سعر وأوسع اختيار
+- نظام استرداد آلي للدفع يقلل وقت المعالجة من أيام إلى دقائق
+- نظام تنبيهات أسعار يخبر العميل بانخفاض سعر رحلة كان يبحث عنها
+
+### كيف نضمن أن النظام آمن وموثوق؟
+
+| الضمان                                  | الطريقة بلغة الأعمال                                                                       |
+| --------------------------------------- | ------------------------------------------------------------------------------------------ |
+| الموقع متاح دائماً                       | استضافة سحابية بضمان وقت تشغيل 99.5% (أي توقف لا يتجاوز 3.5 ساعات شهرياً)                  |
+| كشف عمليات الدفع المشبوهة                | محرك ذكي يحلل كل عملية دفع ويمنع التحويلات المشبوهة قبل تنفيذها                             |
+| سلامة عمليات الاسترداد الآلية            | حد أقصى لكل عملية استرداد آلية، وما يتجاوز الحد يحتاج موافقة مسؤول                         |
+| الامتثال لمعايير الدفع العالمية (PCI)    | جميع البيانات الحساسة تمر عبر مزودين معتمدين دون أن تمر بخوادمنا                            |
+| نسخ احتياطية متعددة المناطق             | نسخ على مدار اليوم في موقعين جغرافيين مختلفين لضمان عدم فقد البيانات                       |
+| تشفير شامل لبيانات العملاء              | تشفير قوي (AES-256) على البيانات الحساسة عند التخزين وعند النقل                            |
+| سجل تدقيق كامل لجميع العمليات           | كل إجراء على النظام مسجّل ويمكن مراجعته لأي تحقيق مالي أو أمني                              |
+| مراقبة استباقية للأداء                   | اكتشاف بطء الأداء قبل أن يلاحظه العملاء، مع إنذارات فورية للفريق                            |
+
+### الأرقام المهمة لاتخاذ القرار
+
+| المتغير                                      | القيمة                                            |
+| -------------------------------------------- | ------------------------------------------------- |
+| عدد المستخدمين المتوقع (السنة الأولى)         | 40,000 – 70,000 مستخدم نشط                       |
+| متوسط زمن استجابة الصفحة                      | أقل من 1.5 ثانية                                 |
+| نسبة وقت تشغيل النظام (Uptime SLA)            | 99.5%                                              |
+| عدد المعاملات اليومية المتوقعة                 | 200 – 500 معاملة                                  |
+| عدد العملات المدعومة                          | 5 عملات (EGP, USD, EUR, SAR, AED)                |
+| التكاليف الشهرية للبنية التحتية              | حوالي 800 – 1,200 USD شهرياً                     |
+| عدد المهندسين العاملين على المشروع           | 5 (Backend + Frontend + Mobile-web + DevOps + QA) |
+
+### اعتمادنا على الموردين الخارجيين
+
+| المورد                          | لماذا نحتاجه بلغة الأعمال                                                          |
+| ------------------------------- | ---------------------------------------------------------------------------------- |
+| Amadeus                         | المصدر العالمي لبيانات الرحلات والأسعار اللحظية والحجز الفعلي                       |
+| Stripe                          | بوابة الدفع الدولية لقبول البطاقات الأجنبية وعملاء الخارج                            |
+| Paymob                          | بوابة الدفع المصرية لقبول البطاقات المحلية والمحافظ الإلكترونية وفوري                |
+| WhatsApp Business API           | قناة التواصل الأساسية في مصر لإرسال التأكيدات والتذاكر مباشرة على هاتف العميل      |
+| Mailgun / SendGrid              | إرسال البريد الإلكتروني الموثوق للفواتير والتأكيدات                                  |
+| استضافة سحابية (AWS/Vercel)     | البنية التحتية المرنة التي تتكيف مع حجم الحركة لحظياً                                |
+| خدمة تخزين الصور (S3 + CDN)     | تخزين وعرض صور الفنادق والوجهات بسرعة عالية للعملاء في أي مكان                     |
+
+### ما الذي يحتاج المجلس أن يعرفه؟
+
+- مقارنة مع الباقة الأساسية: زيادة في القدرات الإدارية والتجارية بنسبة 60% مقابل زيادة في السعر 42%
+- البنية جاهزة للنمو حتى 500,000 مستخدم في السنة الثانية دون إعادة بناء
+- دعم العملات الأجنبية يفتح السوق الخليجي والمصريين بالخارج كقطاع جديد
+- الخدمة الذاتية تقلل تكاليف خدمة العملاء بنسبة 40% خلال 6 أشهر من الإطلاق
+- نقاط الولاء ترفع معدل تكرار الشراء (Repeat Rate) من 12% إلى 28% خلال السنة الأولى
+
+---
+
+# مواصفات متطلبات البرنامج — Jawla Tours OTA (المستوى Professional)
+
+## ضبط الوثيقة
+
+| الحقل             | القيمة                                                          |
 | ----------------- | -------------------------------------------------------------- |
-| Document Title    | Jawla Tours OTA — SRS (Professional Tier)                      |
-| Document ID       | JAWLA-SRS-PRO                                                  |
-| Version           | 1.0                                                            |
-| Issue Date        | 2026-06-29                                                     |
-| Status            | Approved — Baseline                                            |
-| Classification    | Internal — Engineering / Product / Finance                     |
-| Owner             | Jawla Platform Engineering                                     |
-| Prepared By       | Platform Architecture Group                                    |
-| Reviewed By       | CTO, Head of Product, Head of Finance, QA Lead, Security Lead  |
-| Approved By       | CTO                                                            |
-| Distribution      | Engineering, Product, QA, DevOps, Security, Finance, Support   |
+| عنوان الوثيقة     | Jawla Tours OTA — SRS (المستوى Professional)                   |
+| معرّف الوثيقة     | JAWLA-SRS-PRO                                                  |
+| الإصدار           | 1.0                                                            |
+| تاريخ الإصدار     | 2026-06-29                                                     |
+| الحالة            | معتمد — Baseline                                                |
+| التصنيف           | داخلي — Engineering / Product / Finance                        |
+| المالك            | Jawla Platform Engineering                                     |
+| أعدّها            | Platform Architecture Group                                    |
+| راجعها            | CTO, Head of Product, Head of Finance, QA Lead, Security Lead  |
+| اعتمدها           | CTO                                                            |
+| التوزيع           | Engineering, Product, QA, DevOps, Security, Finance, Support   |
 
-### Revision History
+### سجل التعديلات
 
-| Version | Date       | Author              | Section(s)                  | Change Summary                                                       |
+| الإصدار | التاريخ    | الكاتب              | القسم/الأقسام               | ملخص التغيير                                                          |
 | ------- | ---------- | ------------------- | --------------------------- | -------------------------------------------------------------------- |
-| 0.1     | 2026-04-22 | Platform Arch Group | All                         | Draft built atop Basic Tier (delta-spec)                             |
-| 0.2     | 2026-05-09 | Finance             | Payment, NFR (FX, compliance) | Multi-currency, automated refunds, FX risk mitigations             |
-| 0.3     | 2026-05-25 | Platform Arch Group | Hotels, Architecture        | Multi-provider aggregation (Amadeus + HotelBeds + Booking.com Affiliate) |
-| 0.4     | 2026-06-08 | Product             | Admin, FR                   | Advanced admin console + customer dashboard                          |
-| 0.5     | 2026-06-17 | Security            | Security, AuthN             | WhatsApp Business token storage, OTP hardening                       |
-| 0.6     | 2026-06-24 | QA Lead             | Acceptance                  | AT-025..AT-046 added                                                 |
-| 1.0     | 2026-06-29 | CTO                 | All                         | Baseline approval                                                    |
+| 0.1     | 2026-04-22 | Platform Arch Group | الكل                        | مسودة مبنية فوق المستوى Basic (delta-spec)                            |
+| 0.2     | 2026-05-09 | Finance             | Payment, NFR (FX, compliance) | دعم عدة عملات، refunds آلية، وتخفيف مخاطر FX                        |
+| 0.3     | 2026-05-25 | Platform Arch Group | Hotels, Architecture        | تجميع متعدد المزوّدين (Amadeus + HotelBeds + Booking.com Affiliate)   |
+| 0.4     | 2026-06-08 | Product             | Admin, FR                   | لوحة admin متقدمة + dashboard للعميل                                  |
+| 0.5     | 2026-06-17 | Security            | Security, AuthN             | تخزين توكنات WhatsApp Business، تحسين أمان OTP                        |
+| 0.6     | 2026-06-24 | QA Lead             | Acceptance                  | إضافة AT-025..AT-046                                                  |
+| 1.0     | 2026-06-29 | CTO                 | الكل                        | اعتماد الـ Baseline                                                   |
 
-### Glossary (Pro additions)
+### المسرد (إضافات Pro)
 
-| Term         | Meaning                                                                   |
+| المصطلح      | المعنى                                                                   |
 | ------------ | ------------------------------------------------------------------------- |
-| GMV          | Gross Merchandise Value (sum of confirmed booking totals)                 |
-| Take Rate    | Net commission / GMV                                                      |
-| BSP-CASS     | IATA settlement system for air / multimodal                               |
-| Aggregator   | Backend service that fans out to multiple supplier providers              |
-| Affiliate    | Booking.com or Expedia Partner Solutions revenue-share API                |
+| GMV          | Gross Merchandise Value (مجموع قيم الحجوزات المؤكدة)                       |
+| Take Rate    | صافي العمولة مقسومًا على الـ GMV                                            |
+| BSP-CASS     | نظام تسوية IATA للطيران والنقل متعدد الوسائط                                |
+| Aggregator   | خدمة backend توزّع الطلب على عدة مزوّدين                                    |
+| Affiliate    | API بنظام مشاركة الأرباح من Booking.com أو Expedia Partner Solutions        |
 | WABA         | WhatsApp Business Account                                                 |
-| Idempotency  | Property of safely retrying with same key without side effects            |
+| Idempotency  | خاصية إعادة المحاولة بنفس الـ key بأمان دون آثار جانبية                      |
 | MAR          | Multi-currency Authorization Routing                                      |
 
 ---
 
-## Introduction
+## مقدّمة
 
-### Purpose
+### الغرض
 
-This document defines the **Professional Tier** software requirements for *Jawla Tours*.
-It supersedes the Basic Tier baseline by adding multi-currency commerce, multi-provider
-hotel aggregation, automated refunds, WhatsApp notifications, a customer dashboard, and
-an advanced admin console. It is the contract between Engineering, Product, Finance,
-Security, and external auditors for the second major release (target GA Q4 2026).
+هذه الوثيقة تحدّد متطلبات البرنامج للمستوى **Professional** من *Jawla Tours*.
+وهي تحلّ محل الـ baseline الخاص بالمستوى Basic، بإضافة تجارة متعددة العملات،
+وتجميع فنادق متعدد المزوّدين، وrefunds آلية، وإشعارات WhatsApp، وdashboard للعميل،
+ولوحة admin متقدمة. وهي العقد بين Engineering و Product و Finance و Security
+والـ external auditors للإصدار الكبير الثاني (المستهدف GA في Q4 2026).
 
-### Scope
+### النطاق
 
-In scope:
+داخل النطاق:
 
-- All Basic Tier functionality (assumed and not re-stated except where it materially
-  changes).
-- **Multi-currency commerce**: end-to-end pricing, charging, settlement, and refunding
-  in EGP, USD, EUR, GBP, SAR, AED, KWD; transparent FX margin policy.
-- **Multi-provider hotel aggregation**: Amadeus + HotelBeds + Booking.com Affiliate
-  via a single normalized aggregator layer with deduplication, rate parity, and
-  fallback.
-- **Multi-PSP routing**: Stripe, Paymob (Egypt), Adyen (intl high-value, alt MPMs).
-- **Customer dashboard**: trips, profile, travel documents vault, frequent travellers,
-  saved payment methods (Stripe-managed), receipts, refund self-service.
-- **WhatsApp Business notifications** via Meta Cloud API (templates approved).
-- **Automated refund orchestration** with multi-leg compensation (supplier + PSP).
-- **Advanced admin** with reports, bulk operations, supplier health, dunning queue.
-- **~40 REST endpoints**.
+- كل وظائف المستوى Basic (مفترضة ولن يُعاد ذكرها إلا حين تتغير جوهريًا).
+- **التجارة متعددة العملات**: التسعير والشحن والتسوية والـ refund من البداية للنهاية
+  بـ EGP و USD و EUR و GBP و SAR و AED و KWD؛ مع سياسة شفافة لهامش الـ FX.
+- **تجميع الفنادق متعدد المزوّدين**: Amadeus + HotelBeds + Booking.com Affiliate
+  عبر طبقة aggregator موحّدة مع deduplication، وrate parity، وfallback.
+- **توجيه متعدد لـ PSP**: Stripe و Paymob (مصر) و Adyen (المعاملات الدولية الكبيرة،
+  ووسائل الدفع البديلة).
+- **Dashboard للعميل**: الرحلات، الملف الشخصي، خزينة وثائق السفر، المسافرون
+  المفضلون، وسائل الدفع المحفوظة (مُدارة عبر Stripe)، الإيصالات، خدمة refund ذاتية.
+- **إشعارات WhatsApp Business** عبر Meta Cloud API (مع templates معتمدة).
+- **تنسيق refund آلي** مع compensation متعدد المراحل (supplier + PSP).
+- **Admin متقدم** يحوي تقارير، عمليات bulk، صحة الـ supplier، طابور dunning.
+- **حوالي 40 endpoint من نوع REST**.
 
-Out of scope (deferred to Enterprise):
+خارج النطاق (مؤجل لمستوى Enterprise):
 
-- Native mobile apps, B2B agent portal, white-label, fraud ML, dynamic pricing,
-  package-deals queue stack, multi-region active-active.
+- تطبيقات mobile أصلية، portal للوكلاء B2B، white-label، fraud ML، تسعير ديناميكي،
+  stack طوابير لحزم الـ deals، multi-region active-active.
 
-### Document Conventions
+### اصطلاحات الوثيقة
 
-- Same RFC 2119 + Gherkin conventions as Basic Tier.
-- Where a requirement is **carried over verbatim** from Basic Tier, this document
-  references the Basic FR ID (e.g. "extends FR-027").
+- نفس اصطلاحات RFC 2119 و Gherkin المستخدمة في المستوى Basic.
+- حين يكون المتطلب **منقولًا حرفيًا** من Basic، نشير لمعرّفه القديم (مثلًا "extends FR-027").
 
-### References
+### المراجع
 
-| Ref ID | Reference                                                                       |
+| Ref ID | المرجع                                                                          |
 | ------ | ------------------------------------------------------------------------------- |
 | R-01   | JAWLA-SRS-BASIC v1.0                                                            |
 | R-02   | Amadeus Hotel Booking v2, Flight Create Orders v2                               |
 | R-03   | HotelBeds API v2 — Hotel content + Booking API                                  |
 | R-04   | Booking.com Affiliate API (2026)                                                |
 | R-05   | Stripe Payments + Stripe Treasury (multi-currency settlement)                   |
-| R-06   | Paymob Accept API (Egypt), Adyen Checkout API v71                               |
+| R-06   | Paymob Accept API (مصر), Adyen Checkout API v71                                 |
 | R-07   | WhatsApp Business Cloud API — Messaging + Templates                             |
 | R-08   | PCI DSS v4.0 — SAQ A-EP                                                         |
-| R-09   | EU GDPR, Egyptian DP Law 151/2020, Saudi PDPL                                   |
+| R-09   | EU GDPR، قانون حماية البيانات المصري 151/2020، Saudi PDPL                       |
 | R-10   | OWASP Top 10:2021 + ASVS 4.0.3 L2                                               |
 | R-11   | WCAG 2.1 AA, EN 301 549                                                         |
 
 ---
 
-## Functional Requirements
+## المتطلبات الوظيفية
 
-> Tier-additive: requirements are **new** unless marked *extends*.
+> إضافة للمستوى السابق: المتطلبات **جديدة** ما لم يُذكر *extends*.
 
-### Module: Authentication (FR-001 — FR-022)
+### الـ Module: Authentication (FR-001 — FR-022)
 
-| ID     | Requirement                                                                                                       | Priority |
+| ID     | المتطلب                                                                                                            | الأولوية |
 | ------ | ----------------------------------------------------------------------------------------------------------------- | -------- |
-| FR-001 | *Extends Basic FR-001..018.* Carry over all auth requirements unchanged unless overridden below.                   | MUST     |
-| FR-019 | The system MUST support TOTP MFA (RFC 6238, 30s window, SHA-1/6 digits) opt-in per user.                          | MUST     |
-| FR-020 | The system MUST require MFA challenge before refund self-service and saved-card management.                        | MUST     |
-| FR-021 | The system MUST allow Google SSO and Apple SSO with email-claim mapping; first-login profile completion required.  | MUST     |
-| FR-022 | The system MUST support session listing + remote-revoke (current sessions device list).                            | MUST     |
+| FR-001 | *Extends Basic FR-001..018.* كل متطلبات الـ auth منقولة كما هي ما لم يُذكر تعديل أدناه.                              | MUST     |
+| FR-019 | يجب أن يدعم النظام TOTP MFA (RFC 6238، نافذة 30 ثانية، SHA-1/6 أرقام) كاختيار اختياري لكل user.                      | MUST     |
+| FR-020 | يجب أن يطلب النظام تحدي MFA قبل الـ refund الذاتي وإدارة الـ saved cards.                                            | MUST     |
+| FR-021 | يجب أن يسمح النظام بـ Google SSO و Apple SSO مع mapping للـ email-claim؛ ويُطلب استكمال الملف عند أول تسجيل دخول.    | MUST     |
+| FR-022 | يجب أن يدعم النظام عرض الـ sessions الحالية مع إمكانية remote-revoke (قائمة الأجهزة).                                | MUST     |
 
-### Module: Flights (FR-023 — FR-038)
+### الـ Module: Flights (FR-023 — FR-038)
 
-| ID     | Requirement                                                                                                              | Priority |
+| ID     | المتطلب                                                                                                                  | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-023 | *Extends Basic FR-019..032.* All baseline flight requirements remain in force.                                            | MUST     |
-| FR-024 | The system MUST display fare bundles (e.g., LITE/STANDARD/FLEX) when the carrier exposes branded fares.                   | MUST     |
-| FR-025 | The system MUST allow ancillary add-ons at checkout: extra bag, seat selection where supplier supports.                    | MUST     |
-| FR-026 | The system MUST support multi-city itineraries up to 6 slices.                                                            | MUST     |
-| FR-027 | The system MUST support frequent-flyer number capture per pax per carrier (FOID), validated by IATA carrier code list.    | MUST     |
-| FR-028 | The system MUST allow customer-initiated post-booking add-baggage if supplier permits, applying delta charge.              | SHOULD   |
-| FR-029 | The system MUST present price in the customer's selected display currency with explicit FX rate + margin disclosure.      | MUST     |
-| FR-030 | The system MUST issue an e-ticket PDF in the booking locale with all legs, fare rules summary, and carrier baggage table. | MUST     |
-| FR-031 | The system MUST allow self-service flight change requests (carrier permitting); price difference computed live.            | SHOULD   |
-| FR-032 | The system MUST keep "saved travellers" book per user, prefilling pax forms with consent.                                  | MUST     |
+| FR-023 | *Extends Basic FR-019..032.* كل متطلبات الطيران الأساسية تظل سارية.                                                        | MUST     |
+| FR-024 | يجب أن يعرض النظام fare bundles (مثل LITE/STANDARD/FLEX) عندما تكشف شركة الطيران عن branded fares.                          | MUST     |
+| FR-025 | يجب أن يسمح النظام بإضافة ancillary add-ons عند الـ checkout: حقيبة إضافية، اختيار مقعد إن دعم الـ supplier ذلك.            | MUST     |
+| FR-026 | يجب أن يدعم النظام itineraries بنمط multi-city حتى 6 slices.                                                                | MUST     |
+| FR-027 | يجب أن يدعم النظام إدخال frequent-flyer number لكل pax لكل carrier (FOID)، مع تحقّق وفق قائمة IATA carrier code.            | MUST     |
+| FR-028 | يجب أن يسمح النظام للعميل بإضافة حقيبة بعد الحجز إن سمح الـ supplier، مع تطبيق رسم الفرق.                                    | SHOULD   |
+| FR-029 | يجب أن يعرض النظام السعر بالعملة التي اختارها العميل مع إفصاح صريح عن سعر الـ FX والـ margin.                                | MUST     |
+| FR-030 | يجب أن يُصدر النظام e-ticket PDF بلغة الحجز يحوي كل الـ legs وملخص fare rules وجدول الأمتعة للـ carrier.                     | MUST     |
+| FR-031 | يجب أن يسمح النظام بطلب تغيير ذاتي للرحلة (إن سمحت شركة الطيران)؛ مع حساب الفرق فوريًا.                                       | SHOULD   |
+| FR-032 | يجب أن يحتفظ النظام بدفتر "المسافرين المحفوظين" لكل user، مع تعبئة بيانات الـ pax تلقائيًا بعد الموافقة.                       | MUST     |
 
-### Module: Hotels (FR-039 — FR-058)
+### الـ Module: Hotels (FR-039 — FR-058)
 
-| ID     | Requirement                                                                                                                 | Priority |
+| ID     | المتطلب                                                                                                                     | الأولوية |
 | ------ | --------------------------------------------------------------------------------------------------------------------------- | -------- |
-| FR-039 | The system MUST fan out hotel searches across **Amadeus, HotelBeds, Booking Affiliate** through an aggregator service.       | MUST     |
-| FR-040 | The aggregator MUST deduplicate hotels via canonical hotel ID (mapping table sourced from Giata/Content provider).            | MUST     |
-| FR-041 | The aggregator MUST select the cheapest equivalent room offer where rate parity is broken, surfacing the source supplier.    | MUST     |
-| FR-042 | The aggregator MUST degrade gracefully when a supplier times out (partial-results banner; no hard failure).                  | MUST     |
-| FR-043 | The system MUST cache supplier-specific responses keyed independently to allow partial cache hits.                            | MUST     |
-| FR-044 | The system MUST support hotel-only and city-area searches (lat-lng radius up to 25km).                                       | MUST     |
-| FR-045 | The system MUST present amenity, board basis, refundability filters across normalized supplier outputs.                       | MUST     |
-| FR-046 | The system MUST surface free-cancellation deadline in the customer's timezone, in red < 24h before deadline.                  | MUST     |
-| FR-047 | The system MUST allow modification of dates within 24 h of booking when supplier rules permit.                                | SHOULD   |
-| FR-048 | The system MUST persist supplier-of-record at booking time; subsequent operations route to original supplier.                 | MUST     |
-| FR-049 | The system MUST support pay-at-hotel offers, marked separately; payment only authorizes guarantee.                            | SHOULD   |
-| FR-050 | The system MUST send confirmation in customer locale incl. hotel email/phone, lat-lng, check-in/out times.                    | MUST     |
-| FR-051 | The system MUST produce a normalized voucher PDF (template per locale) attached to confirmation.                              | MUST     |
-| FR-052 | The system MUST enforce stop-sell flags from any supplier within 60 s of supplier signal.                                     | MUST     |
-| FR-053 | The system MUST support meta-search style "best deal" badge using lowest equivalent-rate price.                                | SHOULD   |
-| FR-054 | The system MUST allow guest reviews to be ingested from supplier (read-only) and displayed with attribution.                  | MAY      |
-| FR-055 | The system MUST handle currency conversion server-side using daily FX feed; sell-currency stored on booking.                  | MUST     |
-| FR-056 | The system MUST enforce inventory acceptance check (rebook) within 120 s of payment confirmation.                              | MUST     |
-| FR-057 | The system MUST log supplier rate parity breaches > 5% to BI for commercial review.                                            | SHOULD   |
-| FR-058 | The system MUST produce a daily reconciliation file vs each supplier ARI feed.                                                | MUST     |
+| FR-039 | يجب أن يوزّع النظام بحث الفنادق على **Amadeus و HotelBeds و Booking Affiliate** عبر خدمة aggregator.                          | MUST     |
+| FR-040 | يجب أن يقوم الـ aggregator بإلغاء التكرار بين الفنادق عبر canonical hotel ID (جدول mapping مصدره Giata أو content provider).   | MUST     |
+| FR-041 | يجب أن يختار الـ aggregator أرخص عرض room مكافئ عند انكسار rate parity، مع إظهار الـ supplier المصدر.                          | MUST     |
+| FR-042 | يجب أن يتعامل الـ aggregator بأناقة مع timeout الـ supplier (شريط نتائج جزئية؛ بدون فشل كلي).                                  | MUST     |
+| FR-043 | يجب أن يخزّن النظام cache لكل supplier على حدة بمفتاح مستقل لتمكين partial cache hits.                                          | MUST     |
+| FR-044 | يجب أن يدعم النظام البحث بفندق محدد وكذلك بمنطقة المدينة (نصف قطر lat-lng حتى 25km).                                            | MUST     |
+| FR-045 | يجب أن يعرض النظام فلاتر amenity و board basis و refundability بصورة موحّدة عبر مخرجات الـ supplier.                          | MUST     |
+| FR-046 | يجب أن يُظهر النظام موعد free-cancellation بالـ timezone الخاص بالعميل، باللون الأحمر إن تبقّى أقل من 24 ساعة.                  | MUST     |
+| FR-047 | يجب أن يسمح النظام بتعديل التواريخ خلال 24 ساعة من الحجز عندما تسمح قواعد الـ supplier.                                         | SHOULD   |
+| FR-048 | يجب أن يحفظ النظام supplier-of-record وقت الحجز؛ والعمليات اللاحقة تذهب لنفس الـ supplier.                                      | MUST     |
+| FR-049 | يجب أن يدعم النظام عروض pay-at-hotel، مع تمييزها بشكل منفصل؛ والدفع يكون لضمان الحجز فقط.                                       | SHOULD   |
+| FR-050 | يجب أن يرسل النظام التأكيد بلغة العميل بما في ذلك email/phone للفندق، lat-lng، ومواعيد check-in/out.                            | MUST     |
+| FR-051 | يجب أن ينتج النظام voucher PDF موحّد (template لكل locale) ومرفقًا مع التأكيد.                                                  | MUST     |
+| FR-052 | يجب أن يفرض النظام stop-sell flags من أي supplier خلال 60 ثانية من إشارة الـ supplier.                                          | MUST     |
+| FR-053 | يجب أن يدعم النظام شارة "best deal" بأسلوب meta-search بناءً على أرخص سعر مكافئ.                                                | SHOULD   |
+| FR-054 | يجب أن يسمح النظام باستيراد reviews النزلاء من الـ supplier (read-only) وعرضها مع نسبتها للمصدر.                                | MAY      |
+| FR-055 | يجب أن يتعامل النظام مع تحويل العملات على الـ server باستخدام feed يومي للـ FX؛ مع تخزين sell-currency على الحجز.                | MUST     |
+| FR-056 | يجب أن يفرض النظام فحص inventory acceptance (rebook) خلال 120 ثانية من تأكيد الدفع.                                            | MUST     |
+| FR-057 | يجب أن يسجّل النظام كسر rate parity أكبر من 5% للـ BI لمراجعة تجارية.                                                            | SHOULD   |
+| FR-058 | يجب أن ينتج النظام ملف reconciliation يومي مقابل ARI feed كل supplier.                                                          | MUST     |
 
-### Module: Booking (FR-059 — FR-072)
+### الـ Module: Booking (FR-059 — FR-072)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
 | FR-059 | *Extends Basic FR-045..055.*                                                                                  | MUST     |
-| FR-060 | The system MUST support **cart** with multiple items (flight + hotel) checked out together.                   | MUST     |
-| FR-061 | The system MUST compute combined total in display currency with consistent FX snapshot.                       | MUST     |
-| FR-062 | The system MUST split charge across items for refund granularity; one payment intent per cart.                | MUST     |
-| FR-063 | The system MUST support cart hold of 20 minutes; supplier offers re-priced if held > 5 minutes.               | MUST     |
-| FR-064 | The system MUST allow user-initiated cancellation per booking item (partial cancellation) where allowed.       | MUST     |
-| FR-065 | The system MUST run a **saga** for fulfillment with explicit compensation for each step.                      | MUST     |
-| FR-066 | The system MUST persist saga state in `booking_sagas` with retry counters.                                    | MUST     |
-| FR-067 | The system MUST emit domain events on every state transition for downstream BI ingestion.                     | MUST     |
-| FR-068 | The system MUST handle voluntary changes (date change) by composing cancel + rebook with delta charge/refund.  | SHOULD   |
-| FR-069 | The system MUST capture and store traveller consents (T&C version hash + timestamp) at booking time.          | MUST     |
-| FR-070 | The system MUST mark bookings with regulatory tags (`TAX_VAT`, `TAX_TOURISM`) for invoice generation.         | MUST     |
-| FR-071 | The system MUST generate a tax-compliant invoice PDF per market on demand.                                    | MUST     |
-| FR-072 | The system MUST allow "view e-ticket" and "view voucher" download from customer dashboard.                    | MUST     |
+| FR-060 | يجب أن يدعم النظام **cart** بعدة عناصر (flight + hotel) يتم checkout لها معًا.                                  | MUST     |
+| FR-061 | يجب أن يحسب النظام المجموع الكلي بعملة العرض مع snapshot ثابت للـ FX.                                            | MUST     |
+| FR-062 | يجب أن يقسّم النظام الـ charge بين العناصر بحيث تكون عمليات الـ refund granular؛ payment intent واحد لكل cart.    | MUST     |
+| FR-063 | يجب أن يدعم النظام احتجاز الـ cart لمدة 20 دقيقة؛ مع إعادة تسعير عروض الـ supplier إذا تجاوز الاحتجاز 5 دقائق.    | MUST     |
+| FR-064 | يجب أن يسمح النظام للـ user بإلغاء عنصر حجز معين (إلغاء جزئي) حيث يكون مسموحًا.                                     | MUST     |
+| FR-065 | يجب أن يشغّل النظام **saga** لعملية الـ fulfillment مع compensation صريح لكل خطوة.                              | MUST     |
+| FR-066 | يجب أن يحفظ النظام حالة الـ saga في جدول `booking_sagas` مع عدّاد retries.                                       | MUST     |
+| FR-067 | يجب أن يُصدر النظام domain events عند كل state transition لاستهلاكها لاحقًا في الـ BI.                            | MUST     |
+| FR-068 | يجب أن يتعامل النظام مع التغييرات الإرادية (تغيير تاريخ) عبر cancel + rebook مع رسم/refund الفرق.                | SHOULD   |
+| FR-069 | يجب أن يلتقط النظام موافقات المسافر (T&C version hash + timestamp) ويخزنها وقت الحجز.                            | MUST     |
+| FR-070 | يجب أن يضع النظام tags تنظيمية على الحجوزات (`TAX_VAT`، `TAX_TOURISM`) لاستخدامها في إنتاج الفواتير.              | MUST     |
+| FR-071 | يجب أن يولّد النظام فاتورة PDF متوافقة ضريبيًا لكل market عند الطلب.                                              | MUST     |
+| FR-072 | يجب أن يسمح النظام بـ "view e-ticket" و "view voucher" من dashboard العميل.                                       | MUST     |
 
-### Module: Payment (FR-073 — FR-088)
+### الـ Module: Payment (FR-073 — FR-088)
 
-| ID     | Requirement                                                                                                          | Priority |
+| ID     | المتطلب                                                                                                              | الأولوية |
 | ------ | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| FR-073 | The system MUST route payments across multiple PSPs based on currency, BIN country, amount, and risk score.           | MUST     |
-| FR-074 | The system MUST support Stripe (global cards), Paymob (Egyptian cards + wallet + Fawry), Adyen (alt MPMs, intl).      | MUST     |
-| FR-075 | The system MUST tokenize cards via PSP vault; PCI scope remains SAQ A-EP.                                              | MUST     |
-| FR-076 | The system MUST support saved payment methods per user with default selection.                                         | MUST     |
-| FR-077 | The system MUST automate refunds: ops trigger or system rule → PSP refund API; partial refunds supported.              | MUST     |
-| FR-078 | The system MUST process refund webhooks idempotently, updating `payments.refunded_amount_minor` and booking status.    | MUST     |
-| FR-079 | The system MUST hold a daily FX snapshot from an external feed (e.g., openexchangerates) with margin added.            | MUST     |
-| FR-080 | The system MUST persist `sellCurrency`, `buyCurrency`, `fxRate`, `fxMarginPct` per booking for audit.                  | MUST     |
-| FR-081 | The system MUST reconcile PSP payouts to bookings nightly; mismatches >0.5% flag to finance.                           | MUST     |
-| FR-082 | The system MUST issue refunds in the original capture currency to avoid customer FX loss.                              | MUST     |
-| FR-083 | The system MUST enforce 3DS / SCA per region (PSD2 in EU, mandatory in EG by CBE).                                     | MUST     |
-| FR-084 | The system MUST support partial captures for multi-item carts when supplier confirms partially.                        | SHOULD   |
-| FR-085 | The system MUST escrow payouts to suppliers via `supplier_payouts` ledger; net of commission.                          | MUST     |
-| FR-086 | The system MUST surface dunning state for failed payments with smart retry (1h, 6h, 24h).                              | MUST     |
-| FR-087 | The system MUST support Apple Pay / Google Pay via Stripe Express Checkout.                                            | SHOULD   |
-| FR-088 | The system MUST emit a Finance event stream (`finance.*`) consumed by the reconciliation worker.                       | MUST     |
+| FR-073 | يجب أن يوجّه النظام المدفوعات عبر عدة PSPs بناءً على العملة، دولة الـ BIN، المبلغ، وdرجة المخاطرة.                       | MUST     |
+| FR-074 | يجب أن يدعم النظام Stripe (بطاقات عالمية)، Paymob (بطاقات مصرية + wallet + Fawry)، Adyen (وسائل بديلة، دولي).         | MUST     |
+| FR-075 | يجب أن يقوم النظام بـ tokenize البطاقات عبر vault الخاص بالـ PSP؛ مع بقاء النطاق PCI في حدود SAQ A-EP.                  | MUST     |
+| FR-076 | يجب أن يدعم النظام saved payment methods لكل user مع اختيار افتراضي.                                                    | MUST     |
+| FR-077 | يجب أن يقوم النظام بـ automate الـ refunds: تشغيل من ops أو قاعدة نظام → PSP refund API؛ مع دعم الـ partial refunds.    | MUST     |
+| FR-078 | يجب أن يعالج النظام webhooks الـ refund بشكل idempotent، ويحدّث `payments.refunded_amount_minor` وحالة الحجز.            | MUST     |
+| FR-079 | يجب أن يحتفظ النظام بـ snapshot يومي للـ FX من feed خارجي (مثل openexchangerates) مع إضافة margin.                       | MUST     |
+| FR-080 | يجب أن يحفظ النظام `sellCurrency` و `buyCurrency` و `fxRate` و `fxMarginPct` لكل حجز لأغراض الـ audit.                  | MUST     |
+| FR-081 | يجب أن يقوم النظام بـ reconcile الـ PSP payouts مع الحجوزات ليلًا؛ مع رفع الـ mismatches الأكبر من 0.5% للـ finance.     | MUST     |
+| FR-082 | يجب أن يُصدر النظام الـ refunds بعملة الـ capture الأصلية لتجنب خسارة العميل من الـ FX.                                  | MUST     |
+| FR-083 | يجب أن يفرض النظام 3DS / SCA حسب المنطقة (PSD2 في EU، إلزامي في EG من CBE).                                            | MUST     |
+| FR-084 | يجب أن يدعم النظام partial captures للـ carts متعددة العناصر عندما يؤكد الـ supplier جزئيًا.                            | SHOULD   |
+| FR-085 | يجب أن يحتجز النظام payouts الـ supplier في ledger `supplier_payouts`؛ صافي بعد العمولة.                                | MUST     |
+| FR-086 | يجب أن يُظهر النظام حالة dunning للمدفوعات الفاشلة مع smart retry (1h، 6h، 24h).                                        | MUST     |
+| FR-087 | يجب أن يدعم النظام Apple Pay / Google Pay عبر Stripe Express Checkout.                                                 | SHOULD   |
+| FR-088 | يجب أن يُصدر النظام stream أحداث Finance (`finance.*`) يستهلكه worker الـ reconciliation.                              | MUST     |
 
-### Module: Notifications (FR-089 — FR-100)
+### الـ Module: Notifications (FR-089 — FR-100)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-089 | The system MUST support email + WhatsApp Business + in-app channels with channel preference per event.       | MUST     |
-| FR-090 | The system MUST send WhatsApp via Meta Cloud API using approved templates with parameter substitution.        | MUST     |
-| FR-091 | The system MUST request opt-in for WhatsApp explicitly; default OFF.                                          | MUST     |
-| FR-092 | The system MUST fall back to email if WhatsApp delivery fails (no `delivered` callback within 5 min).        | MUST     |
-| FR-093 | The system MUST localize all templates to AR/EN/FR; WhatsApp templates submitted/approved per language.      | MUST     |
-| FR-094 | The system MUST queue notifications on BullMQ; per-channel rate-limiting (WA Business: < 50 msg/s/account).   | MUST     |
-| FR-095 | The system MUST de-dup notifications across channels using `dedup_key`.                                      | MUST     |
-| FR-096 | The system MUST track delivery (`sent`, `delivered`, `read`, `failed`) and surface in admin.                | MUST     |
-| FR-097 | The system MUST support pre-trip reminders (24h, 2h) via the user's preferred channel.                       | MUST     |
-| FR-098 | The system MUST throttle re-sends to 1 per 10 min per template per user.                                     | MUST     |
-| FR-099 | The system MUST sign in-app notifications with the event ID for the FE realtime channel.                     | MUST     |
-| FR-100 | The system MUST honor Meta's 24-hour customer-service window rules for WA non-template messages.             | MUST     |
+| FR-089 | يجب أن يدعم النظام قنوات email و WhatsApp Business و in-app مع تفضيل قناة لكل حدث.                              | MUST     |
+| FR-090 | يجب أن يرسل النظام WhatsApp عبر Meta Cloud API باستخدام templates معتمدة مع استبدال parameters.                  | MUST     |
+| FR-091 | يجب أن يطلب النظام opt-in صريح لـ WhatsApp؛ الافتراضي OFF.                                                     | MUST     |
+| FR-092 | يجب أن يرجع النظام إلى email إذا فشل توصيل WhatsApp (لا يوجد callback بـ `delivered` خلال 5 دقائق).             | MUST     |
+| FR-093 | يجب أن يترجم النظام كل الـ templates إلى AR/EN/FR؛ مع تقديم/اعتماد WhatsApp templates لكل لغة.                  | MUST     |
+| FR-094 | يجب أن يضع النظام الإشعارات في طابور BullMQ؛ مع rate-limiting لكل قناة (WA Business: أقل من 50 msg/s/account).  | MUST     |
+| FR-095 | يجب أن يلغي النظام تكرار الإشعارات عبر القنوات باستخدام `dedup_key`.                                            | MUST     |
+| FR-096 | يجب أن يتتبع النظام حالة التسليم (`sent` و `delivered` و `read` و `failed`) ويُظهرها في الـ admin.              | MUST     |
+| FR-097 | يجب أن يدعم النظام تذكيرات ما قبل الرحلة (24h و 2h) عبر القناة المفضلة للـ user.                                | MUST     |
+| FR-098 | يجب أن يقيّد النظام إعادة الإرسال إلى مرة واحدة كل 10 دقائق لكل template لكل user.                              | MUST     |
+| FR-099 | يجب أن يوقّع النظام إشعارات in-app بـ event ID لقناة الـ realtime في الـ FE.                                      | MUST     |
+| FR-100 | يجب أن يحترم النظام قواعد Meta الخاصة بنافذة الـ 24 ساعة لخدمة العملاء لرسائل WA غير المعتمدة كـ template.        | MUST     |
 
-### Module: Admin (FR-101 — FR-114)
+### الـ Module: Admin (FR-101 — FR-114)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-101 | The admin console MUST provide a bookings workbench: bulk actions (resend, refund, tag, export).             | MUST     |
-| FR-102 | The admin console MUST expose supplier health dashboards (latency, error rate per op, last seen).            | MUST     |
-| FR-103 | The admin console MUST expose payment console: failed payments, refund queue, dunning state, PSP volume.    | MUST     |
-| FR-104 | The admin console MUST support finance exports: GMV, take rate, refunds, FX P&L per day/market/currency.    | MUST     |
-| FR-105 | The admin console MUST allow CMS for marketing pages (deals, banners) backing the Next.js site.             | MUST     |
-| FR-106 | The admin console MUST allow customer-360 view (bookings, payments, notifications, sessions).               | MUST     |
-| FR-107 | The admin console MUST allow notification-template editing with preview and i18n.                            | MUST     |
-| FR-108 | The admin console MUST allow feature-flag toggles per environment, audited.                                  | MUST     |
-| FR-109 | The admin console MUST support 4-eye approval on refunds > $5,000 equivalent.                                | MUST     |
-| FR-110 | The admin console MUST integrate impersonation with 30-min hard ceiling and a banner on the customer FE.     | MUST     |
-| FR-111 | The admin console MUST log every action to immutable audit log with diff.                                    | MUST     |
-| FR-112 | The admin console MUST allow CSV import of supplier-mapping data (for hotel dedup).                          | MUST     |
-| FR-113 | The admin console MUST allow scheduled reports (daily KPI digest to email distribution list).               | SHOULD   |
-| FR-114 | The admin console MUST surface SLA dashboards: NFR-bound metrics with traffic light status.                  | MUST     |
+| FR-101 | يجب أن توفّر لوحة الـ admin workbench للحجوزات: bulk actions (resend، refund، tag، export).                    | MUST     |
+| FR-102 | يجب أن تكشف لوحة الـ admin dashboards لصحة الـ supplier (latency، نسبة الخطأ لكل op، آخر ظهور).               | MUST     |
+| FR-103 | يجب أن تكشف لوحة الـ admin لوحة المدفوعات: المدفوعات الفاشلة، طابور الـ refund، حالة الـ dunning، حجم PSP.    | MUST     |
+| FR-104 | يجب أن تدعم لوحة الـ admin تصدير finance: GMV و take rate و refunds و FX P&L لكل يوم/market/عملة.            | MUST     |
+| FR-105 | يجب أن تسمح لوحة الـ admin بـ CMS لصفحات التسويق (deals، banners) المستخدمة في موقع الـ Next.js.              | MUST     |
+| FR-106 | يجب أن تسمح لوحة الـ admin بعرض customer-360 (حجوزات، مدفوعات، إشعارات، sessions).                            | MUST     |
+| FR-107 | يجب أن تسمح لوحة الـ admin بتعديل templates الإشعارات مع preview و i18n.                                       | MUST     |
+| FR-108 | يجب أن تسمح لوحة الـ admin بتبديل feature-flag لكل بيئة، مع تسجيل audit.                                       | MUST     |
+| FR-109 | يجب أن تدعم لوحة الـ admin موافقة 4-eye للـ refunds الأكبر من ما يعادل $5,000.                                  | MUST     |
+| FR-110 | يجب أن تدعم لوحة الـ admin impersonation بحد أقصى 30 دقيقة مع banner على FE العميل.                            | MUST     |
+| FR-111 | يجب أن تسجّل لوحة الـ admin كل عملية في audit log غير قابل للتعديل مع diff.                                     | MUST     |
+| FR-112 | يجب أن تسمح لوحة الـ admin بـ CSV import لبيانات supplier-mapping (لـ dedup الفنادق).                          | MUST     |
+| FR-113 | يجب أن تسمح لوحة الـ admin بجدولة تقارير (digest يومي KPI إلى distribution list بريدية).                       | SHOULD   |
+| FR-114 | يجب أن تُظهر لوحة الـ admin dashboards الـ SLA: مقاييس مرتبطة بـ NFR مع traffic light.                          | MUST     |
 
-### Module: Customer Dashboard (FR-115 — FR-126)
+### الـ Module: Customer Dashboard (FR-115 — FR-126)
 
-| ID     | Requirement                                                                                                  | Priority |
+| ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-115 | The dashboard MUST present trips grouped: upcoming, ongoing, past, cancelled.                                 | MUST     |
-| FR-116 | The dashboard MUST allow downloading e-ticket / voucher / invoice from each booking card.                    | MUST     |
-| FR-117 | The dashboard MUST allow updating contact info, locale, currency, MFA, sessions, password.                    | MUST     |
-| FR-118 | The dashboard MUST manage saved travellers (CRUD), with explicit consent for shared bookings.                | MUST     |
-| FR-119 | The dashboard MUST present travel documents vault (passports, visas) with expiry warnings.                   | MUST     |
-| FR-120 | The dashboard MUST manage saved cards (PSP-token only; never PAN) with delete and set-default.               | MUST     |
-| FR-121 | The dashboard MUST allow self-service cancellation with quoted refund preview.                                | MUST     |
-| FR-122 | The dashboard MUST present refund tracking timeline (requested → in_progress → settled).                     | MUST     |
-| FR-123 | The dashboard MUST present GDPR data export request workflow with status.                                     | MUST     |
-| FR-124 | The dashboard MUST present account-deletion workflow with 30-day grace + cancellation of safety checks.       | MUST     |
-| FR-125 | The dashboard MUST present a loyalty placeholder hook (wallet credit balance, read-only in Pro).             | SHOULD   |
-| FR-126 | The dashboard MUST present a realtime trip-status panel (delays, gate) for upcoming flights within 24 h.     | SHOULD   |
+| FR-115 | يجب أن يعرض الـ dashboard الرحلات مجمّعة: upcoming و ongoing و past و cancelled.                                | MUST     |
+| FR-116 | يجب أن يسمح الـ dashboard بتنزيل e-ticket / voucher / invoice من كل بطاقة حجز.                                 | MUST     |
+| FR-117 | يجب أن يسمح الـ dashboard بتحديث بيانات الاتصال، الـ locale، العملة، MFA، الـ sessions، وكلمة المرور.            | MUST     |
+| FR-118 | يجب أن يدير الـ dashboard المسافرين المحفوظين (CRUD) مع موافقة صريحة للحجوزات المشتركة.                          | MUST     |
+| FR-119 | يجب أن يعرض الـ dashboard خزينة وثائق السفر (جوازات، تأشيرات) مع تحذيرات انتهاء الصلاحية.                       | MUST     |
+| FR-120 | يجب أن يدير الـ dashboard البطاقات المحفوظة (PSP-token فقط؛ لا PAN أبدًا) مع حذف وضبط افتراضية.                  | MUST     |
+| FR-121 | يجب أن يسمح الـ dashboard بإلغاء ذاتي مع preview للـ refund المتوقع.                                            | MUST     |
+| FR-122 | يجب أن يعرض الـ dashboard timeline لتتبع الـ refund (requested → in_progress → settled).                      | MUST     |
+| FR-123 | يجب أن يعرض الـ dashboard workflow لطلب تصدير بيانات GDPR مع الحالة.                                            | MUST     |
+| FR-124 | يجب أن يعرض الـ dashboard workflow لحذف الحساب مع grace period لـ 30 يومًا وفحوص أمان للإلغاء.                  | MUST     |
+| FR-125 | يجب أن يعرض الـ dashboard placeholder للولاء (رصيد wallet، read-only في Pro).                                    | SHOULD   |
+| FR-126 | يجب أن يعرض الـ dashboard panel realtime لحالة الرحلة (تأخيرات، gate) للرحلات القادمة خلال 24 ساعة.            | SHOULD   |
 
 ---
 
-## Non-functional Requirements
+## المتطلبات غير الوظيفية
 
-### Performance
+### الأداء
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-001 | Flight search p95 ≤ 2.0 s (aggregated, cache-hot ≤ 600 ms).                                  |
-| NFR-002 | Hotel aggregated search p95 ≤ 2.5 s (3 suppliers fanout, 1.8 s supplier-call budget each).   |
-| NFR-003 | Non-supplier endpoints p95 ≤ 200 ms.                                                          |
-| NFR-004 | Customer dashboard TTFB p95 ≤ 350 ms.                                                         |
-| NFR-005 | Webhook ingestion (PSP) p95 ≤ 150 ms ack.                                                     |
-| NFR-006 | LCP ≤ 1.8 s on 4G; CLS ≤ 0.05; INP ≤ 200 ms.                                                  |
+| NFR-001 | بحث الطيران: p95 ≤ 2.0 ثانية (مجمّع، cache-hot ≤ 600 ms).                                     |
+| NFR-002 | بحث الفنادق المجمّع: p95 ≤ 2.5 ثانية (3 suppliers fanout، ميزانية 1.8 ثانية لكل supplier-call). |
+| NFR-003 | الـ endpoints التي لا تستدعي supplier: p95 ≤ 200 ms.                                          |
+| NFR-004 | TTFB لـ customer dashboard: p95 ≤ 350 ms.                                                     |
+| NFR-005 | استقبال الـ webhook (PSP): p95 ≤ 150 ms ack.                                                  |
+| NFR-006 | LCP ≤ 1.8 ثانية على 4G؛ CLS ≤ 0.05؛ INP ≤ 200 ms.                                            |
 
-### Scalability
+### القابلية للتوسّع
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-007 | Sustain 200 RPS booking funnel, peak 500 RPS for 10 min.                                     |
-| NFR-008 | Sustain 1000 RPS catalog/search.                                                              |
-| NFR-009 | BullMQ workers MUST scale to 12 replicas without code change; queue concurrency configurable. |
-| NFR-010 | Postgres MUST tolerate 600 client conns via PgBouncer; primary CPU ≤ 60% at sustained load.   |
-| NFR-011 | Aggregator MUST shard supplier calls across worker pool to avoid head-of-line blocking.       |
+| NFR-007 | تحمّل 200 RPS في funnel الحجز، مع ذروة 500 RPS لمدة 10 دقائق.                                  |
+| NFR-008 | تحمّل 1000 RPS للـ catalog/search.                                                            |
+| NFR-009 | يجب أن تتوسّع workers الـ BullMQ إلى 12 replicas دون تغيير في الكود؛ مع concurrency قابل للضبط. |
+| NFR-010 | يجب أن يتحمّل Postgres حتى 600 client conns عبر PgBouncer؛ مع CPU الـ primary ≤ 60% تحت ضغط مستمر. |
+| NFR-011 | يجب أن يقوم الـ aggregator بـ shard لاستدعاءات الـ supplier عبر pool من workers لتجنّب head-of-line blocking. |
 
-### Availability
+### التوافر
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-012 | Target monthly uptime 99.9% (≤ 43 min downtime).                                              |
-| NFR-013 | RPO ≤ 5 min, RTO ≤ 1 h for full DR in primary region.                                         |
-| NFR-014 | Active warm standby in second AZ; primary Postgres with synchronous replica; quorum write. |
-| NFR-015 | Zero-downtime deploys via blue/green for API; canary for FE (5% → 25% → 100%).                |
-| NFR-016 | Maintenance windows announced ≥ 7 days in advance; max 2 per quarter, max 30 min each.        |
+| NFR-012 | هدف uptime شهري 99.9% (downtime لا يزيد عن 43 دقيقة).                                        |
+| NFR-013 | RPO ≤ 5 دقائق، RTO ≤ ساعة لـ DR كاملة في الـ primary region.                                   |
+| NFR-014 | warm standby نشط في AZ ثانية؛ Postgres primary مع synchronous replica؛ كتابة بـ quorum.       |
+| NFR-015 | نشر دون downtime عبر blue/green للـ API؛ وcanary للـ FE (5% → 25% → 100%).                    |
+| NFR-016 | نوافذ الصيانة يُعلَن عنها قبل 7 أيام؛ بحد أقصى نافذتان لكل ربع سنوي، كل واحدة لا تتجاوز 30 دقيقة. |
 
-### Security
+### الأمان
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-017 | TLS 1.2+, HSTS 2 y preload; OCSP stapling enabled.                                            |
-| NFR-018 | Data at rest AES-256; KMS-rooted key hierarchy with monthly DEK rotation.                     |
-| NFR-019 | All secrets in AWS Secrets Manager / HashiCorp Vault; never in env files in git.              |
-| NFR-020 | Security-grade pentest twice a year; remediation within 30 days for High, 7 days Critical.    |
-| NFR-021 | SOC 2 Type I readiness during Pro tier; controls mapped.                                      |
+| NFR-017 | TLS 1.2+، HSTS 2 سنة preload؛ OCSP stapling مفعّل.                                            |
+| NFR-018 | البيانات في الـ storage بـ AES-256؛ هرمية مفاتيح KMS-rooted مع تدوير شهري لـ DEK.              |
+| NFR-019 | كل الـ secrets في AWS Secrets Manager / HashiCorp Vault؛ ولا توضع أبدًا في env files في git.   |
+| NFR-020 | pentest أمني مرتين سنويًا؛ معالجة العالية خلال 30 يومًا، والحرجة خلال 7 أيام.                   |
+| NFR-021 | جاهزية SOC 2 Type I أثناء المستوى Pro؛ مع mapping للضوابط.                                    |
 
-### Compliance
+### الامتثال
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-022 | PCI DSS v4.0 SAQ A-EP attestation maintained annually.                                        |
-| NFR-023 | GDPR + Egyptian DP Law: DPIA documented for new processing activities.                        |
-| NFR-024 | Tax invoicing: VAT for EG/SA where applicable; sequential invoice number per market.          |
-| NFR-025 | Right to be forgotten honored within 30 days; legal hold supersedes.                          |
+| NFR-022 | شهادة PCI DSS v4.0 SAQ A-EP يتم تجديدها سنويًا.                                              |
+| NFR-023 | GDPR + قانون حماية البيانات المصري: توثيق DPIA لكل نشاط معالجة جديد.                          |
+| NFR-024 | الفوترة الضريبية: VAT لـ EG/SA حين ينطبق؛ مع رقم فاتورة تسلسلي لكل market.                    |
+| NFR-025 | حق النسيان يُنفّذ خلال 30 يومًا؛ مع أسبقية الـ legal hold.                                     |
 
-### Internationalization
+### التدويل
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-026 | All UI surfaces support AR (RTL), EN, FR; RTL-aware bidi handling.                            |
-| NFR-027 | Date/time/number formatting via ICU; user-selectable timezone; storage UTC.                   |
-| NFR-028 | Currency: ISO 4217 codes everywhere; rounding rule = banker's rounding to currency's exponent. |
+| NFR-026 | كل واجهات الـ UI تدعم AR (RTL) و EN و FR؛ مع معالجة bidi واعية لـ RTL.                       |
+| NFR-027 | تنسيق التاريخ/الوقت/الأرقام عبر ICU؛ مع timezone قابل للاختيار من الـ user؛ والتخزين بـ UTC.   |
+| NFR-028 | العملة: أكواد ISO 4217 في كل مكان؛ مع banker's rounding وفق exponent العملة.                  |
 
-### Accessibility
+### إمكانية الوصول
 
-| ID      | Requirement                                                                                  |
+| ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-029 | WCAG 2.1 AA — verified via axe-core CI + quarterly manual audit by accessibility consultant.  |
-| NFR-030 | Mobile-first; touch targets ≥ 44×44 CSS px.                                                   |
+| NFR-029 | WCAG 2.1 AA — يُتحقّق منها عبر axe-core في الـ CI + audit يدوي ربع سنوي من استشاري accessibility. |
+| NFR-030 | mobile-first؛ مع touch targets ≥ 44×44 CSS px.                                                |
 
 ---
 
-## System Architecture
+## معمارية النظام
 
 ```
                                             ┌───────────────────────────────────────┐
@@ -380,48 +440,48 @@ Out of scope (deferred to Enterprise):
                                                   └──────────────────────────────┘
 ```
 
-### Hexagonal Layout (per service)
+### التنظيم الـ Hexagonal (لكل خدمة)
 
-- **Adapters in**: HTTP controllers, queue listeners, webhook receivers.
-- **Application**: use cases (saga orchestration, idempotent commands).
-- **Domain**: pure entities (`Booking`, `Payment`, `Offer`) + value objects (`Money`,
-  `Currency`, `Locale`).
-- **Adapters out**: PSP clients, supplier clients, repositories (Prisma), event bus.
+- **Adapters in**: HTTP controllers، queue listeners، webhook receivers.
+- **Application**: use cases (إدارة الـ saga، أوامر idempotent).
+- **Domain**: entities صافية (`Booking` و `Payment` و `Offer`) + value objects (`Money`،
+  `Currency`، `Locale`).
+- **Adapters out**: PSP clients، supplier clients، repositories (Prisma)، event bus.
 
-### Async Boundaries
+### الحدود الـ Async
 
-- All multi-step operations (booking fulfillment, refunds, payouts, dunning) run as
-  BullMQ jobs with `attempts`, `backoff:{type:exponential, delay:1000}`, idempotent
-  handlers.
-- Domain events published to an internal in-process EventEmitter, then optionally
-  forwarded to a `domain.events` BullMQ queue for cross-service consumers.
+- كل العمليات متعددة الخطوات (fulfillment الحجز، refunds، payouts، dunning) تعمل كـ
+  BullMQ jobs مع `attempts` و `backoff:{type:exponential, delay:1000}` ومع handlers
+  من نوع idempotent.
+- domain events يُنشَر داخليًا في in-process EventEmitter، ثم يُعاد توجيهه اختياريًا
+  إلى طابور `domain.events` في BullMQ لاستهلاكه من خدمات أخرى.
 
 ---
 
-## Database Design
+## تصميم قاعدة البيانات
 
-PostgreSQL 16, Pro tier adds the following tables on top of Basic.
+PostgreSQL 16، والمستوى Pro يضيف الجداول التالية فوق المستوى Basic.
 
-| Table                  | Purpose                                                                       |
+| الجدول                 | الغرض                                                                          |
 | ---------------------- | ----------------------------------------------------------------------------- |
-| `currencies`           | ISO 4217 reference + display exponent                                         |
-| `fx_rates`             | Daily FX snapshots                                                            |
-| `saved_travellers`     | Per-user reusable traveller profiles                                          |
-| `saved_documents`      | Travel documents vault (encrypted)                                            |
-| `saved_payment_methods`| PSP-token references per user                                                 |
-| `carts`                | Multi-item booking cart aggregate                                             |
-| `cart_items`           | Cart line items                                                               |
-| `booking_sagas`        | Per-booking saga state (step, retries, errors)                                |
-| `booking_changes`      | Voluntary changes ledger (delta charge/refund)                                |
-| `supplier_mappings`    | Canonical hotel ID ↔ supplier-specific IDs                                    |
-| `supplier_payouts`     | Outbound supplier ledger (commission + net)                                   |
-| `psp_routes`           | Routing rules table (currency, BIN, amount) → PSP                             |
-| `wa_templates`         | WhatsApp Business approved templates per locale                               |
-| `wa_messages`          | Sent WA messages + delivery state                                             |
-| `consents`             | Versioned consent record (T&C, marketing, WA)                                 |
-| `invoices`             | Generated tax invoice metadata + storage URL                                  |
+| `currencies`           | مرجع ISO 4217 + display exponent                                              |
+| `fx_rates`             | snapshots يومية للـ FX                                                        |
+| `saved_travellers`     | ملفات مسافرين قابلة لإعادة الاستخدام لكل user                                 |
+| `saved_documents`      | خزينة وثائق السفر (مُشفّرة)                                                   |
+| `saved_payment_methods`| مراجع PSP-token لكل user                                                      |
+| `carts`                | aggregate الـ cart متعدد العناصر                                              |
+| `cart_items`           | عناصر الـ cart                                                                |
+| `booking_sagas`        | حالة الـ saga لكل حجز (الخطوة، retries، errors)                                |
+| `booking_changes`      | ledger للتغييرات الإرادية (delta charge/refund)                                |
+| `supplier_mappings`    | canonical hotel ID ↔ معرّفات الـ supplier المحددة                              |
+| `supplier_payouts`     | ledger مدفوعات الـ supplier (العمولة + الصافي)                                 |
+| `psp_routes`           | جدول قواعد التوجيه (currency، BIN، amount) → PSP                              |
+| `wa_templates`         | templates الـ WhatsApp Business المعتمدة لكل locale                          |
+| `wa_messages`          | رسائل WA المُرسَلة + حالة التسليم                                              |
+| `consents`             | سجل موافقة مع version (T&C، marketing، WA)                                    |
+| `invoices`             | metadata الفاتورة الضريبية المُنتَجة + storage URL                              |
 
-### Key DDL
+### DDL الرئيسية
 
 ```sql
 CREATE TABLE currencies (
@@ -597,9 +657,9 @@ CREATE TABLE invoices (
 
 ---
 
-## API Design
+## تصميم الـ API
 
-40 endpoints. Authentication / rate limits / error envelope inherited from Basic.
+عدد الـ endpoints: 40. الـ authentication / rate limits / error envelope موروثة من Basic.
 
 | #  | METHOD | PATH                                          | Auth        | Request                                            | Response                              | Status              |
 | -- | ------ | --------------------------------------------- | ----------- | -------------------------------------------------- | ------------------------------------- | ------------------- |
@@ -644,7 +704,7 @@ CREATE TABLE invoices (
 | 39 | POST   | `/admin/bookings/bulk`                        | admin       | `{ids[],action,params}`                            | `{queuedJobId}`                       | 202                 |
 | 40 | GET    | `/admin/reports/daily`                        | admin       | date                                                | `Report`                              | 200                 |
 
-### Sample: Cart Checkout
+### مثال: Cart Checkout
 
 ```json
 POST /carts/c_01J9.../checkout
@@ -661,7 +721,7 @@ Authorization: Bearer ...
 }
 ```
 
-Response (201):
+الرد (201):
 
 ```json
 {
@@ -680,85 +740,84 @@ Response (201):
 
 ---
 
-## Authentication & Authorization
+## Authentication و Authorization
 
-### Token Model (delta vs Basic)
+### نموذج الـ Token (الفرق عن Basic)
 
-- Access JWT 10 min, refresh 30 d (rotated, family-aware).
-- New claims: `mfa: bool`, `mfa_methods: ["totp"]`, `step_up_until: <epoch>`.
-- `step_up_until` required >= now() for refund, payment-method changes, MFA disable.
+- Access JWT لمدة 10 دقائق، refresh لمدة 30 يومًا (rotated و family-aware).
+- claims جديدة: `mfa: bool` و `mfa_methods: ["totp"]` و `step_up_until: <epoch>`.
+- يجب أن يكون `step_up_until >= now()` لعمليات الـ refund وتغيير وسيلة الدفع وإيقاف MFA.
 
-### Roles & Permissions
+### الأدوار والصلاحيات
 
-| Role             | Sample Permissions                                                                |
+| الدور            | أمثلة الصلاحيات                                                                    |
 | ---------------- | --------------------------------------------------------------------------------- |
-| customer         | `booking:*:self`, `payment:create`, `payment_method:*:self`                       |
-| support          | `booking:read:any`, `notification:resend`, `customer:view`                        |
-| ops              | `booking:write:any`, `refund:create:<=5000usd`, `supplier:health:view`            |
+| customer         | `booking:*:self`، `payment:create`، `payment_method:*:self`                       |
+| support          | `booking:read:any`، `notification:resend`، `customer:view`                        |
+| ops              | `booking:write:any`، `refund:create:<=5000usd`، `supplier:health:view`            |
 | admin            | `*`                                                                               |
-| finance          | `report:export`, `reconciliation:run`, `payout:approve`                           |
-| cms_editor       | `cms:*`, `template:*`                                                             |
+| finance          | `report:export`، `reconciliation:run`، `payout:approve`                           |
+| cms_editor       | `cms:*`، `template:*`                                                             |
 
-4-eye approval enforced for `refund:create:>5000usd` and `payout:approve`.
+موافقة 4-eye مفروضة على `refund:create:>5000usd` و `payout:approve`.
 
-### Password & MFA
+### كلمات المرور و MFA
 
-- Argon2id (m=64MiB, t=3, p=2), pepper from KMS.
-- TOTP enrollment via QR + backup codes (10 single-use codes, 8 chars each).
-- MFA enforced for: staff (mandatory), customers (optional but required for sensitive
-  ops).
-- Backup codes hashed (Argon2id) on storage.
+- Argon2id (m=64MiB، t=3، p=2)، مع pepper من KMS.
+- تسجيل TOTP عبر QR + backup codes (10 أكواد كل واحد للاستخدام مرة، طول كل كود 8).
+- MFA مفروض على: الموظفين (إلزامي)، والعملاء (اختياري لكن لازم للعمليات الحساسة).
+- الـ backup codes تُخزَّن مُجزَّأة بـ Argon2id.
 
 ---
 
-## Security
+## الأمان
 
-### OWASP Mitigations (delta)
+### تخفيف مخاطر OWASP (الإضافات)
 
-| Risk      | Mitigation (Pro additions)                                                                       |
+| الخطر     | التخفيف (إضافات Pro)                                                                              |
 | --------- | ------------------------------------------------------------------------------------------------ |
-| A01       | Tenant scope check via `userId` AND `accountId` on every read; admin segregation by permission.   |
-| A02       | KMS envelope encryption for travel docs; HMAC-based deterministic encryption for lookup keys.    |
-| A03       | Drizzle/Prisma parameterization + Zod schema validation on every controller input.               |
-| A05       | CSP enforced (not report-only); strict-dynamic + nonces.                                         |
-| A07       | TOTP MFA, step-up auth, refresh family invalidation.                                              |
-| A09       | OpenTelemetry traces, Sentry, audit log; SIEM integration via Vector → ClickHouse.               |
-| A10 SSRF  | Egress proxy with allow-list + DNS pinning; Lambda-style outbound NAT egress IP for supplier IP allow-list. |
+| A01       | فحص نطاق tenant عبر `userId` و `accountId` في كل قراءة؛ مع فصل الـ admin بالصلاحيات.              |
+| A02       | تشفير KMS envelope لوثائق السفر؛ مع تشفير deterministic عبر HMAC لمفاتيح البحث.                    |
+| A03       | parameterization عبر Drizzle/Prisma + تحقق Zod schema على مدخلات كل controller.                   |
+| A05       | CSP مفروض (لا report-only)؛ مع strict-dynamic + nonces.                                          |
+| A07       | TOTP MFA، step-up auth، إبطال refresh family.                                                     |
+| A09       | OpenTelemetry traces، Sentry، audit log؛ تكامل SIEM عبر Vector → ClickHouse.                     |
+| A10 SSRF  | egress proxy مع allow-list + DNS pinning؛ مع outbound NAT egress IP من نوع Lambda-style لاستخدامه في allow-list لـ supplier. |
 
-### Field-level Encryption
+### التشفير على مستوى الحقل
 
-- Travel-document numbers, passport scans (object storage), saved-card BINs hashed
-  (not encrypted) for analytics.
-- KMS keys per region; per-record DEK encrypted by per-tenant KEK.
-- Quarterly key rotation; immediate rotation on compromise.
+- أرقام وثائق السفر، صور الجوازات (object storage)، أرقام BIN للبطاقات المحفوظة (مُجزَّأة
+  لا مشفّرة) لأغراض التحليلات.
+- مفاتيح KMS لكل region؛ مع DEK لكل سجل مشفّر بـ KEK لكل tenant.
+- تدوير ربع سنوي للمفاتيح؛ تدوير فوري عند أي تسريب.
 
-### Webhook Verification
+### التحقق من الـ Webhook
 
-| PSP    | Method                                                                                |
-| ------ | ------------------------------------------------------------------------------------- |
-| Stripe | `Stripe-Signature` HMAC-SHA256 over payload + timestamp, ±5 min skew.                  |
-| Paymob | HMAC-SHA512 of canonical concatenation per Paymob docs, secret per integration.        |
-| Adyen  | HMAC-SHA256 over Notification payload; secret per merchant account.                    |
-| Meta   | `X-Hub-Signature-256` HMAC-SHA256 with app secret.                                     |
+| PSP    | الطريقة                                                                              |
+| ------ | ----------------------------------------------------------------------------------- |
+| Stripe | `Stripe-Signature` HMAC-SHA256 على payload + timestamp، مع skew ±5 دقائق.            |
+| Paymob | HMAC-SHA512 لـ concatenation أساسي حسب توثيق Paymob، مع secret لكل integration.      |
+| Adyen  | HMAC-SHA256 على payload الـ Notification؛ secret لكل merchant account.               |
+| Meta   | `X-Hub-Signature-256` HMAC-SHA256 بـ app secret.                                     |
 
-All webhooks idempotent on `event.id`; replay window 24 h; old events 410 Gone.
+كل الـ webhooks idempotent على `event.id`؛ نافذة الـ replay 24 ساعة؛ والأحداث القديمة ترجع 410 Gone.
 
 ### Rate Limiting
 
-- Multi-tier: WAF (Cloudflare) for IP-level DDoS, NestJS bucket for user-level
-  business throttle, supplier-circuit-breaker for protective fallbacks.
+- متعدد المستويات: WAF (Cloudflare) لـ DDoS على مستوى الـ IP، وbucket في NestJS للـ
+  throttle التجاري على مستوى الـ user، وsupplier-circuit-breaker للحماية والـ fallback.
 
-### Secrets Management
+### إدارة الـ Secrets
 
-- AWS Secrets Manager for runtime; SOPS-encrypted YAML for IaC bootstrap.
-- Secret rotation: AWS RDS managed master rotation; Stripe/Paymob/Adyen quarterly
-  rotation via runbook.
+- AWS Secrets Manager للوقت التشغيلي؛ مع SOPS-encrypted YAML لـ bootstrap الـ IaC.
+- تدوير الـ secrets: تدوير master الـ AWS RDS المُدار؛ وتدوير Stripe/Paymob/Adyen ربع
+  سنوي عبر runbook.
 
 ---
 
-## Booking Workflow
+## Workflow الحجز
 
-### Saga
+### الـ Saga
 
 ```
                    ┌────────────────────────────────────────┐
@@ -782,36 +841,36 @@ All webhooks idempotent on `event.id`; replay window 24 h; old events 410 Gone.
                                                                           NOTIFY (email + WA)
 ```
 
-### Step Definitions (`booking_sagas.current_step`)
+### تعريفات الخطوات (`booking_sagas.current_step`)
 
-| Step                  | Action                                          | Idem key             | Compensation                            |
+| الخطوة                | الفعل                                            | Idem key             | Compensation                            |
 | --------------------- | ----------------------------------------------- | -------------------- | --------------------------------------- |
-| `PRICE_CONFIRM`       | Re-quote offer with each supplier               | bookingId            | none                                    |
-| `PAYMENT_HOLD`        | Create or use PaymentIntent (manual capture)    | bookingId            | cancel PI                               |
-| `SUPPLIER_BOOK_<i>`   | Issue PNR / hotel booking per item              | bookingId+itemSeq    | supplier cancel (or void uncaptured)    |
-| `PAYMENT_CAPTURE`     | Capture PI                                      | bookingId            | refund                                  |
-| `NOTIFY`              | Enqueue notifications                            | bookingId            | none                                    |
-| `INVOICE`             | Generate invoice                                | bookingId            | none                                    |
+| `PRICE_CONFIRM`       | إعادة تسعير العرض مع كل supplier                | bookingId            | لا شيء                                  |
+| `PAYMENT_HOLD`        | إنشاء أو استخدام PaymentIntent (manual capture) | bookingId            | إلغاء الـ PI                            |
+| `SUPPLIER_BOOK_<i>`   | إصدار PNR / حجز فندق لكل عنصر                   | bookingId+itemSeq    | إلغاء supplier (أو void uncaptured)     |
+| `PAYMENT_CAPTURE`     | عمل capture للـ PI                              | bookingId            | refund                                  |
+| `NOTIFY`              | وضع الإشعارات في الطابور                          | bookingId            | لا شيء                                  |
+| `INVOICE`             | توليد الفاتورة                                   | bookingId            | لا شيء                                  |
 
-### Timeouts
+### المهل الزمنية
 
-| Step                | Hard timeout | Retry policy                                  |
+| الخطوة              | Hard timeout | سياسة الـ Retry                                |
 | ------------------- | ------------ | --------------------------------------------- |
-| PRICE_CONFIRM       | 8 s          | 1 retry                                       |
-| PAYMENT_HOLD        | 8 s          | 2 retries                                     |
-| SUPPLIER_BOOK_*     | 30 s         | 3 retries exp backoff; on final → compensate  |
-| PAYMENT_CAPTURE     | 10 s         | 5 retries exp backoff; on final → page on-call |
-| NOTIFY              | 5 min queued | 5 retries                                     |
-| INVOICE             | 60 s         | 3 retries                                     |
+| PRICE_CONFIRM       | 8 ثواني      | محاولة retry واحدة                             |
+| PAYMENT_HOLD        | 8 ثواني      | محاولتان retry                                 |
+| SUPPLIER_BOOK_*     | 30 ثانية     | 3 retries exp backoff؛ على الأخيرة → compensate |
+| PAYMENT_CAPTURE     | 10 ثواني     | 5 retries exp backoff؛ على الأخيرة → page on-call |
+| NOTIFY              | 5 دقائق في الطابور | 5 retries                                |
+| INVOICE             | 60 ثانية     | 3 retries                                     |
 
 ---
 
-## Flight Flow (Pro additions)
+## Flight Flow (إضافات Pro)
 
-- Branded fares: optional second call (`Flight Offers Pricing` with `include=detailed-fare-rules`)
-  cached 5 min.
-- Ancillaries: `Seat Map Display`, `Flight Order Management` for SSR add.
-- Self-service change: cancel + rebook in same saga with delta charge / refund.
+- Branded fares: استدعاء ثانٍ اختياري (`Flight Offers Pricing` مع `include=detailed-fare-rules`)
+  مع cache لـ 5 دقائق.
+- Ancillaries: `Seat Map Display` و `Flight Order Management` لإضافة الـ SSR.
+- التغيير الذاتي: cancel + rebook في نفس الـ saga مع رسم/refund الفرق.
 
 ```
 search → fanout cache → display → select → priceCheck → seat-map(opt) → checkout → PNR → ticket → SSR (ancillaries) → capture → emailtix + WA
@@ -819,7 +878,7 @@ search → fanout cache → display → select → priceCheck → seat-map(opt) 
 
 ---
 
-## Hotel Flow (multi-provider)
+## Hotel Flow (متعدد المزوّدين)
 
 ```
 client search ──▶ aggregator.search ──┬─▶ amadeus.search   ─┐
@@ -836,25 +895,25 @@ select offer ──▶ supplier-of-record routed thereafter:
     cancel    → supplier.cancel(confirmation)
 ```
 
-### Aggregator Internals
+### داخل الـ Aggregator
 
-- Concurrent fan-out with `Promise.allSettled` + per-supplier 1.8 s timeout.
-- Supplier failures degrade not fail; banner returned on `partial=true`.
-- Deduplication uses Giata canonical ID; fallback fuzzy match (name + lat-lng within 50m).
-- Equivalence: same room category + same board + same refund flag.
-- Cache layered: per-supplier raw cache (60s), merged response cache (10 min).
+- fan-out متزامن باستخدام `Promise.allSettled` مع timeout 1.8 ثانية لكل supplier.
+- فشل الـ supplier يؤدي إلى degrade وليس فشل؛ مع banner عند `partial=true`.
+- الـ deduplication يستخدم Giata canonical ID؛ مع fallback عبر fuzzy match (الاسم + lat-lng خلال 50m).
+- المساواة: نفس فئة الـ room + نفس الـ board + نفس الـ refund flag.
+- cache طبقي: cache خام لكل supplier (60s)، وcache للرد المدمج (10 دقائق).
 
-### Voucher Generation
+### توليد الـ Voucher
 
-- Worker `voucher.generate` uses Puppeteer + locale-specific React template, signs PDF
-  metadata, uploads to S3 (`s3://jawla-prod-vouchers/{bookingId}.pdf`), pre-signed URL
-  expires 30d.
+- worker `voucher.generate` يستخدم Puppeteer + template React مخصص لكل locale، ويوقّع
+  metadata الـ PDF، ويرفعه إلى S3 (`s3://jawla-prod-vouchers/{bookingId}.pdf`)، مع
+  pre-signed URL ينتهي خلال 30 يومًا.
 
 ---
 
-## Payment Flow (multi-PSP, automated refunds)
+## Payment Flow (متعدد الـ PSP، refunds آلية)
 
-### Routing
+### التوجيه
 
 ```
 choose_psp(currency, binCountry, amount, customerRiskScore):
@@ -864,22 +923,22 @@ choose_psp(currency, binCountry, amount, customerRiskScore):
   return fallback (Stripe)
 ```
 
-Examples:
+أمثلة:
 
-| Condition                                | PSP     |
+| الشرط                                    | PSP     |
 | ---------------------------------------- | ------- |
 | currency = EGP                           | Paymob  |
-| currency = USD, BIN country = EG         | Paymob  |
-| currency in (EUR,GBP), amount > €1000    | Adyen   |
-| anything else                            | Stripe  |
+| currency = USD، BIN country = EG         | Paymob  |
+| currency in (EUR,GBP)، amount > €1000    | Adyen   |
+| أي شيء آخر                                | Stripe  |
 
-### Charge Flow (unchanged from Basic conceptually; PSP-abstracted)
+### Flow الـ Charge (لم يتغير مفهومًا عن Basic؛ مجرد PSP-abstracted)
 
 ```
 PI create ──▶ 3DS / SCA ──▶ hold (manual capture) ──▶ supplier fulfill ──▶ capture ──▶ confirm
 ```
 
-### Refund Flow (automated)
+### Flow الـ Refund (آلي)
 
 ```
 trigger:
@@ -897,65 +956,65 @@ worker payment.refund:
    notify customer (email + WA)
 ```
 
-### Reconciliation
+### الـ Reconciliation
 
-- Nightly job pulls PSP payout reports → ledger entries.
-- 3-way match: `bookings.total` ↔ `payments` ↔ `psp.payout_line`.
-- Diff > 0.5% flagged for finance review with details.
+- job ليلي يجلب تقارير الـ payout من الـ PSP → ledger entries.
+- مطابقة ثلاثية: `bookings.total` ↔ `payments` ↔ `psp.payout_line`.
+- الفرق الأكبر من 0.5% يُرفع للـ finance review مع التفاصيل.
 
 ---
 
-## Admin Modules
+## Modules الـ Admin
 
-| Page                        | Capabilities                                                                              |
+| الصفحة                      | الإمكانيات                                                                                |
 | --------------------------- | ----------------------------------------------------------------------------------------- |
-| KPI dashboard               | GMV, bookings, conversion, refund rate, FX P&L, take rate — daily/weekly/monthly tabs.    |
-| Bookings workbench          | Filter + bulk actions (export, refund, tag, send WA), customer-360 quick-jump.            |
-| Customer-360                | Bookings, payments, notifications, sessions, MFA state, devices.                          |
-| Refund console              | Refund queue, 4-eye approvals, refund-preview tool, status timeline.                      |
-| Dunning                     | Failed payments, retry timeline, manual retry, exclude from auto-retry.                   |
-| Supplier health             | Per-supplier latency p50/p95/p99, error breakdown, circuit-breaker state.                 |
-| Catalog / Hotel mapping     | Upload Giata mappings, fuzzy-match audit tool, rate-parity alerts.                        |
-| Finance reports             | GMV by market, refunds by reason, FX P&L, supplier payouts.                               |
-| CMS                         | Marketing pages, banners, FAQ; localized; staged → published.                             |
-| Notification templates      | Edit copy + variables, send test, version + rollback; WhatsApp template metadata.         |
-| Feature flags               | Per-env toggles, audit, percentage rollout per user cohort.                               |
-| Users & Roles               | RBAC management; create staff; assign role; MFA enforcement.                              |
-| Audit log                   | Immutable, filter by actor / target / action; CSV export.                                 |
-| Settings                    | PSP routes, FX margins, retry policies (read by services dynamically).                    |
+| KPI dashboard               | GMV، الحجوزات، التحويل، نسبة الـ refund، FX P&L، take rate — تبويبات يومي/أسبوعي/شهري.    |
+| Bookings workbench          | فلتر + bulk actions (export، refund، tag، إرسال WA)، مع quick-jump لـ customer-360.       |
+| Customer-360                | الحجوزات، المدفوعات، الإشعارات، sessions، حالة MFA، الأجهزة.                              |
+| Refund console              | طابور الـ refund، موافقات 4-eye، أداة preview للـ refund، timeline للحالة.                |
+| Dunning                     | المدفوعات الفاشلة، timeline الـ retry، retry يدوي، استبعاد من الـ auto-retry.             |
+| Supplier health             | لكل supplier latency p50/p95/p99، تفصيل الأخطاء، حالة الـ circuit-breaker.                |
+| Catalog / Hotel mapping     | رفع mappings الـ Giata، أداة audit للـ fuzzy-match، تنبيهات rate-parity.                  |
+| Finance reports             | GMV حسب الـ market، refunds حسب السبب، FX P&L، payouts الـ supplier.                     |
+| CMS                         | صفحات تسويق، banners، FAQ؛ مع localization؛ من staged → published.                       |
+| Notification templates      | تعديل النص + المتغيرات، إرسال test، version + rollback؛ metadata WhatsApp template.       |
+| Feature flags               | toggles لكل بيئة، audit، rollout بنسبة مئوية لكل user cohort.                              |
+| Users & Roles               | إدارة RBAC؛ إنشاء موظفين؛ تعيين دور؛ فرض MFA.                                            |
+| Audit log                   | غير قابل للتعديل، فلتر حسب actor / target / action؛ تصدير CSV.                            |
+| Settings                    | psp_routes، هوامش FX، سياسات retry (تقرأها الخدمات ديناميكيًا).                           |
 
 ---
 
-## Deployment
+## النشر
 
-### Topology
+### الـ Topology
 
-- **Frontend**: Vercel, two regions (`fra1` primary, `cdg1` standby ISR mirror).
-- **Backend**: Fly.io org `jawla`, region `fra` primary + `cdg` warm standby (read-only during normal ops).
-- **Postgres**: managed Postgres (e.g., Neon prod or Crunchy) with sync replica in `fra` AZ-b and async cross-region replica in `cdg`.
-- **Redis**: Upstash Cluster, multi-AZ, dual region replication for queue durability.
-- **Queues**: BullMQ broker per region; jobs partitioned by queue.
-- **Object storage**: S3 buckets, cross-region replication for `vouchers` and `invoices`.
+- **Frontend**: Vercel، اثنان من الـ regions (`fra1` primary و `cdg1` standby ISR mirror).
+- **Backend**: Fly.io org `jawla`، region `fra` primary + `cdg` warm standby (read-only في التشغيل العادي).
+- **Postgres**: Postgres مُدار (مثل Neon prod أو Crunchy) مع sync replica في `fra` AZ-b و async cross-region replica في `cdg`.
+- **Redis**: Upstash Cluster، multi-AZ، مع replication بين region للـ queue durability.
+- **Queues**: BullMQ broker لكل region؛ مع تقسيم الـ jobs حسب الطابور.
+- **Object storage**: S3 buckets، مع cross-region replication لـ `vouchers` و `invoices`.
 
-### Pipelines
+### الـ Pipelines
 
-| Stage             | Steps                                                                                |
+| المرحلة           | الخطوات                                                                                |
 | ----------------- | ------------------------------------------------------------------------------------ |
-| lint              | `pnpm lint`, `tsc --noEmit`                                                          |
-| test:unit         | Jest + RTL, coverage gate ≥ 85% lines                                                |
-| test:integration  | spin up Postgres + Redis + WireMock for suppliers                                    |
-| test:contract     | Pact verify against pinned supplier stubs                                            |
-| build             | FE + BE; SBOM (cyclonedx) + Trivy + Snyk; sign image (Cosign)                        |
-| deploy:preview    | Vercel preview + Fly app `pr-<n>` for E2E                                            |
-| e2e               | Playwright suite against preview                                                     |
-| deploy:staging    | Fly + Vercel staging on merge to `main`                                              |
-| smoke:staging     | Synthetic booking dry-run; supplier sandbox                                          |
-| deploy:prod       | Manual approval → Fly blue/green + Vercel `--prod` canary 5% → 25% → 100%            |
-| post-deploy       | Synthetic /healthz, error-rate watcher 30 min; auto-rollback on regression            |
+| lint              | `pnpm lint` و `tsc --noEmit`                                                          |
+| test:unit         | Jest + RTL، مع coverage gate ≥ 85% lines                                              |
+| test:integration  | تشغيل Postgres + Redis + WireMock للـ suppliers                                       |
+| test:contract     | Pact verify مقابل supplier stubs مثبّتة                                                |
+| build             | FE + BE؛ SBOM (cyclonedx) + Trivy + Snyk؛ توقيع الـ image (Cosign)                    |
+| deploy:preview    | Vercel preview + Fly app `pr-<n>` للـ E2E                                             |
+| e2e               | Playwright suite على الـ preview                                                       |
+| deploy:staging    | Fly + Vercel staging عند الدمج إلى `main`                                              |
+| smoke:staging     | حجز تجريبي صناعي؛ supplier sandbox                                                    |
+| deploy:prod       | موافقة يدوية → Fly blue/green + Vercel `--prod` canary 5% → 25% → 100%                |
+| post-deploy       | synthetic /healthz، error-rate watcher لمدة 30 دقيقة؛ rollback تلقائي عند التراجع     |
 
-### Environment Variables (additions)
+### Environment Variables (الإضافات)
 
-| Var                                   | Purpose                                  |
+| المتغير                              | الغرض                                    |
 | ------------------------------------- | ---------------------------------------- |
 | `HOTELBEDS_API_KEY`/`_SECRET`         | HotelBeds API                            |
 | `BOOKING_AFFILIATE_KEY`               | Booking Affiliate                        |
@@ -963,113 +1022,113 @@ worker payment.refund:
 | `ADYEN_API_KEY`/`_HMAC_SECRET`        | Adyen                                    |
 | `WABA_ACCESS_TOKEN`/`PHONE_NUMBER_ID` | WhatsApp                                 |
 | `FX_PROVIDER_KEY`                     | openexchangerates                        |
-| `KMS_KEY_ID`                          | Field-level encryption                   |
+| `KMS_KEY_ID`                          | تشفير على مستوى الحقل                     |
 
 ---
 
 ## Logging
 
 - Pino structured JSON.
-- Required fields (Pro additions): `tenantId`, `requestRegion`, `pspId`, `supplierId`,
-  `sagaStep`, `attempt`.
-- Sensitive redaction extended to: `psp_token`, `wa_token`, `doc_number`, `card_*`,
-  `iban`, `tax_id`.
-- Log routing: stdout → Vector → ClickHouse (analytics) + S3 cold storage.
-- Retention: 90 d hot, 2 y cold; audit logs 7 y S3 Object Lock.
+- الحقول المطلوبة (إضافات Pro): `tenantId` و `requestRegion` و `pspId` و `supplierId` و
+  `sagaStep` و `attempt`.
+- redaction للحقول الحساسة موسّع ليشمل: `psp_token` و `wa_token` و `doc_number` و `card_*` و
+  `iban` و `tax_id`.
+- توجيه الـ logs: stdout → Vector → ClickHouse (analytics) + S3 cold storage.
+- الاحتفاظ: 90 يومًا hot، سنتان cold؛ audit logs لمدة 7 سنوات في S3 Object Lock.
 
 ---
 
 ## Monitoring
 
-- Stack: Sentry (errors + perf), Grafana Cloud (metrics + logs + traces), PagerDuty.
-- OpenTelemetry SDK exports OTLP to Tempo / Loki / Mimir.
+- الـ stack: Sentry (errors + perf)، Grafana Cloud (metrics + logs + traces)، PagerDuty.
+- OpenTelemetry SDK يصدر OTLP إلى Tempo / Loki / Mimir.
 
-### Metrics (additions)
+### المقاييس (الإضافات)
 
-| Metric                                  | Notes                                       |
+| المقياس                                 | ملاحظات                                     |
 | --------------------------------------- | ------------------------------------------- |
-| `aggregator_supplier_latency_ms`        | per supplier per op                          |
-| `aggregator_supplier_error_total`       | per supplier per error code                  |
-| `aggregator_partial_results_total`      | counts of degraded responses                  |
-| `payment_route_choice_total`            | per PSP route picked                          |
-| `payment_refund_latency_ms`             | request → settled                             |
-| `fx_margin_bps`                         | applied margin distribution                   |
-| `wa_message_delivery_total`             | per status                                    |
-| `saga_step_duration_ms`                 | per step                                      |
-| `saga_compensation_total`               | per failed step                               |
+| `aggregator_supplier_latency_ms`        | لكل supplier لكل op                          |
+| `aggregator_supplier_error_total`       | لكل supplier لكل error code                  |
+| `aggregator_partial_results_total`      | عدد الردود المُتردّية                          |
+| `payment_route_choice_total`            | لكل route PSP مختار                          |
+| `payment_refund_latency_ms`             | من request إلى settled                        |
+| `fx_margin_bps`                         | توزيع الـ margin المطبّق                       |
+| `wa_message_delivery_total`             | لكل حالة                                     |
+| `saga_step_duration_ms`                 | لكل خطوة                                     |
+| `saga_compensation_total`               | لكل خطوة فاشلة                                |
 
-### Alerts
+### التنبيهات
 
-| Condition                                                       | Severity | Routing      |
+| الشرط                                                            | الخطورة  | التوجيه       |
 | --------------------------------------------------------------- | -------- | ------------ |
-| API p95 > 600 ms for 5 min                                      | page     | PagerDuty    |
-| Aggregator partial-results > 20% for 10 min                     | warn     | #ops         |
-| Saga compensation rate > 2% for 15 min                          | page     | PagerDuty    |
-| PSP webhook lag > 3 min                                         | page     | PagerDuty    |
-| WA delivery failure > 10% for 15 min                            | warn     | #ops         |
-| Refund SLA breach (> 24h pending)                               | page     | finance OnCall |
-| Replication lag > 15 s                                          | warn     | #ops         |
-| 5xx rate > 0.5% for 5 min                                       | page     | PagerDuty    |
-| Auth anomalies (impossible travel, brute force)                 | page     | security OnCall |
+| API p95 > 600 ms لمدة 5 دقائق                                    | page     | PagerDuty    |
+| نتائج الـ aggregator الجزئية > 20% لمدة 10 دقائق                  | warn     | #ops         |
+| نسبة compensation للـ saga > 2% لمدة 15 دقيقة                    | page     | PagerDuty    |
+| تأخير webhook الـ PSP > 3 دقائق                                  | page     | PagerDuty    |
+| فشل تسليم WA > 10% لمدة 15 دقيقة                                 | warn     | #ops         |
+| تجاوز SLA الـ refund (أكثر من 24h pending)                       | page     | finance OnCall |
+| تأخير الـ replication > 15 ثانية                                  | warn     | #ops         |
+| نسبة الأخطاء 5xx > 0.5% لمدة 5 دقائق                              | page     | PagerDuty    |
+| حالات auth غير طبيعية (impossible travel، brute force)            | page     | security OnCall |
 
 ---
 
-## Testing Strategy
+## استراتيجية الاختبار
 
-| Layer            | Tooling                                | Target                        |
+| الطبقة           | الأدوات                                | الهدف                          |
 | ---------------- | -------------------------------------- | ----------------------------- |
-| Unit             | Jest                                   | 85% lines BE; 80% FE          |
-| Integration      | Jest + testcontainers (PG, Redis)      | All services + repos          |
-| Contract         | Pact for each supplier + PSP            | All adapters                  |
-| Aggregator       | Property-based (fast-check)             | Dedup invariants              |
-| E2E              | Playwright (multi-locale, RTL)         | Critical paths + smoke        |
-| Load             | k6 baseline + Argo workflow             | NFR-007 / 008 sustained        |
-| Accessibility    | axe + manual WCAG audit                 | Zero serious                  |
-| Security         | OWASP ZAP, Burp Suite (manual quarterly)| Zero highs unmitigated        |
-| Chaos            | Toxiproxy in staging supplier calls    | Survive 1 supplier outage      |
+| Unit             | Jest                                   | 85% lines BE؛ 80% FE          |
+| Integration      | Jest + testcontainers (PG، Redis)      | كل الخدمات + repos             |
+| Contract         | Pact لكل supplier + PSP                | كل الـ adapters                |
+| Aggregator       | Property-based (fast-check)            | ثوابت الـ dedup                |
+| E2E              | Playwright (multi-locale، RTL)         | المسارات الحرجة + smoke        |
+| Load             | k6 baseline + Argo workflow            | NFR-007 / 008 sustained         |
+| Accessibility    | axe + audit يدوي WCAG                  | صفر serious                    |
+| Security         | OWASP ZAP، Burp Suite (يدوي ربع سنوي)  | صفر highs بدون تخفيف           |
+| Chaos            | Toxiproxy في supplier calls على staging | البقاء بعد تعطّل supplier واحد   |
 
 ---
 
-## Acceptance Tests
+## اختبارات القبول
 
-> Tier-additive: AT-001..024 from Basic remain valid. Pro adds:
+> إضافة للمستوى السابق: AT-001..024 من Basic تبقى سارية. وPro يضيف:
 
-| ID     | Title                                       | Given                                                 | When                                          | Then                                                                                  |
+| ID     | العنوان                                     | Given                                                 | When                                          | Then                                                                                  |
 | ------ | ------------------------------------------- | ----------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------- |
-| AT-025 | Multi-currency cart                         | Cart in EGP                                            | I switch displayCurrency to USD               | Totals re-computed via FX snapshot; FX margin disclosed.                              |
-| AT-026 | Saved-traveller prefill                     | I have a saved traveller                              | I start a new booking                         | Pax forms pre-filled; explicit "use saved" toggle.                                    |
-| AT-027 | Aggregator dedup                            | 3 suppliers return the same hotel (Giata=X123)         | I search                                      | Single hotel card; best-price badge shows supplier-of-record + price.                 |
-| AT-028 | Supplier degradation                        | HotelBeds times out                                   | I search                                      | Results still returned; banner `partial=true` with retry hint.                        |
-| AT-029 | Stop-sell honor                             | Booking Affiliate marks hotel sold-out                | I attempt to book within 60 s                  | 409 `SUPPLIER_SOLD_OUT`; alternatives suggested.                                       |
-| AT-030 | Cart hold expiry                            | Cart inactive for 21 minutes                          | I attempt checkout                            | 410 `CART_EXPIRED`; re-create flow.                                                    |
-| AT-031 | Branded fare                                | Carrier exposes 3 fare bundles                        | I view offer                                  | LITE/STANDARD/FLEX shown; price + perks per bundle.                                    |
-| AT-032 | Ancillary baggage                           | Offer supports extra-bag                              | I add 1 bag                                   | Updated total reflects ancillary price; capture-time SSR is added to PNR.             |
-| AT-033 | Saga rollback                               | Hotel.book fails after Flight.book succeeded          | Saga compensates                              | Flight Order canceled; payment voided; booking FAILED.                                |
-| AT-034 | PSP routing — Paymob for EGP                 | Currency EGP                                          | I create payment intent                       | PSP=`paymob`; intent created in Paymob.                                               |
-| AT-035 | PSP routing — Adyen for €1500 EUR            | Currency EUR, amount €1500                            | I create payment intent                       | PSP=`adyen`.                                                                          |
-| AT-036 | Automated refund                            | Full cancel by customer within policy                 | Cancel request                                | Refund processed via PSP automatically; booking → REFUNDED; email + WA sent.          |
-| AT-037 | Partial refund                              | Customer cancels 1 of 2 items                         | Cancel request                                | Partial refund; status PARTIAL_REFUND; invoice annotated.                              |
-| AT-038 | WhatsApp confirmation                       | User opted in to WA                                    | Booking CONFIRMED                              | Approved template sent; delivery status updated via webhook.                          |
-| AT-039 | WA delivery fallback                        | WA template fails delivery                            | 5 min elapse without delivered callback        | Email fallback sent; admin notified.                                                  |
-| AT-040 | MFA TOTP enroll/verify                      | I enroll TOTP via QR                                   | I supply correct code                          | `mfa: true`; backup codes generated; subsequent sensitive ops require step-up.        |
-| AT-041 | Step-up before refund                       | I am MFA-enabled customer                              | I request refund without recent step-up        | 401 `STEP_UP_REQUIRED`; retry with TOTP succeeds.                                     |
-| AT-042 | Saved card management                       | I add card via PSP token                              | I delete card                                 | Saved row deleted; default card reassigned if needed.                                  |
-| AT-043 | Invoice generation                          | I am a confirmed EG booking                            | I request invoice                              | Sequential EG invoice number; VAT computed; PDF generated and S3-stored.              |
-| AT-044 | Admin bulk export                           | I am admin with 1k bookings filtered                  | I export CSV                                  | Background job; signed URL emailed when ready.                                         |
-| AT-045 | 4-eye refund                                | Refund $7,000 attempt                                  | I submit                                      | Status `PENDING_APPROVAL`; second admin must approve to finalize.                     |
-| AT-046 | Reconciliation diff alert                   | PSP payout missing one booking                        | Nightly recon job runs                        | Diff > 0.5% triggers Slack alert to finance.                                          |
+| AT-025 | Multi-currency cart                         | Cart بـ EGP                                            | أحوّل displayCurrency إلى USD                  | يُعاد حساب الإجمالي عبر FX snapshot؛ مع الإفصاح عن FX margin.                          |
+| AT-026 | Saved-traveller prefill                     | لدي مسافر محفوظ                                       | أبدأ حجزًا جديدًا                              | تُملأ نماذج الـ pax تلقائيًا؛ مع toggle صريح "use saved".                              |
+| AT-027 | Aggregator dedup                            | 3 suppliers يردّون بنفس الفندق (Giata=X123)            | أبحث                                          | يظهر فندق واحد فقط؛ مع شارة best-price يظهر فيها supplier-of-record والسعر.            |
+| AT-028 | Supplier degradation                        | HotelBeds يحدث له timeout                              | أبحث                                          | تظهر النتائج رغم ذلك؛ مع banner `partial=true` وتلميح لإعادة المحاولة.                |
+| AT-029 | Stop-sell honor                             | Booking Affiliate يضع الفندق sold-out                  | أحاول الحجز خلال 60 ثانية                      | 409 `SUPPLIER_SOLD_OUT`؛ مع اقتراح بدائل.                                              |
+| AT-030 | Cart hold expiry                            | Cart غير نشط لمدة 21 دقيقة                             | أحاول checkout                                | 410 `CART_EXPIRED`؛ مع إعادة flow.                                                     |
+| AT-031 | Branded fare                                | شركة الطيران تكشف 3 fare bundles                       | أعرض العرض                                    | LITE/STANDARD/FLEX تظهر؛ مع السعر + المميزات لكل bundle.                                |
+| AT-032 | Ancillary baggage                           | العرض يدعم extra-bag                                   | أضيف حقيبة واحدة                              | الإجمالي يعكس سعر الـ ancillary؛ ويُضاف SSR للـ PNR وقت الـ capture.                  |
+| AT-033 | Saga rollback                               | Hotel.book يفشل بعد نجاح Flight.book                   | الـ saga تقوم بـ compensate                    | يُلغى Flight Order؛ ويتم void للدفع؛ وحالة الحجز FAILED.                              |
+| AT-034 | PSP routing — Paymob لـ EGP                 | Currency EGP                                          | أنشئ payment intent                           | PSP=`paymob`؛ والـ intent يُنشأ في Paymob.                                            |
+| AT-035 | PSP routing — Adyen لـ €1500 EUR            | Currency EUR، amount €1500                            | أنشئ payment intent                           | PSP=`adyen`.                                                                          |
+| AT-036 | Automated refund                            | إلغاء كامل من العميل ضمن السياسة                       | طلب إلغاء                                     | refund يتم آليًا عبر PSP؛ الحجز → REFUNDED؛ يُرسَل email + WA.                       |
+| AT-037 | Partial refund                              | العميل يلغي عنصرًا واحدًا من اثنين                      | طلب إلغاء                                     | refund جزئي؛ الحالة PARTIAL_REFUND؛ مع ملاحظة على الفاتورة.                            |
+| AT-038 | تأكيد WhatsApp                              | المستخدم opt-in على WA                                  | الحجز CONFIRMED                                | يُرسَل template معتمد؛ وحالة التسليم تُحدَّث عبر webhook.                              |
+| AT-039 | WA delivery fallback                        | فشل تسليم WA template                                  | تمضي 5 دقائق دون callback بـ delivered          | يُرسَل email بديل؛ ويُبلَّغ الـ admin.                                                  |
+| AT-040 | MFA TOTP enroll/verify                      | أسجّل TOTP عبر QR                                       | أدخل الكود الصحيح                              | `mfa: true`؛ تُولَّد backup codes؛ والعمليات الحساسة لاحقًا تتطلب step-up.            |
+| AT-041 | Step-up قبل الـ refund                       | أنا عميل مفعّل لديه MFA                                 | أطلب refund دون step-up حديث                    | 401 `STEP_UP_REQUIRED`؛ ومحاولة مع TOTP تنجح.                                         |
+| AT-042 | إدارة saved card                            | أضفت بطاقة عبر PSP token                                | أحذف البطاقة                                  | السجل المحفوظ يُحذف؛ ويُعاد تعيين البطاقة الافتراضية إن لزم.                            |
+| AT-043 | توليد الفاتورة                              | لدي حجز EG مؤكد                                         | أطلب فاتورة                                    | رقم فاتورة EG تسلسلي؛ مع حساب VAT؛ ويُولَّد PDF ويُخزَّن في S3.                       |
+| AT-044 | Admin bulk export                           | أنا admin مع 1k حجز مفلتر                              | أصدّر CSV                                     | job في الخلفية؛ مع signed URL تصلني بالبريد عند الجاهزية.                              |
+| AT-045 | 4-eye refund                                | محاولة refund بقيمة $7,000                              | أرسلها                                        | الحالة `PENDING_APPROVAL`؛ ولا تُنفَّذ إلا بموافقة admin ثانٍ.                         |
+| AT-046 | تنبيه فرق الـ reconciliation                | payout من PSP ينقصه حجز                                | يعمل recon job ليلي                            | الفرق > 0.5% يُطلق تنبيه Slack للـ finance.                                          |
 
 ---
 
-## Appendix A — Migration from Basic Tier
+## الملحق A — الترحيل من المستوى Basic
 
-| Concern                  | Migration step                                                                   |
+| الموضوع                  | خطوة الترحيل                                                                      |
 | ------------------------ | -------------------------------------------------------------------------------- |
-| Schema                   | Forward-only migrations; backfill `display_currency` on existing bookings.       |
-| FX                       | Backfill fx_rate per existing booking with audited "as_of" date.                 |
-| PSP                      | Default route = Stripe until Paymob/Adyen certified; routing table seeded.      |
-| WhatsApp                 | Opt-in form added on dashboard; transactional templates pre-approved by Meta.    |
-| Admin                    | New admin app side-by-side; Basic admin remains read-only for 30 days.           |
-| Hotel aggregator         | Shadow-traffic Amadeus-only behind aggregator before HotelBeds/Booking go-live.  |
+| Schema                   | migrations forward-only؛ مع backfill لـ `display_currency` على الحجوزات القائمة.  |
+| FX                       | backfill لـ fx_rate لكل حجز قائم مع تاريخ "as_of" موثّق.                           |
+| PSP                      | الـ route الافتراضي = Stripe حتى يتم اعتماد Paymob/Adyen؛ مع تعبئة routing table. |
+| WhatsApp                 | إضافة form للـ opt-in في الـ dashboard؛ مع templates معاملاتية معتمدة مسبقًا من Meta. |
+| Admin                    | تطبيق admin جديد بجانب القديم؛ والـ admin القديم يبقى read-only لمدة 30 يومًا.    |
+| Hotel aggregator         | إدارة shadow-traffic لـ Amadeus-only خلف الـ aggregator قبل تفعيل HotelBeds/Booking. |
 
-— *End of document — Jawla SRS Professional v1.0* —
+— *نهاية الوثيقة — Jawla SRS Professional v1.0* —
