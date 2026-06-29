@@ -22,7 +22,7 @@
 
 | الضمان                                       | الطريقة بلغة الأعمال                                                                       |
 | -------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| الموقع متاح دائماً                            | استضافة بضمان 99.9% Uptime (توقف لا يتجاوز 45 دقيقة شهرياً) مع استرداد فوري عند الأعطال         |
+| الموقع متاح دائماً                            | استضافة على **Google Cloud Platform (GCP)** بضمان 99.9% Uptime (توقف لا يتجاوز 45 دقيقة شهرياً) مع استرداد فوري عند الأعطال — حساب GCP **مقدَّم من العميل** |
 | الانتشار الجغرافي متعدد المناطق              | الخوادم موزّعة على أكثر من منطقة جغرافية، وفشل منطقة كاملة لا يوقف الخدمة                   |
 | كشف الاحتيال بالذكاء الاصطناعي               | نموذج تعلّم آلي يحلل سلوك الدفع لحظياً ويوقف المعاملات المشبوهة قبل تنفيذها                 |
 | فصل بيانات كل فرع                            | كل فرع إداري لا يرى بيانات الفروع الأخرى، مع تقارير موحدة للإدارة العامة فقط                |
@@ -56,8 +56,8 @@
 | PayTabs                             | بوابة دفع متعددة العملات (EGP/USD/EUR/SAR/AED) بمستوى Enterprise: تغطي مصر والخليج (mada/KNET/STC Pay) وأوروبا والبطاقات الدولية في تكامل واحد |
 | WhatsApp Business API               | قناة التواصل الرئيسية للعملاء وحسابات الـ corporate                                   |
 | Mailgun                             | البريد الإلكتروني التجاري لإرسال ملايين الرسائل شهرياً بأسعار منخفضة                  |
-| استضافة متعددة المناطق (AWS/GCP)    | بنية تحتية موزّعة على 3 مناطق جغرافية لضمان الانتشار العالمي                          |
-| CDN عالمي (Cloudflare)              | تسريع الموقع للعملاء في كل دول العالم وحماية من هجمات DDoS                            |
+| **Google Cloud Platform (GCP) متعدد المناطق — مقدَّم من العميل** | بنية تحتية موزّعة على 3 مناطق جغرافية على GCP (مثل `europe-west3` و `me-central1` و `asia-southeast1`) لضمان الانتشار العالمي؛ حساب GCP مملوك للعميل |
+| **Cloud CDN + Cloud Armor (GCP)**   | تسريع الموقع للعملاء في كل دول العالم وحماية WAF/DDoS متكاملة                          |
 | خدمة Fraud Detection (Sift) | محرك خارجي متخصص في كشف الاحتيال يكمل نظامنا الداخلي ML-FRAUD                              |
 
 ### ما الذي يحتاج المجلس أن يعرفه؟
@@ -448,7 +448,7 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
    │                                                              │                                          │
    │                                                              ▼                                          │
    │  ┌─────────────────────────────── API Gateway (per region) ──────────────────────────────┐           │
-   │  │ Cloudflare WAF → Cloudflare Workers (edge auth / smart cache) → ALB → NestJS Gateway   │           │
+   │  │ Cloud Armor WAF → Cloud CDN (edge cache) → External HTTP(S) LB → NestJS Gateway (GKE)  │           │
    │  └────────────────────────────────────────┬────────────────────────────────────────────────┘           │
    │                                            │                                                          │
    │  ┌────────────────────────┬─────────────────────────────┬─────────────────────────┐                  │
@@ -472,10 +472,11 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
    │                                                                                                       │
    │  Data plane (per region):                                                                              │
    │   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐   ┌──────────────┐                            │
-   │   │ Postgres 16  │   │ Redis 7      │   │ S3 / R2      │   │ ClickHouse   │                            │
-   │   │ primary +    │   │ cluster      │   │ tickets/     │   │ analytics +  │                            │
-   │   │ 2 sync       │   │ + BullMQ     │   │ invoices     │   │ ML features  │                            │
-   │   │ + 2 async    │   │              │   │              │   │              │                            │
+   │   │ Cloud SQL    │   │ Memorystore  │   │ GCS buckets  │   │ ClickHouse   │                            │
+   │   │ (PG 16) HA   │   │ Redis cluster│   │ tickets/     │   │ analytics +  │                            │
+   │   │ primary +    │   │ + BullMQ     │   │ invoices     │   │ ML features  │                            │
+   │   │ 2 sync +     │   │              │   │              │   │ (on GKE)     │                            │
+   │   │ 2 async repl │   │              │   │              │   │              │                            │
    │   └──────────────┘   └──────────────┘   └──────────────┘   └──────────────┘                            │
    │                                                                                                       │
    │  Async backbone (per region): NATS JetStream + cross-region mirroring for `domain.events`             │
@@ -484,7 +485,7 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 
 ### استراتيجية Multi-Region
 
-- DNS عبر Cloudflare؛ توجيه latency-based مثبت على أقرب منطقة سليمة للمستخدم.
+- DNS عبر **Cloud DNS** على GCP؛ توجيه latency-based عبر **Cloud Load Balancing** مثبت على أقرب منطقة سليمة للمستخدم.
 - writes تذهب للـ primary في المنطقة المحلية؛ cross-region eventual replication (logical
   replication، عادة < 5 ثانية).
 - read-after-write داخل المنطقة (sticky session header `X-Jawla-Region`).
@@ -886,10 +887,10 @@ role_can_read_booking["support"]
 
 ### التشفير
 
-- KMS hierarchy: AWS KMS root → KEK لكل منطقة → DEK لكل branch → DEK لكل سجل.
+- KMS hierarchy: **GCP Cloud KMS root** → KEK لكل منطقة → DEK لكل branch → DEK لكل سجل.
 - تشفير على مستوى الحقل (AES-256-GCM) لـ: أرقام مستندات السفر، تفاصيل BIN للبطاقات
   المحفوظة، عناوين العملاء، تفاصيل ائتمان حسابات الـ corporate.
-- تخزين الكائنات SSE-KMS؛ lifecycle إلى Glacier Deep Archive بعد سنة.
+- تخزين الكائنات **GCS مع CMEK** (Customer-Managed Encryption Keys)؛ lifecycle إلى **GCS Archive class** بعد سنة.
 
 ### PCI DSS
 
@@ -906,7 +907,7 @@ role_can_read_booking["support"]
 
 ### Rate Limiting
 
-- Edge (Cloudflare): DDoS + bot fight.
+- Edge (**Cloud Armor**): DDoS + bot management.
 - App (NestJS): token-bucket لكل (route، principal) — الـ principal ممكن يكون user،
   corporate account، branch، أو IP.
 - تكيفي: ML-FRAUD high score → حدود أضيق.
@@ -1102,16 +1103,15 @@ PayTabs IPN (chargeback.opened) ──▶ chargebacks row OPEN
 
 ### الـ Topology
 
-- **Frontend (Next.js)**: Vercel مع deployment متعدد المناطق + edge functions في
-  3 مناطق (responsive web فقط، بدون تطبيقات native).
-- **Backend**: Kubernetes (EKS/GKE) لكل منطقة؛ ArgoCD GitOps؛ Helm charts؛
+- **Frontend (Next.js)**: **Cloud Run على GCP** مع deployment متعدد المناطق + Cloud CDN edge POPs عالمياً عبر 3 مناطق GCP (responsive web فقط، بدون تطبيقات native) — كلها داخل مشروع GCP الخاص بالعميل.
+- **Backend**: **GKE (Google Kubernetes Engine)** لكل منطقة؛ ArgoCD GitOps؛ Helm charts؛
   Linkerd mTLS mesh.
-- **Database**: Postgres مُدار لكل منطقة مع logical replication؛ pgvector
-  extension لعمليات ML embeddings (مثل ML-FRAUD).
-- **Cache/Queue**: ElastiCache for Redis Cluster لكل منطقة + cross-region replication
-  للـ queues؛ NATS JetStream للأحداث.
-- **Object storage**: S3 مع cross-region replication؛ Glacier Deep Archive.
-- **CDN/WAF**: Cloudflare global anycast + WAF + bot management.
+- **Database**: **Cloud SQL for PostgreSQL** HA لكل منطقة مع logical replication؛ pgvector
+  extension لعمليات ML embeddings (مثل ML-FRAUD). (خيار AlloyDB للـ analytics workloads.)
+- **Cache/Queue**: **Memorystore for Redis Cluster** لكل منطقة + cross-region replication
+  للـ queues؛ **Pub/Sub** + NATS JetStream للأحداث.
+- **Object storage**: **Google Cloud Storage** مع **Turbo Replication** (cross-region)؛ تحويل lifecycle إلى **Archive class** للأرشيف طويل المدى.
+- **CDN/WAF**: **Cloud CDN + Cloud Armor** عبر Global External HTTPS Load Balancer (anycast).
 
 ### CI/CD
 
@@ -1123,7 +1123,7 @@ PayTabs IPN (chargeback.opened) ──▶ chargebacks row OPEN
 | test:contract      | Pact verify لكل supplier + PayTabs                                                   |
 | test:e2e           | Playwright لكل منطقة لكل لغة                                                          |
 | build              | docker buildx multi-arch؛ Cosign sign؛ SBOM CycloneDX؛ Snyk + Trivy                 |
-| deploy:preview     | Vercel preview + per-PR k8s namespace                                                |
+| deploy:preview     | Cloud Run preview revision (FE) + per-PR GKE namespace (BE)                          |
 | deploy:staging     | ArgoCD sync عند merge إلى `main`                                                     |
 | smoke:staging      | حجز اصطناعي flight + flight package                                                    |
 | deploy:prod        | موافقة يدوية → تدريجي (canary لكل منطقة)                                              |
@@ -1143,7 +1143,7 @@ PayTabs IPN (chargeback.opened) ──▶ chargebacks row OPEN
 | `DYN_PRICE_API_URL`              | خدمة DYN-PRICE                                          |
 | `NATS_URL`                       | event bus                                              |
 | `VAULT_ADDR`/`VAULT_ROLE`        | Vault                                                  |
-| `KMS_KEY_ARN_<region>`           | KMS لكل منطقة                                          |
+| `KMS_KEY_NAME_<region>`          | GCP Cloud KMS key resource لكل منطقة                   |
 
 ---
 
@@ -1152,10 +1152,10 @@ PayTabs IPN (chargeback.opened) ──▶ chargebacks row OPEN
 - Pino (Node) + structlog (خدمات Python ML).
 - الحقول المطلوبة: `ts`، `level`، `service`، `region`، `branch_id`، `actor_id`،
   `correlation_id`، `trace_id`، `span_id`، `route`، `msg`.
-- التوجيه: stdout → Vector → ClickHouse (analytics) + S3 cold + SIEM (Splunk/Sumo).
+- التوجيه: stdout → **Cloud Logging** → Vector → ClickHouse (analytics) + **GCS Archive cold** + SIEM (Splunk/Sumo).
 - redaction الحساس موسع: card_*، doc_*، otp، password، secret، ssn،
   tax_id، corporate_credit_details، mlfraud_features (مع PII منزوع فقط).
-- الاحتفاظ: 30 يوم hot؛ 2 سنة warm؛ 7 سنوات audit (S3 Object Lock + WORM).
+- الاحتفاظ: 30 يوم hot؛ 2 سنة warm؛ 7 سنوات audit (**GCS Bucket Lock + WORM**).
 
 ---
 

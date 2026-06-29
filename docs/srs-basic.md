@@ -17,7 +17,7 @@
 
 | الضمان                          | الطريقة بلغة الأعمال                                                                  |
 | ------------------------------- | ------------------------------------------------------------------------------------- |
-| الموقع متاح دائماً               | استضافة سحابية محترفة بضمان وقت تشغيل 99.0% (أي توقف لا يتجاوز 7 ساعات شهرياً)            |
+| الموقع متاح دائماً               | استضافة على **Google Cloud Platform (GCP)** بضمان وقت تشغيل 99.0% (أي توقف لا يتجاوز 7 ساعات شهرياً) — حساب GCP **مقدَّم من العميل** |
 | أمان معلومات الدفع              | جميع المعاملات تمر عبر بوابات معتمدة من المصارف (PCI-DSS) ولا نخزن أرقام البطاقات     |
 | حماية بيانات العملاء            | تشفير كامل عند النقل وعند التخزين، وفصل صلاحيات الوصول لكل موظف                    |
 | نسخ احتياطية يومية              | حفظ نسخة كاملة من قاعدة البيانات يومياً، مع إمكانية الاستعادة خلال ساعتين كحد أقصى     |
@@ -42,7 +42,7 @@
 | Amadeus                 | المصدر العالمي لبيانات الرحلات الجوية والأسعار اللحظية والحجز الفعلي لتذاكر الطيران |
 | PayTabs                 | بوابة الدفع متعددة العملات (EGP/USD/EUR/SAR/AED) تقبل البطاقات المصرية والدولية وتحوّل الأموال لحسابنا |
 | Mailgun / SendGrid      | خدمة إرسال البريد الإلكتروني لتأكيدات الحجز والتذاكر بشكل موثوق                |
-| استضافة سحابية (AWS/Vercel) | الخوادم التي يعمل عليها الموقع، مرنة ويمكن زيادة قدرتها فوراً عند الحاجة         |
+| **Google Cloud Platform (GCP) — مقدَّم من العميل** | الخوادم التي يعمل عليها الموقع (Cloud Run + Cloud SQL + Cloud Storage)، مرنة ويمكن زيادة قدرتها فوراً عند الحاجة. حساب GCP مملوك للعميل وتكاليف الاستضافة الشهرية على عاتقه مباشرة         |
 
 ### ما الذي يحتاج المجلس أن يعرفه؟
 
@@ -302,7 +302,7 @@ IATA Resolution 830a وأعراف Amadeus Self-Service API.
 | ------- | -------------------------------------------------------------------------------------------------------- |
 | NFR-015 | TLS 1.2+ إلزامي على كل ingress؛ HSTS `max-age=63072000; includeSubDomains; preload`.                     |
 | NFR-016 | البيانات at rest مشفّرة بـ AES-256 (Postgres TDE، Redis disk encryption).                                |
-| NFR-017 | لازم الـ secrets تكون في Vercel Encrypted Env (FE) وAWS Secrets Manager (BE).                            |
+| NFR-017 | لازم الـ secrets تكون في **GCP Secret Manager** (FE + BE) ضمن نفس مشروع GCP الخاص بالعميل.                            |
 | NFR-018 | الثغرات بـ severity ≥ High لازم تتصلّح خلال 7 أيام؛ Critical خلال 24 ساعة.                                | 
 | NFR-019 | لازم يتعمل pentest خارجي على الأقل مرة في السنة.                                                          |
 
@@ -334,14 +334,14 @@ IATA Resolution 830a وأعراف Amadeus Self-Service API.
 
 ## معمارية النظام (System Architecture)
 
-الـ Basic Tier بينشر في region أساسي واحد فيه طبقة Next.js قدامها CDN، وقدام
-NestJS API في containers، مدعومة بـ Postgres + Redis + BullMQ.
+الـ Basic Tier بينشر بالكامل على **Google Cloud Platform (GCP) — مقدَّمة من العميل** في region أساسي واحد، فيه Next.js على Cloud Run قدامه Cloud CDN، وNestJS API على Cloud Run تاني، مدعومة بـ Cloud SQL for PostgreSQL + Memorystore for Redis + BullMQ.
 
 ```
 ┌──────────┐       ┌────────────┐       ┌─────────────────────┐      ┌──────────────────────┐
-│  Client  │──TLS─▶│ Vercel CDN │──TLS─▶│   Next.js 15 (RSC)  │──┬──▶│  NestJS API (Fly.io) │
-│ Browser  │       │  (Edge)    │       │  - Marketing pages  │  │   │  - REST controllers  │
-└──────────┘       └────────────┘       │  - Booking funnel   │  │   │  - Domain services   │
+│  Client  │──TLS─▶│  Cloud CDN │──TLS─▶│   Next.js 15 (RSC)  │──┬──▶│  NestJS API          │
+│ Browser  │       │   (GCP)    │       │   Cloud Run         │  │   │  Cloud Run           │
+└──────────┘       └────────────┘       │  - Marketing pages  │  │   │  - REST controllers  │
+                                        │  - Booking funnel   │  │   │  - Domain services   │
                                         │  - Server Actions   │  │   │  - Idempotency layer │
                                         └─────────────────────┘  │   └──────────┬───────────┘
                                                                  │              │
@@ -350,20 +350,21 @@ NestJS API في containers، مدعومة بـ Postgres + Redis + BullMQ.
                                                                  │      │  PgBouncer    │
                                                                  │      └───────┬───────┘
                                                                  │              ▼
-                                                                 │      ┌───────────────────┐
-                                                                 │      │ PostgreSQL 16     │
-                                                                 │      │ + Standby replica │
-                                                                 │      └───────────────────┘
+                                                                 │      ┌───────────────────────┐
+                                                                 │      │ Cloud SQL (Postgres 16)│
+                                                                 │      │ + HA Standby replica  │
+                                                                 │      └───────────────────────┘
                                                                  │
                                                                  ├──────────────┐
                                                                  │              ▼
                                                                  │      ┌────────────────────┐
-                                                                 │      │ Redis 7 (cache +   │
-                                                                 │      │ BullMQ backend)    │
+                                                                 │      │ Memorystore Redis  │
+                                                                 │      │ (cache + BullMQ)   │
                                                                  │      └─────────┬──────────┘
                                                                  │                ▼
                                                                  │      ┌────────────────────┐
                                                                  │      │ BullMQ Workers x2  │
+                                                                 │      │ (Cloud Run jobs)   │
                                                                  │      │ notifications.*    │
                                                                  │      │ booking.cleanup    │
                                                                  │      └────────────────────┘
@@ -373,22 +374,22 @@ NestJS API في containers، مدعومة بـ Postgres + Redis + BullMQ.
                                                                                 ┌──────────────────────┐
                                                                                 │ Amadeus Self-Service │
                                                                                 │ PayTabs API          │
-                                                                                │ SES / Resend (email) │
+                                                                                │ SendGrid / Resend    │
                                                                                 └──────────────────────┘
 ```
 
 ### مسؤوليات الـ Components
 
-| الـ Component    | المسؤولية                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------ |
-| Next.js (Vercel) | SSR/ISR للصفحات التسويقية، RSC + Server Actions لمسار الحجز، يحتضن PayTabs PayPage iframe.         |
-| NestJS API       | منطق الـ domain، تنسيق المزوّدين، idempotency، التخزين، إرسال الـ jobs للطابور.                    |
-| PostgreSQL 16    | المصدر الأساسي للبيانات: users، bookings، payments، audit log، ردود المزوّدين (jsonb).             |
-| Redis 7          | blacklist لتوكنات الجلسات، search cache، عدادات rate-limit، broker لـ BullMQ.                      |
-| BullMQ workers   | الشغل الـ async: إرسال email، rollback للمزوّد، تنظيف الـ bookings، إعادة تشغيل webhook.            |
-| Amadeus          | inventory للـ flights، الـ ticketing، إصدار الـ PNR.                                                |
-| PayTabs          | حفظ الكروت (token)، lifecycle الـ transaction، 3DS، refunds، multi-currency settlement.            |
-| Cloudflare       | حماية DDoS قدام Vercel للـ apex domain؛ bot fight mode.                                            |
+| الـ Component       | المسؤولية                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------ |
+| Next.js (Cloud Run) | SSR/ISR للصفحات التسويقية، RSC + Server Actions لمسار الحجز، يحتضن PayTabs PayPage iframe.         |
+| NestJS API (Cloud Run) | منطق الـ domain، تنسيق المزوّدين، idempotency، التخزين، إرسال الـ jobs للطابور.                |
+| Cloud SQL (Postgres 16) | المصدر الأساسي للبيانات: users، bookings، payments، audit log، ردود المزوّدين (jsonb).        |
+| Memorystore for Redis | blacklist لتوكنات الجلسات، search cache، عدادات rate-limit، broker لـ BullMQ.                  |
+| BullMQ workers      | الشغل الـ async: إرسال email، rollback للمزوّد، تنظيف الـ bookings، إعادة تشغيل webhook.            |
+| Amadeus             | inventory للـ flights، الـ ticketing، إصدار الـ PNR.                                                |
+| PayTabs             | حفظ الكروت (token)، lifecycle الـ transaction، 3DS، refunds، multi-currency settlement.            |
+| Cloud Armor + Cloud CDN | حماية DDoS وWAF قدام Cloud Run للـ apex domain؛ bot management.                                |
 
 ---
 
@@ -780,10 +781,10 @@ Auth header: `Authorization: Bearer <access_token>`. الأخطاء بتتبع R
 ### التشفير
 
 - **In transit:** TLS 1.2/1.3 بس، ECDHE ciphers، HSTS preload.
-- **At rest:** تشفير EBS volume (AES-256-XTS)، Postgres TDE للـ backups،
-  Redis snapshots مشفّرة، S3 buckets بـ SSE-S3 كحد أدنى.
+- **At rest:** تشفير Persistent Disk على GCP (AES-256-XTS by default)، Cloud SQL CMEK للـ backups،
+  Memorystore snapshots مشفّرة، GCS buckets بـ Google-managed أو CMEK كحد أدنى.
 - **Field-level:** الـ PII (DOB، رقم الوثيقة) في `passengers` مشفّر بـ AES-256-GCM
-  باستخدام AWS KMS DEK + envelope encryption.
+  باستخدام **GCP Cloud KMS** DEK + envelope encryption.
 
 ### نطاق PCI DSS
 
@@ -805,18 +806,17 @@ Auth header: `Authorization: Bearer <access_token>`. الأخطاء بتتبع R
 
 ### إدارة الـ Secrets
 
-- FE: Vercel Encrypted Env (لكل environment).
-- BE: AWS Secrets Manager، بيتعملها rotation؛ بتتحقن عند الـ boot عن طريق IAM role.
+- FE + BE: **GCP Secret Manager** (لكل environment)، بيتعملها rotation؛ بتتحقن عند الـ boot عن طريق **Cloud IAM service account** مرفقة لـ Cloud Run.
 - مفيش secret بيتعمل له commit في git أبداً؛ pre-commit secret-scan hook مفروض.
 
 ### النسخ الاحتياطي والاحتفاظ بالبيانات
 
 | البيانات              | فترة الاحتفاظ   | الطريقة                            |
 | --------------------- | --------------- | --------------------------------- |
-| Postgres PITR         | 7 أيام          | continuous archive لـ S3          |
-| Postgres logical dump | 30 يوم          | `pg_dump` يومي لـ S3 (مشفّر)       |
-| Application logs      | 30 يوم (hot) + سنة (cold) | CloudWatch + S3 Glacier |
-| Audit log             | 7 سنين          | Append-only، S3 Object Lock       |
+| Cloud SQL PITR        | 7 أيام          | continuous archive لـ GCS         |
+| Postgres logical dump | 30 يوم          | `pg_dump` يومي لـ GCS (مشفّر)      |
+| Application logs      | 30 يوم (hot) + سنة (cold) | Cloud Logging + GCS Archive class |
+| Audit log             | 7 سنين          | Append-only، GCS Bucket Lock (WORM) |
 
 ---
 
@@ -985,13 +985,12 @@ Client                       Next.js                   NestJS               Redi
 
 ### الطوبولوجي (Topology)
 
-- **Frontend** (Next.js): Vercel، region أساسي واحد (`fra1` لـ EU/MENA).
-- **Backend** (NestJS): Fly.io org `jawla`، region واحد `fra`، 2 app instances + 2
-  worker instances.
-- **Postgres**: Fly Postgres (أو Neon prod)، 1 primary + 1 standby في نفس الـ region.
-- **Redis**: Upstash dedicated، multi-AZ داخل الـ region.
-- **Static assets**: Vercel CDN بـ `s-maxage=86400, stale-while-revalidate=604800`.
-- **Object storage**: AWS S3 (`jawla-prod-{tickets,backups,logs}`)، region `eu-central-1`.
+- **Frontend** (Next.js): **Cloud Run على GCP**، region أساسي واحد (`europe-west3` Frankfurt لـ EU/MENA) داخل مشروع GCP الخاص بالعميل.
+- **Backend** (NestJS): **Cloud Run على GCP**، نفس الـ region `europe-west3`، 2 app instances (min) + autoscaling لـ workers.
+- **Postgres**: **Cloud SQL for PostgreSQL 16**، 1 primary + 1 HA standby في نفس الـ region.
+- **Redis**: **Memorystore for Redis** (Standard tier)، multi-zone داخل الـ region.
+- **Static assets**: **Cloud CDN** قدام Cloud Run بـ `s-maxage=86400, stale-while-revalidate=604800`.
+- **Object storage**: **Google Cloud Storage** buckets (`jawla-prod-{tickets,backups,logs}`)، region `europe-west3`.
 
 ### Environment Variables (مقتطف)
 
@@ -999,14 +998,14 @@ Client                       Next.js                   NestJS               Redi
 | ------------------------- | ------------ | ---------------------------------------------- |
 | `DATABASE_URL`            | API + worker | PgBouncer pool URL                             |
 | `DIRECT_URL`              | API (migrations) | URL الـ primary المباشر                     |
-| `REDIS_URL`               | API + worker | Upstash TLS URL                                |
+| `REDIS_URL`               | API + worker | Memorystore for Redis TLS URL (private VPC)    |
 | `JWT_PRIVATE_KEY`         | API          | RS256 private، PEM، rotation كل 90 يوم          |
 | `JWT_PUBLIC_KEY`          | API + FE     | RS256 public                                   |
 | `AMADEUS_CLIENT_ID`/`SECRET` | API       | Self-Service prod                              |
 | `PAYTABS_API_KEY`         | API          | PayTabs server key                             |
 | `PAYTABS_PROFILE_ID`      | API          | merchant profile ID                            |
 | `PAYTABS_WEBHOOK_SECRET`  | API          | IPN HMAC secret                                |
-| `EMAIL_PROVIDER_KEY`      | worker       | Resend/SES                                     |
+| `EMAIL_PROVIDER_KEY`      | worker       | Resend / SendGrid                              |
 | `SENTRY_DSN`              | API + FE     |                                                |
 | `NEXT_PUBLIC_PAYTABS_PROFILE` | FE       | client-side profile ID for PayPage             |
 
@@ -1019,8 +1018,8 @@ Client                       Next.js                   NestJS               Redi
 | `test:integration` | تشغيل Postgres + Redis عن طريق service containers؛ تشغيل integration suite الـ NestJS              |
 | `build`         | `pnpm build` (FE), `pnpm build && docker build` (BE), SBOM + image scan بـ Trivy                     |
 | `e2e`           | Playwright على staging URL بعد الـ preview deploy                                                    |
-| `deploy:preview` | Vercel preview للـ FE لكل PR؛ Fly deploy لـ `staging` app على `main`                                 |
-| `deploy:prod`   | بوابة موافقة يدوية → Vercel `--prod`، Fly `deploy --strategy=bluegreen`                              |
+| `deploy:preview` | **Cloud Run preview revision** للـ FE والـ BE لكل PR (traffic = 0)؛ deploy لـ `staging` Cloud Run service على `main` |
+| `deploy:prod`   | بوابة موافقة يدوية → **Cloud Run blue/green traffic split** (5% → 25% → 100%)                        |
 | `smoke`         | synthetic `/healthz` + booking dry-run بعد الـ deploy للـ prod                                       |
 
 ---
@@ -1034,7 +1033,7 @@ Client                       Next.js                   NestJS               Redi
 - الـ Levels: `trace`, `debug`, `info`, `warn`, `error`, `fatal`. الافتراضي في prod هو `info`.
 - الحقول الحساسة بيتعملها redact عن طريق pino redact list: `password`, `token`, `secret`,
   `authorization`, `card`, `pan`, `cvv`, `doc_number`.
-- الـ Retention: 30 يوم hot (CloudWatch)، 365 يوم cold (S3 Glacier).
+- الـ Retention: 30 يوم hot (**Cloud Logging**)، 365 يوم cold (**GCS Archive class**).
 - الـ Correlation: `X-Request-Id` header بيتمرر من البداية للنهاية؛ لو غير موجود،
   بيتولّد من السيرفر كـ ULID.
 

@@ -18,7 +18,7 @@
 
 | الضمان                                  | الطريقة بلغة الأعمال                                                                       |
 | --------------------------------------- | ------------------------------------------------------------------------------------------ |
-| الموقع متاح دائماً                       | استضافة سحابية بضمان وقت تشغيل 99.5% (أي توقف لا يتجاوز 3.5 ساعات شهرياً)                  |
+| الموقع متاح دائماً                       | استضافة على **Google Cloud Platform (GCP)** بضمان وقت تشغيل 99.5% (أي توقف لا يتجاوز 3.5 ساعات شهرياً) — حساب GCP **مقدَّم من العميل** |
 | كشف عمليات الدفع المشبوهة                | محرك ذكي يحلل كل عملية دفع ويمنع التحويلات المشبوهة قبل تنفيذها                             |
 | سلامة عمليات الاسترداد الآلية            | حد أقصى لكل عملية استرداد آلية، وما يتجاوز الحد يحتاج موافقة مسؤول                         |
 | الامتثال لمعايير الدفع العالمية (PCI)    | جميع البيانات الحساسة تمر عبر مزودين معتمدين دون أن تمر بخوادمنا                            |
@@ -47,8 +47,8 @@
 | PayTabs                         | بوابة الدفع متعددة العملات (EGP/USD/EUR/SAR/AED) لقبول البطاقات المحلية والدولية والمحافظ الإلكترونية بمعالجة موحّدة |
 | WhatsApp Business API           | قناة التواصل الأساسية في مصر لإرسال التأكيدات والتذاكر مباشرة على هاتف العميل      |
 | Mailgun / SendGrid              | إرسال البريد الإلكتروني الموثوق للفواتير والتأكيدات                                  |
-| استضافة سحابية (AWS/Vercel)     | البنية التحتية المرنة التي تتكيف مع حجم الحركة لحظياً                                |
-| خدمة تخزين الكائنات (S3 + CDN)   | تخزين وعرض e-tickets والفواتير وأصول واجهة المستخدم بسرعة عالية للعملاء في أي مكان |
+| **Google Cloud Platform (GCP) — مقدَّم من العميل** | البنية التحتية المرنة (Cloud Run + Cloud SQL + Memorystore) التي تتكيف مع حجم الحركة لحظياً، وحساب GCP مملوك للعميل تماماً |
+| **Google Cloud Storage (GCS) + Cloud CDN** | تخزين وعرض e-tickets والفواتير وأصول واجهة المستخدم بسرعة عالية للعملاء في أي مكان |
 
 ### ما الذي يحتاج المجلس أن يعرفه؟
 
@@ -321,7 +321,7 @@
 | ------- | -------------------------------------------------------------------------------------------- |
 | NFR-015 | TLS 1.2+، HSTS 2 سنة preload؛ OCSP stapling مفعّل.                                            |
 | NFR-016 | البيانات في الـ storage بـ AES-256؛ هرمية مفاتيح KMS-rooted مع تدوير شهري لـ DEK.              |
-| NFR-017 | كل الـ secrets في AWS Secrets Manager / HashiCorp Vault؛ ولا توضع أبدًا في env files في git.   |
+| NFR-017 | كل الـ secrets في **GCP Secret Manager** (أو HashiCorp Vault داخل GCP)؛ ولا توضع أبدًا في env files في git.   |
 | NFR-018 | pentest أمني مرتين سنويًا؛ معالجة العالية خلال 30 يومًا، والحرجة خلال 7 أيام.                   |
 | NFR-019 | جاهزية SOC 2 Type I أثناء المستوى Pro؛ مع mapping للضوابط.                                    |
 
@@ -363,16 +363,16 @@
                                             │ │ PayTabs (multi-currency)        │  │
                                             │ └─────────────────────────────────┘  │
                                             │ ┌─────────────┐ ┌───────────────────┐ │
-                                            │ │ WA Cloud API│ │ SES / Resend      │ │
+                                            │ │ WA Cloud API│ │ SendGrid / Resend │ │
                                             │ └─────────────┘ └───────────────────┘ │
                                             └────────────────▲──────────────────────┘
                                                              │
                                                              │
 ┌──────────┐     ┌────────────┐     ┌──────────────┐     ┌───┴────────────────────────┐
-│  Client  │────▶│ Cloudflare │────▶│  Vercel CDN  │────▶│ Next.js 15 (App Router)    │
-│ Web/Web  │     │  (WAF/Bot) │     │     Edge     │     │ - Marketing               │
-└──────────┘     └────────────┘     └──────────────┘     │ - Customer Account Pages  │
-                                                          │ - Admin Console (RBAC)    │
+│  Client  │────▶│ Cloud Armor│────▶│   Cloud CDN  │────▶│ Next.js 15 (App Router)    │
+│ Web/Web  │     │ (WAF/DDoS) │     │     (GCP)    │     │   on Cloud Run (GCP)      │
+└──────────┘     └────────────┘     └──────────────┘     │ - Marketing               │
+                                                          │ - Customer Account Pages  │
                                                           │ - Server Actions          │
                                                           └────────────┬──────────────┘
                                                                        │
@@ -394,16 +394,16 @@
                        │                                              │                    │
                        └──────────────────────┬───────────────────────┴────────────────────┘
                                               ▼
-                                      ┌──────────────────┐    ┌──────────────────┐
-                                      │ PgBouncer        │───▶│ PostgreSQL 16    │
-                                      └──────────────────┘    │ + sync standby + │
-                                                              │ 1 async replica  │
-                                                              └──────────────────┘
+                                      ┌──────────────────┐    ┌──────────────────────────┐
+                                      │ PgBouncer        │───▶│ Cloud SQL (Postgres 16)  │
+                                      └──────────────────┘    │ HA + sync standby +      │
+                                                              │ 1 cross-region replica   │
+                                                              └──────────────────────────┘
                                               │
                                               ▼
-                                      ┌──────────────────┐    ┌──────────────────────────────┐
-                                      │ Redis 7 (cluster)│───▶│ BullMQ workers (12 replicas) │
-                                      │ cache + queues   │    │ - booking.fulfill            │
+                                      ┌──────────────────────┐ ┌──────────────────────────────┐
+                                      │ Memorystore for Redis│▶│ BullMQ workers (12 replicas) │
+                                      │ cluster: cache+queues│ │ - booking.fulfill            │
                                       └──────────────────┘    │ - notifications.{email,wa}   │
                                                               │ - payment.refund             │
                                                               │ - reconciliation.daily       │
@@ -738,7 +738,7 @@ Authorization: Bearer ...
 | A05       | CSP مفروض (لا report-only)؛ مع strict-dynamic + nonces.                                          |
 | A07       | TOTP MFA، step-up auth، إبطال refresh family.                                                     |
 | A09       | OpenTelemetry traces، Sentry، audit log؛ تكامل SIEM عبر Vector → ClickHouse.                     |
-| A10 SSRF  | egress proxy مع allow-list + DNS pinning؛ مع outbound NAT egress IP من نوع Lambda-style لاستخدامه في allow-list لـ supplier. |
+| A10 SSRF  | egress proxy مع allow-list + DNS pinning؛ مع **Cloud NAT** ثابت الـ outbound IP من Cloud Run لاستخدامه في allow-list لـ supplier. |
 
 ### التشفير على مستوى الحقل
 
@@ -758,13 +758,13 @@ Authorization: Bearer ...
 
 ### Rate Limiting
 
-- متعدد المستويات: WAF (Cloudflare) لـ DDoS على مستوى الـ IP، وbucket في NestJS للـ
+- متعدد المستويات: **Cloud Armor (WAF/DDoS)** على مستوى الـ IP، وbucket في NestJS للـ
   throttle التجاري على مستوى الـ user، وsupplier-circuit-breaker للحماية والـ fallback.
 
 ### إدارة الـ Secrets
 
-- AWS Secrets Manager للوقت التشغيلي؛ مع SOPS-encrypted YAML لـ bootstrap الـ IaC.
-- تدوير الـ secrets: تدوير master الـ AWS RDS المُدار؛ وتدوير PayTabs server-key ربع
+- **GCP Secret Manager** للوقت التشغيلي؛ مع SOPS-encrypted YAML لـ bootstrap الـ IaC على GCP.
+- تدوير الـ secrets: تدوير master لـ **Cloud SQL for PostgreSQL** المُدار؛ وتدوير PayTabs server-key ربع
   سنوي عبر runbook.
 
 ---
@@ -910,12 +910,12 @@ worker payment.refund:
 
 ### الـ Topology
 
-- **Frontend**: Vercel، اثنان من الـ regions (`fra1` primary و `cdg1` standby ISR mirror).
-- **Backend**: Fly.io org `jawla`، region `fra` primary + `cdg` warm standby (read-only في التشغيل العادي).
-- **Postgres**: Postgres مُدار (مثل Neon prod أو Crunchy) مع sync replica في `fra` AZ-b و async cross-region replica في `cdg`.
-- **Redis**: Upstash Cluster، multi-AZ، مع replication بين region للـ queue durability.
-- **Queues**: BullMQ broker لكل region؛ مع تقسيم الـ jobs حسب الطابور.
-- **Object storage**: S3 buckets، مع cross-region replication لـ `tickets` و `invoices`.
+- **Frontend**: **Cloud Run على GCP**، اثنان من الـ regions (`europe-west3` Frankfurt primary و `europe-west9` Paris standby؛ Cloud CDN يخدم من أقرب edge POP).
+- **Backend**: **Cloud Run على GCP**، region `europe-west3` primary + `europe-west9` warm standby (read-only في التشغيل العادي) ضمن مشروع GCP الخاص بالعميل.
+- **Postgres**: **Cloud SQL for PostgreSQL 16** HA مع sync replica في نفس الـ region (multi-zone) و **async cross-region replica** في region آخر.
+- **Redis**: **Memorystore for Redis Cluster**، multi-zone، مع replication بين region للـ queue durability.
+- **Queues**: BullMQ broker لكل region (على Memorystore)؛ مع تقسيم الـ jobs حسب الطابور.
+- **Object storage**: **GCS buckets**، مع **Turbo Replication** (cross-region) لـ `tickets` و `invoices`.
 
 ### الـ Pipelines
 
@@ -926,11 +926,11 @@ worker payment.refund:
 | test:integration  | تشغيل Postgres + Redis + WireMock للـ suppliers                                       |
 | test:contract     | Pact verify مقابل supplier stubs مثبّتة                                                |
 | build             | FE + BE؛ SBOM (cyclonedx) + Trivy + Snyk؛ توقيع الـ image (Cosign)                    |
-| deploy:preview    | Vercel preview + Fly app `pr-<n>` للـ E2E                                             |
+| deploy:preview    | Cloud Run preview revision (FE + BE، traffic=0) `pr-<n>` للـ E2E                       |
 | e2e               | Playwright suite على الـ preview                                                       |
-| deploy:staging    | Fly + Vercel staging عند الدمج إلى `main`                                              |
+| deploy:staging    | Cloud Run staging revisions (FE + BE) عند الدمج إلى `main`                             |
 | smoke:staging     | حجز تجريبي صناعي؛ supplier sandbox                                                    |
-| deploy:prod       | موافقة يدوية → Fly blue/green + Vercel `--prod` canary 5% → 25% → 100%                |
+| deploy:prod       | موافقة يدوية → **Cloud Run traffic split (blue/green canary 5% → 25% → 100%)** للـ FE + BE |
 | post-deploy       | synthetic /healthz، error-rate watcher لمدة 30 دقيقة؛ rollback تلقائي عند التراجع     |
 
 ### Environment Variables (الإضافات)
@@ -953,8 +953,8 @@ worker payment.refund:
   `sagaStep` و `attempt`.
 - redaction للحقول الحساسة موسّع ليشمل: `psp_token` و `wa_token` و `doc_number` و `card_*` و
   `iban` و `tax_id`.
-- توجيه الـ logs: stdout → Vector → ClickHouse (analytics) + S3 cold storage.
-- الاحتفاظ: 90 يومًا hot، سنتان cold؛ audit logs لمدة 7 سنوات في S3 Object Lock.
+- توجيه الـ logs: stdout → **Cloud Logging** → Vector → ClickHouse (analytics) + **GCS Archive class** cold storage.
+- الاحتفاظ: 90 يومًا hot، سنتان cold؛ audit logs لمدة 7 سنوات في **GCS Bucket Lock (WORM)**.
 
 ---
 
@@ -1026,7 +1026,7 @@ worker payment.refund:
 | AT-036 | MFA TOTP enroll/verify                      | أسجّل TOTP عبر QR                                       | أدخل الكود الصحيح                              | `mfa: true`؛ تُولَّد backup codes؛ والعمليات الحساسة لاحقًا تتطلب step-up.            |
 | AT-037 | Step-up قبل الـ refund                       | أنا عميل مفعّل لديه MFA                                 | أطلب refund دون step-up حديث                    | 401 `STEP_UP_REQUIRED`؛ ومحاولة مع TOTP تنجح.                                         |
 | AT-038 | إدارة saved card                            | أضفت بطاقة عبر PSP token                                | أحذف البطاقة                                  | السجل المحفوظ يُحذف؛ ويُعاد تعيين البطاقة الافتراضية إن لزم.                            |
-| AT-039 | توليد الفاتورة                              | لدي حجز EG مؤكد                                         | أطلب فاتورة                                    | رقم فاتورة EG تسلسلي؛ مع حساب VAT؛ ويُولَّد PDF ويُخزَّن في S3.                       |
+| AT-039 | توليد الفاتورة                              | لدي حجز EG مؤكد                                         | أطلب فاتورة                                    | رقم فاتورة EG تسلسلي؛ مع حساب VAT؛ ويُولَّد PDF ويُخزَّن في **GCS**.                  |
 | AT-040 | Admin bulk export                           | أنا admin مع 1k حجز مفلتر                              | أصدّر CSV                                     | job في الخلفية؛ مع signed URL تصلني بالبريد عند الجاهزية.                              |
 | AT-041 | 4-eye refund                                | محاولة refund بقيمة $7,000                              | أرسلها                                        | الحالة `PENDING_APPROVAL`؛ ولا تُنفَّذ إلا بموافقة admin ثانٍ.                         |
 | AT-042 | تنبيه فرق الـ reconciliation                | payout من PSP ينقصه حجز                                | يعمل recon job ليلي                            | الفرق > 0.5% يُطلق تنبيه Slack للـ finance.                                          |

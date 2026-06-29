@@ -1950,7 +1950,7 @@ Jawla Tours (HQ)
 
 ### 16.2 افتراضات تقنية (Technical)
 
-6. **العميل يوفّر بيئة استضافة** أو يقبل اختيارنا (AWS/GCP/Azure)
+6. **العميل يوفّر حساب Google Cloud Platform (GCP)** — البنية التحتية بالكامل (GKE/Cloud Run + Cloud SQL + Cloud Storage + Cloud CDN + Pub/Sub) تُنشر على حساب GCP الخاص بالعميل، وتكاليف الاستضافة الشهرية على عاتقه مباشرة ولا تدخل ضمن سعر المشروع أو رسوم الصيانة
 7. **العميل يوفّر domains** اللازمة (jawla-tours.com)
 8. **العميل يوفّر SSL certificates** أو يقبل Let's Encrypt
 9. **العميل يوفّر حسابات الـ APIs الخارجية** (Google Maps، XE.com، etc.)
@@ -2043,8 +2043,8 @@ Jawla Tours (HQ)
 ❌ **رسوم WhatsApp Business API** (per message)
 ❌ **رسوم SMS gateways**
 ❌ **رسوم Email service** (SendGrid، Mailgun)
-❌ **رسوم الاستضافة الشهرية** (AWS/GCP)
-❌ **رسوم CDN** (Cloudflare/CloudFront)
+❌ **رسوم الاستضافة الشهرية على Google Cloud Platform (GCP)** — حساب GCP مقدَّم من العميل والتكلفة على عاتقه مباشرة
+❌ **رسوم Cloud CDN** ضمن GCP
 ❌ **رسوم Google Maps API**
 ❌ **رسوم Exchange rate APIs**
 ❌ **رسوم Monitoring tools** (Sentry، Datadog)

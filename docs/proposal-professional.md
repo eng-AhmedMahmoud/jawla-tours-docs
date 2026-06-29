@@ -158,7 +158,7 @@
 - بناء لوحة إدارة احترافية (Admin Panel) مع تحليلات وتقارير
 - وحدة إشعارات متعددة القنوات (Email + WhatsApp Business API + SMS اختياري)
 - اختبارات شاملة (Unit + Integration + E2E + UAT)
-- نشر على بيئة إنتاج آمنة على Cloud (AWS / DigitalOcean)
+- نشر كامل على بيئة إنتاج آمنة على **Google Cloud Platform (GCP)** الخاصة بالعميل (Cloud Run + Cloud SQL + Cloud Storage + Pub/Sub) — حساب GCP مقدَّم من العميل
 - توثيق فني وتدريب فريق Jawla Tours على استخدام المنصة
 
 ### ❌ ما لا يشمله النطاق
@@ -541,7 +541,7 @@
 | **W1** | Kick-off Meeting, جمع المتطلبات التفصيلية, تحليل المنافسين |
 | **W2** | تصميم Information Architecture, إنشاء Wireframes أولية |
 | **W3** | تصميم UI Mockups نهائية, بناء Design System, موافقة العميل |
-| **W4** | إعداد Cloud Infrastructure (AWS/DigitalOcean), إعداد Repositories |
+| **W4** | إعداد بنية **Google Cloud Platform (GCP)** الخاصة بالعميل (Cloud Run + Cloud SQL + Cloud Storage + Pub/Sub), إعداد Repositories |
 | **W5** | بناء Database Schema, نظام Authentication & Authorization, CI/CD |
 | **W6** | تكامل Amadeus Flight Search + Pricing + Booking APIs |
 | **W7** | تكامل Flight Order Management + Order Cancel + Airport/City Search |
@@ -698,7 +698,7 @@
 5. ✅ يلتزم العميل بمراجعة المُخرَجات والرد عليها خلال **48 ساعة** كحد أقصى لتجنُّب التأخُّر
 6. ✅ تتوفَّر **محتوى نصي ومرئي** للوجهات والصفحات الثابتة (أو يُسعَّر منفصلًا)
 7. ✅ تتولَّى Jawla مسؤولية **التراخيص التجارية والضريبية** للتشغيل القانوني
-8. ✅ تتحمَّل Jawla **رسوم استضافة Cloud الشهرية** (تتراوح بين 100 — 300 دولار/شهر حسب الاستخدام)
+8. ✅ يوفّر العميل **حساب Google Cloud Platform (GCP)** ويتحمَّل **رسوم الاستضافة الشهرية على GCP** مباشرة (تتراوح بين 100 — 300 دولار/شهر حسب الاستخدام) — لا تدخل ضمن سعر المشروع أو رسوم الصيانة
 9. ✅ تتحمَّل Jawla **رسوم Amadeus** (Pay-Per-Transaction) للاستعلامات والحجوزات
 10. ✅ تتحمَّل Jawla **رسوم بوابات الدفع** (PayTabs, WhatsApp Business API)
 11. ✅ يلتزم العميل بسداد **الأقساط في مواعيدها** المُحدَّدة في جدول الدفع
