@@ -139,9 +139,9 @@
     { id: 'maintenance',label: 'Maintenance Contracts',sub: 'عقود الصيانة',           icon: '🛡️', rtl: true },
   ];
   const TIERS = [
-    { id: 'basic',        label: 'Basic',        short: 'B',   badge: 'badge-basic', price: '600,000 EGP (~$12,000)',   timeline: '3 months', maint: '10,000 EGP/mo (~$200)' },
-    { id: 'professional', label: 'Professional', short: 'PRO', badge: 'badge-pro',   price: '850,000 EGP (~$17,000)',   timeline: '4 months', maint: '20,000 EGP/mo (~$400)' },
-    { id: 'enterprise',   label: 'Enterprise',   short: 'ENT', badge: 'badge-ent',   price: '1,400,000 EGP (~$28,000)', timeline: '6 months', maint: '30,000 EGP/mo (~$600)' },
+    { id: 'basic',        label: 'Basic',        short: 'B',   badge: 'badge-basic', price: '$15,000 (~750,000 EGP)',   timeline: '3 months', maint: '10,000 EGP/mo (~$200)' },
+    { id: 'professional', label: 'Professional', short: 'PRO', badge: 'badge-pro',   price: '$18,000 (~900,000 EGP)',   timeline: '4 months', maint: '15,000 EGP/mo (~$300)' },
+    { id: 'enterprise',   label: 'Enterprise',   short: 'ENT', badge: 'badge-ent',   price: '$20,000 (~1,000,000 EGP)', timeline: '6 months', maint: '20,000 EGP/mo (~$400)' },
   ];
   const KEY = (c, t) => c + '-' + t;
 
@@ -298,8 +298,8 @@
     hero.appendChild(el('div', { class: 'hero-eyebrow', style: 'margin-bottom:16px' }, 'الباقات المقترحة'));
     const grid = el('div', { class: 'pkg-grid' });
     const TIER_AR = { basic: 'الأساسية', professional: 'الاحترافية', enterprise: 'المؤسسية' };
-    const META_AR = { basic: '3 شهور · صيانة 10,000 ج.م/شهر (~$200)', professional: '4 شهور · صيانة 20,000 ج.م/شهر (~$400)', enterprise: '6 شهور · صيانة 30,000 ج.م/شهر (~$600)' };
-    const PRICE_AR = { basic: '600,000 ج.م (~$12,000)', professional: '850,000 ج.م (~$17,000)', enterprise: '1,400,000 ج.م (~$28,000)' };
+    const META_AR = { basic: '3 شهور · صيانة 10,000 ج.م/شهر (~$200)', professional: '4 شهور · صيانة 15,000 ج.م/شهر (~$300)', enterprise: '6 شهور · صيانة 20,000 ج.م/شهر (~$400)' };
+    const PRICE_AR = { basic: '$15,000 (~750,000 ج.م)', professional: '$18,000 (~900,000 ج.م)', enterprise: '$20,000 (~1,000,000 ج.م)' };
     const CAT_AR = { proposals: 'العرض', prds: 'PRD', srs: 'SRS', maintenance: 'الصيانة' };
     for (const tier of TIERS) {
       const card = el('div', { class: 'pkg-card' });

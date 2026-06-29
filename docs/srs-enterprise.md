@@ -1,10 +1,10 @@
 ## 🎯 ملخص فني لمجلس الإدارة (بلغة الأعمال)
 
-هذه الوثيقة هي المخطط الهندسي الكامل للنظام في الباقة المؤسسية، وهي بنية تحتية متعددة القنوات: موقع ويب + تطبيق iOS + تطبيق Android + بوابة B2B لوكلاء السفر + محرك White-Label لإنشاء علامات تجارية فرعية. الملخص التالي يلخّص الاستثمار المطلوب والعائد المتوقع بلغة الأعمال.
+هذه الوثيقة هي المخطط الهندسي الكامل للنظام في الباقة المؤسسية، وهي بنية تحتية متعددة القنوات: موقع ويب متجاوب (responsive) + بوابة B2B لوكلاء السفر + محرك White-Label لإنشاء علامات تجارية فرعية، مع تكامل كامل مع نظام Amadeus enterprise. السعر الإجمالي: **20,000 USD ≈ 1,000,000 جنيه مصري** للبناء الأولي، مع صيانة شهرية **20,000 جنيه مصري (~400 USD)**. الملخص التالي يلخّص الاستثمار المطلوب والعائد المتوقع بلغة الأعمال.
 
 ### ماذا يبنيه فريق الهندسة؟ (الباقة الكاملة)
 
-- تطبيق هاتف محمول كامل لنظامي iOS و Android بنفس قدرات الموقع
+- تكامل كامل مع نظام Amadeus enterprise: Master Pricer للأسعار التنافسية، PNR/Ticketing الكامل، EMD لإصدار المستندات الإلكترونية، Queue Management لإدارة طوابير العمل، NDC للعروض الحديثة، Ancillaries للخدمات الإضافية، Tours/Activities للجولات والأنشطة، Transfers للنقل، و Cars APIs لتأجير السيارات
 - بوابة B2B لوكلاء السفر لحجز التذاكر بأسعار الجملة وتتبع العمولات تلقائياً
 - محرك White-Label لإنشاء علامات تجارية فرعية بسهولة (شركاء، فروع، امتيازات)
 - محرك تسعير ديناميكي يعدّل الأسعار حسب الطلب والوقت لرفع هامش الربح
@@ -40,11 +40,11 @@
 | متوسط زمن استجابة الصفحة                            | أقل من 1.2 ثانية                                       |
 | نسبة وقت تشغيل النظام (Uptime SLA)                  | 99.9%                                                    |
 | عدد المعاملات اليومية المتوقعة                       | 1,500 – 5,000 معاملة                                    |
-| عدد قنوات البيع                                     | 4 قنوات (Web + iOS App + Android App + B2B Portal)      |
+| عدد قنوات البيع                                     | 2 قنوات (Web + B2B Portal)                              |
 | عدد الفروع المدعومة                                 | حتى 25 فرع/علامة تجارية فرعية                          |
 | عدد العملات المدعومة                                | 10+ عملات رئيسية                                       |
 | التكاليف الشهرية للبنية التحتية                    | حوالي 2,500 – 4,000 USD شهرياً                          |
-| عدد المهندسين العاملين                              | 9 (Backend + Frontend + iOS + Android + DevOps + Data + QA + Security) |
+| عدد المهندسين العاملين                              | 7 (Backend + Frontend + DevOps + Data + QA + Security + 2 Mid-level)   |
 | العائد المتوقع على الاستثمار خلال 18 شهر           | 3.5x – 5x من الاستثمار الأصلي                            |
 
 ### اعتمادنا على الموردين الخارجيين
@@ -56,8 +56,6 @@
 | Paymob                              | بوابة الدفع المصرية الرئيسية للسوق المحلي                                            |
 | Adyen                               | بوابة دفع ثانوية للأسواق الأوروبية والآسيوية كبديل عن Stripe                          |
 | WhatsApp Business API               | قناة التواصل الرئيسية للعملاء والوكلاء B2B                                            |
-| Apple App Store                     | منصة توزيع تطبيق iOS — رسوم سنوية 99 USD ونسبة 15-30% من المبيعات داخل التطبيق        |
-| Google Play                         | منصة توزيع تطبيق Android — رسوم لمرة واحدة 25 USD ونسبة مماثلة                       |
 | Mailgun                             | البريد الإلكتروني التجاري لإرسال ملايين الرسائل شهرياً بأسعار منخفضة                  |
 | استضافة متعددة المناطق (AWS/GCP)    | بنية تحتية موزّعة على 3 مناطق جغرافية لضمان الانتشار العالمي                          |
 | CDN عالمي (Cloudflare)              | تسريع الموقع للعملاء في كل دول العالم وحماية من هجمات DDoS                            |
@@ -67,7 +65,6 @@
 
 - مقارنة مع Professional: زيادة في القدرات بنسبة 100% (مضاعفة) مقابل زيادة في السعر 65%
 - نحتاج تأسيس فريق DevOps داخلي دائم (مهندسان) لإدارة البنية التحتية المعقدة
-- تكاليف رخص متاجر التطبيقات (Apple/Google) وعمولاتها يجب إدراجها في خطة التسعير
 - النظام يحتاج تدقيق أمني مستقل (Security Audit) من شركة معتمدة قبل الإطلاق
 - محرك White-Label يفتح مصدر دخل جديد: ترخيص النظام لشركات سفر أخرى بإيراد متكرر شهري
 - بوابة B2B تتطلب فريق Sales/Account Manager لاكتساب الوكلاء وتفعيلهم
@@ -97,7 +94,6 @@
 | الإصدار | التاريخ    | الكاتب              | الأقسام                          | ملخص التغيير                                                                    |
 | ------- | ---------- | ------------------- | -------------------------------- | ------------------------------------------------------------------------------- |
 | 0.1     | 2026-03-09 | Platform Arch Group | الكل                             | مسودة أولى (تمتد من الباقة Pro)                                                  |
-| 0.2     | 2026-04-02 | Mobile Lead         | Mobile، Auth، Notifications      | نطاق iOS/Android الأصلي؛ push notifications عبر APNs/FCM                         |
 | 0.3     | 2026-04-21 | Product (B2B)       | Agent Portal، RBAC               | بوابة وكلاء B2B، حسابات الوكالات، حدود ائتمان، تعريفات IATA                      |
 | 0.4     | 2026-05-09 | ML Lead             | Fraud ML، Pricing                | نموذج تقييم الاحتيال + محرك التسعير الديناميكي                                    |
 | 0.5     | 2026-05-21 | Brand               | White-label، Theming             | تأجير White-label + خط أنابيب الـ theming                                        |
@@ -116,7 +112,6 @@
 | EDA          | Event-Driven Architecture                                                 |
 | Saga         | معاملة طويلة الأمد مع تعويضات                                              |
 | KEK / DEK    | Key Encryption Key / Data Encryption Key (تشفير بأسلوب envelope)          |
-| FCM / APNs   | Firebase Cloud Messaging / Apple Push Notification service                |
 | RBAC / ABAC  | تحكم في الوصول بناءً على الدور / السمات                                    |
 | OPA          | Open Policy Agent (تصريح كـ policy-as-code)                                |
 | ML-FRAUD     | خدمة تقييم الاحتيال                                                         |
@@ -131,8 +126,8 @@
 ### الهدف
 
 هذه الوثيقة تحدد متطلبات البرمجيات لـ **الباقة Enterprise** من *Jawla Tours*.
-الباقة Enterprise توفر منصة متعددة المناطق، متعددة الـ tenants، B2B+B2C، مع
-تطبيقات native للموبايل، و white-labelling، و machine learning للاحتيال، وتسعير
+الباقة Enterprise توفر منصة متعددة المناطق، متعددة الـ tenants، B2B+B2C، عبر
+موقع ويب متجاوب (responsive) فقط، و white-labelling، و machine learning للاحتيال، وتسعير
 ديناميكي، ومحرك ثقيل للـ queue لإدارة الـ package deals. هذه الوثيقة هي العقد
 للإصدار الكبير الثالث (هدف GA هو Q2 2027).
 
@@ -147,7 +142,6 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 - كل وظائف الباقة Basic + Professional (مفترضة؛ سيتم ذكر الجديد والمتغير فقط).
 - **متعدد المناطق active-active** (eu-central-1 + me-central-1 + ap-south-1)
   مع توجيه read-local / write-aware.
-- **تطبيقات موبايل native** (iOS + Android، React Native 0.76 + Expo)، بنفس مميزات الويب.
 - **بوابة وكلاء B2B** لشركات TMCs ووكالات السفر مع خطوط ائتمان، markups،
   منشئ مسارات، استيراد جماعي للركاب، تقارير BSP-CASS.
 - **theming بنظام White-label** — branding مرتبط بكل tenant (ألوان، خطوط، شعار، domain)،
@@ -166,13 +160,13 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | R-02   | Amadeus Enterprise (Production NDC + Master Pricer)                             |
 | R-03   | HotelBeds + Booking Affiliate + Expedia Rapid + Hotelston (4 موردين)            |
 | R-04   | Stripe + Paymob + Adyen + Tap (KSA/UAE alt MPMs)                                |
-| R-05   | WhatsApp Business Cloud API, APNs (Apple), FCM (Google), Mailgun                |
-| R-06   | OWASP Top 10:2021 + ASVS 4.0.3 L3 + MASVS L2 (mobile)                            |
+| R-05   | WhatsApp Business Cloud API, Web Push (VAPID), Mailgun                          |
+| R-06   | OWASP Top 10:2021 + ASVS 4.0.3 L3                                                |
 | R-07   | SOC 2 Type II (Security, Availability, Confidentiality)                          |
 | R-08   | PCI DSS v4.0 — SAQ A-EP + SAQ D مخصص للـ payouts                                 |
 | R-09   | GDPR، PDPL السعودي، قانون حماية البيانات المصري 151/2020، PDPL الإماراتي         |
 | R-10   | IATA Resolution 890؛ BSP Manual for Agents                                       |
-| R-11   | WCAG 2.1 AA + EN 301 549؛ إرشادات إمكانية الوصول لـ iOS/Android                  |
+| R-11   | WCAG 2.1 AA + EN 301 549                                                         |
 | R-12   | RFC 9457 (Problem Details)، RFC 9421 (HTTP Message Signatures، حيثما ينطبق)      |
 
 ---
@@ -181,7 +175,7 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 
 > إضافية للباقة. حيث لا يُذكر "*يمتد*" فالمتطلب جديد.
 
-### Module: Authentication & Identity (FR-001 — FR-028)
+### Module: Authentication & Identity (FR-001 — FR-026)
 
 | ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
@@ -190,8 +184,6 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | FR-024 | يجب أن يدعم النظام provisioning عبر **SCIM 2.0** لـ tenants من نوع B2B (إنشاء/تحديث/تعطيل المستخدمين).        | MUST     |
 | FR-025 | يجب أن يدعم النظام passkeys بـ WebAuthn (FIDO2) للعملاء والموظفين معاً.                                       | MUST     |
 | FR-026 | يجب أن يدعم النظام إعدادات identity provider لكل tenant (IdP واحد لكل tenant؛ JIT provisioning).               | MUST     |
-| FR-027 | يجب أن يدعم النظام إعادة المصادقة البيومترية على الموبايل (Face ID / Touch ID / Android BiometricPrompt).     | MUST     |
-| FR-028 | يجب أن يصدر النظام refresh tokens مرتبطة بالجهاز للموبايل (DPoP، RFC 9449).                                   | MUST     |
 
 ### Module: Flights (FR-029 — FR-046)
 
@@ -261,7 +253,7 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
 | FR-077 | *يمتد من Pro FR-073..088.*                                                                                    | MUST     |
-| FR-078 | يجب أن يتكامل النظام مع **Tap Payments** لتغطية alt-MPM في KSA/UAE (Apple Pay، mada، KNET).                  | MUST     |
+| FR-078 | يجب أن يتكامل النظام مع **Tap Payments** لتغطية alt-MPM في KSA/UAE (mada، KNET).                             | MUST     |
 | FR-079 | يجب أن يدعم النظام إعفاءات 3DS (TRA، low-value، fixed amount) طبقاً لـ PSD2 RTS.                              | MUST     |
 | FR-080 | يجب أن يدعم النظام تسوية B2B postpaid (credit-line) مع فاتورة وكشف حساب شهري.                                  | MUST     |
 | FR-081 | يجب أن يدعم النظام refunds متعددة الأرجل (لكل مكون) مع audit trail لكل ساق.                                    | MUST     |
@@ -283,7 +275,7 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 
 | ID     | المتطلب                                                                                                       | الأولوية |
 | ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-095 | يجب أن يرسل النظام إشعارات **push** عبر APNs + FCM لتطبيقات الموبايل مع topic routing.                        | MUST     |
+| FR-095 | يجب أن يرسل النظام إشعارات **web push** عبر VAPID للمتصفحات المدعومة مع topic routing.                        | MUST     |
 | FR-096 | يجب أن يرسل النظام WhatsApp عبر Cloud API (مكتسبة من Pro).                                                     | MUST     |
 | FR-097 | يجب أن يرسل النظام إيميل transactional عبر مزود رئيسي + مزود failover تلقائي.                                  | MUST     |
 | FR-098 | يجب أن يدعم النظام in-app inbox (SSE / WS في real-time) لكل مستخدم.                                            | MUST     |
@@ -295,7 +287,7 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | FR-104 | يجب أن يدعم النظام إشعارات broadcast (للأدمن فقط) مع filters للجمهور.                                          | SHOULD   |
 | FR-105 | يجب أن يدعم النظام إشعارات promo مقسمة بناءً على cohort tags.                                                  | MUST     |
 | FR-106 | يجب أن يتدهور النظام بأناقة إذا فشل أي مزود واحد (multi-provider failover).                                    | MUST     |
-| FR-107 | يجب أن يقوم النظام بـ localize الـ push payloads حسب لغة الجهاز؛ fallback EN.                                  | MUST     |
+| FR-107 | يجب أن يقوم النظام بـ localize الـ push payloads حسب لغة المتصفح؛ fallback EN.                                | MUST     |
 | FR-108 | يجب أن يحترم النظام unsubscribe headers / List-Unsubscribe-Post في إيميلات الـ transactional والتسويق.        | MUST     |
 
 ### Module: Admin & Operations (FR-109 — FR-126)
@@ -385,21 +377,6 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | FR-169 | يجب أن يصدر DYN-PRICE أحداث قرارات التسعير لـ BI لتقارير الأداء.                                              | MUST     |
 | FR-170 | يجب أن يسمح DYN-PRICE بـ override لكل tenant (white-label) بدون تأثير عبر الـ tenants.                        | MUST     |
 
-### Module: Mobile Apps (FR-171 — FR-180)
-
-| ID     | المتطلب                                                                                                       | الأولوية |
-| ------ | ------------------------------------------------------------------------------------------------------------ | -------- |
-| FR-171 | يجب أن تحقق تطبيقات الموبايل تكافؤ المميزات لـ: search، book، pay، manage trips، profile، MFA.                | MUST     |
-| FR-172 | يجب أن تدعم تطبيقات الموبايل إعادة المصادقة البيومترية (Face ID / Touch ID / BiometricPrompt).                | MUST     |
-| FR-173 | يجب أن تدعم تطبيقات الموبايل push notifications + deep links (universal links / app links).                   | MUST     |
-| FR-174 | يجب أن تدعم تطبيقات الموبايل عرض offline للحجوزات القادمة (cached بأمان).                                      | MUST     |
-| FR-175 | يجب أن تتكامل تطبيقات الموبايل مع Apple Pay (iOS) و Google Pay (Android) بشكل native.                         | MUST     |
-| FR-176 | يجب أن تتكامل تطبيقات الموبايل مع Wallet (PassKit / Google Wallet) لـ boarding-pass + voucher.                | SHOULD   |
-| FR-177 | يجب أن تدعم تطبيقات الموبايل step-up بيومتري للـ refunds + عمليات payment-method.                              | MUST     |
-| FR-178 | يجب أن تدعم تطبيقات الموبايل deep-link لإجراءات schedule-change re-protect.                                    | MUST     |
-| FR-179 | يجب أن تُطلق تطبيقات الموبايل عبر OTA (EAS Update) لإصلاحات الأخطاء غير الـ native.                            | MUST     |
-| FR-180 | يجب أن تكون تطبيقات الموبايل متوافقة مع MASVS L2 (بدون secrets في الـ binary، TLS pinning، جلب جذور jailbreak). | MUST    |
-
 ---
 
 ## المتطلبات غير الوظيفية
@@ -411,7 +388,6 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | NFR-001 | flight search p95 ≤ 1.8 s محلي للمنطقة (cache-cold)، ≤ 500 ms cache-hot.                     |
 | NFR-002 | hotel aggregated search p95 ≤ 2.2 s (fanout على 4 موردين، 1.5 s budget لكل مورد).            |
 | NFR-003 | API غير المرتبط بالموردين p95 ≤ 150 ms.                                                       |
-| NFR-004 | mobile cold-start حتى home screen ≤ 1.8 s p95 على iPhone 12 / Pixel 6.                       |
 | NFR-005 | ML-FRAUD score p95 ≤ 80 ms؛ p99 ≤ 150 ms.                                                     |
 | NFR-006 | تقييم قاعدة DYN-PRICE p95 ≤ 10 ms لكل عرض.                                                    |
 | NFR-007 | webhook ingestion p95 ≤ 100 ms ack.                                                           |
@@ -425,7 +401,6 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | NFR-010 | catalog/search يحتمل 5000 RPS.                                                                |
 | NFR-011 | BullMQ workers يجب أن تتوسع حتى 40 replicas؛ packages queue يتوسع تلقائياً بشكل مستقل.        |
 | NFR-012 | Postgres يجب أن يعمل primary + 2 sync replicas + 2 async read replicas لكل منطقة.             |
-| NFR-013 | تطبيقات الموبايل يجب أن تتعامل مع 500K MAU push متزامن بدون backpressure.                     |
 
 ### Availability
 
@@ -436,7 +411,7 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | NFR-016 | multi-region active-active مع anycast DNS + توجيه واعي بالمنطقة (latency).                    |
 | NFR-017 | auto-failover عند تدهور صحة المنطقة (composite health check يفشل 3× في 60 ثانية).             |
 | NFR-018 | read-after-write consistency داخل المنطقة؛ eventual بين المناطق (≤ 5 s للقراءات).             |
-| NFR-019 | deploys بدون downtime عبر blue/green؛ قناة OTA للموبايل لـ rollback لتغييرات FE فقط.           |
+| NFR-019 | deploys بدون downtime عبر blue/green.                                                          |
 
 ### Security
 
@@ -448,7 +423,6 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 | NFR-023 | SOC 2 Type II — Security، Availability، Confidentiality — تدقيق سنوي.                         |
 | NFR-024 | PCI DSS v4.0 — SAQ A-EP لـ B2C؛ SAQ D-SP محدد النطاق لـ payouts للموردين.                     |
 | NFR-025 | pentest خارجي ربع سنوي؛ داخلي شهري؛ بوابات OPA policy في CI.                                  |
-| NFR-026 | mobile MASVS L2؛ certificate pinning؛ تخزين آمن لـ refresh tokens (Keychain/Keystore).        |
 
 ### Compliance & Privacy
 
@@ -464,8 +438,8 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 
 | ID      | المتطلب                                                                                       |
 | ------- | -------------------------------------------------------------------------------------------- |
-| NFR-032 | AR (RTL)، EN، FR، ES — دعم كامل شامل الإيميلات، PDFs، والموبايل.                              |
-| NFR-033 | WCAG 2.1 AA + إمكانية الوصول لمنصات الموبايل (VoiceOver، TalkBack).                            |
+| NFR-032 | AR (RTL)، EN، FR، ES — دعم كامل شامل الإيميلات والـ PDFs.                                     |
+| NFR-033 | WCAG 2.1 AA.                                                                                  |
 | NFR-034 | كل المبالغ تُعرض بأكواد ISO 4217 صريحة؛ فواصل تجميع/عشرية واعية باللغة.                        |
 | NFR-035 | تنسيق تاريخ/وقت خاص باللغة عبر ICU.                                                            |
 
@@ -491,9 +465,9 @@ GDPR، PDPL السعودي، قانون حماية البيانات المصري
 
    ┌───────────────────────────────── Per-Region Stack (Region 1 expanded) ─────────────────────────────────┐
    │                                                                                                       │
-   │ Mobile (iOS/Android RN)                 Web (Next.js 15)                  B2B Portal (Next.js, RBAC)  │
-   │      │                                       │                                    │                  │
-   │      ▼                                       ▼                                    ▼                  │
+   │                                         Web (Next.js 15)                  B2B Portal (Next.js, RBAC)  │
+   │                                                │                                    │                  │
+   │                                                ▼                                    ▼                  │
    │  ┌─────────────────────────────── API Gateway (per region) ──────────────────────────────┐           │
    │  │ Cloudflare WAF → Cloudflare Workers (edge auth / smart cache) → ALB → NestJS Gateway   │           │
    │  └────────────────────────────────────────┬────────────────────────────────────────────────┘           │
@@ -574,7 +548,7 @@ PostgreSQL 16 مع row-level security و per-region sharding. كل جدول يح
 | `disputes`             | disputes يبدأها العميل                                                          |
 | `schedule_changes`     | أحداث schedule-change من الناقل + إجراءات re-protect                            |
 | `data_subject_requests`| تذاكر DSR لـ GDPR/PDPL                                                          |
-| `device_tokens`        | tokens الـ APNs/FCM لكل user/device                                            |
+| `device_tokens`        | tokens الـ web-push لكل user/browser                                            |
 | `push_messages`        | سجل الـ push + حالة التسليم                                                     |
 | `webhooks_outbound`    | تسجيلات webhook خارجية + retries للتسليم (لـ B2B)                              |
 | `feature_flags`        | flags لكل env / لكل tenant / لكل cohort                                        |
@@ -722,10 +696,9 @@ CREATE TABLE data_subject_requests (
 CREATE TABLE device_tokens (
   id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id      UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  platform     TEXT NOT NULL CHECK (platform IN ('ios','android','web-push')),
+  platform     TEXT NOT NULL DEFAULT 'web-push',
   token        TEXT NOT NULL,
-  app_version  TEXT,
-  device_model TEXT,
+  user_agent   TEXT,
   last_seen    TIMESTAMPTZ NOT NULL DEFAULT now(),
   is_active    BOOLEAN NOT NULL DEFAULT TRUE,
   UNIQUE (platform, token)
@@ -794,7 +767,6 @@ gateway).
 | 7  | POST   | `/auth/mfa/webauthn/register`                    | bearer      | 200      |
 | 8  | POST   | `/auth/mfa/webauthn/verify`                      | bearer      | 200      |
 | 9  | POST   | `/auth/oauth/google`                             | none        | 200      |
-| 10 | POST   | `/auth/oauth/apple`                              | none        | 200      |
 | 11 | POST   | `/auth/saml/{tenant}/sso`                        | none        | 302      |
 | 12 | POST   | `/auth/saml/{tenant}/acs`                        | none        | 200      |
 | 13 | POST   | `/auth/oidc/{tenant}/sso`                        | none        | 302      |
@@ -874,8 +846,7 @@ secret خاص بالـ tenant. الأحداث:
 
 ### نموذج Tokens
 
-- access JWT 10 دقائق، refresh 30 يوم (rotated، family-aware). الموبايل يستخدم
-  refresh tokens مرتبطة بـ DPoP.
+- access JWT 10 دقائق، refresh 30 يوم (rotated، family-aware).
 - claims جديدة: `tenant_id`، `agency_id?`، `mfa: bool`، `step_up_until: <epoch>`،
   `region`، `risk: 0..100`.
 - refresh tokens مخزنة بـ hash؛ الـ rotation يلغي السابق؛ إعادة الاستخدام →
@@ -883,10 +854,9 @@ secret خاص بالـ tenant. الأحداث:
 
 ### Identity Providers
 
-- B2C: email/password، Google، Apple، WebAuthn passkey.
+- B2C: email/password، Google، WebAuthn passkey.
 - B2B: SAML 2.0 + OIDC لكل tenant؛ دورة حياة المستخدم بـ SCIM 2.0؛ MFA إجباري لأدوار
   finance/admin.
-- Mobile: refresh مرتبط بالجهاز مع WebAuthn أو إعادة مصادقة بيومترية.
 
 ### نموذج التصريح
 
@@ -937,7 +907,6 @@ role_can_read_booking["support"]
 | Cryptography                 | KMS hierarchy، rotation شهري للـ DEK، AES-256-GCM مع AAD، RSA-OAEP للـ envelope                          |
 | Input Validation             | Zod في كل مكان؛ فرض schema على مستوى الـ gateway؛ JSON-Schema للـ webhooks الخارجية                       |
 | Logging/Monitoring           | SIEM (Vector → Sumo/ELK)، audit مركزي؛ الوصول مراجع ربع سنوياً                                            |
-| Mobile                       | MASVS L2؛ cert pinning؛ كشف jailbreak/root (إعلامي)؛ تخزين آمن                                            |
 | SSRF / Egress                | egress gateway مع allow-list، DNS pinning، شروط signed-URL لسحب البائعين                                  |
 | Supply Chain                 | صور موقعة بـ Cosign، SBOMs (CycloneDX)، Snyk في CI، حماية branch في GitHub                                |
 | Insider                      | credentials DB just-in-time عبر Vault؛ PAM (Teleport) لـ prod shell؛ تسجيل الجلسات                        |
@@ -1076,7 +1045,7 @@ search                ──▶ aggregator.search(canonicalCity, dates, guests)
 detail                ──▶ aggregator.rooms(canonicalHotelId)
 offer.confirm         ──▶ supplier-of-record offer confirmation
 checkout              ──▶ saga (FRAUD → PAYMENT_HOLD → HOTEL.book → CAPTURE → notify)
-post-confirmation     ──▶ voucher (multilingual, tenant-branded) + push + WA + email + wallet
+post-confirmation     ──▶ voucher (multilingual, tenant-branded) + push + WA + email
 schedule_changes      ──▶ supplier event → re-protect workflow + customer notify
 ```
 
@@ -1162,7 +1131,7 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 ### الـ Topology
 
 - **Frontend (Next.js)**: Vercel مع deployment متعدد المناطق + edge functions في
-  3 مناطق؛ builds الموبايل عبر EAS مع قنوات `production` + `staging` منفصلة.
+  3 مناطق (responsive web فقط، بدون تطبيقات native).
 - **Backend**: Kubernetes (EKS/GKE) لكل منطقة؛ ArgoCD GitOps؛ Helm charts؛
   Linkerd mTLS mesh.
 - **Database**: Postgres مُدار لكل منطقة مع logical replication؛ pgvector
@@ -1181,14 +1150,12 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | test:integration   | testcontainers + WireMock                                                            |
 | test:contract      | Pact verify لكل supplier + PSP                                                       |
 | test:e2e           | Playwright لكل منطقة لكل لغة                                                          |
-| test:mobile        | Detox على simulator + EAS Build smoke                                                |
 | build              | docker buildx multi-arch؛ Cosign sign؛ SBOM CycloneDX؛ Snyk + Trivy                 |
 | deploy:preview     | Vercel preview + per-PR k8s namespace                                                |
 | deploy:staging     | ArgoCD sync عند merge إلى `main`                                                     |
 | smoke:staging      | حجز اصطناعي flight+hotel+package                                                      |
 | deploy:prod        | موافقة يدوية → تدريجي (canary لكل منطقة)                                              |
 | post-deploy        | OTel synthetic check؛ auto-rollback عند تراجع SLO                                    |
-| mobile:OTA         | EAS Update channel deploy لإصلاحات FE فقط                                            |
 
 ### متغيرات البيئة (إضافات على Pro)
 
@@ -1196,8 +1163,7 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | -------------------------------- | ------------------------------------------------------ |
 | `EXPEDIA_RAPID_KEY`/`_SECRET`    | Expedia Rapid                                          |
 | `TAP_API_KEY`/`_SECRET`          | Tap Payments                                           |
-| `APNS_KEY_ID`/`_TEAM_ID`/`_P8`   | APNs auth                                              |
-| `FCM_SERVICE_ACCOUNT`            | FCM v1                                                 |
+| `VAPID_PUBLIC_KEY`/`_PRIVATE_KEY`| Web Push (VAPID) للمتصفحات                              |
 | `SAML_IDP_METADATA_<tenant>`     | metadata SAML لكل tenant                               |
 | `OPA_BUNDLE_URL`                 | bundle policy لـ OPA                                   |
 | `MLFRAUD_API_URL`/`_TOKEN`       | خدمة ML-FRAUD                                          |
@@ -1222,8 +1188,8 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 
 ## المراقبة
 
-- الـ stack: Sentry، Grafana Cloud، Datadog APM (موبايل)، PagerDuty، StatusPage.
-- OpenTelemetry SDK من البداية للنهاية (web، mobile، API، workers، خدمات ML).
+- الـ stack: Sentry، Grafana Cloud، Datadog APM، PagerDuty، StatusPage.
+- OpenTelemetry SDK من البداية للنهاية (web، API، workers، خدمات ML).
 
 ### Metrics
 
@@ -1245,8 +1211,6 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | `pg_pool_in_use`                             | لكل منطقة                                        |
 | `redis_command_duration_ms`                  |                                                |
 | `nats_messages_processed_total`              | حسب subject                                     |
-| `mobile_app_crash_free_users`                | لكل منصة                                        |
-| `mobile_app_cold_start_ms`                   | p95                                            |
 
 ### التنبيهات (Enterprise)
 
@@ -1261,11 +1225,10 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | إخفاق simulator قواعد DYN-PRICE (delta بعد deploy > 10%)       | page     | product on-call    |
 | معدل chargeback > 0.5% خلال 7 أيام                             | page     | finance on-call    |
 | فشل تسليم WA > 10% خلال 15 دقيقة                                | warn     | #ops               |
-| فشل تسليم Push > 5% خلال 15 دقيقة                               | warn     | #ops               |
+| فشل تسليم Web Push > 5% خلال 15 دقيقة                           | warn     | #ops               |
 | Postgres replication lag > 10 s                                 | warn     | DBA                |
 | معدل أخطاء KMS > 0% خلال 5 دقائق                                | page     | sec on-call        |
 | 5xx > 0.3% لمدة 5 دقائق                                         | page     | PagerDuty          |
-| crash-free users للموبايل < 99.5% (rolling 24h)                | page     | mobile on-call     |
 
 ---
 
@@ -1275,16 +1238,14 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | ---------------- | -------------------------------------- | ----------------------------------- |
 | Unit (BE)        | Jest                                   | ≥ 90% lines، ≥ 80% branches         |
 | Unit (FE)        | Jest + RTL                             | ≥ 85% lines                         |
-| Unit (mobile)    | Jest                                   | ≥ 80% lines                         |
 | Integration      | testcontainers + WireMock              | كل الخدمات                          |
 | Contract         | Pact لكل supplier + PSP                | 100% adapters                       |
 | Property-based   | fast-check (aggregator، pricing)       | الثوابت الحرجة                       |
 | ML model         | offline holdout + A/B في shadow         | AUC > 0.85؛ FPR < 1%                |
 | E2E web          | Playwright؛ multi-locale RTL            | المسارات الحرجة                      |
-| E2E mobile       | Detox + Maestro                        | المسارات الحرجة لكل منصة            |
 | Performance      | k6 + Argo Workflows                    | NFR-009/010 مستدام                   |
 | Chaos            | Toxiproxy + ChaosMesh                  | يصمد ضد تعطل supplier واحد + منطقة واحدة |
-| Accessibility    | axe + تدقيق يدوي ربع سنوي + الموبايل   | صفر مشكلات خطيرة                    |
+| Accessibility    | axe + تدقيق يدوي ربع سنوي               | صفر مشكلات خطيرة                    |
 | Security         | OWASP ZAP، Burp (يدوي ربع سنوي)        | صفر highs غير معالجة                |
 | Pen-test         | خارجي ربع سنوي                          | كل الـ highs مُعالجة < 30 يوم        |
 
@@ -1301,7 +1262,6 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | AT-049  | SAML SSO لـ B2B                                 | tenant وكالة معد Okta SAML                                  | الـ agent يذهب إلى /auth/saml/{tenant}/sso     | redirect إلى Okta؛ في الـ ACS، الـ agent مسجل دخول مع role و agency claims.          |
 | AT-050  | SCIM provisioning                               | Okta ترسل SCIM create-user                                   | الـ API يستلم الطلب                            | المستخدم منشأ، الدور mapped، الوكالة مربوطة.                                          |
 | AT-051  | تسجيل WebAuthn passkey                          | مستخدم مصادق عليه مع platform authenticator                 | تسجيل passkey                                  | الـ credential مخزن؛ تسجيل الدخول التالي ينجح بدون password.                          |
-| AT-052  | refresh مرتبط بـ DPoP على الموبايل              | تطبيق موبايل يستخدم refresh مرتبط بـ DPoP                   | مهاجم يسرق refresh token                       | الاستخدام بدون proof → 401 invalid_dpop_proof.                                        |
 | AT-053  | ML-FRAUD allow                                  | نتيجة 12                                                     | محاولة حجز                                     | flow بدون احتكاك؛ تحدي 3DS فقط حسب قاعدة RTS.                                         |
 | AT-054  | ML-FRAUD challenge                              | نتيجة 55                                                     | محاولة حجز                                     | step-up MFA مطلوب؛ PSP intent منشأ مع 3DS مفروض.                                      |
 | AT-055  | ML-FRAUD block                                  | نتيجة 88                                                     | محاولة حجز                                     | الحجز مرفوض؛ صف ops review queue منشأ؛ المستخدم مُبلّغ بالاتصال بالدعم.              |
@@ -1323,10 +1283,7 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | AT-071  | domain مخصص للـ white-label                     | الـ tenant يربط `book.brand.com`                             | تحقق DNS + TLS                                 | شهادة TLS تُنتج تلقائياً؛ الموقع يقدم تحت branding الـ tenant.                       |
 | AT-072  | توجيه PSP لكل tenant                            | الـ tenant يربط Tap كافتراضي لـ AED                          | حجز بـ AED                                     | الـ PSP = Tap؛ intent منشأ في Tap.                                                    |
 | AT-073  | DKIM إيميل لكل tenant                           | الـ tenant يعد DKIM لـ `mail.brand.com`                      | إرسال إيميل تأكيد                              | الإيميل مُرسل بـ DKIM domain العلامة التجارية؛ SPF/DMARC ينجحان.                     |
-| AT-074  | NFR cold-start للموبايل                         | iPhone 12 cold-launch                                        | فتح التطبيق                                   | home screen ≤ 1.8 s p95 على 100 launch.                                              |
-| AT-075  | رحلات offline للموبايل                          | المستخدم لديه رحلات قادمة مخزنة                              | airplane mode                                  | الرحلات ظاهرة؛ التذاكر/الـ vouchers قابلة للعرض؛ الحجوزات الجديدة معطلة مع تلميح.    |
-| AT-076  | step-up بيومتري                                 | مستخدم iOS يحاول refund                                      | تحدي بيومتري                                  | عند النجاح، saga الـ refund يكمل؛ عند الفشل، block مع تفسير.                          |
-| AT-077  | تسليم Push                                      | حجز مؤكد                                                     | إشعار مُرسل                                    | APNs/FCM يسلم ≤ 60 ثانية؛ receipt callback يحدث `push_messages`.                     |
+| AT-077  | تسليم Web Push                                  | حجز مؤكد                                                     | إشعار مُرسل                                    | المتصفح يسلم الـ web push ≤ 60 ثانية؛ receipt callback يحدث `push_messages`.         |
 | AT-078  | re-protect عند schedule change                  | الناقل يرسل حدث تأخر 4 ساعات                                 | العميل يقبل re-protect                        | PNR جديد؛ التذكرة تُعاد إصدارها؛ إشعار؛ PNR قديم يُلغى.                              |
 | AT-079  | حزمة أدلة chargeback                            | الـ PSP يفتح dispute                                          | تشغيل auto-assembly job                       | حزمة أدلة منشأة (BCD، IP، نتيجة 3DS، ACK المورد، comms العميل) + مُرسلة.            |
 | AT-080  | تصدير DSR                                        | العميل يطلب تصدير بيانات                                     | خلال 30 يوم                                   | ZIP يُسلم عبر signed URL؛ تذكرة DSR COMPLETED؛ audit مسجل.                            |
@@ -1347,7 +1304,6 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | Fraud ML                 | وضع shadow لـ 30 يوم؛ تفعيل الإنفاذ لكل cohort تدريجياً.                                  |
 | Dynamic pricing          | مجموعة قواعد فارغة عند الإطلاق؛ simulator القواعد يحرس التفعيل.                          |
 | Agent portal             | deployment جنباً إلى جنب؛ feature flag لكل tenant.                                       |
-| Mobile                   | TestFlight داخلي + Closed track أولاً؛ متجر عام بعد 4 أسابيع من الاستخدام الداخلي.       |
 | Chargebacks              | تعبئة chargebacks عبر PSP historical APIs (نافذة 90 يوم).                                |
 
 ## ملحق ب — سجل المخاطر (أهم البنود)
@@ -1359,7 +1315,6 @@ PSP webhook (chargeback.opened) ──▶ chargebacks row OPEN
 | R-03 | misconfiguration لـ DKIM لـ tenant white-label يؤدي لـ spam folder | متوسطة | متوسط | تحقق DNS + warmup playbook.                                |
 | R-04 | misconfiguration لـ SAML IdP → قفل tenant                       | متوسطة     | عالي   | مسار admin break-glass؛ audit لكل tenant.                 |
 | R-05 | تبني NDC من الناقلين أبطأ من المتوقع                            | متوسطة     | متوسط  | adapters قابلة للتركيب؛ GDS fallback.                     |
-| R-06 | رفض متجر التطبيقات يؤخر الإصدار                                 | متوسطة     | متوسط  | قنوات OTA لإصلاحات FE؛ خط مراجعة قبل التسليم.             |
 | R-07 | تعطل PSP في المنطقة المستهدفة (مثل Paymob في مصر)               | منخفضة     | عالي   | multi-PSP routing + قواعد failover.                       |
 | R-08 | تغيير تنظيمي إقليمي (مثل تعديل PDPL السعودي)                    | متوسطة     | متوسط  | مراجعة DPO ربع سنوية؛ legal hold + تبديل data-residency. |
 | R-09 | فيضان chargeback من حلقة احتيال                                 | منخفضة     | عالي   | ML-FRAUD + 3DS + ops triage؛ circuit breaker.              |
