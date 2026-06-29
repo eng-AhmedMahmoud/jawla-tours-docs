@@ -6,7 +6,7 @@
 
 | البند | التفاصيل |
 |---|---|
-| **اسم المشروع** | منصة جولة للسياحة والسفر — الإصدار المؤسسي |
+| **اسم المشروع** | منصة جولة لحجز رحلات الطيران المتكاملة — الإصدار المؤسسي |
 | **الباقة** | 🏆 Enterprise OTA — الباقة المؤسسية الشاملة |
 | **العميل** | Jawla Tours |
 | **مُقدِّم العرض** | Devya Solutions — [https://devya.dev](https://devya.dev) |
@@ -36,7 +36,7 @@
 ║                                                                  ║
 ║       🌟 Full Amadeus Enterprise GDS Integration 🌟              ║
 ║       🌟 Multi-Pricing & Multi-Currency Engine 🌟                ║
-║       🌟 B2B Agent Portal & White-Label Engine 🌟                ║
+║       🌟 Corporate Accounts & Multi-Branch Admin 🌟              ║
 ║                                                                  ║
 ║         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━              ║
 ║                                                                  ║
@@ -61,7 +61,7 @@
 
 ### 2.1 الرؤية العامة
 
-نُقدّم لشركة **Jawla Tours** منصة **OTA مؤسسية كاملة** تُحوّلها من وكالة سفر تقليدية إلى **منصة سفر رقمية متكاملة** قادرة على المنافسة مع أكبر اللاعبين الإقليميين والعالميين (Almosafer، Wego، Cleartrip، Booking.com). هذه الباقة هي **الأكثر شمولًا** ضمن خط منتجاتنا، وتمنح Jawla Tours بنية تحتية مؤسسية تدعم النمو لخمس سنوات قادمة دون الحاجة لإعادة بناء.
+نُقدّم لشركة **Jawla Tours** منصة **حجز رحلات الطيران المؤسسية المتكاملة** تُحوّلها من وكالة سفر تقليدية إلى **منصة طيران رقمية مؤسسية** قادرة على المنافسة مع أكبر اللاعبين الإقليميين والعالميين (Almosafer، Wego، Cleartrip) في تجربة حجز الطيران. هذه الباقة هي **الأكثر شمولًا** ضمن خط منتجاتنا، وتمنح Jawla Tours بنية تحتية مؤسسية تدعم النمو لخمس سنوات قادمة دون الحاجة لإعادة بناء، مع التركيز الكامل على وحدة الطيران (دون الفنادق).
 
 ### 2.2 🌟 الميزات المحورية الثلاث (Flagship Pillars)
 
@@ -87,11 +87,10 @@
 
 | فئة الدفع | الخيارات المدعومة |
 |---|---|
-| 💵 كاش | بطاقات (Visa/MC/Amex/Meeza) + Paymob + Fawry + Vodafone Cash + Instapay |
+| 💵 كاش | بطاقات (Visa/MC/Amex/Meeza) + PayTabs (بوابة دفع متعددة العملات) + Fawry + Vodafone Cash + Instapay |
 | 📅 تقسيط | Sympl + ValU + Premium Card + Souhoola |
 | 🏢 ائتمان شركات | حسابات Net 30 / Net 60 / Net 90 للعملاء المؤسسيين |
 | 🎁 نقاط ولاء | استرداد كامل أو جزئي بنقاط Jawla Rewards |
-| 🤝 جملة B2B | أسعار حصرية للوكلاء المعتمدين |
 | 👥 جماعي | خصومات تلقائية للمجموعات (10+ مسافرين) |
 
 #### 🌟 الركيزة الثالثة: تعدد العملات الكامل (Full Multi-Currency)
@@ -104,7 +103,7 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 
 مع إمكانية:
 - عرض السعر بعملة العميل + الاحتفاظ بالعملة الأصلية للحجز (Dual Currency Display)
-- تسوية B2B متعددة العملات للوكلاء
+- تسوية متعددة العملات لحسابات Corporate
 - تثبيت سعر الصرف لمدة 15 دقيقة أثناء عملية الحجز
 - تقارير مالية موحّدة بعملة الأساس (EGP)
 
@@ -115,21 +114,37 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 | نوع تكامل Amadeus | Self-Service فقط | Self-Service موسّع | **🌟 Enterprise كامل (1A)** |
 | عدد العملات | 1 (EGP) | 3 (EGP/USD/EUR) | **🌟 10+ عملات** |
 | خيارات الدفع | 3 (كاش + 1 تقسيط) | 6 | **🌟 15+ خيار** |
-| بوابة وكلاء B2B | ❌ | محدودة | **🌟 كاملة + commission tracking** |
-| White-Label | ❌ | ❌ | **🌟 محرك كامل** |
 | Group Bookings | ❌ | يدوي | **🌟 آلي مع workflow** |
 | Corporate Accounts | ❌ | ❌ | **🌟 Net 30/60/90 + statements** |
 | Fraud Detection | قواعد ثابتة | قواعد متقدمة | **🌟 ML-based engine** |
 | Multi-Branch | ❌ | ❌ | **🌟 إدارة فروع كاملة** |
+| 🎨 Custom User Dashboards | ❌ | ❌ | **🌟 ✅ (ميزة حصرية لـ Enterprise — widgets قابلة للتخصيص + تحليلات شخصية)** |
+| بوابة وكلاء B2B | ❌ | محدودة | ❌ **(تم حذفه — بناءً على طلب العميل)** |
+| محرك White-Label | ❌ | ❌ | ❌ **(تم حذفه — بناءً على طلب العميل)** |
 | تطبيق جوال | ❌ | اختياري | ❌ **(تم حذفه — Web Responsive فقط)** |
+| حجز الفنادق | محدود | محدود | ❌ **(تم حذفه — طيران فقط)** |
 | الاستشاري Amadeus | 20 ساعة | 50 ساعة | **🌟 100-120 ساعة** |
 | الضمان | 3 أشهر | 6 أشهر | **🌟 12 شهرًا** |
 
-### 2.4 ملاحظة مهمة حول النطاق
+### 2.4 ملاحظات مهمة حول النطاق
 
 > ⚠️ **تم حذف تطبيقات الجوال (iOS/Android) من نطاق هذه الباقة** بناءً على متطلبات العميل.
 >
 > سيتم تقديم تجربة **Web-Responsive احترافية بالكامل** تعمل على جميع الأجهزة (Desktop / Tablet / Mobile Browser) بأعلى معايير PWA (Progressive Web App) لضمان تجربة قريبة من التطبيق الأصلي.
+
+> ⚠️ **تم حذف وحدة حجز الفنادق بالكامل** من نطاق هذه الباقة بناءً على طلب العميل.
+>
+> ستركّز المنصة بالكامل على **حجز رحلات الطيران (Flight Booking)** عبر منظومة Amadeus Enterprise، مع الإبقاء على وحدات النقل (Transfers)، تأجير السيارات (Car Rental)، والجولات والأنشطة (Tours & Activities) كقيمة مضافة لرحلة العميل.
+
+> ⚠️ **تم حذف بوابة وكلاء B2B (Sub-system مستقل) من نطاق هذه الباقة** بناءً على طلب العميل.
+>
+> ستركّز المنصة على قنوات B2C (العملاء المباشرين) + Corporate Accounts (الحسابات المؤسسية)، دون قناة الوكلاء/الوسطاء.
+
+> ⚠️ **تم حذف محرك White-Label لإنشاء علامات تجارية فرعية من نطاق هذه الباقة** بناءً على طلب العميل.
+>
+> ستعمل المنصة بعلامة Jawla الواحدة فقط، دون إمكانية إنشاء Sub-brands أو تشغيل علامات شراكة منفصلة.
+
+> 🌟 **ميزة حصرية لـ Enterprise:** **لوحات تحكم مخصصة للعميل (Custom User Dashboards)** — كل عميل يحصل على لوحة تحكم شخصية بـ widgets قابلة للتخصيص، تحليلات شخصية متقدمة (Personal BI)، وتجربة BI-style كاملة. هذه الميزة **غير متوفرة** في باقتي Basic و Professional.
 
 ### 2.5 ملخص الاستثمار والعائد
 
@@ -152,7 +167,6 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 
 - 🧑 **العملاء الأفراد** (B2C) — حجوزات شخصية وعائلية
 - 🏢 **العملاء الشركات** (B2B Corporate) — سفر الأعمال والمؤتمرات
-- 🤝 **الوكلاء والوسطاء** (B2B Agents) — وكالات أصغر تشتري بالجملة
 - 👥 **المجموعات السياحية** — حج، عمرة، جولات منظّمة
 - 💼 **حسابات VIP** — عملاء كبار يحتاجون خدمة مخصصة
 
@@ -166,27 +180,23 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 | 2 | غياب قناة بيع رقمية مباشرة للعميل النهائي | فقدان شريحة الجيل الجديد الذي يحجز ذاتيًا |
 | 3 | عدم القدرة على خدمة العملاء بعملاتهم المحلية | فقدان عملاء خليجيين وأوروبيين |
 | 4 | محدودية خيارات الدفع تُسبّب abandoned carts عالية | تقدير الخسارة 30-40% من المحاولات |
-| 5 | لا يوجد بوابة B2B للوكلاء الصغار | فقدان قناة توزيع مهمة وعمولات وسيطة |
-| 6 | عمليات الحجوزات الجماعية يدوية بالكامل | تستهلك وقت 2-3 موظفين بدوام كامل |
-| 7 | الحسابات الائتمانية للشركات تُدار في Excel | أخطاء محاسبية، تأخير في الفوترة، فقدان إيرادات |
-| 8 | لا يوجد نظام كشف احتيال متقدم | معدّل chargeback مرتفع (3.2%) |
-| 9 | لا يوجد تحليلات BI عميقة على الأداء | قرارات تسعير ومنتجات تُتّخذ بالحدس |
-| 10 | غياب القدرة على إطلاق علامات تجارية فرعية (White-Label) | فقدان فرص شراكات استراتيجية |
+| 5 | عمليات الحجوزات الجماعية يدوية بالكامل | تستهلك وقت 2-3 موظفين بدوام كامل |
+| 6 | الحسابات الائتمانية للشركات تُدار في Excel | أخطاء محاسبية، تأخير في الفوترة، فقدان إيرادات |
+| 7 | لا يوجد نظام كشف احتيال متقدم | معدّل chargeback مرتفع (3.2%) |
+| 8 | لا يوجد تحليلات BI عميقة على الأداء | قرارات تسعير ومنتجات تُتّخذ بالحدس |
 
 ### 3.3 ما يميّز Jawla Tours ويجب الحفاظ عليه
 
 - **العلاقات القوية مع شركات الطيران** — وفّر اتفاقيات أسعار خاصة (Private Fares) سنُدمجها بالكامل
 - **الخبرة في الحج والعمرة** — منتج فريد سنُفرد له تجربة مخصصة
-- **شبكة الوكلاء التقليدية** — سننقلهم رقميًا عبر بوابة B2B
 - **السمعة في خدمة الشركات** — سندعم ذلك بمنصة Corporate كاملة
 
 ### 3.4 الفرص غير المُستغلّة (Untapped Opportunities)
 
 1. **سوق السفر الخليجي للقاهرة/الإسكندرية** — طلب متزايد، حاجة لدعم AED/SAR/KWD
-2. **العمالة المصرية في الخارج** — يحجزون لذويهم في مصر، يفضّلون الدفع بـ USD/EUR
-3. **شركات السياحة الأصغر داخل مصر** — تحتاج وصول لمحتوى GDS بأسعار جملة (B2B portal فرصة ضخمة)
-4. **سلاسل الفنادق المحلية** — يمكن عقد اتفاقيات حصرية وعرضها كـ "Jawla Exclusive"
-5. **السفر الجماعي الديني** — حج، عمرة، زيارات الأقصى — منتج high-margin ومحدود المنافسة الرقمية
+2. **العمالة المصرية في الخارج** — يحجزون رحلات لذويهم في مصر، يفضّلون الدفع بـ USD/EUR
+3. **اتفاقيات شركات الطيران المباشرة (NDC + Private Fares)** — يمكن إبرام عقود حصرية مع ناقلين إقليميين وعرض أسعار غير متاحة لأي منافس
+4. **السفر الجماعي الديني (تذاكر طيران للحج والعمرة)** — منتج high-margin ومحدود المنافسة الرقمية في قطاع الطيران
 
 ---
 
@@ -198,9 +208,7 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 |---|---|---|
 | 1 | التحوّل من وكالة تقليدية إلى OTA رقمية إقليمية | 60% من الحجوزات digital خلال 3 سنوات |
 | 2 | التوسع لخدمة 5 أسواق خليجية رئيسية | تواجد فعّال في السعودية، الإمارات، الكويت، قطر، البحرين |
-| 3 | بناء شبكة 200+ وكيل B2B | عبر بوابة الوكلاء |
-| 4 | إطلاق 3-5 علامات تجارية فرعية | عبر محرك White-Label |
-| 5 | الوصول لـ 150 مليون EGP GMV سنوي | بحلول السنة الثالثة |
+| 3 | الوصول لـ 150 مليون EGP GMV سنوي | بحلول السنة الثالثة |
 
 ### 4.2 الأهداف التشغيلية (السنة الأولى)
 
@@ -213,8 +221,6 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 | معدل العودة (Returning Users) | 28-35% | Cohort analysis |
 | رضا العملاء (CSAT) | ≥ 4.4/5 | استبيانات post-booking |
 | NPS | ≥ 45 | استبيانات ربعية |
-| عدد الوكلاء B2B النشطين | 50-80 | Agent portal metrics |
-| نسبة المبيعات عبر B2B | 25-35% من GMV | تقارير مالية |
 | العملاء المؤسسيين (Corporate) | 20-30 شركة | CRM |
 | متوسط Chargeback Rate | < 0.8% (من 3.2% حالي) | Fraud module |
 
@@ -239,38 +245,35 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 
 | # | المُسلَّم | الوصف المختصر |
 |---|---|---|
-| 1 | **منصة OTA كاملة (Web Responsive)** | Frontend + Backend + Admin |
+| 1 | **منصة حجز رحلات الطيران المتكاملة (Web Responsive)** | Frontend + Backend + Admin |
 | 2 | **تكامل Amadeus Enterprise (1A Direct)** | كامل المنظومة |
-| 3 | **بوابة وكلاء B2B** | Sub-system مستقل |
-| 4 | **محرك White-Label** | إنشاء علامات فرعية |
-| 5 | **نظام Corporate Accounts** | حسابات ائتمانية وفوترة |
-| 6 | **محرك Multi-Currency** | 10+ عملات |
-| 7 | **محرك Multi-Pricing** | 15+ خيار دفع |
-| 8 | **Loyalty Program** | نقاط Jawla Rewards |
-| 9 | **Group Booking Workflow** | حجوزات جماعية آلية |
-| 10 | **Fraud Detection Engine (ML)** | كشف احتيال ذكي |
-| 11 | **BI Analytics Dashboard** | تحليلات متقدمة |
-| 12 | **Multi-Branch Admin** | إدارة الفروع |
-| 13 | **CMS متعدد اللغات** | إدارة محتوى |
-| 14 | **DevOps + CI/CD** | بنية تحتية كاملة |
-| 15 | **التوثيق التقني والتدريبي** | شامل لكل الأنظمة |
+| 3 | **نظام Corporate Accounts** | حسابات ائتمانية وفوترة |
+| 4 | **محرك Multi-Currency** | 10+ عملات |
+| 5 | **محرك Multi-Pricing** | 15+ خيار دفع |
+| 6 | **Loyalty Program** | نقاط Jawla Rewards |
+| 7 | **Group Booking Workflow** | حجوزات جماعية آلية |
+| 8 | **Fraud Detection Engine (ML)** | كشف احتيال ذكي |
+| 9 | **BI Analytics Dashboard** | تحليلات متقدمة |
+| 10 | **Multi-Branch Admin** | إدارة الفروع |
+| 11 | **🎨 لوحات تحكم مخصصة للعميل (Custom User Dashboards)** | Widgets قابلة للتخصيص، تحليلات شخصية، تجربة BI-style للعميل النهائي |
+| 12 | **CMS متعدد اللغات** | إدارة محتوى |
+| 13 | **DevOps + CI/CD** | بنية تحتية كاملة |
+| 14 | **التوثيق التقني والتدريبي** | شامل لكل الأنظمة |
 
 ### 5.2 ما هو داخل النطاق (IN SCOPE)
 
-✅ تطوير منصة ويب responsive كاملة (Frontend + Backend)
+✅ تطوير منصة ويب responsive كاملة (Frontend + Backend) لحجز رحلات الطيران
 ✅ تكامل Amadeus Enterprise GDS كامل (Master Pricer، Air Sell، PNR، E-Ticket، EMD، Queue، NDC، Ancillaries، Branded Fares)
-✅ تكامل Hotel Multi-Availability المؤسسي + Negotiated Rates
 ✅ تكامل Amadeus Transfers + Car Rental
 ✅ تكامل Amadeus Tours and Activities + Points of Interest
 ✅ 15+ بوابة دفع وتقسيط مع smart routing
 ✅ محرك 10+ عملات بأسعار صرف لحظية
-✅ بوابة وكلاء B2B كاملة مع portal مستقل
-✅ محرك White-Label لإنشاء علامات فرعية
 ✅ نظام Corporate Accounts (Net 30/60/90)
 ✅ نظام Loyalty Points + Rewards
 ✅ Group Bookings مع workflow
 ✅ Fraud Detection بـ ML
 ✅ BI Dashboards
+✅ 🎨 لوحات تحكم مخصصة للعميل (Custom User Dashboards مع widgets قابلة للتخصيص وتحليلات شخصية متقدمة)
 ✅ Multi-Branch Management
 ✅ إشعارات (Email + WhatsApp Business + SMS)
 ✅ CMS كامل لإدارة المحتوى
@@ -284,6 +287,8 @@ EGP  •  USD  •  EUR  •  GBP  •  SAR  •  AED  •  KWD  •  QAR  •  
 ### 5.3 ما هو خارج النطاق (OUT OF SCOPE)
 
 ❌ **تطبيقات الجوال (iOS/Android Native)** — تم حذفها صراحة من نطاق هذه الباقة
+❌ **بوابة وكلاء B2B (Sub-system مستقل)** — تم حذفها من النطاق بناءً على طلب العميل
+❌ **محرك White-Label لإنشاء علامات تجارية فرعية** — تم حذفه من النطاق بناءً على طلب العميل
 ❌ تراخيص حكومية أو IATA accreditation (على عاتق العميل)
 ❌ تكاليف اشتراك Amadeus الشهرية وعمولات المعاملات
 ❌ تكاليف SMS/WhatsApp البالغة عن العتبات المتفق عليها
@@ -462,64 +467,9 @@ First Class
 
 ---
 
-### 🏨 6.2 وحدة الفنادق المؤسسية
+### 🚗 6.2 وحدة السيارات والتوصيل
 
-#### 6.2.1 المكوّنات الأساسية
-
-##### أ) Hotel Multi-Availability (Enterprise)
-
-- البحث في **+1.5 مليون فندق** عالميًا
-- استعلامات متعددة المعايير (سعر، تقييم، مرافق، موقع)
-- Cache طبقات لتسريع الاستجابة (< 300ms)
-- Map-based search (البحث بالخريطة)
-- Polygon search (رسم منطقة على الخريطة)
-
-##### ب) Hotel Content APIs
-
-- صور عالية الجودة (10-30 صورة لكل فندق)
-- وصف تفصيلي بالعربية والإنجليزية
-- المرافق (Wi-Fi، بركة، spa، صالة رياضية، مطعم، إلخ.)
-- معلومات الغرف بالتفصيل
-- سياسات الإلغاء بالنص الكامل
-- التقييمات والمراجعات من 5+ مصادر
-
-##### ج) 🌟 Negotiated Rates (Enterprise Exclusive)
-
-أسعار تعاقدية حصرية لـ Jawla:
-
-- ربط مباشر مع سلاسل فنادق محلية (مرسى علم، شرم الشيخ، الغردقة)
-- أسعار خاصة لفنادق دبي/أبوظبي للسوق المصري
-- اتفاقيات حصرية للحج والعمرة (مكة والمدينة)
-- "Jawla Exclusive" — علامة فنادق بأسعار غير متاحة لأي منافس
-
-##### د) 🌟 Group Blocks (Hotel Group Bookings)
-
-- حجز كتلة (block) من الغرف لرحلة جماعية
-- إدارة قائمة الضيوف
-- توزيع الغرف على المسافرين
-- تعديل الكتلة قبل تاريخ ثابت
-- Group invoicing موحّد
-
-##### هـ) Hotel Booking & Management
-
-- Multi-room bookings (حتى 9 غرف في حجز واحد)
-- Special requests (طابق، إطلالة، احتياجات خاصة)
-- إدارة الحجز الكاملة (تعديل، إلغاء)
-- Free cancellation tracking
-- Pay at hotel option (حيث متاح)
-- Loyalty integration (Marriott، Hilton، IHG عند توفر)
-
-##### و) Hotel Reviews & Ratings
-
-- تكامل TripAdvisor / Booking.com reviews
-- نظام مراجعات داخلي بعد الإقامة
-- AI sentiment analysis للمراجعات
-
----
-
-### 🚗 6.3 وحدة السيارات والتوصيل
-
-#### 6.3.1 المكوّنات
+#### 6.2.1 المكوّنات
 
 ##### أ) Amadeus Transfer Search & Booking
 
@@ -547,9 +497,9 @@ First Class
 
 ---
 
-### 🎯 6.4 وحدة الجولات والأنشطة
+### 🎯 6.3 وحدة الجولات والأنشطة
 
-#### 6.4.1 المكوّنات
+#### 6.3.1 المكوّنات
 
 ##### أ) Amadeus Tours and Activities API
 
@@ -582,11 +532,11 @@ First Class
 
 ---
 
-### 💳 6.5 🌟 خيارات الدفع المتعددة (Pricing Options) — ميزة محورية
+### 💳 6.4 🌟 خيارات الدفع المتعددة (Pricing Options) — ميزة محورية
 
 > **هذه هي الميزة المحورية الثانية في الباقة** — نظام دفع غير مسبوق يدعم كل طريقة دفع يمكن تخيّلها.
 
-#### 6.5.1 الهيكل العام
+#### 6.4.1 الهيكل العام
 
 ```
                     ┌─────────────────────────┐
@@ -596,27 +546,26 @@ First Class
         ┌─────────────┬──────────┼──────────┬─────────────┐
         ▼             ▼          ▼          ▼             ▼
      ┌──────┐    ┌──────────┐ ┌──────┐ ┌────────┐  ┌──────────┐
-     │ كاش  │    │ تقسيط    │ │ B2B  │ │ Corp.  │  │ Loyalty  │
-     │      │    │          │ │      │ │ Credit │  │ Points   │
+     │ كاش  │    │ تقسيط    │ │Group │ │ Corp.  │  │ Loyalty  │
+     │      │    │          │ │Price │ │ Credit │  │ Points   │
      └──────┘    └──────────┘ └──────┘ └────────┘  └──────────┘
 ```
 
-#### 6.5.2 🌟 كاش (Cash Payments)
+#### 6.4.2 🌟 كاش (Cash Payments)
 
 ##### بطاقات الائتمان والخصم
 
 | المعالج | البطاقات المدعومة | الميزة |
 |---|---|---|
-| Paymob | Visa، MasterCard، Amex، Meeza | الأشهر مصريًا، 3D Secure |
-| Stripe | International cards | للعملاء الدوليين |
-| Checkout.com | متعدد | معدلات تنافسية |
-| HyperPay | محلي وخليجي | للسوق السعودي |
+| PayTabs (بوابة دفع متعددة العملات) | Visa، MasterCard، Amex، Meeza + International cards | محلي + دولي + خليجي بعملات متعددة (EGP/USD/EUR/SAR/AED/KWD/QAR/JOD/BHD/GBP)، 3D Secure |
+| Checkout.com | متعدد | معدلات تنافسية (احتياطي) |
+| HyperPay | محلي وخليجي | للسوق السعودي (احتياطي) |
 
 ##### المحافظ الإلكترونية
 
 | المحفظة | الجمهور |
 |---|---|
-| Paymob Wallet | عام |
+| PayTabs Wallet (متعددة العملات) | عام |
 | Vodafone Cash | عام |
 | Etisalat Cash | عام |
 | Orange Money | عام |
@@ -633,7 +582,7 @@ First Class
 | Masary | الدفع النقدي |
 | Bank Transfer (Manual) | للحجوزات الكبيرة |
 
-#### 6.5.3 🌟 التقسيط (Installments — BNPL)
+#### 6.4.3 🌟 التقسيط (Installments — BNPL)
 
 | المزوّد | المدة | الحد الأدنى | الحد الأعلى |
 |---|---|---|---|
@@ -646,7 +595,7 @@ First Class
 
 > **ميزة فريدة:** "Pricing Calculator" يعرض القسط الشهري لكل مزوّد جنبًا إلى جنب، فيختار العميل الأنسب له.
 
-#### 6.5.4 🌟 الائتمان للشركات (Corporate Credit Lines)
+#### 6.4.4 🌟 الائتمان للشركات (Corporate Credit Lines)
 
 نظام كامل لإدارة الحسابات الائتمانية للعملاء المؤسسيين:
 
@@ -685,7 +634,7 @@ First Class
 - Direct billing
 - Travel duty of care reports
 
-#### 6.5.5 🌟 نقاط الولاء قابلة للاسترداد كدفعة (Loyalty Redemption)
+#### 6.4.5 🌟 نقاط الولاء قابلة للاسترداد كدفعة (Loyalty Redemption)
 
 نظام Jawla Rewards:
 
@@ -711,16 +660,7 @@ First Class
 - Mix-and-match (نقاط + كاش)
 - نقاط قابلة للتحويل لأفراد العائلة
 
-#### 6.5.6 🌟 أسعار الجملة B2B للوكلاء
-
-- أسعار خاصة للوكلاء المعتمدين (NET rates)
-- خصومات تتراوح بين 3% و 12% حسب الحجم
-- Markup engine — الوكيل يحدد هامش ربحه
-- White-label receipt للوكيل
-- Commission tracking وتسوية تلقائية
-- Volume-based tier upgrades
-
-#### 6.5.7 🌟 أسعار مخفّضة للحجوزات الجماعية (Group Pricing)
+#### 6.4.6 🌟 أسعار مخفّضة للحجوزات الجماعية (Group Pricing)
 
 | حجم المجموعة | الخصم |
 |---|---|
@@ -734,7 +674,7 @@ First Class
 - Group-only blocks في الفنادق
 - Free organizer seat (1 مقعد مجاني لكل 20)
 
-#### 6.5.8 Smart Payment Routing
+#### 6.4.7 Smart Payment Routing
 
 محرك ذكي يختار أفضل بوابة دفع بناءً على:
 
@@ -749,11 +689,11 @@ First Class
 
 ---
 
-### 🌍 6.6 🌟 تعدد العملات الكامل (Multi-Currency) — ميزة محورية
+### 🌍 6.5 🌟 تعدد العملات الكامل (Multi-Currency) — ميزة محورية
 
 > **هذه هي الميزة المحورية الثالثة في الباقة** — دعم حقيقي لـ 10+ عملات.
 
-#### 6.6.1 العملات المدعومة (10+)
+#### 6.5.1 العملات المدعومة (10+)
 
 | العملة | الرمز | السوق المستهدف |
 |---|---|---|
@@ -770,7 +710,7 @@ First Class
 | Omani Riyal (Phase 2) | OMR | عُمان |
 | Lebanese Pound (Phase 2) | LBP | لبنان |
 
-#### 6.6.2 🌟 أسعار صرف لحظية من API مرجعي
+#### 6.5.2 🌟 أسعار صرف لحظية من API مرجعي
 
 - تكامل مع XE.com / Open Exchange Rates API
 - تحديث الأسعار كل 60 ثانية للعملات الرئيسية
@@ -779,15 +719,15 @@ First Class
 - Cache ذكي لتقليل API calls
 - Audit log لكل تغيير سعر
 
-#### 6.6.3 🌟 عرض السعر بعملة العميل + الاحتفاظ بالعملة الأصلية
+#### 6.5.3 🌟 عرض السعر بعملة العميل + الاحتفاظ بالعملة الأصلية
 
 تجربة فريدة:
 
 ```
-الفندق سعره   : 1,200 SAR (السعر الفعلي للحجز)
+الرحلة سعرها  : 1,200 SAR (السعر الفعلي للحجز من شركة الطيران)
 العميل يرى     : 9,840 EGP (بسعر صرف اليوم)
 عند الفوترة    : 9,840 EGP (مع ذكر 1,200 SAR كمرجع)
-PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
+PNR في النظام  : 1,200 SAR (للتسوية مع شركة الطيران)
 ```
 
 **فوائد هذا النهج:**
@@ -796,27 +736,19 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 - التسوية مع الموردين بعملاتهم الأصلية
 - لا خسائر صرف عند fluctuations
 
-#### 6.6.4 🌟 تثبيت سعر الصرف أثناء الحجز (Rate Lock)
+#### 6.5.4 🌟 تثبيت سعر الصرف أثناء الحجز (Rate Lock)
 
 - بمجرد بدء عملية الحجز، يُثبَّت سعر الصرف لمدة 15 دقيقة
 - شريط countdown يظهر للعميل
 - في حال تأخر الدفع، يُعاد التسعير ويُعرض الفرق
 
-#### 6.6.5 🌟 تسوية متعددة العملات للوكلاء B2B
-
-- كل وكيل يختار عملة التسوية الأساسية له
-- النظام يحفظ سجل المعاملات بالعملة الأصلية لكل حجز
-- Statement of Account بالعملة المختارة
-- تسوية شهرية موحّدة
-- دعم Multi-bank-account per agent
-
-#### 6.6.6 إدارة هوامش الصرف (FX Margin Management)
+#### 6.5.5 إدارة هوامش الصرف (FX Margin Management)
 
 - إمكانية إضافة هامش (markup) على سعر الصرف
-- Markup مختلف لكل قناة (B2C، B2B، Corporate)
+- Markup مختلف لكل قناة (B2C، Corporate)
 - Reports عن أرباح FX
 
-#### 6.6.7 العملات والقوانين
+#### 6.5.6 العملات والقوانين
 
 - الالتزام بقوانين البنك المركزي المصري
 - Reporting للمعاملات بالعملات الأجنبية
@@ -825,9 +757,9 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 
 ---
 
-### 👛 6.7 محفظة متعددة العملات (Multi-Currency Wallet)
+### 👛 6.6 محفظة متعددة العملات (Multi-Currency Wallet)
 
-#### 6.7.1 الميزات الأساسية
+#### 6.6.1 الميزات الأساسية
 
 - محفظة واحدة بأرصدة متعددة العملات
 - إيداع بأي طريقة دفع
@@ -838,7 +770,7 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 - Cashback automatic للمحفظة
 - مشاركة الرصيد مع أفراد العائلة (Family wallet)
 
-#### 6.7.2 محفظة الشركات (Corporate Wallet)
+#### 6.6.2 محفظة الشركات (Corporate Wallet)
 
 - محفظة الشركة + sub-wallets للأقسام
 - صلاحيات الإنفاق لكل sub-wallet
@@ -847,9 +779,9 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 
 ---
 
-### 🎯 6.8 محرك التسعير الديناميكي (Dynamic Pricing Engine)
+### 🎯 6.7 محرك التسعير الديناميكي (Dynamic Pricing Engine)
 
-#### 6.8.1 المتغيّرات المؤثرة في السعر
+#### 6.7.1 المتغيّرات المؤثرة في السعر
 
 | المتغيّر | الأثر |
 |---|---|
@@ -864,17 +796,17 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 | ساعة اليوم | Peak hours vs. off-peak |
 | أحداث خاصة | المؤتمرات، المواسم الدينية |
 
-#### 6.8.2 استراتيجيات التسعير
+#### 6.7.2 استراتيجيات التسعير
 
 - **Surge pricing** — رفع السعر عند زيادة الطلب
 - **Last-minute discounts** — تخفيض المخزون الراكد
 - **Member-only pricing** — أسعار للأعضاء المسجّلين
 - **Promo codes engine** — مرن وقابل للتخصيص
 - **Flash sales** — عروض محدودة المدة
-- **Bundle discounts** — خصم عند جمع طيران + فندق
+- **Bundle discounts** — خصم عند جمع تذاكر متعددة (ذهاب وعودة، أفراد عائلة، رحلات متعددة)
 - **Loyalty tier pricing** — أسعار خاصة لكل tier
 
-#### 6.8.3 A/B Testing
+#### 6.7.3 A/B Testing
 
 - اختبار استراتيجيات تسعير مختلفة على شرائح
 - قياس الأثر على Conversion + AOV + Revenue
@@ -882,149 +814,80 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 
 ---
 
-### 🏢 6.9 بوابة الوكلاء B2B (B2B Agent Portal)
+### 🎨 6.8 لوحات تحكم مخصصة للعميل (Custom User Dashboards) — ميزة حصرية لـ Enterprise
 
-> **ميزة استراتيجية ضخمة** — تحوّل Jawla إلى منصة توزيع كاملة.
+> **ميزة مميزة لـ Enterprise:** كل عميل يحصل على لوحة تحكم شخصية بتجربة BI-style — وهي ميزة غير متاحة في باقتي Basic و Professional.
 
-#### 6.9.1 تسجيل الوكلاء (Agent Onboarding)
+#### 6.8.1 Widgets قابلة للتخصيص
 
-- نموذج تسجيل تفصيلي
-- KYC verification (السجل التجاري، البطاقة الضريبية، شهادة IATA إن وُجدت)
-- موافقة admin قبل التفعيل
-- توقيع رقمي على العقد
-- بنود تجارية مخصصة لكل وكيل
+- يختار العميل widgets يريد رؤيتها في لوحته الشخصية
+- إعادة ترتيب الـ widgets بـ drag & drop
+- حفظ تخطيطات (layouts) متعددة
+- مشاركة layout مع أفراد العائلة أو زملاء العمل
 
-#### 6.9.2 أسعار الجملة (Wholesale Pricing)
+#### 6.8.2 Widgets المتاحة
 
-- NET rates لكل منتج
-- markup engine — الوكيل يحدد هامشه
-- White-label experience — لوغو الوكيل على الفواتير
-- Hidden Jawla branding (optional)
-- Tier-based discounts (Bronze/Silver/Gold/Platinum)
-
-#### 6.9.3 Commission Tracking
-
-- تتبّع دقيق للعمولات لكل حجز
-- Statement شهري للوكيل
-- تسوية تلقائية (Bank transfer / Wallet credit)
-- Real-time commission dashboard
-- Pending vs. Confirmed vs. Paid
-
-#### 6.9.4 Agent Portal Dashboard
-
-- Bookings dashboard
-- Revenue analytics
-- Top destinations
-- Top performing employees (إن كان للوكيل فريق)
-- Customer database (يبقى ملكية الوكيل)
-- Refund management
-- Markdown alerts (السعر انخفض)
-
-#### 6.9.5 صلاحيات الوكلاء
-
-- Master Agent (المالك)
-- Branch Manager (مدير فرع)
-- Travel Consultant (موظف حجوزات)
-- Accountant (موظف محاسبة)
-- View-only role
-
-#### 6.9.6 أدوات الوكلاء
-
-- Quick quote generator
-- Itinerary builder
-- PDF voucher generator
-- Email itinerary to customer
-- WhatsApp share link
-- Customer payment link
-
----
-
-### 🎨 6.10 محرك White-Label (White-Label Engine)
-
-> **ميزة فريدة في السوق** — Jawla تستطيع إطلاق علامات تجارية فرعية.
-
-#### 6.10.1 إنشاء Sub-Brand
-
-كل sub-brand له:
-
-| العنصر | قابلية التخصيص |
+| Widget | الوظيفة |
 |---|---|
-| Domain | mybrand.com (أو subdomain) |
-| Logo | كامل |
-| Color palette | كامل |
-| Typography | اختيار من 20+ font |
-| Hero images | كامل |
-| Content blocks | كامل |
-| Footer info | كامل |
-| Terms & Conditions | كامل |
-| Privacy Policy | كامل |
-| Email templates | كامل |
-| SMS templates | كامل |
-| Invoice templates | كامل |
-| Voucher templates | كامل |
+| Upcoming Trips | الرحلات القادمة + countdown |
+| Spending Analytics | تحليل مصاريف السفر شهريًا/ربعيًا/سنويًا |
+| Top Destinations | الوجهات الأكثر سفرًا |
+| Carbon Footprint | البصمة الكربونية لرحلاتك |
+| Loyalty Status | حالة النقاط + التقدّم للمستوى التالي |
+| Wallet Balance | رصيد المحفظة بكل العملات |
+| Price Alerts | تنبيهات انخفاض الأسعار للوجهات المفضّلة |
+| Travel Documents | جوازات السفر وتواريخ انتهائها |
+| Booking History | آخر الحجوزات + الفلترة |
+| Recommendations | اقتراحات ذكية بناءً على السلوك |
+| Saved Searches | عمليات البحث المحفوظة |
+| Quick Actions | أزرار سريعة (بحث، إلغاء، تعديل) |
 
-#### 6.10.2 Theming Engine
+#### 6.8.3 تحليلات شخصية متقدمة (Personal BI)
 
-- Visual theme editor (drag & drop)
-- Live preview
-- Theme versioning
-- A/B testing themes
-- Mobile vs Desktop theme variants
+- Cohort analysis للعميل (مقارنة سفره عبر السنوات)
+- Heat maps للوجهات
+- Spending breakdown by category
+- Travel patterns insights
+- Budget tracking + alerts
 
-#### 6.10.3 Content per Sub-Brand
+#### 6.8.4 تخصيص بصري كامل
 
-- CMS منفصل لكل sub-brand
-- Blog منفصل
-- Landing pages مخصصة
-- Promotional banners مخصصة
+- اختيار theme (Light / Dark / Auto)
+- اختيار accent color
+- اختيار font size
+- اختيار dashboard density (compact / comfortable / spacious)
 
-#### 6.10.4 Pricing per Sub-Brand
+#### 6.8.5 تصدير ومشاركة
 
-- Markup إستراتيجية مختلفة لكل sub-brand
-- Promo codes حصرية
-- Loyalty program مخصص (أو مشترك)
-
-#### 6.10.5 Reporting per Sub-Brand
-
-- P&L منفصل
-- Revenue dashboards
-- Customer analytics
-- Consolidated view (للمدير العام)
-
-#### 6.10.6 حالات استخدام محتملة
-
-- علامة تجارية للسوق السعودي بهوية محلية
-- علامة للسفر الفاخر (Luxury sub-brand)
-- علامة للسفر الديني (الحج/العمرة)
-- علامة شراكة مع بنك أو شركة طيران
-- علامة لشركة سياحة وافقت على شراكة White-Label
+- تصدير البيانات بـ PDF / Excel
+- جدولة تقارير دورية بالبريد
+- مشاركة لوحة مع mentor / مدير سفر شركة
 
 ---
 
-### 👥 6.11 الحجوزات الجماعية والشركات (Group & Corporate Bookings)
+### 👥 6.9 الحجوزات الجماعية والشركات (Group & Corporate Bookings)
 
-#### 6.11.1 Group Booking Workflow
+#### 6.9.1 Group Booking Workflow
 
 ##### المرحلة 1: طلب العرض (RFQ)
 
-- منظّم الرحلة يدخل: الوجهة، التاريخ، عدد المسافرين، نوع الإقامة، الميزانية
+- منظّم الرحلة يدخل: الوجهة، التاريخ، عدد المسافرين، درجة المقصورة، الميزانية
 - النظام يولّد عرضًا مبدئيًا تلقائيًا
 - يُمكن لـ Travel Consultant إضافة لمسات
 
 ##### المرحلة 2: عرض السعر المُفصّل
 
-- breakdown كامل (طيران، فندق، نقل، أنشطة)
-- خيارات بديلة (Economy vs Premium)
-- سياسات الإلغاء
+- breakdown كامل (تذاكر الطيران، نقل من/إلى المطار، جولات وأنشطة اختيارية)
+- خيارات بديلة (Economy vs Premium vs Business)
+- سياسات الإلغاء وقواعد التذكرة
 - شروط الدفع
 
 ##### المرحلة 3: قائمة المسافرين (Pax List)
 
 - رفع Excel template مع بيانات المسافرين
 - التحقق التلقائي من البيانات (Passport validity، etc.)
-- توزيع الغرف
-- توزيع المقاعد (إن متاح)
-- Special requirements (وجبات، احتياجات خاصة)
+- توزيع المقاعد على المسافرين (إن متاح)
+- Special requirements (وجبات خاصة على متن الطائرة، احتياجات خاصة، أمتعة إضافية)
 
 ##### المرحلة 4: الدفع والتأكيد
 
@@ -1047,9 +910,9 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 - Group photos & testimonials
 - Future group offers
 
-#### 6.11.2 Corporate Account Management
+#### 6.9.2 Corporate Account Management
 
-تكامل عميق مع نظام Corporate Credit (راجع 6.5.4):
+تكامل عميق مع نظام Corporate Credit (راجع 6.4.4) — مع إدارة Corporate Wallet المتضمّنة:
 
 - Approval workflows
 - Travel policy enforcement
@@ -1064,7 +927,7 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 - COVID/health requirements per destination
 - Visa support
 
-#### 6.11.3 Corporate Reports
+#### 6.9.3 Corporate Reports
 
 | التقرير | المحتوى |
 |---|---|
@@ -1078,9 +941,9 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 
 ---
 
-### 📊 6.12 لوحة تحليلات BI (BI Analytics Dashboard)
+### 📊 6.10 لوحة تحليلات BI (BI Analytics Dashboard)
 
-#### 6.12.1 Dashboards الأساسية
+#### 6.10.1 Dashboards الأساسية
 
 ##### أ) Executive Dashboard
 
@@ -1106,7 +969,7 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 ##### ج) Product Dashboard
 
 - Top selling routes (طيران)
-- Top selling hotels
+- Top selling airlines
 - Top selling destinations
 - Product mix
 - Margin per product
@@ -1136,7 +999,7 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 - Conversion per agent
 - CSAT per agent
 
-#### 6.12.2 Advanced Analytics
+#### 6.10.2 Advanced Analytics
 
 - Cohort analysis
 - RFM segmentation (Recency, Frequency, Monetary)
@@ -1145,7 +1008,7 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 - Price elasticity analysis
 - Seasonality forecasting
 
-#### 6.12.3 Custom Reports
+#### 6.10.3 Custom Reports
 
 - Drag-and-drop report builder
 - Save و schedule reports
@@ -1154,9 +1017,9 @@ PNR في النظام  : 1,200 SAR (للتسوية مع المورد)
 
 ---
 
-### 🏬 6.13 لوحة إدارة متعددة الفروع (Multi-Branch Admin)
+### 🏬 6.11 لوحة إدارة متعددة الفروع (Multi-Branch Admin)
 
-#### 6.13.1 هيكل الفروع
+#### 6.11.1 هيكل الفروع
 
 ```
 Jawla Tours (HQ)
@@ -1168,7 +1031,7 @@ Jawla Tours (HQ)
 └── فرع شرم الشيخ
 ```
 
-#### 6.13.2 Branch-Level Isolation
+#### 6.11.2 Branch-Level Isolation
 
 - كل فرع له admin مستقل
 - صلاحيات منفصلة
@@ -1176,7 +1039,7 @@ Jawla Tours (HQ)
 - Customer database مشتركة (مع تتبع "ownership")
 - Pricing مشترك (مع option لـ markup فرعي)
 
-#### 6.13.3 Consolidated Reporting
+#### 6.11.3 Consolidated Reporting
 
 - HQ dashboard يرى كل الفروع
 - Branch dashboards يرى تفاصيل الفرع فقط
@@ -1184,7 +1047,7 @@ Jawla Tours (HQ)
 - Top performing branches
 - Resource allocation insights
 
-#### 6.13.4 Inter-Branch Transactions
+#### 6.11.4 Inter-Branch Transactions
 
 - نقل حجز بين الفروع
 - مشاركة العملاء
@@ -1192,9 +1055,9 @@ Jawla Tours (HQ)
 
 ---
 
-### 🛡️ 6.14 محرك كشف الاحتيال (Fraud Detection Engine — ML-based)
+### 🛡️ 6.12 محرك كشف الاحتيال (Fraud Detection Engine — ML-based)
 
-#### 6.14.1 المؤشرات الرئيسية (Fraud Signals)
+#### 6.12.1 المؤشرات الرئيسية (Fraud Signals)
 
 | المؤشر | الوزن |
 |---|---|
@@ -1213,14 +1076,14 @@ Jawla Tours (HQ)
 | VPN/Proxy detection | متوسط |
 | Disposable email | متوسط |
 
-#### 6.14.2 ML Model
+#### 6.12.2 ML Model
 
 - نموذج تصنيفي (Risk Scoring 0-100)
 - التدريب على بيانات تاريخية + بيانات صناعية
 - التحديث الشهري
 - Explainability (لماذا تم تصنيف هذه المعاملة عالية الخطر)
 
-#### 6.14.3 Actions
+#### 6.12.3 Actions
 
 | Risk Score | الإجراء |
 |---|---|
@@ -1229,14 +1092,14 @@ Jawla Tours (HQ)
 | 61-80 | Manual review |
 | 81-100 | Auto-decline |
 
-#### 6.14.4 Integration with 3rd Party
+#### 6.12.4 Integration with 3rd Party
 
 - Sift / Signifyd integration option
 - MaxMind GeoIP
 - Emailage email risk
 - WhitePages phone risk
 
-#### 6.14.5 Chargeback Management
+#### 6.12.5 Chargeback Management
 
 - Auto-collection of evidence
 - Pre-filled response templates
@@ -1245,9 +1108,9 @@ Jawla Tours (HQ)
 
 ---
 
-### 💬 6.15 الإشعارات المتعددة (Multi-Channel Notifications)
+### 💬 6.13 الإشعارات المتعددة (Multi-Channel Notifications)
 
-#### 6.15.1 القنوات
+#### 6.13.1 القنوات
 
 | القناة | الاستخدام الأمثل |
 |---|---|
@@ -1257,7 +1120,7 @@ Jawla Tours (HQ)
 | Push Notifications (Web) | عروض، تذكير |
 | In-app notifications | داخل المنصة |
 
-#### 6.15.2 الأحداث المُحفِّزة (Triggers)
+#### 6.13.2 الأحداث المُحفِّزة (Triggers)
 
 | الحدث | القناة |
 |---|---|
@@ -1279,7 +1142,7 @@ Jawla Tours (HQ)
 | Price drop alert | Email + Push |
 | Loyalty milestone | Email + Push |
 
-#### 6.15.3 WhatsApp Business API
+#### 6.13.3 WhatsApp Business API
 
 - استخدام Templates المُعتمدة
 - Two-way conversations مع customer service
@@ -1287,7 +1150,7 @@ Jawla Tours (HQ)
 - Quick reply buttons
 - Order management messages
 
-#### 6.15.4 إدارة التفضيلات
+#### 6.13.4 إدارة التفضيلات
 
 - Opt-in / Opt-out لكل قناة
 - Granular preferences (transactional vs marketing)
@@ -1297,11 +1160,11 @@ Jawla Tours (HQ)
 
 ---
 
-### 🌐 6.16 اللغة والتجاوب (Language & Responsiveness)
+### 🌐 6.14 اللغة والتجاوب (Language & Responsiveness)
 
 > **ملاحظة مهمة:** تم حذف تطبيقات الجوال (iOS/Android Native) من نطاق هذه الباقة. التجربة Web-Responsive كاملة بمعايير PWA.
 
-#### 6.16.1 اللغات المدعومة
+#### 6.14.1 اللغات المدعومة
 
 | اللغة | الاتجاه | المرحلة |
 |---|---|---|
@@ -1311,7 +1174,7 @@ Jawla Tours (HQ)
 | Deutsch | LTR | Phase 2 (اختياري) |
 | Russian | LTR | Phase 2 (اختياري) |
 
-#### 6.16.2 Responsive Design
+#### 6.14.2 Responsive Design
 
 | الجهاز | Breakpoint | الأولوية |
 |---|---|---|
@@ -1320,7 +1183,7 @@ Jawla Tours (HQ)
 | Desktop | 1024-1439px | عالية |
 | Large Desktop | 1440px+ | متوسطة |
 
-#### 6.16.3 PWA Capabilities
+#### 6.14.3 PWA Capabilities
 
 بديل احترافي عن التطبيقات الأصلية:
 
@@ -1335,7 +1198,7 @@ Jawla Tours (HQ)
 - ✅ Fast loading (Service Worker)
 - ✅ Lighthouse PWA score > 90
 
-#### 6.16.4 Accessibility (a11y)
+#### 6.14.4 Accessibility (a11y)
 
 - WCAG 2.1 AA compliance
 - Keyboard navigation
@@ -1346,7 +1209,7 @@ Jawla Tours (HQ)
 - Form labels واضحة
 - Skip-to-content links
 
-#### 6.16.5 Performance
+#### 6.14.5 Performance
 
 - Lighthouse Performance > 90
 - LCP < 2.0s
@@ -1441,53 +1304,37 @@ Jawla Tours (HQ)
 | 49 | 🌟 **Air Sell from Availability** | SOAP | ✅ **Enterprise** |
 | 50 | 🌟 **Air Tax Convert Currency** | SOAP | ✅ **Enterprise** |
 
-#### 7.2.2 Hotel APIs
+#### 7.2.2 Transfer & Car APIs
 
 | # | الخدمة | حالة الإدراج |
 |---|---|---|
-| 51 | Hotel List | ✅ مُدمج |
-| 52 | Hotel Search | ✅ مُدمج |
-| 53 | Hotel Offers Search | ✅ مُدمج |
-| 54 | Hotel Booking | ✅ مُدمج |
-| 55 | Hotel Name Autocomplete | ✅ مُدمج |
-| 56 | Hotel Ratings | ✅ مُدمج |
-| 57 | 🌟 **Hotel Multi-Availability** | ✅ **Enterprise** |
-| 58 | 🌟 **Hotel Content Enterprise** | ✅ **Enterprise** |
-| 59 | 🌟 **Hotel Negotiated Rates** | ✅ **Enterprise** |
-| 60 | 🌟 **Hotel Group Blocks** | ✅ **Enterprise** |
+| 51 | Transfer Search | ✅ مُدمج |
+| 52 | Transfer Booking | ✅ مُدمج |
+| 53 | Transfer Management | ✅ مُدمج |
+| 54 | Car Rental Search | ✅ مُدمج |
+| 55 | Car Rental Booking | ✅ مُدمج |
 
-#### 7.2.3 Transfer & Car APIs
+#### 7.2.3 Activities & Insights
 
 | # | الخدمة | حالة الإدراج |
 |---|---|---|
-| 61 | Transfer Search | ✅ مُدمج |
-| 62 | Transfer Booking | ✅ مُدمج |
-| 63 | Transfer Management | ✅ مُدمج |
-| 64 | Car Rental Search | ✅ مُدمج |
-| 65 | Car Rental Booking | ✅ مُدمج |
+| 56 | Tours and Activities | ✅ مُدمج |
+| 57 | Points of Interest | ✅ مُدمج |
+| 58 | Activity Search | ✅ مُدمج |
+| 59 | Activity Booking | ✅ مُدمج |
+| 60 | Trip Parser | ✅ مُدمج |
+| 61 | Location Score | ✅ مُدمج |
+| 62 | Safe Place | ✅ مُدمج |
+| 63 | Travel Restrictions | ✅ مُدمج |
 
-#### 7.2.4 Activities & Insights
-
-| # | الخدمة | حالة الإدراج |
-|---|---|---|
-| 66 | Tours and Activities | ✅ مُدمج |
-| 67 | Points of Interest | ✅ مُدمج |
-| 68 | Activity Search | ✅ مُدمج |
-| 69 | Activity Booking | ✅ مُدمج |
-| 70 | Trip Parser | ✅ مُدمج |
-| 71 | Location Score | ✅ مُدمج |
-| 72 | Safe Place | ✅ مُدمج |
-| 73 | Travel Restrictions | ✅ مُدمج |
-
-#### 7.2.5 Trip Management
+#### 7.2.4 Trip Management
 
 | # | الخدمة | حالة الإدراج |
 |---|---|---|
-| 74 | Trip Purpose Prediction | ✅ مُدمج |
-| 75 | Hotel Name Autocomplete | ✅ مُدمج |
-| 76 | Travel Recommendations | ✅ مُدمج |
-| 77 | Itinerary Price Metrics | ✅ مُدمج |
-| 78 | Flight Choice Prediction | ✅ مُدمج |
+| 64 | Trip Purpose Prediction | ✅ مُدمج |
+| 65 | Travel Recommendations | ✅ مُدمج |
+| 66 | Itinerary Price Metrics | ✅ مُدمج |
+| 67 | Flight Choice Prediction | ✅ مُدمج |
 
 ### 7.3 شركاء Amadeus الإضافيون
 
@@ -1496,7 +1343,7 @@ Jawla Tours (HQ)
 - **GDS Pass-Through Pricing** — الأسعار التعاقدية لـ Jawla تظهر مباشرة
 - **PCC (Pseudo City Code) management** — متعدد PCCs للأسواق المختلفة
 - **OID (Office ID) Sharing** — تكامل مع الفروع
-- **Net Negotiated Rates** للفنادق
+- **Net Negotiated Fares** — أسعار الطيران التعاقدية الخاصة بـ Jawla
 - **Direct Connect with Airlines** — اتفاقيات مباشرة مع شركات الطيران الكبرى
 
 ### 7.4 شهادات وتدريب Amadeus
@@ -1513,10 +1360,9 @@ Jawla Tours (HQ)
 
 | المؤشر | الباقة |
 |---|---|
-| إجمالي Amadeus APIs المُدمجة | **78 API** |
-| Self-Service APIs | 49 |
+| إجمالي Amadeus APIs المُدمجة | **67 API** |
+| Self-Service APIs | 38 |
 | Enterprise (1A) APIs | **🌟 29 API حصري** |
-| Hotel chains accessible | **1.5+ مليون فندق** |
 | Airlines accessible | **500+ شركة طيران** |
 | NDC airlines | **30+ شركة NDC** |
 | Tours & Activities | **200,000+ تجربة** |
@@ -1538,13 +1384,13 @@ Jawla Tours (HQ)
 │                  🌟 Multi-Pricing Engine 🌟                    │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│  💳 بطاقات                                                     │
+│  💳 بطاقات (عبر PayTabs — بوابة دفع متعددة العملات)            │
 │  ├─ Visa / MasterCard / Amex / Meeza                          │
 │  ├─ International cards                                       │
 │  └─ Apple Pay / Google Pay                                    │
 │                                                                │
 │  📱 محافظ                                                      │
-│  ├─ Paymob Wallet                                             │
+│  ├─ PayTabs Wallet                                            │
 │  ├─ Vodafone Cash                                             │
 │  ├─ Etisalat Cash                                             │
 │  └─ Orange Money                                              │
@@ -1574,11 +1420,6 @@ Jawla Tours (HQ)
 │  ├─ Family wallet                                             │
 │  └─ Bronze/Silver/Gold/Platinum tiers                         │
 │                                                                │
-│  🤝 جملة B2B                                                   │
-│  ├─ NET rates للوكلاء                                          │
-│  ├─ Commission tracking                                       │
-│  └─ Multi-currency settlement                                 │
-│                                                                │
 │  👥 أسعار جماعية                                              │
 │  └─ Auto-discount 5-12% حسب الحجم                              │
 │                                                                │
@@ -1606,7 +1447,7 @@ Jawla Tours (HQ)
 |---|---|
 | Multi-Pricing | تقليل cart abandonment من 68% إلى 38% |
 | Installments | زيادة AOV بنسبة 35-50% |
-| Corporate Credit | فتح قناة B2B بحجم 25-35% من GMV |
+| Corporate Credit | فتح قناة Corporate بحجم 25-35% من GMV |
 | Loyalty Redemption | زيادة Customer Retention بنسبة 40% |
 | Multi-Currency | فتح أسواق خليجية بحجم 15-20% من GMV |
 | FX Margin | إيراد إضافي بـ 1.5-2.5% من GMV |
@@ -1615,7 +1456,7 @@ Jawla Tours (HQ)
 
 ## 9. رحلة المستخدم (User Journey)
 
-> قنوات متعددة: Web (B2C) + B2B Portal + Corporate Portal
+> قنوات متعددة: Web (B2C) + Corporate Portal
 
 ### 9.1 رحلة العميل الفرد (B2C — Web)
 
@@ -1651,7 +1492,7 @@ Jawla Tours (HQ)
 | الخطوة | التجربة |
 |---|---|
 | بيانات المسافرين | تعبئة سريعة (مع save للزائرين السابقين) |
-| Add-ons | تأمين، نقل، فندق |
+| Add-ons | تأمين سفر، نقل من/إلى المطار، تأجير سيارة، جولات وأنشطة |
 | Promo code | تطبيق سهل |
 | Loyalty | استخدام النقاط |
 
@@ -1674,29 +1515,7 @@ Jawla Tours (HQ)
 | Travel disruption alerts | فورية |
 | Post-trip review | بعد العودة |
 
-### 9.2 رحلة الوكيل (B2B Agent Portal)
-
-#### المرحلة 1: التسجيل والتأهيل
-
-```
-تسجيل → KYC → موافقة Admin → عقد رقمي → تفعيل الحساب
-```
-
-#### المرحلة 2: التشغيل اليومي
-
-```
-دخول البوابة → اختيار العميل → Quick Quote →
-Customize Markup → إرسال للعميل (Email/WhatsApp) →
-استلام التأكيد → معالجة الدفع → إصدار Voucher
-```
-
-#### المرحلة 3: الإدارة المالية
-
-```
-Statement شهري → مراجعة العمولات → تسوية تلقائية للمحفظة → سحب لحساب البنك
-```
-
-### 9.3 رحلة العميل المؤسسي (Corporate Portal)
+### 9.2 رحلة العميل المؤسسي (Corporate Portal)
 
 #### المرحلة 1: الإعداد (One-time)
 
@@ -1720,13 +1539,13 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 تجديد الحد الائتماني → تقارير QBR
 ```
 
-### 9.4 رحلة منظّم المجموعات
+### 9.3 رحلة منظّم المجموعات
 
 ```
-طلب RFQ → استلام عرض مبدئي → مفاوضة →
-دفع Deposit → رفع Pax List → توزيع الغرف →
+طلب RFQ → استلام عرض مبدئي للرحلة الجماعية → مفاوضة →
+دفع Deposit → رفع Pax List → توزيع المقاعد →
 دفع الـ Balance → استلام Master Itinerary →
-استلام Individual Vouchers → السفر → Post-trip feedback
+استلام Individual E-Tickets → السفر → Post-trip feedback
 ```
 
 ---
@@ -1741,7 +1560,6 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | زيادة AOV عبر Ancillaries | +18-25% | فوري |
 | زيادة AOV عبر Installments | +35-50% | الشهر 3+ |
 | تخفيض Cart Abandonment | -45% | الشهر 1+ |
-| إيراد B2B جديد | 25-35% من GMV | الشهر 6+ |
 | إيراد Corporate جديد | 15-25% من GMV | الشهر 9+ |
 | إيراد FX | 1.5-2.5% من GMV | فوري |
 | تخفيض Chargebacks | من 3.2% إلى < 0.8% | الشهر 3+ |
@@ -1764,8 +1582,6 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 |---|---|
 | منصة قابلة للتوسع لـ 5+ سنوات | لا حاجة لإعادة بناء |
 | دخول 5 أسواق جديدة (خليجية) | فرص نمو ضخمة |
-| إطلاق sub-brands | تنويع مصادر الإيراد |
-| 50-80 وكيل B2B | شبكة توزيع |
 | 20-30 عميل Corporate | إيراد متكرر مستقر |
 | بيانات استراتيجية (BI) | قرارات أفضل |
 | Brand recognition | منافسة الأكبر |
@@ -1780,11 +1596,10 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | Multi-Currency (10+) | ✅ | ✅ | **🌟 ✅** |
 | BNPL options | محدود | ❌ | **🌟 6+ مزوّدين** |
 | Corporate Credit | ✅ | ❌ | **🌟 ✅** |
-| B2B Portal | محدود | ❌ | **🌟 كامل** |
-| White-Label | ❌ | ❌ | **🌟 ✅ (ميزة فريدة)** |
+| 🎨 Custom User Dashboards | محدود | ❌ | **🌟 ✅ (ميزة حصرية Enterprise)** |
 | Loyalty مع redemption | ✅ | محدود | **🌟 ✅** |
 | Arabic experience | ✅ | محدود | **🌟 ممتاز (Arabic-first)** |
-| الفنادق المحلية بأسعار خاصة | محدود | محدود | **🌟 ✅ (Jawla Exclusive)** |
+| Negotiated Flight Fares محلية | محدود | محدود | **🌟 ✅ (Jawla Exclusive)** |
 
 ---
 
@@ -1796,8 +1611,8 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 الشهر 1  │■■■■■■■│ Discovery + Architecture + UX
 الشهر 2  │■■■■■■■│ Core Platform + Authentication
 الشهر 3  │■■■■■■■│ Amadeus Enterprise Integration
-الشهر 4  │■■■■■■■│ Payment + Multi-Currency + B2B
-الشهر 5  │■■■■■■■│ White-Label + Corporate + BI
+الشهر 4  │■■■■■■■│ Payment + Multi-Currency + Corporate
+الشهر 5  │■■■■■■■│ Custom Dashboards + Groups + BI
 الشهر 6  │■■■■■■■│ Testing + Training + Launch
 ```
 
@@ -1824,7 +1639,7 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | الأسبوع | الأنشطة |
 |---|---|
 | 5 | UI Design (Hi-Fi mockups) — Web responsive |
-| 6 | UI Design — Admin + B2B Portal + Corporate Portal |
+| 6 | UI Design — Admin + Corporate Portal + Custom User Dashboards |
 | 7 | Backend setup، Database schema، Auth module |
 | 8 | Frontend foundation، Component library، Routing |
 
@@ -1842,41 +1657,40 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | 9 | Amadeus Self-Service APIs + Master Pricer Travel Board |
 | 10 | Air Sell + PNR Management + Document Issuance |
 | 11 | EMD + Queue Management + Ancillaries |
-| 12 | Hotels Enterprise + Transfers + Activities + NDC |
+| 12 | Transfers + Car Rental + Tours & Activities + NDC |
 
 **مسلَّمات:**
-- تكامل كامل لـ 78 Amadeus API
-- Booking engine يعمل end-to-end
+- تكامل كامل لـ 67 Amadeus API (للطيران + النقل + الجولات)
+- Flight booking engine يعمل end-to-end
 - إصدار E-Tickets و EMDs
 - Queue management مُفعّل
 
-#### المرحلة 4: الدفع والعملات والـ B2B (الأسابيع 13-16)
+#### المرحلة 4: الدفع والعملات والـ Corporate (الأسابيع 13-16)
 
 | الأسبوع | الأنشطة |
 |---|---|
-| 13 | Multi-Pricing Engine (Cards + Wallets + Banking) |
+| 13 | Multi-Pricing Engine (Cards + Wallets + Banking عبر PayTabs) |
 | 14 | BNPL integrations (6 مزوّدين) + Corporate Credit |
 | 15 | Multi-Currency Engine + FX rate management + Rate Lock |
-| 16 | B2B Agent Portal (registration، wholesale، commission) |
+| 16 | Corporate Accounts + Approval workflows |
 
 **مسلَّمات:**
 - 15+ خيار دفع متاح
 - 10+ عملات تعمل بأسعار صرف لحظية
-- B2B Agent Portal كامل
-- Commission tracking يعمل
+- Corporate Portal كامل
+- Corporate Credit (Net 30/60/90) يعمل
 
-#### المرحلة 5: White-Label + Corporate + BI (الأسابيع 17-20)
+#### المرحلة 5: Custom Dashboards + Groups + BI (الأسابيع 17-20)
 
 | الأسبوع | الأنشطة |
 |---|---|
-| 17 | White-Label Engine + Sub-brand theming |
-| 18 | Corporate Accounts + Approval workflows |
+| 17 | 🎨 Custom User Dashboards Engine (Widgets + Personalization + Theming) |
+| 18 | Personal BI Analytics للعميل + Export/Share |
 | 19 | Group Bookings workflow + Group pricing |
 | 20 | BI Dashboards + Reports + Multi-Branch Admin |
 
 **مسلَّمات:**
-- White-Label Engine يعمل
-- Corporate Portal كامل
+- 🎨 Custom User Dashboards يعمل بالكامل
 - Group Bookings end-to-end
 - BI Dashboards (6 dashboards)
 - Multi-Branch admin
@@ -1904,8 +1718,8 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | M1 | 4 | Requirements + Architecture |
 | M2 | 8 | Designs + Foundation |
 | M3 | 12 | Amadeus Integration Complete |
-| M4 | 16 | Payment + Multi-Currency + B2B |
-| M5 | 20 | White-Label + Corporate + BI |
+| M4 | 16 | Payment + Multi-Currency + Corporate |
+| M5 | 20 | Custom Dashboards + Groups + BI |
 | M6 | 23 | Soft Launch |
 | M7 | 24 | **🚀 Production Launch** |
 
@@ -1933,7 +1747,7 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 |---|---|---|---|---|---|
 | 1 | **عند توقيع العقد (Down Payment)** | الأسبوع 0 | 30% | **6,000 USD** | **300,000 EGP** |
 | 2 | **عند اكتمال Milestone M2 (Foundation)** | الأسبوع 8 | 25% | **5,000 USD** | **250,000 EGP** |
-| 3 | **عند اكتمال Milestone M4 (Amadeus + Payment)** | الأسبوع 16 | 25% | **5,000 USD** | **250,000 EGP** |
+| 3 | **عند اكتمال Milestone M4 (Payment + Multi-Currency + Corporate)** | الأسبوع 16 | 25% | **5,000 USD** | **250,000 EGP** |
 | 4 | **عند الإطلاق Production (M7)** | الأسبوع 24 | 20% | **4,000 USD** | **200,000 EGP** |
 | | **الإجمالي** | | **100%** | **20,000 USD** | **1,000,000 EGP** |
 
@@ -2137,7 +1951,7 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 ### 16.2 افتراضات تقنية (Technical)
 
 6. **العميل يوفّر بيئة استضافة** أو يقبل اختيارنا (AWS/GCP/Azure)
-7. **العميل يوفّر domains** اللازمة (jawla-tours.com وأي sub-brands)
+7. **العميل يوفّر domains** اللازمة (jawla-tours.com)
 8. **العميل يوفّر SSL certificates** أو يقبل Let's Encrypt
 9. **العميل يوفّر حسابات الـ APIs الخارجية** (Google Maps، XE.com، etc.)
 10. **العميل يوفّر مفاتيح بوابات الدفع** أو يقبل ترشيحاتنا
@@ -2173,6 +1987,35 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 
 > **هذه البنود ليست جزءًا من العرض ويمكن إضافتها كخدمات منفصلة.**
 
+#### 17.1.-2 🚫 بوابة الوكلاء B2B (REMOVED)
+
+❌ **لا يشمل العرض بوابة وكلاء B2B (Sub-system مستقل) — تم حذفها من النطاق بناءً على طلب العميل**
+❌ **لا يشمل العرض تسجيل الوكلاء (Agent Onboarding)، KYC الوكلاء، أو إدارة العقود مع الوكلاء**
+❌ **لا يشمل العرض أسعار الجملة (Wholesale Pricing / NET rates)، Markup engine للوكلاء، أو White-label receipts للوكلاء**
+❌ **لا يشمل العرض Commission Tracking للوكلاء، Agent Portal Dashboard، صلاحيات الوكلاء، أو أدوات Quick Quote للوكلاء**
+❌ **لا يشمل العرض تسوية متعددة العملات للوكلاء B2B**
+
+> **سبب الحذف:** قرار استراتيجي من العميل بحذف قناة B2B من النطاق والتركيز على B2C + Corporate Accounts فقط.
+
+#### 17.1.-1 🚫 محرك White-Label (REMOVED)
+
+❌ **لا يشمل العرض محرك White-Label لإنشاء علامات تجارية فرعية — تم حذفه من النطاق بناءً على طلب العميل**
+❌ **لا يشمل العرض إنشاء Sub-Brands، Theming Engine، Visual Theme Editor، أو Theme Versioning**
+❌ **لا يشمل العرض CMS منفصل لكل sub-brand، Pricing per Sub-Brand، أو Reporting per Sub-Brand**
+❌ **لا يشمل العرض إطلاق علامات تجارية فرعية (Luxury / Religious / Partner-branded sub-brands)**
+
+> **سبب الحذف:** قرار استراتيجي من العميل بحذف محرك White-Label من النطاق والاكتفاء بعلامة Jawla الواحدة.
+
+#### 17.1.0 🚫 حجز الفنادق (REMOVED)
+
+❌ **لا يشمل العرض حجز الفنادق** — تم استبعاد وحدة الفنادق من جميع الباقات بناءً على طلب العميل، والتركيز على وحدة الطيران فقط
+❌ **لا يشمل العرض Hotel Search، Hotel Booking، Hotel Ratings، Hotel Multi-Availability، Negotiated Hotel Rates، Hotel Group Blocks** — تم حذف جميع Amadeus Hotel APIs من النطاق
+❌ **لا يشمل العرض إصدار قسائم فنادق (Hotel Vouchers)** أو إدارة حجوزات الإقامة
+
+> **سبب الحذف:** قرار استراتيجي من العميل بالتركيز الكامل على وحدة الطيران لتقديم تجربة حجز رحلات الطيران المتكاملة بأعلى مستوى احترافي.
+
+> **خيار الإضافة لاحقاً:** يمكن إضافة وحدة الفنادق كمشروع منفصل في مرحلة لاحقة (تقدير: 8-12 أسبوع إضافي، 200,000-350,000 EGP).
+
 #### 17.1.1 🚫 تطبيقات الجوال (REMOVED)
 
 ❌ **لا يشمل العرض تطبيق Android (Native)** — تم حذفه من النطاق صراحة بناءً على طلب العميل
@@ -2196,7 +2039,7 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 #### 17.1.3 🚫 التكاليف الجارية للأطراف الثالثة
 
 ❌ **اشتراكات Amadeus الشهرية** + رسوم المعاملات
-❌ **رسوم بوابات الدفع** (transaction fees)
+❌ **رسوم بوابة الدفع PayTabs** (transaction fees لكل معاملة)
 ❌ **رسوم WhatsApp Business API** (per message)
 ❌ **رسوم SMS gateways**
 ❌ **رسوم Email service** (SendGrid، Mailgun)
@@ -2257,7 +2100,8 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | SEO content (10 articles/شهر) | 15,000 EGP/شهر |
 | ERP integration (SAP/Oracle) | 100,000-250,000 EGP |
 | CRM integration (Salesforce) | 75,000-150,000 EGP |
-| Additional sub-brands setup | 25,000 EGP/sub-brand |
+| إضافة بوابة وكلاء B2B (مشروع منفصل) | 200,000-350,000 EGP |
+| إضافة محرك White-Label + Sub-brand (مشروع منفصل) | 250,000-400,000 EGP |
 | Custom AI features | حسب النطاق |
 | Migration من نظام قديم | حسب الحجم |
 
@@ -2366,10 +2210,9 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 ✓ تكامل Amadeus Enterprise (78 API)
 ✓ Multi-Currency (10+ عملات)
 ✓ Multi-Pricing (15+ خيار دفع)
-✓ B2B Agent Portal
-✓ White-Label Engine
 ✓ Corporate Accounts
 ✓ Group Bookings
+✓ 🎨 Custom User Dashboards (ميزة حصرية Enterprise)
 ✓ Fraud Detection (ML)
 ✓ BI Analytics
 ✓ Multi-Branch Admin
@@ -2380,6 +2223,8 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 
 ❌ لا يشمل: تطبيقات Native (iOS/Android)
 ❌ لا يشمل: التراخيص الحكومية واعتمادات IATA
+❌ لا يشمل: بوابة وكلاء B2B (تم حذفها بناءً على طلب العميل)
+❌ لا يشمل: محرك White-Label (تم حذفه بناءً على طلب العميل)
 
 ═══════════════════════════════════════════════════════════════════
 
@@ -2453,20 +2298,17 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | 🛫 Air | 🌟 Ancillary Services | ✅ |
 | 🛫 Air | 🌟 Branded Fares | ✅ |
 | 🛫 Air | 🌟 Robotics/SOAP | ✅ |
-| 🏨 Hotels | Multi-Availability Enterprise | ✅ |
-| 🏨 Hotels | Negotiated Rates | ✅ |
-| 🏨 Hotels | Group Blocks | ✅ |
+| 🛫 Air | 🌟 Negotiated Flight Fares (FareXpert) | ✅ |
 | 🚗 Cars | Transfer Search/Booking | ✅ |
 | 🚗 Cars | Car Rental API | ✅ |
 | 🎯 Tours | Tours & Activities | ✅ |
 | 🎯 Tours | Points of Interest | ✅ |
 | 🎯 Tours | Trip Parser | ✅ |
-| 💳 Pay | 🌟 Cards (Paymob/Stripe/etc.) | ✅ |
+| 💳 Pay | 🌟 Cards (PayTabs — بوابة دفع متعددة العملات) | ✅ |
 | 💳 Pay | 🌟 Wallets (6+) | ✅ |
 | 💳 Pay | 🌟 BNPL (6 مزوّدين) | ✅ |
 | 💳 Pay | 🌟 Corporate Credit (Net 30/60/90) | ✅ |
 | 💳 Pay | 🌟 Loyalty Redemption | ✅ |
-| 💳 Pay | 🌟 B2B NET Rates | ✅ |
 | 💳 Pay | 🌟 Group Pricing | ✅ |
 | 🌍 FX | 🌟 10+ Currencies | ✅ |
 | 🌍 FX | 🌟 Live exchange rates | ✅ |
@@ -2478,13 +2320,15 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 | 🎯 Pricing | Dynamic pricing engine | ✅ |
 | 🎯 Pricing | A/B testing | ✅ |
 | 🎯 Pricing | Promo codes | ✅ |
-| 🏢 B2B | Agent registration + KYC | ✅ |
-| 🏢 B2B | Wholesale pricing | ✅ |
-| 🏢 B2B | Commission tracking | ✅ |
-| 🏢 B2B | Agent portal | ✅ |
-| 🎨 WL | White-Label Engine | ✅ |
-| 🎨 WL | Sub-brand creation | ✅ |
-| 🎨 WL | Custom theming | ✅ |
+| 🏢 B2B | Agent registration + KYC | ❌ **(تم حذفه — Sub-system مستقل)** |
+| 🏢 B2B | Wholesale pricing | ❌ **(تم حذفه)** |
+| 🏢 B2B | Commission tracking | ❌ **(تم حذفه)** |
+| 🏢 B2B | Agent portal | ❌ **(تم حذفه)** |
+| 🎨 WL | White-Label Engine | ❌ **(تم حذفه — بناءً على طلب العميل)** |
+| 🎨 WL | Sub-brand creation | ❌ **(تم حذفه)** |
+| 🎨 WL | Custom theming | ❌ **(تم حذفه)** |
+| 🎛️ Dash | 🌟 Custom User Dashboards (Widgets + Personalization) | ✅ **(حصرية Enterprise)** |
+| 🎛️ Dash | 🌟 Personal BI Analytics للعميل | ✅ **(حصرية Enterprise)** |
 | 👥 Groups | Group booking workflow | ✅ |
 | 👥 Groups | Corporate accounts | ✅ |
 | 👥 Groups | Approval workflows | ✅ |
@@ -2511,6 +2355,8 @@ Statement شهري → مراجعة العمولات → تسوية تلقائي
 - [ ] قرأت كامل المستند
 - [ ] فهمت الميزات المحورية الثلاث (Amadeus Enterprise، Multi-Pricing، Multi-Currency)
 - [ ] أكّدت موافقتك على حذف تطبيقات الجوال من النطاق
+- [ ] أكّدت موافقتك على حذف بوابة وكلاء B2B من النطاق
+- [ ] أكّدت موافقتك على حذف محرك White-Label من النطاق
 - [ ] راجعت جدول الدفع وقدرتك على الالتزام به
 - [ ] راجعت الجدول الزمني (6 أشهر)
 - [ ] راجعت الافتراضات وأكّدت تحقّقها
