@@ -10,7 +10,7 @@
 |---|---|
 | رقم العقد (Contract No.) | JWL-MNT-ENT-2026-001 |
 | اسم العقد (Contract Title) | عقد صيانة ودعم فني — الباقة المؤسسية (Enterprise Maintenance & Support Agreement) |
-| الطرف الأول — مقدم الخدمة (Service Provider / First Party) | شركة ديفيا للحلول التقنية (Devya Solutions Ltd.) — جمهورية مصر العربية |
+| الطرف الأول — مقدم الخدمة (Service Provider / First Party) | Tajera Software House — جمهورية مصر العربية |
 | الطرف الثاني — العميل (Client / Second Party) | شركة جولة للسياحة (Jawla Tours OTA) |
 | تاريخ السريان (Effective Date) | 29 يونيو 2026 (June 29, 2026) |
 | مدة العقد (Initial Term) | اثنا عشر (12) شهراً ميلادياً |
@@ -237,8 +237,8 @@
 |---|---|---|---|
 | **خط الطوارئ المخصّص (Hotline)** | +20 1XX XXX XXXX (مخصّص) | حوادث P1 فقط | 24/7 |
 | **هاتف الدعم العام** | +20 1XX XXX XXXX | جميع الأنواع | 24/7 |
-| **البريد الإلكتروني** | jawla-support@devya.dev (مخصّص) | جميع الطلبات | 24/7 |
-| **بوابة التذاكر** | https://support.devya.dev | تتبّع وإدارة | 24/7 |
+| **البريد الإلكتروني** | jawla-support@tajera.net (مخصّص) | جميع الطلبات | 24/7 |
+| **بوابة التذاكر** | https://support.tajera.net | تتبّع وإدارة | 24/7 |
 | **واتساب الأعمال** | +20 1XX XXX XXXX (مخصّص) | تواصل سريع | 24/7 |
 | **Microsoft Teams / Slack** | قناة مشتركة مخصّصة | تواصل يومي مع مدير الحساب | أيام العمل |
 | **اجتماعات Zoom / Teams** | حسب الجدولة | الاجتماعات الدورية | حسب الجدولة |
@@ -741,14 +741,14 @@
 
 | الدور | الاسم | البريد الإلكتروني | الهاتف / واتساب |
 |---|---|---|---|
-| **مدير الحساب المخصّص (Dedicated AM)** | يُحدَّد عند التوقيع | jawla-am@devya.dev | +20 1XX XXX XXXX |
-| **الخط الساخن للطوارئ (P1 Hotline)** | فريق On-Call | jawla-p1@devya.dev | +20 1XX XXX XXXX |
-| **فريق الدعم المؤسسي** | فريق نوبات 24/7 | jawla-support@devya.dev | +20 1XX XXX XXXX |
-| **مدير الهندسة (Engineering Manager)** | يُحدَّد عند التوقيع | engineering@devya.dev | — |
-| **رئيس قسم الأمان (Head of Security)** | يُحدَّد عند التوقيع | security@devya.dev | — |
-| **المدير التنفيذي للعمليات (COO)** | يُحدَّد عند التوقيع | coo@devya.dev | — |
-| **الفوترة (Billing)** | قسم المالية | billing@devya.dev | — |
-| **المستشار الأمني (CISO Advisory)** | يُحدَّد عند التوقيع | ciso@devya.dev | — |
+| **مدير الحساب المخصّص (Dedicated AM)** | يُحدَّد عند التوقيع | jawla-am@tajera.net | +20 1XX XXX XXXX |
+| **الخط الساخن للطوارئ (P1 Hotline)** | فريق On-Call | jawla-p1@tajera.net | +20 1XX XXX XXXX |
+| **فريق الدعم المؤسسي** | فريق نوبات 24/7 | jawla-support@tajera.net | +20 1XX XXX XXXX |
+| **مدير الهندسة (Engineering Manager)** | يُحدَّد عند التوقيع | engineering@tajera.net | — |
+| **رئيس قسم الأمان (Head of Security)** | يُحدَّد عند التوقيع | security@tajera.net | — |
+| **المدير التنفيذي للعمليات (COO)** | يُحدَّد عند التوقيع | coo@tajera.net | — |
+| **الفوترة (Billing)** | قسم المالية | billing@tajera.net | — |
+| **المستشار الأمني (CISO Advisory)** | يُحدَّد عند التوقيع | ciso@tajera.net | — |
 
 ### جهات الاتصال لدى العميل
 
@@ -786,7 +786,7 @@
 
 ### الطرف الأول — مقدم الخدمة (First Party — Service Provider)
 
-**شركة ديفيا للحلول التقنية (Devya Solutions Ltd.)**
+**Tajera Software House**
 
 | البند | التفاصيل |
 |---|---|

@@ -10,7 +10,7 @@
 |---|---|
 | رقم العقد (Contract No.) | JWL-MNT-BASIC-2026-001 |
 | اسم العقد (Contract Title) | عقد صيانة ودعم فني — الباقة الأساسية (Basic Maintenance & Support Agreement) |
-| الطرف الأول — مقدم الخدمة (Service Provider / First Party) | شركة ديفيا للحلول التقنية (Devya Solutions Ltd.) — جمهورية مصر العربية |
+| الطرف الأول — مقدم الخدمة (Service Provider / First Party) | Tajera Software House — جمهورية مصر العربية |
 | الطرف الثاني — العميل (Client / Second Party) | شركة جولة للسياحة (Jawla Tours OTA) |
 | تاريخ السريان (Effective Date) | 29 يونيو 2026 (June 29, 2026) |
 | مدة العقد (Initial Term) | اثنا عشر (12) شهراً ميلادياً |
@@ -150,8 +150,8 @@
 
 | القناة (Channel) | التفاصيل (Details) | الاستخدام (Use Case) |
 |---|---|---|
-| **البريد الإلكتروني (Email)** | support@devya.dev | جميع أنواع الطلبات (الافتراضي) |
-| **بوابة التذاكر (Ticket Portal)** | https://support.devya.dev | تتبّع الحوادث والطلبات |
+| **البريد الإلكتروني (Email)** | support@tajera.net | جميع أنواع الطلبات (الافتراضي) |
+| **بوابة التذاكر (Ticket Portal)** | https://support.tajera.net | تتبّع الحوادث والطلبات |
 | **الهاتف (Phone)** | غير متاح في الباقة الأساسية | — |
 | **واتساب (WhatsApp)** | غير متاح في الباقة الأساسية | — |
 
@@ -418,10 +418,10 @@
 
 | الدور | الاسم | البريد الإلكتروني | الهاتف |
 |---|---|---|---|
-| مدير الحساب (Account Manager) | يُحدَّد لاحقاً | accounts@devya.dev | — |
-| فريق الدعم (Support Team) | فريق الدعم الفني | support@devya.dev | — |
-| التصعيد (Escalation) | مدير الهندسة | engineering@devya.dev | — |
-| الفوترة (Billing) | قسم المالية | billing@devya.dev | — |
+| مدير الحساب (Account Manager) | يُحدَّد لاحقاً | accounts@tajera.net | — |
+| فريق الدعم (Support Team) | فريق الدعم الفني | support@tajera.net | — |
+| التصعيد (Escalation) | مدير الهندسة | engineering@tajera.net | — |
+| الفوترة (Billing) | قسم المالية | billing@tajera.net | — |
 
 ### جهات الاتصال لدى العميل (Client Contacts)
 
@@ -447,7 +447,7 @@
 
 ### الطرف الأول — مقدم الخدمة (First Party — Service Provider)
 
-**شركة ديفيا للحلول التقنية (Devya Solutions Ltd.)**
+**Tajera Software House**
 
 | البند | التفاصيل |
 |---|---|

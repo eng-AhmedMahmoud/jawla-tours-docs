@@ -10,7 +10,7 @@
 |---|---|
 | رقم العقد (Contract No.) | JWL-MNT-PRO-2026-001 |
 | اسم العقد (Contract Title) | عقد صيانة ودعم فني — الباقة الاحترافية (Professional Maintenance & Support Agreement) |
-| الطرف الأول — مقدم الخدمة (Service Provider / First Party) | شركة ديفيا للحلول التقنية (Devya Solutions Ltd.) — جمهورية مصر العربية |
+| الطرف الأول — مقدم الخدمة (Service Provider / First Party) | Tajera Software House — جمهورية مصر العربية |
 | الطرف الثاني — العميل (Client / Second Party) | شركة جولة للسياحة (Jawla Tours OTA) |
 | تاريخ السريان (Effective Date) | 29 يونيو 2026 (June 29, 2026) |
 | مدة العقد (Initial Term) | اثنا عشر (12) شهراً ميلادياً |
@@ -191,8 +191,8 @@
 
 | القناة | التفاصيل | الاستخدام |
 |---|---|---|
-| **البريد الإلكتروني** | support@devya.dev | جميع الطلبات |
-| **بوابة التذاكر** | https://support.devya.dev | تتبّع وإدارة التذاكر |
+| **البريد الإلكتروني** | support@tajera.net | جميع الطلبات |
+| **بوابة التذاكر** | https://support.tajera.net | تتبّع وإدارة التذاكر |
 | **واتساب الأعمال** | +20 1XX XXX XXXX (مخصّص للعميل) | حوادث P1 و P2 السريعة |
 | **الهاتف** | غير متاح في الباقة الاحترافية | متوفر في الباقة المؤسسية |
 | **اجتماعات Microsoft Teams / Zoom** | حسب الجدولة | اجتماعات المراجعة الشهرية |
@@ -532,12 +532,12 @@
 
 | الدور | الاسم | البريد الإلكتروني | الهاتف / واتساب |
 |---|---|---|---|
-| مدير الحساب (Account Manager) | يُحدَّد عند التوقيع | accounts@devya.dev | +20 1XX XXX XXXX |
-| فريق الدعم الفني (Support Team) | فريق الدعم | support@devya.dev | +20 1XX XXX XXXX |
-| التصعيد المستوى الثاني (L2) | قائد الفريق | escalation@devya.dev | — |
-| التصعيد المستوى الثالث (L3) | مدير الهندسة | engineering@devya.dev | — |
-| الفوترة (Billing) | قسم المالية | billing@devya.dev | — |
-| الأمان (Security) | مسؤول الأمان | security@devya.dev | — |
+| مدير الحساب (Account Manager) | يُحدَّد عند التوقيع | accounts@tajera.net | +20 1XX XXX XXXX |
+| فريق الدعم الفني (Support Team) | فريق الدعم | support@tajera.net | +20 1XX XXX XXXX |
+| التصعيد المستوى الثاني (L2) | قائد الفريق | escalation@tajera.net | — |
+| التصعيد المستوى الثالث (L3) | مدير الهندسة | engineering@tajera.net | — |
+| الفوترة (Billing) | قسم المالية | billing@tajera.net | — |
+| الأمان (Security) | مسؤول الأمان | security@tajera.net | — |
 
 ### جهات الاتصال لدى العميل
 
@@ -565,7 +565,7 @@
 
 ### الطرف الأول — مقدم الخدمة (First Party — Service Provider)
 
-**شركة ديفيا للحلول التقنية (Devya Solutions Ltd.)**
+**Tajera Software House**
 
 | البند | التفاصيل |
 |---|---|

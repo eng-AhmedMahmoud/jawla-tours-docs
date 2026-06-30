@@ -10,6 +10,8 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+<script src="https://unpkg.com/html-docx-js/dist/html-docx.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 <style>
   :root {
     --bg: #0b0f17;
@@ -254,8 +256,44 @@
         el('span', null, '🛠 ' + tier.maint),
       ]),
       el('button', { class: 'btn', onclick: () => window.print() }, '🖨 Print / PDF'),
+      el('button', { class: 'btn', style: 'margin-inline-start:8px', onclick: () => exportDocx(cat, tier) }, '📄 Word (.docx)'),
     ]));
     return bar;
+  }
+
+  function exportDocx(cat, tier) {
+    const key = KEY(cat.id, tier.id);
+    const md = DOCS[key] || '';
+    const bodyHtml = DOMPurify.sanitize(marked.parse(md), { ADD_ATTR: ['target'] });
+    const dir = cat.rtl ? 'rtl' : 'ltr';
+    const lang = cat.rtl ? 'ar' : 'en';
+    const title = tier.label + ' — ' + cat.label;
+    const css = `
+      body { font-family: ${cat.rtl ? "'Arial', 'Tahoma', sans-serif" : "'Calibri', 'Arial', sans-serif"}; font-size: 11pt; color: #111; line-height: 1.6; }
+      h1 { font-size: 22pt; color: #0b3d91; border-bottom: 2px solid #6ea8ff; padding-bottom: 6pt; margin-top: 18pt; }
+      h2 { font-size: 16pt; color: #143b6e; margin-top: 16pt; }
+      h3 { font-size: 13pt; color: #1f4e8a; margin-top: 12pt; }
+      h4 { font-size: 12pt; color: #2a4d76; margin-top: 10pt; }
+      p, li, td, th { font-size: 11pt; }
+      table { border-collapse: collapse; width: 100%; margin: 8pt 0; }
+      th, td { border: 1px solid #888; padding: 6pt 8pt; vertical-align: top; }
+      th { background: #e8eef8; }
+      code { font-family: 'Consolas', monospace; background: #f2f2f2; padding: 1pt 3pt; }
+      pre { background: #f5f5f5; padding: 8pt; border: 1px solid #ddd; font-family: 'Consolas', monospace; font-size: 9.5pt; }
+      blockquote { border-${cat.rtl ? 'right' : 'left'}: 3px solid #6ea8ff; padding: 4pt 10pt; color: #333; background: #f6f9ff; }
+      a { color: #0b66c2; text-decoration: underline; }
+      hr { border: 0; border-top: 1px solid #ccc; }
+    `;
+    const html =
+      '<!doctype html><html lang="' + lang + '" dir="' + dir + '"><head><meta charset="utf-8"><title>' +
+      title + '</title><style>' + css + '</style></head><body>' + bodyHtml + '</body></html>';
+    try {
+      const blob = window.htmlDocx.asBlob(html, { orientation: 'portrait', margins: { top: 720, right: 720, bottom: 720, left: 720 } });
+      window.saveAs(blob, key + '.docx');
+    } catch (err) {
+      console.error('docx export failed', err);
+      alert('Word export failed. Check console.');
+    }
   }
 
   function buildHero() {
